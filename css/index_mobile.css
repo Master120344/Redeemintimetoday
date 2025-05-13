@@ -74,7 +74,7 @@ img {
 /* Header & Navigation */
 .site-header {
     background-color: var(--white);
-    padding: 15px 20px;
+    padding: 10px 15px; /* Slightly adjusted padding */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -86,12 +86,79 @@ img {
     box-shadow: var(--shadow);
 }
 
-.logo-text {
+/* === ANIMATED LOGO STYLES START === */
+.logo-container {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0; /* Prevent logo from shrinking too much */
+}
+
+.animated-logo-link {
+    display: inline-block;
+    line-height: 0; 
+}
+
+.animated-rtt-logo {
+    width: 65px; /* Adjusted size for mobile header */
+    height: auto; 
+    overflow: visible;
+    margin-right: 10px; /* Space between logo and potential text/menu toggle */
+}
+
+.animated-rtt-logo .logo-full-name {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    fill: var(--primary-color); /* Ensure it's visible */
+    text-transform: uppercase;
+}
+
+.animated-rtt-logo .sand {
+    animation: fall-sand 2.8s linear infinite; /* Slightly slower animation */
+    opacity: 0;
+}
+
+.animated-rtt-logo .p1 { animation-delay: 0s; }
+.animated-rtt-logo .p2 { animation-delay: 0.45s; transform: translateX(-1px); }
+.animated-rtt-logo .p3 { animation-delay: 0.9s; transform: translateX(1px); }
+.animated-rtt-logo .p4 { animation-delay: 1.35s; transform: translateX(0.5px); }
+.animated-rtt-logo .p5 { animation-delay: 1.8s; transform: translateX(-0.5px); }
+
+@keyframes fall-sand {
+    0% { cy: 35; opacity: 1; }
+    20% { cy: 45; opacity: 1; }
+    80% { cy: 65; opacity: 1; }
+    100% { cy: 70; opacity: 0; }
+}
+
+.animated-rtt-logo .redeemed-glow {
+    animation: pulse-redeemed 3.5s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes pulse-redeemed {
+    0% { transform: scale(0.95); opacity: 0.7; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(0.95); opacity: 0.7; }
+}
+
+.animated-rtt-logo .hourglass-bottom-fill {
+    animation: subtle-pulse 4s ease-in-out infinite alternate; /* Alternate for smoother fill illusion */
+}
+@keyframes subtle-pulse {
+    0% { opacity: 0.85; transform: scaleY(0.98) translateY(1px) } /* Start slightly less full */
+    100% { opacity: 1;  transform: scaleY(1) translateY(0px) } /* End fuller */
+}
+/* === ANIMATED LOGO STYLES END === */
+
+
+.logo-text { /* This class might be obsolete now, or used for fallback text */
     font-family: var(--font-primary);
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Adjusted if used alongside svg logo */
     font-weight: 700;
     color: var(--primary-color);
+    /* display: none; /* Uncomment if you ONLY want the SVG logo */
 }
+
 
 .menu-toggle, .close-menu {
     background: none;
@@ -99,12 +166,13 @@ img {
     font-size: 1.8rem;
     color: var(--primary-color);
     cursor: pointer;
+    padding: 5px; /* Add some padding for easier tap */
 }
 
 .mobile-nav {
     position: fixed;
     top: 0;
-    right: -100%; /* Start off-screen */
+    right: -100%; 
     width: 80%;
     max-width: 300px;
     height: 100vh;
@@ -159,8 +227,8 @@ img {
     text-align: center;
     color: var(--white);
     background: url('https://images.unsplash.com/photo-1528830475177-1f265c210010?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGhvcGV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60') no-repeat center center/cover;
-    background-attachment: fixed; /* Parallax-like effect */
-    margin-top: 60px; /* Account for fixed header */
+    background-attachment: fixed; 
+    margin-top: 60px; /* Header height */
 }
 
 .hero-overlay {
@@ -169,7 +237,7 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(10, 77, 104, 0.7); /* Darker overlay for text readability */
+    background-color: rgba(10, 77, 104, 0.7); 
 }
 
 .hero-content {
@@ -187,14 +255,13 @@ img {
 }
 
 .hero-headline .highlight {
-    /* Animated gradient text - "insanely impressive" */
     background: linear-gradient(90deg, var(--accent-color), #FFD700, var(--accent-color));
     background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradient-flow 5s ease infinite;
-    display: block; /* Ensure spans stack */
+    display: block; 
 }
 
 @keyframes gradient-flow {
@@ -228,7 +295,7 @@ img {
 }
 
 .cta-button:hover {
-    background-color: #E66A47; /* Darker accent */
+    background-color: #E66A47; 
     transform: translateY(-2px);
     color: var(--white);
 }
@@ -243,7 +310,7 @@ img {
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    margin: 0 auto 20px auto; /* Center on mobile */
+    margin: 0 auto 20px auto; 
     box-shadow: var(--shadow-strong);
     border: 4px solid var(--white);
 }
@@ -267,7 +334,6 @@ img {
 .services-grid {
     display: grid;
     gap: 25px;
-    /* grid-template-columns: 1fr; // Default for mobile */
 }
 
 .service-card {
@@ -307,7 +373,7 @@ img {
 }
 .cta-buttons {
     display: flex;
-    flex-direction: column; /* Stack buttons on mobile */
+    flex-direction: column; 
     align-items: center;
     gap: 15px;
 }
@@ -367,7 +433,7 @@ img {
 .animate-on-scroll {
     opacity: 0;
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    transition-delay: var(--delay, 0s); /* Custom delay per element */
+    transition-delay: var(--delay, 0s); 
 }
 
 .animate-on-scroll.fade-in {
@@ -388,7 +454,7 @@ img {
     transform: translateY(0) translateX(0);
 }
 
-/* Tablet and larger improvements (optional for now, focusing on mobile) */
+/* Tablet and larger improvements */
 @media (min-width: 768px) {
     h1 { font-size: 2.8rem; }
     .hero-headline { font-size: 3.5rem; }
@@ -401,15 +467,25 @@ img {
         gap: 30px;
     }
     .ceo-image {
-        margin: 0; /* Remove auto margin */
-        flex-shrink: 0; /* Prevent image from shrinking */
+        margin: 0; 
+        flex-shrink: 0;
     }
 
     .services-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+        grid-template-columns: repeat(2, 1fr); 
     }
     .cta-buttons {
-        flex-direction: row; /* Buttons side-by-side */
+        flex-direction: row; 
         justify-content: center;
+    }
+
+    .animated-rtt-logo {
+        width: 80px; /* Slightly larger logo for tablet */
+    }
+    .site-header {
+        padding: 15px 25px;
+    }
+    .logo-text {
+        font-size: 1.5rem; /* Text logo size if visible */
     }
 }
