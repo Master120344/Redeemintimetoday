@@ -129,56 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const url = section.dataset.parallaxUrl;
         if (url) section.style.backgroundImage = `url(${url})`;
     });
-    // Note: True CSS parallax (`background-attachment: fixed;`) is used.
-    // JS-based parallax can be added here if more complex effects are needed,
-    // but be mindful of mobile performance.
 
-    // --- Testimonial Slider ---
-    const slider = document.getElementById('testimonialSlider');
-    if (slider) {
-        const wrapper = slider.querySelector('.testimonial-slider__wrapper');
-        const slides = Array.from(wrapper.querySelectorAll('.testimonial-slide'));
-        const prevBtn = slider.querySelector('.slider-control--prev');
-        const nextBtn = slider.querySelector('.slider-control--next');
-        let currentIndex = 0;
-        let slideInterval;
+    // Testimonial Slider JS was here - now removed
 
-        function updateSlider() {
-            wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-            slides.forEach((slide, index) => {
-                slide.classList.toggle('is-active-slide', index === currentIndex);
-            });
-            if(prevBtn) prevBtn.disabled = currentIndex === 0;
-            if(nextBtn) nextBtn.disabled = currentIndex === slides.length - 1;
-        }
-
-        function nextSlide() {
-            if (currentIndex < slides.length - 1) currentIndex++; else currentIndex = 0; // Loop
-            updateSlider();
-        }
-        
-        function prevSlide() {
-            if (currentIndex > 0) currentIndex--; else currentIndex = slides.length - 1; // Loop
-            updateSlider();
-        }
-
-        if(nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetInterval(); });
-        if(prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetInterval(); });
-        
-        function startInterval() {
-            slideInterval = setInterval(nextSlide, 7000); // Autoplay every 7 seconds
-        }
-        function resetInterval() {
-            clearInterval(slideInterval);
-            startInterval();
-        }
-
-        if (slides.length > 0) {
-             updateSlider(); // Initial setup
-             startInterval(); // Start autoplay
-        }
-    }
-    
     // --- Animated Number Counters ---
     const statNumbers = document.querySelectorAll('.stat-item__number');
     function animateCounter(el, target) {
