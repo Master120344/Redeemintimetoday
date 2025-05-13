@@ -7,8 +7,11 @@
     --color-primary-dark: #1A252F;
     --color-primary-light: #34495E; /* Wet Asphalt (also good for text) */
 
-    --color-secondary: #8E44AD; /* Wisteria (Changed for more vibrancy) */
-    --color-secondary-light: #9B59B6; /* Amethyst */
+    /* --color-secondary: #8E44AD; /* Wisteria (Original - this was the "pink squiggly") */
+    /* Changed secondary to something less prominent for the logo, more of an accent elsewhere if needed */
+    --color-secondary: #3498DB; /* Peter River Blue - a more neutral secondary if used */
+    --color-secondary-light: #5DADE2; /* Lighter Peter River */
+
 
     --color-accent: #F39C12; /* Orange/Gold */
     --color-accent-light: #F1C40F; /* Sunflower */
@@ -161,6 +164,10 @@ blockquote footer { font-size: 0.9em; color: var(--color-text-light); text-align
 .btn--primary:hover, .btn--primary:focus { background-color: var(--color-primary-dark); }
 .btn--accent { background-color: var(--color-accent); color: var(--color-primary-dark); }
 .btn--accent:hover, .btn--accent:focus { background-color: var(--color-accent-dark); }
+/* Adding .btn--secondary for Impact section button */
+.btn--secondary { background-color: var(--color-secondary); color: var(--color-text-on-dark); }
+.btn--secondary:hover, .btn--secondary:focus { background-color: var(--color-secondary-light); /* Adjust if secondary has dark/light variants */ }
+
 .btn--light { background-color: var(--color-surface); color: var(--color-primary); }
 .btn--light:hover, .btn--light:focus { background-color: var(--color-background); }
 .btn--outline-light {
@@ -233,8 +240,12 @@ blockquote footer { font-size: 0.9em; color: var(--color-text-light); text-align
     align-items: center;
     height: 100%;
 }
-.header__logo-svg { height: 38px; width: auto; }
-.header__logo-svg .logo-text-full { display: none; } /* Hide full text on small logo */
+.header__logo-svg {
+    height: 30px; /* Adjusted for simpler logo */
+    width: auto;
+    overflow: visible; /* Allow glow to not be clipped */
+}
+
 
 /* Hamburger Menu Toggle */
 .header__menu-toggle {
@@ -342,9 +353,7 @@ blockquote footer { font-size: 0.9em; color: var(--color-text-light); text-align
     width: 100%;
     height: 100%;
     object-fit: cover; /* Cover the area, may crop */
-    /* animation: slow-pan 30s infinite alternate ease-in-out; Optional subtle pan */
 }
-/* @keyframes slow-pan { from { transform: scale(1); } to { transform: scale(1.1); } } */
 .hero__overlay {
     position: absolute;
     top: 0;
@@ -543,77 +552,32 @@ blockquote footer { font-size: 0.9em; color: var(--color-text-light); text-align
 }
 .stat-item__label { font-size: 0.9rem; color: var(--color-text-light); }
 
-.testimonial-slider {
-    position: relative;
-    overflow: hidden; /* Essential for slider */
-    padding: 2rem 0;
-}
-.testimonial-slider__title { text-align: center; margin-bottom: 1.5rem; color: var(--color-secondary); }
-.testimonial-slider__wrapper {
-    display: flex; /* Enables side-by-side slides */
-    transition: transform var(--transition-base); /* Smooth slide transition */
-}
-.testimonial-slide {
-    min-width: 100%; /* Each slide takes full width */
-    padding: 1.5rem;
+/* New Narrative section instead of Testimonials */
+.impact__narrative {
     background-color: var(--color-background);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-md);
     text-align: center;
-    margin: 0 10px; /* Small gap if multiple visible - adjust for mobile */
-    opacity: 0.7;
-    transform: scale(0.95);
-    transition: opacity var(--transition-base), transform var(--transition-base);
 }
-.testimonial-slide.is-active-slide {
-    opacity: 1;
-    transform: scale(1);
-}
-.testimonial-slide__image {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 0 auto 1rem;
-    border: 3px solid var(--color-accent-light);
-}
-.testimonial-slide__text {
-    font-style: italic;
+.impact__narrative-title {
+    color: var(--color-secondary); /* Using secondary color for distinctness */
     margin-bottom: 1rem;
-    color: var(--color-text-dark);
+}
+.impact__narrative p {
     font-size: 1.05rem;
+    color: var(--color-text-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
 }
-.testimonial-slide__author {
-    font-weight: 600;
-    color: var(--color-secondary);
-    font-style: normal;
-}
-.testimonial-slider__controls {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-.slider-control {
-    background-color: var(--color-accent);
-    color: var(--color-primary-dark);
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color var(--transition-fast);
-    box-shadow: var(--shadow-sm);
-}
-.slider-control:hover { background-color: var(--color-accent-dark); }
-.slider-control:disabled { background-color: var(--color-border); cursor: not-allowed; }
+.impact__contact-btn { /* Specific styling if needed, or use general button styles */ }
+
 
 /* --- Join Us (CTA) Section --- */
 .join-us {
     text-align: center;
     color: var(--color-text-on-dark);
-    background-color: var(--color-secondary); /* Fallback */
+    background-color: var(--color-secondary); /* Fallback, matches new secondary */
 }
 .join-us.parallax-section { /* Styles for parallax */ }
 .join-us__text {
@@ -715,7 +679,12 @@ blockquote footer { font-size: 0.9em; color: var(--color-text-light); text-align
     padding-bottom: 2.5rem;
     border-bottom: 1px solid rgba(236, 240, 241, 0.1);
 }
-.footer__logo-svg { height: 45px; width: auto; margin-bottom: 0.8rem; }
+.footer__logo-svg {
+    height: 30px; /* Adjusted for simpler logo */
+    width: auto;
+    margin-bottom: 0.8rem;
+    overflow: visible;
+}
 .footer__about p { font-size: 0.9rem; line-height: 1.6; }
 .footer__links h4, .footer__newsletter h4 {
     font-family: var(--font-heading);
@@ -815,14 +784,11 @@ blockquote footer { font-size: 0.9em; color: var(--color-text-light); text-align
     }
     .site-header { height: var(--header-height-desktop); }
     .hero { padding-top: var(--header-height-desktop); }
-    .header__logo-svg { height: 45px; }
-    .header__logo-svg .logo-text-full { display: inline; } /* Show full text on larger logo */
-    .header__logo-svg .logo-text-initials { display: none; }
+    .header__logo-svg { height: 35px; } /* Slightly larger for desktop */
 
     .about__grid { grid-template-columns: 0.8fr 1.2fr; } /* Image smaller part */
     .services__grid { grid-template-columns: repeat(2, 1fr); }
     .impact__stats-grid { grid-template-columns: repeat(3, 1fr); }
-    .testimonial-slide { margin: 0 15px; } /* Adjust for potential multi-slide view */
 
     .contact__grid { grid-template-columns: 1fr 1.5fr; }
     .contact__submit-btn { width: auto; padding-left: 2.5em; padding-right: 2.5em; }
