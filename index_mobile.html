@@ -11,8 +11,52 @@
 <body>
     <header class="site-header">
         <div class="logo-container">
-            <a href="#" class="logo-text">Redeeming The Time Today</a>
-            <!-- Or an image logo: <img src="path/to/logo.png" alt="Redeeming The Time Today Logo"> -->
+            <a href="#hero" aria-label="Redeeming The Time Today Home" class="animated-logo-link">
+                <svg class="animated-rtt-logo" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="rttSunriseGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                            <stop offset="0%" style="stop-color:#FFD700; stop-opacity:1" /> <!-- Yellow -->
+                            <stop offset="60%" style="stop-color:#FF7B54; stop-opacity:1" /> <!-- Accent Orange -->
+                            <stop offset="100%" style="stop-color:#E66A47; stop-opacity:1" /> <!-- Darker Accent -->
+                        </linearGradient>
+                        <filter id="rttGlow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/> <!-- Adjusted blur -->
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <!-- Hourglass Body -->
+                    <path d="M20,5 Q50,45 80,5 L75,5 Q50,40 25,5 Z" fill="#0A4D68" /> <!-- Top Bowl -->
+                    <path class="hourglass-bottom-fill" d="M20,75 Q50,35 80,75 L75,75 Q50,40 25,75 Z" fill="url(#rttSunriseGradient)"  transform="translate(0, 40)"/> <!-- Bottom Bowl filled -->
+                    
+                    <!-- Neck -->
+                    <rect x="46" y="42" width="8" height="16" fill="#073848" />
+
+                    <!-- Flowing Sand Particles -->
+                    <g class="sand-animation">
+                        <circle class="sand p1" cx="50" cy="30" r="2" fill="#B0BEC5"/>
+                        <circle class="sand p2" cx="48" cy="30" r="1.8" fill="#CFD8DC"/>
+                        <circle class="sand p3" cx="52" cy="30" r="2" fill="#B0BEC5"/>
+                        <circle class="sand p4" cx="50" cy="30" r="1.5" fill="#ECEFF1"/>
+                        <circle class="sand p5" cx="49" cy="30" r="1.8" fill="#CFD8DC"/>
+                    </g>
+
+                    <!-- Accumulated "Redeemed" Time (Glow effect part) -->
+                    <ellipse class="redeemed-glow" cx="50" cy="95" rx="28" ry="15" fill="url(#rttSunriseGradient)" filter="url(#rttGlow)" />
+
+                    <!-- Initials RTT -->
+                    <text x="50" y="57" font-family="Montserrat, sans-serif" font-size="18" fill="#FFFFFF" text-anchor="middle" font-weight="bold">
+                        RTT
+                    </text>
+                    <!-- Subtitle Text -->
+                    <text x="50" y="115" font-family="Open Sans, sans-serif" font-size="6" fill="#0A4D68" text-anchor="middle" font-weight="600" class="logo-full-name">
+                        REDEEMING THE TIME TODAY
+                    </text>
+                </svg>
+            </a>
         </div>
         <button id="menu-toggle" class="menu-toggle" aria-label="Open Menu">
             <i class="fas fa-bars"></i>
