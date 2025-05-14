@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - Redeeming Time Today</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Link to global styles -->
+    <link rel="stylesheet" href="css/index_mobile.css">
+    <!-- Link to donate-specific styles -->
+    <link rel="stylesheet" href="css/donate_mobile.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="site-preloader" id="sitePreloader">
+        <div class="preloader-logo">
+            <svg viewBox="0 0 150 60" xmlns="http://www.w3.org/2000/svg" width="120" height="48">
+                 <defs>
+                    <linearGradient id="preloadStarGradientSimpleDonate" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="var(--color-accent-light)" />
+                        <stop offset="100%" stop-color="var(--color-accent)" />
+                    </linearGradient>
+                </defs>
+                <text x="75" y="25" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Redeeming Time</text>
+                <text x="75" y="40" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Today</text>
+                <polygon points="75,48 72,52 75,56 78,52" fill="url(#preloadStarGradientSimpleDonate)" />
+            </svg>
+        </div>
+        <div class="preloader-progress"><div class="preloader-bar"></div></div>
+    </div>
+
+    <header class="site-header" id="siteHeader">
+        <div class="container header__container">
+            <a href="index_mobile.html" class="header__logo-link" aria-label="Redeeming Time Today Home">
+                <img src="assets/logo.jpg" alt="Redeeming Time Today Logo" class="header__logo-image">
+            </a>
+            <button id="menuToggle" class="header__menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <ul class="mobile-nav__list">
+            <li><a href="index_mobile.html" class="mobile-nav__link">Home</a></li>
+            <li><a href="about_mobile.html" class="mobile-nav__link">About Us</a></li>
+            <li><a href="mission_mobile.html" class="mobile-nav__link">Our Mission</a></li>
+            <li><a href="services_mobile.html" class="mobile-nav__link">Services</a></li>
+            <li><a href="impact_mobile.html" class="mobile-nav__link">Impact</a></li>
+            <li><a href="shop_mobile.html" class="mobile-nav__link">Shop</a></li>
+            <li><a href="donate_mobile.html" class="mobile-nav__link">Donate</a></li>
+            <li><a href="get_involved_mobile.html" class="mobile-nav__link">Get Involved</a></li>
+            <li><a href="contact_mobile.html" class="mobile-nav__link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="site-overlay" id="siteOverlay"></div>
+
+    <main id="mainContent">
+        <section id="donate-hero" class="section donate-hero parallax-section" data-parallax-url="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9uYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=80">
+            <div class="section__overlay"></div>
+            <div class="container donate-hero__container">
+                <h1 class="section__title section__title--light">Your Gift Changes Lives</h1>
+                <p class="donate-hero__intro">Every contribution to Redeeming Time Today fuels hope and creates pathways to stability for individuals and families in our community. Join us in making a tangible difference.</p>
+                <a href="#donation-form-section" class="btn btn--accent hero__cta">Donate Now <i class="fas fa-heartbeat btn__icon"></i></a>
+            </div>
+        </section>
+
+        <section id="donation-form-section" class="section donation-form-section">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__kicker">Choose Your Impact</span>
+                    <h2 class="section__title">Make a Secure Donation</h2>
+                </div>
+                <form id="donationForm" class="donation-form">
+                    <div class="donation-amounts">
+                        <button type="button" class="btn btn--outline-primary amount-btn" data-amount="25">$25</button>
+                        <button type="button" class="btn btn--outline-primary amount-btn" data-amount="50">$50</button>
+                        <button type="button" class="btn btn--outline-primary amount-btn selected" data-amount="100">$100</button>
+                        <button type="button" class="btn btn--outline-primary amount-btn" data-amount="250">$250</button>
+                    </div>
+                    <div class="form-group custom-amount-group">
+                        <input type="number" id="customAmount" name="customAmount" placeholder=" " min="5">
+                        <label for="customAmount">Or Enter Custom Amount ($)</label>
+                    </div>
+                    <div class="form-group-checkbox">
+                        <input type="checkbox" id="recurringDonation" name="recurringDonation">
+                        <label for="recurringDonation">Make this a monthly donation</label>
+                    </div>
+                    <p class="donation-form__info">For payment processing, this is a demo. In a real application, secure payment fields (e.g., Stripe Elements, PayPal button) would appear here.</p>
+                    <button type="submit" class="btn btn--accent btn--full-width donation-submit-btn">
+                        Donate <span id="selectedAmountDisplay">$100</span> <i class="fas fa-lock btn__icon"></i>
+                    </button>
+                    <p class="donation-form__security-note"><i class="fas fa-shield-alt"></i> Secure donation processing (simulated).</p>
+                </form>
+            </div>
+        </section>
+
+        <section id="impact-visualization" class="section impact-visualization-section">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__kicker">See Your Contribution at Work</span>
+                    <h2 class="section__title">Where Your Money Goes</h2>
+                </div>
+
+                <div class="impact-grid">
+                    <div class="impact-chart-container animate-on-scroll" data-animation="fade-in-left">
+                        <h3 class="impact-subsection-title">Fund Allocation</h3>
+                        <canvas id="fundAllocationChart"></canvas>
+                        <p class="chart-disclaimer">Illustrative breakdown of how general donations are typically used by Redeeming Time Today.</p>
+                    </div>
+
+                    <div class="impact-stats-container animate-on-scroll" data-animation="fade-in-right" data-delay="0.2s">
+                        <h3 class="impact-subsection-title">Our Progress Together</h3>
+                        <div class="total-raised-container">
+                            <h4>Total Raised This Year</h4>
+                            <p class="total-raised-amount" id="totalRaisedAmount">$0</p>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" id="donationProgressBar"></div>
+                            </div>
+                            <p class="goal-text">Our Goal: <span id="yearlyGoal">$250,000</span></p>
+                        </div>
+                        <div class="impact-examples">
+                            <h4>Your Donation Can Provide:</h4>
+                            <ul>
+                                <li><i class="fas fa-utensils"></i> <strong>$25:</strong> A week of nutritious meals for an individual.</li>
+                                <li><i class="fas fa-user-friends"></i> <strong>$50:</strong> Support for one person to attend a life skills workshop.</li>
+                                <li><i class="fas fa-home"></i> <strong>$100:</strong> Essential supplies for a family transitioning to housing.</li>
+                                <li><i class="fas fa-briefcase"></i> <strong>$250:</strong> Contribution towards job training and placement services.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="transparency" class="section transparency-section">
+            <div class="container">
+                <div class="section__header">
+                     <span class="section__kicker">Our Commitment</span>
+                    <h2 class="section__title">Transparency and Accountability</h2>
+                </div>
+                <div class="transparency-content animate-on-scroll" data-animation="fade-in-up">
+                    <i class="fas fa-file-invoice-dollar transparency__icon"></i>
+                    <p>Redeeming Time Today is committed to the highest standards of financial stewardship and transparency. We ensure that every dollar donated is used effectively to maximize our impact on the lives of those we serve. Detailed financial reports and impact stories are available to our supporters. Your trust is paramount to us.</p>
+                    <a href="financials_mobile.html" class="btn btn--secondary">View Financial Reports (Example Link)</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer__container">
+            <div class="footer__main">
+                <div class="footer__about">
+                    <svg class="footer__logo-svg" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+                        <text x="100" y="25" font-family="Merriweather, serif" font-size="14" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Redeeming Time Today</text>
+                        <polygon points="175,18 173,21 175,24 177,21" fill="var(--color-accent)" />
+                    </svg>
+                    <p>Empowering change, one moment at a time. Join us in building a community of hope and purpose under Redeeming Time Today.</p>
+                </div>
+                <div class="footer__links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about_mobile.html">About Us</a></li>
+                        <li><a href="services_mobile.html">Services</a></li>
+                        <li><a href="impact_mobile.html">Impact</a></li>
+                        <li><a href="shop_mobile.html">Shop</a></li>
+                        <li><a href="privacy_policy_mobile.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer__newsletter">
+                    <h4>Stay Connected</h4>
+                    <p>Get updates from Redeeming Time Today on our work and stories of transformation.</p>
+                    <form id="newsletterFormDonate" class="newsletter-form">
+                        <input type="email" name="newsletter_email_donate" placeholder="Your email address" required>
+                        <button type="submit" aria-label="Subscribe"><i class="fas fa-envelope"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>© <span id="footerYearDonate"></span> Redeeming Time Today. All Rights Reserved. Crafted with <i class="fas fa-heart footer__heart"></i> and purpose.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top of page">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Link to global JS -->
+    <script src="js/index_mobile.js"></script>
+    <!-- Link to donate-specific JS -->
+    <script src="js/donate_mobile.js"></script>
+</body>
+</html>
