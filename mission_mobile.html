@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Mission - Redeeming Time Today</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/mission_mobile.css"> <!-- Specific CSS for this page -->
+</head>
+<body>
+
+    <div class="site-preloader" id="sitePreloader">
+        <div class="preloader-logo">
+            <svg viewBox="0 0 200 70" xmlns="http://www.w3.org/2000/svg" width="160" height="56">
+                <style>
+                    .preloader-text {
+                        font-family: 'Merriweather', serif;
+                        font-weight: bold;
+                        fill: var(--color-text-on-dark);
+                        text-anchor: middle;
+                    }
+                </style>
+                <text x="100" y="30" class="preloader-text" font-size="16">Redeeming Time</text>
+                <text x="100" y="55" class="preloader-text" font-size="16">Today</text>
+            </svg>
+        </div>
+        <div class="preloader-progress"><div class="preloader-bar"></div></div>
+    </div>
+
+    <header class="site-header" id="siteHeader">
+        <div class="container header__container">
+            <a href="index_mobile.html" class="header__logo-link" aria-label="Redeeming Time Today Home">
+                <img src="assets/logo.jpg" alt="Redeeming Time Today Logo" class="header__logo-image">
+            </a>
+            <button id="menuToggle" class="header__menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <ul class="mobile-nav__list">
+            <li><a href="index_mobile.html" class="mobile-nav__link">Home</a></li>
+            <li><a href="about_mobile.html" class="mobile-nav__link">About Us</a></li>
+            <li><a href="mission_mobile.html" class="mobile-nav__link">Our Mission</a></li>
+            <li><a href="services_mobile.html" class="mobile-nav__link">Services</a></li>
+            <li><a href="events_mobile.html" class="mobile-nav__link">Events</a></li>
+            <li><a href="impact_mobile.html" class="mobile-nav__link">Impact</a></li>
+            <li><a href="shop_mobile.html" class="mobile-nav__link">Shop</a></li>
+            <li><a href="donate_mobile.html" class="mobile-nav__link">Donate</a></li>
+            <li><a href="get_involved_mobile.html" class="mobile-nav__link">Get Involved</a></li>
+            <li><a href="contact_mobile.html" class="mobile-nav__link">Contact</a></li>
+        </ul>
+        <div class="mobile-nav__footer">
+            <p>© <span id="navYear"></span> Redeeming Time Today. Every Moment Counts.</p>
+        </div>
+    </nav>
+
+    <div class="site-overlay" id="siteOverlay"></div>
+
+    <main id="mainContent">
+
+        <section class="page-hero mission-hero">
+            <div class="page-hero__overlay"></div>
+            <div class="container page-hero__content">
+                <h1 class="page-hero__title animate-on-scroll" data-animation="fade-in-up">Our Mission</h1>
+                <p class="page-hero__subtitle animate-on-scroll" data-animation="fade-in-up" data-delay="0.2s">Guiding principles that drive Redeeming Time Today towards impactful change.</p>
+            </div>
+        </section>
+
+        <section id="mission-statement" class="section mission-statement-section">
+            <div class="container">
+                <div class="section__header animate-on-scroll" data-animation="fade-in">
+                    <span class="section__kicker">Our Purpose</span>
+                    <h2 class="section__title">The Heart of Redeeming Time Today</h2>
+                </div>
+                <div class="mission-content">
+                    <div class="mission-content__icon animate-on-scroll" data-animation="zoom-in-fast">
+                        <i class="fas fa-crosshairs"></i>
+                    </div>
+                    <p class="mission-content__text animate-on-scroll" data-animation="fade-in-up" data-delay="0.1s">
+                        Redeeming Time Today is dedicated to empowering individuals and communities to maximize their potential through the wise and purposeful use of time. We provide transformative resources, dedicated mentorship, and impactful programs that foster personal development, community service, and meaningful engagement.
+                    </p>
+                    <p class="mission-content__text animate-on-scroll" data-animation="fade-in-up" data-delay="0.2s">
+                        Our aim is to inspire and equip every person to live with intention, making each moment a stepping stone towards a brighter, better future. We believe that by valuing and redeeming time, we unlock unparalleled opportunities for growth, healing, and contribution.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="core-values" class="section core-values-section">
+            <div class="container">
+                <div class="section__header animate-on-scroll" data-animation="fade-in">
+                    <span class="section__kicker">Our Foundation</span>
+                    <h2 class="section__title">Core Values That Guide Us</h2>
+                </div>
+                <div class="values-grid">
+                    <div class="value-card animate-on-scroll" data-animation="scale-up" style="--card-delay: 0s;">
+                        <div class="value-card__icon"><i class="fas fa-hands-helping"></i></div>
+                        <h3 class="value-card__title">Empowerment</h3>
+                        <p class="value-card__description">Providing tools and support for individuals to take control of their lives and achieve their goals.</p>
+                    </div>
+                    <div class="value-card animate-on-scroll" data-animation="scale-up" style="--card-delay: 0.15s;">
+                        <div class="value-card__icon"><i class="fas fa-users"></i></div>
+                        <h3 class="value-card__title">Community</h3>
+                        <p class="value-card__description">Fostering a sense of belonging, mutual respect, and collective action for positive change.</p>
+                    </div>
+                    <div class="value-card animate-on-scroll" data-animation="scale-up" style="--card-delay: 0.3s;">
+                        <div class="value-card__icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3 class="value-card__title">Integrity</h3>
+                        <p class="value-card__description">Operating with transparency, honesty, and accountability in all our endeavors.</p>
+                    </div>
+                    <div class="value-card animate-on-scroll" data-animation="scale-up" style="--card-delay: 0.45s;">
+                        <div class="value-card__icon"><i class="fas fa-lightbulb"></i></div>
+                        <h3 class="value-card__title">Purpose</h3>
+                        <p class="value-card__description">Helping individuals discover and live out their unique purpose with intention and passion.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="our-vision" class="section vision-section">
+            <div class="vision-section__overlay"></div>
+            <div class="container">
+                <div class="section__header animate-on-scroll" data-animation="fade-in">
+                    <span class="section__kicker section__kicker--light">Looking Ahead</span>
+                    <h2 class="section__title section__title--light">Our Vision for the Future</h2>
+                </div>
+                <div class="vision-content">
+                    <p class="vision-content__text animate-on-scroll" data-animation="fade-in-up" data-delay="0.1s">
+                        We envision a world where every individual, regardless of their past or circumstances, has the opportunity and resources to redeem their time effectively, contributing positively to society and living a life full of meaning and fulfillment. Redeeming Time Today strives to be a catalyst for this transformation, one person, one community at a time.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="mission-cta" class="section cta-section">
+            <div class="container cta-content animate-on-scroll" data-animation="fade-in-up">
+                <h2 class="cta-title">Join Us in Our Mission</h2>
+                <p class="cta-text">Your support can help us expand our reach and deepen our impact. Together, we can make every moment count towards building a stronger, more hopeful community.</p>
+                <div class="cta-buttons">
+                    <a href="donate_mobile.html" class="btn btn--accent">Donate Now <i class="fas fa-heart btn__icon"></i></a>
+                    <a href="get_involved_mobile.html" class="btn btn--primary">Get Involved <i class="fas fa-hands-helping btn__icon"></i></a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer__container">
+            <div class="footer__main">
+                <div class="footer__about">
+                    <svg class="footer__logo-svg" viewBox="0 0 220 40" xmlns="http://www.w3.org/2000/svg">
+                         <style>
+                            .footer-logo-text {
+                                font-family: 'Merriweather', serif;
+                                font-size: 15px;
+                                fill: var(--color-text-on-dark);
+                                font-weight: bold;
+                                text-anchor: middle;
+                            }
+                        </style>
+                        <text x="110" y="28" class="footer-logo-text">Redeeming Time Today</text>
+                    </svg>
+                    <p>Empowering change, one moment at a time. Join Redeeming Time Today in building a community of hope and purpose.</p>
+                </div>
+                <div class="footer__links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about_mobile.html">About Us</a></li>
+                        <li><a href="mission_mobile.html">Our Mission</a></li>
+                        <li><a href="events_mobile.html">Events</a></li>
+                        <li><a href="services_mobile.html">Services</a></li>
+                        <li><a href="impact_mobile.html">Impact</a></li>
+                        <li><a href="shop_mobile.html">Shop</a></li>
+                        <li><a href="donate_mobile.html">Donate</a></li>
+                        <li><a href="privacy_policy_mobile.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer__newsletter">
+                    <h4>Stay Connected</h4>
+                    <p>Get updates from Redeeming Time Today on our work and stories of transformation.</p>
+                    <form id="newsletterForm" class="newsletter-form">
+                        <input type="email" name="newsletter_email" placeholder="Your email address" required>
+                        <button type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>© <span id="footerYear"></span> Redeeming Time Today. All Rights Reserved. Crafted with <i class="fas fa-heart footer__heart"></i> and purpose.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top of page">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/mission_mobile.js"></script> <!-- Specific JS for this page -->
+</body>
+</html>
