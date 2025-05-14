@@ -14,17 +14,16 @@
 
     <div class="site-preloader" id="sitePreloader">
         <div class="preloader-logo">
-            <svg viewBox="0 0 200 70" xmlns="http://www.w3.org/2000/svg" width="160" height="56">
-                <style>
-                    .preloader-text {
-                        font-family: 'Merriweather', serif;
-                        font-weight: bold;
-                        fill: var(--color-text-on-dark);
-                        text-anchor: middle;
-                    }
-                </style>
-                <text x="100" y="30" class="preloader-text" font-size="16">Redeeming Time</text>
-                <text x="100" y="55" class="preloader-text" font-size="16">Today</text>
+            <svg viewBox="0 0 150 60" xmlns="http://www.w3.org/2000/svg" width="120" height="48">
+                 <defs>
+                    <linearGradient id="preloadStarGradientSimple" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="var(--color-accent-light)" />
+                        <stop offset="100%" stop-color="var(--color-accent)" />
+                    </linearGradient>
+                </defs>
+                <text x="75" y="25" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Redeeming Time</text>
+                <text x="75" y="40" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Today</text>
+                <polygon points="75,48 72,52 75,56 78,52" fill="url(#preloadStarGradientSimple)" />
             </svg>
         </div>
         <div class="preloader-progress"><div class="preloader-bar"></div></div>
@@ -55,9 +54,7 @@
             <li><a href="get_involved_mobile.html" class="mobile-nav__link">Get Involved</a></li>
             <li><a href="contact_mobile.html" class="mobile-nav__link">Contact</a></li>
         </ul>
-        <div class="mobile-nav__footer">
-            <p>© <span id="navYear"></span> Redeeming Time Today. Every Moment Counts.</p>
-        </div>
+        <!-- Removed mobile-nav__footer -->
     </nav>
 
     <div class="site-overlay" id="siteOverlay"></div>
@@ -65,11 +62,11 @@
     <main id="mainContent">
 
         <section id="hero" class="hero">
-            <div class="hero__overlay-gradient"></div>
+            <div class="hero__bg-image-container">
+                 <img src="https://images.unsplash.com/photo-1470240731273-7821a6eeb6bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c3VucmlzZSUyMGhvcGV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=85" alt="Hopeful sunrise over a calm landscape" class="hero__bg-image">
+            </div>
+            <div class="hero__overlay"></div>
             <div class="container hero__content">
-                <div class="hero__logo-container animate-on-scroll" data-animation="zoom-in-fast">
-                    <img src="assets/logo.jpg" alt="Redeeming Time Today" class="hero__logo-main">
-                </div>
                 <h1 class="hero__title">
                     <span class="hero__title-line hero__title-line--1">Unlock Potential.</span>
                     <span class="hero__title-line hero__title-line--2">Redeem Time.</span>
@@ -83,82 +80,70 @@
             </a>
         </section>
 
-        <section id="preview-about" class="section preview-section preview-section--light">
-            <div class="container">
+        <section id="preview-about" class="section about-preview">
+            <div class="container about-preview__container">
                 <div class="section__header">
                     <span class="section__kicker">Our Genesis</span>
                     <h2 class="section__title">About Redeeming Time Today</h2>
                 </div>
-                <div class="preview-card animate-on-scroll" data-animation="fade-in-up">
-                    <div class="preview-card__icon"><i class="fas fa-users"></i></div>
-                    <p class="preview-card__text">Born from a shared vision within Rahway State Prison, Redeeming Time Today was conceived by our CEO and Rev. Rufus McClendon with inmates dedicated to holistic growth. Since 2002, we are a beacon of hope, offering support for individuals rejoining society with dignity and purpose.</p>
+                <div class="about-preview__content animate-on-scroll" data-animation="fade-in-up">
+                    <p>Born from a shared vision within the walls of Rahway State Prison, Redeeming Time Today was conceived by our CEO and Rev. Rufus McClendon, alongside inmates dedicated to holistic growth. Since 2002, we have been a beacon of hope, offering support for individuals rejoining society with dignity and purpose.</p>
                     <blockquote class="about__quote">
                         <p>"Making the very most of your time [on earth], ...because the days are evil."</p>
                         <footer>Ephesians 5:16 (AMP), The Guiding Word</footer>
                     </blockquote>
-                    <a href="about_mobile.html" class="btn btn--primary preview-card__cta">Learn Our Story <i class="fas fa-info-circle btn__icon"></i></a>
+                    <a href="about_mobile.html" class="btn btn--primary">Learn More About Us <i class="fas fa-info-circle btn__icon"></i></a>
                 </div>
             </div>
         </section>
 
-        <section id="preview-mission" class="section preview-section preview-section--dark">
+        <section id="preview-mission" class="section mission-preview parallax-section" data-parallax-url="https://images.unsplash.com/photo-1505051508008-923feaf90180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGF0aCUyMGxpZ2h0fGVufDB8fDB8fHww&auto=format&fit=crop&w=1200&q=80">
             <div class="section__overlay"></div>
-            <div class="container">
-                <div class="section__header">
-                    <span class="section__kicker section__kicker--light">Our Calling</span>
-                    <h2 class="section__title section__title--light">Our Unwavering Mission</h2>
-                </div>
-                <div class="preview-card preview-card--dark-bg animate-on-scroll" data-animation="fade-in-up" data-delay="0.2s">
-                    <div class="preview-card__icon preview-card__icon--accent"><i class="fas fa-bullseye"></i></div>
-                    <p class="preview-card__text">Redeeming Time Today is dedicated to empowering individuals and communities to maximize their potential. We provide transformative resources and impactful programs fostering personal development and community service, aiming for a brighter future for all.</p>
-                    <a href="mission_mobile.html" class="btn btn--light preview-card__cta">Explore Our Mission <i class="fas fa-crosshairs btn__icon"></i></a>
-                </div>
+            <div class="container mission-preview__container">
+                <i class="fas fa-compass mission__icon animate-on-scroll" data-animation="zoom-in-fast"></i>
+                <h2 class="section__title section__title--light animate-on-scroll" data-animation="fade-in-up" data-delay="0.1s">Our Unwavering Mission</h2>
+                <p class="mission-preview__text animate-on-scroll" data-animation="fade-in-up" data-delay="0.3s">Redeeming Time Today is dedicated to empowering individuals and communities to maximize their potential. We provide transformative resources and impactful programs fostering personal development and community service.</p>
+                <a href="mission_mobile.html" class="btn btn--light animate-on-scroll" data-animation="fade-in-up" data-delay="0.5s">Explore Our Mission <i class="fas fa-route btn__icon"></i></a>
             </div>
         </section>
         
-        <section id="preview-shop" class="section preview-section preview-section--accent-gradient">
-            <div class="container">
+        <section id="preview-shop" class="section shop-preview">
+            <div class="container shop-preview__container">
                 <div class="section__header">
-                    <span class="section__kicker section__kicker--dark">Support & Style</span>
-                    <h2 class="section__title section__title--on-accent">Official Merchandise</h2>
+                    <span class="section__kicker">Support Our Cause</span>
+                    <h2 class="section__title">Official Merchandise</h2>
                 </div>
-                 <div class="preview-card preview-card--light-bg animate-on-scroll" data-animation="fade-in-up" data-delay="0.1s">
-                    <div class="preview-card__icon preview-card__icon--primary"><i class="fas fa-shopping-bag"></i></div>
-                    <img src="https://via.placeholder.com/280x180.png?text=RTT+Merch" alt="Redeeming Time Today Merchandise Preview" class="preview-card__image">
-                    <p class="preview-card__text">Show your support and spread awareness with our exclusive Redeeming Time Today merchandise. Find T shirts, sweatshirts, and more. All proceeds directly fund our programs and initiatives.</p>
-                    <a href="shop_mobile.html" class="btn btn--primary preview-card__cta">Visit Our Shop <i class="fas fa-shopping-cart btn__icon"></i></a>
+                <div class="shop-preview__content animate-on-scroll" data-animation="fade-in-up">
+                    <!-- Image removed as requested -->
+                    <p>Show your support and spread awareness with our exclusive Redeeming Time Today merchandise. Find T shirts, sweatshirts, and more. All proceeds directly fund our programs and initiatives.</p>
+                    <a href="shop_mobile.html" class="btn btn--accent">Visit Our Shop <i class="fas fa-shirt btn__icon"></i></a>
                 </div>
             </div>
         </section>
 
-        <section id="preview-donate" class="section preview-section preview-section--primary-gradient">
-            <div class="container">
-                 <div class="section__header">
-                    <span class="section__kicker section__kicker--light">Be The Change</span>
-                    <h2 class="section__title section__title--light">Make a Difference Today</h2>
+        <section id="preview-donate" class="section donate-preview parallax-section" data-parallax-url="https://images.unsplash.com/photo-1604882355165-4605615847eta?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNvbW11bml0eSUyMGhhbmRzfGVufDB8fDB8fHww&auto=format&fit=crop&w=1200&q=80">
+            <div class="section__overlay section__overlay--accent"></div>
+            <div class="container donate-preview__container">
+                 <h2 class="section__title section__title--light animate-on-scroll" data-animation="fade-in-up">Make a Difference Today</h2>
+                <p class="donate-preview__text animate-on-scroll" data-animation="fade-in-up" data-delay="0.2s">Your generous contribution helps us continue our vital work in the community, empowering individuals and transforming lives. Every donation, no matter the size, has a significant impact.</p>
+                <a href="donate_mobile.html" class="btn btn--light animate-on-scroll" data-animation="fade-in-up" data-delay="0.4s">Donate Now <i class="fas fa-heart btn__icon"></i></a>
+            </div>
+        </section>
+
+        <section id="preview-contact" class="section contact-preview">
+            <div class="container contact-preview__container">
+                <div class="section__header">
+                    <span class="section__kicker">Get in Touch</span>
+                    <h2 class="section__title">Let's Connect</h2>
                 </div>
-                <div class="preview-card preview-card--dark-bg animate-on-scroll" data-animation="fade-in-up" data-delay="0.2s">
-                    <div class="preview-card__icon preview-card__icon--accent"><i class="fas fa-hand-holding-heart"></i></div>
-                    <p class="preview-card__text">Your generous contribution helps Redeeming Time Today continue our vital work in the community, empowering individuals and transforming lives. Every donation, no matter the size, has a significant impact.</p>
-                    <a href="donate_mobile.html" class="btn btn--accent preview-card__cta">Donate Now <i class="fas fa-heart btn__icon"></i></a>
+                <div class="contact-preview__content animate-on-scroll" data-animation="fade-in-up">
+                    <p>We would love to hear from you. Whether you have questions, want to get involved, or share your story, reach out to us.</p>
+                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:rob@redeemingthetimetoday.org">rob@redeemingthetimetoday.org</a></p>
+                    <a href="contact_mobile.html" class="btn btn--secondary">Contact Us <i class="fas fa-paper-plane btn__icon"></i></a>
                 </div>
             </div>
         </section>
 
-        <section id="preview-contact" class="section preview-section preview-section--light">
-            <div class="container">
-                <div class="section__header">
-                    <span class="section__kicker">Connect With Us</span>
-                    <h2 class="section__title">Let Us Hear From You</h2>
-                </div>
-                <div class="preview-card animate-on-scroll" data-animation="fade-in-up">
-                    <div class="preview-card__icon"><i class="fas fa-envelope-open-text"></i></div>
-                    <p class="preview-card__text">We would love to hear from you. Whether you have questions, want to get involved, or share your story with Redeeming Time Today, please reach out.</p>
-                    <p class="preview-card__contact-email"><i class="fas fa-envelope"></i> Email: <a href="mailto:rob@redeemingthetimetoday.org">rob@redeemingthetimetoday.org</a></p>
-                    <a href="contact_mobile.html" class="btn btn--secondary preview-card__cta">Full Contact Details <i class="fas fa-paper-plane btn__icon"></i></a>
-                </div>
-            </div>
-        </section>
 
     </main>
 
@@ -166,19 +151,11 @@
         <div class="container footer__container">
             <div class="footer__main">
                 <div class="footer__about">
-                    <svg class="footer__logo-svg" viewBox="0 0 220 40" xmlns="http://www.w3.org/2000/svg">
-                         <style>
-                            .footer-logo-text {
-                                font-family: 'Merriweather', serif;
-                                font-size: 15px;
-                                fill: var(--color-text-on-dark);
-                                font-weight: bold;
-                                text-anchor: middle;
-                            }
-                        </style>
-                        <text x="110" y="28" class="footer-logo-text">Redeeming Time Today</text>
+                    <svg class="footer__logo-svg" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+                        <text x="100" y="25" font-family="Merriweather, serif" font-size="14" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Redeeming Time Today</text>
+                        <polygon points="175,18 173,21 175,24 177,21" fill="var(--color-accent)" />
                     </svg>
-                    <p>Empowering change, one moment at a time. Join Redeeming Time Today in building a community of hope and purpose.</p>
+                    <p>Empowering change, one moment at a time. Join us in building a community of hope and purpose under Redeeming Time Today.</p>
                 </div>
                 <div class="footer__links">
                     <h4>Quick Links</h4>
@@ -195,7 +172,7 @@
                     <p>Get updates from Redeeming Time Today on our work and stories of transformation.</p>
                     <form id="newsletterForm" class="newsletter-form">
                         <input type="email" name="newsletter_email" placeholder="Your email address" required>
-                        <button type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+                        <button type="submit" aria-label="Subscribe"><i class="fas fa-envelope"></i></button>
                     </form>
                 </div>
             </div>
