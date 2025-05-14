@@ -1,0 +1,145 @@
+/* --- Shop Page Specific Styles --- */
+
+/* Shop Hero Section */
+.shop-hero {
+    background-color: var(--color-primary-light); /* A darker, welcoming background for the shop hero */
+    color: var(--color-text-on-dark);
+    text-align: center;
+    padding-top: calc(var(--header-height-mobile) + var(--section-padding-y) / 2); /* Adjust padding if header is fixed */
+    padding-bottom: calc(var(--section-padding-y) / 2);
+}
+
+.shop-hero .section__title {
+    color: var(--color-text-on-dark);
+    margin-bottom: 0.5em;
+}
+
+.shop-hero__intro {
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    color: var(--color-text-on-dark-muted);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Unseen Thread Campaign Section */
+.unseen-thread {
+    background-color: var(--color-surface); /* White surface to stand out */
+    text-align: center;
+}
+.unseen-thread__icon {
+    font-size: 3rem;
+    color: var(--color-accent);
+    margin-bottom: 0.75em;
+    display: block; /* Center icon */
+}
+.unseen-thread__content p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 750px;
+    margin: 0 auto;
+    color: var(--color-text-dark);
+}
+.unseen-thread__content strong {
+    color: var(--color-accent-dark);
+    font-weight: 600;
+}
+
+
+/* Products Section */
+.products-section {
+    background-color: var(--color-background); /* Main body background */
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.product-card {
+    background-color: var(--color-surface);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    overflow: hidden; /* Ensures image corners are rounded if image itself isn't */
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.product-card__image {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    max-height: 350px; /* Control image height */
+    object-fit: cover; /* Cover the area, may crop if aspect ratio differs */
+    border-bottom: 1px solid var(--color-border);
+}
+
+.product-card__content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allows button to stick to bottom */
+    text-align: left;
+}
+
+.product-card__name {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5em;
+}
+
+.product-card__description {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    margin-bottom: 1em;
+    flex-grow: 1; /* Pushes price and button down */
+}
+
+.product-card__price {
+    font-family: var(--font-body);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-accent-dark);
+    margin-bottom: 0.5em;
+}
+
+.product-card__impact-msg {
+    font-size: 0.85rem;
+    color: var(--color-secondary); /* Use a distinct color for impact message */
+    margin-bottom: 1.2em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+.product-card__impact-msg i {
+    font-size: 1rem;
+}
+
+.product-card__button {
+    width: 100%;
+    margin-top: auto; /* Pushes button to bottom of card content */
+    padding: 0.9em 1.5em;
+}
+
+
+/* Responsive adjustments for product grid */
+@media (min-width: 600px) { /* Two columns for slightly larger screens */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) { /* Three columns for desktop */
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Ensure variables from index_mobile.css are available if not explicitly redefined here */
+/* This file primarily adds new rules or overrides for shop-specific elements */
