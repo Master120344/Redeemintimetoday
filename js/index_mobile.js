@@ -7,46 +7,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const siteOverlay = document.getElementById('siteOverlay');
     const navLinks = mobileNav.querySelectorAll('.mobile-nav__link');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
-    const parallaxSections = document.querySelectorAll('.parallax-section');
+    const parallaxSections = document.querySelectorAll('.parallax-section'); // Though not used on this specific index
 
     // --- Site Preloader ---
     if (sitePreloader && preloaderBar) {
         let progress = 0;
+        const intervalTime = 40; // ms
+        const totalTime = 800; // ms for preloader bar to fill (visual only)
+        const progressIncrement = (intervalTime / totalTime) * 100;
+
         const interval = setInterval(() => {
-            progress += 10; // Simulate loading progress
-            preloaderBar.style.width = progress + '%';
+            progress += progressIncrement;
+            preloaderBar.style.width = Math.min(progress, 100) + '%';
             if (progress >= 100) {
                 clearInterval(interval);
-                setTimeout(() => sitePreloader.classList.add('loaded'), 200);
+                // Add a slight delay after bar fills before fading out
+                setTimeout(() => sitePreloader.classList.add('loaded'), 150); 
             }
-        }, 50);
+        }, intervalTime);
 
         window.addEventListener('load', () => {
-            clearInterval(interval);
+            clearInterval(interval); // Stop simulation if actual load is faster/slower
             preloaderBar.style.width = '100%';
             setTimeout(() => {
                 sitePreloader.classList.add('loaded');
-            }, 300);
+            }, 250); // Ensure bar animation completes + small buffer
         });
     }
 
     // --- Header Scroll Behavior ---
     let lastScrollY = window.scrollY;
+    const headerScrollThreshold = 50; // Pixels to scroll before changing header state
     if (siteHeader) {
         window.addEventListener('scroll', () => {
             const currentScrollY = window.scrollY;
-            if (currentScrollY > lastScrollY && currentScrollY > siteHeader.offsetHeight) {
+            if (currentScrollY > lastScrollY && currentScrollY > siteHeader.offsetHeight + headerScrollThreshold) {
                 siteHeader.classList.add('header--hidden');
             } else {
                 siteHeader.classList.remove('header--hidden');
             }
-            siteHeader.classList.toggle('header--scrolled', currentScrollY > 50);
+            siteHeader.classList.toggle('header--scrolled', currentScrollY > headerScrollThreshold);
             lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
-        });
+        }, { passive: true });
     }
 
     // --- Mobile Navigation ---
-    function toggleMobileNav(isOpen) {
+    function toggleMobileNav(forceOpen) {
+        const isOpen = typeof forceOpen === 'boolean' ? forceOpen : !mobileNav.classList.contains('is-open');
         menuToggle.classList.toggle('is-active', isOpen);
         menuToggle.setAttribute('aria-expanded', isOpen.toString());
         mobileNav.classList.toggle('is-open', isOpen);
@@ -56,14 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (menuToggle && mobileNav && siteOverlay) {
-        menuToggle.addEventListener('click', () => {
-            const isOpen = mobileNav.classList.contains('is-open');
-            toggleMobileNav(!isOpen);
-        });
-
+        menuToggle.addEventListener('click', () => toggleMobileNav());
         siteOverlay.addEventListener('click', () => toggleMobileNav(false));
-        // Nav links will navigate away, so closing is handled by page load.
-        // If any nav links are on-page anchors, uncomment this:
+        // Navigation links lead to new pages, so auto-close happens on page change.
+        // If there were on-page links in the nav:
         // navLinks.forEach(link => {
         //     if (link.getAttribute('href').startsWith('#')) {
         //        link.addEventListener('click', () => toggleMobileNav(false));
@@ -73,34 +76,27 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Active Nav Link Highlighting for Multi-Page Site ---
     function updateActiveLinkForMultiPage() {
-        const currentPath = window.location.pathname.split('/').pop();
+        const currentPath = window.location.pathname.split('/').pop() || 'index_mobile.html'; // Default to index if path is '/'
         navLinks.forEach(link => {
             const linkPath = link.getAttribute('href').split('/').pop();
-            // Handle index_mobile.html as home
-            const isActive = (linkPath === currentPath) || (currentPath === '' && (linkPath === 'index_mobile.html' || linkPath === '/'));
-            link.classList.toggle('active-nav-link', isActive);
+            link.classList.toggle('active-nav-link', linkPath === currentPath);
         });
     }
-    updateActiveLinkForMultiPage(); // Call on page load
+    if (navLinks.length > 0) {
+        updateActiveLinkForMultiPage();
+    }
 
     // --- Smooth Scroll for On-Page Anchors (e.g., Hero scroll indicator) ---
     const headerHeight = () => siteHeader ? siteHeader.offsetHeight : 0;
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-            // Ensure it's a valid ID selector and not just "#"
             if (targetId.length > 1 && targetId.startsWith('#')) {
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     e.preventDefault();
-                    let offset = headerHeight();
-                     // Special case for hero or elements already at very top
-                    if (targetId === '#hero' || targetElement.offsetTop < offset) {
-                        offset = 0; 
-                    }
-
                     const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.scrollY - offset;
+                    const offsetPosition = elementPosition + window.scrollY - headerHeight();
 
                     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                     if (mobileNav.classList.contains('is-open')) {
@@ -114,83 +110,48 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Intersection Observer for Animations ---
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     if (animatedElements.length > 0) {
+        const observerOptions = {
+            threshold: 0.15, // Trigger a bit earlier/later
+            rootMargin: "0px 0px -60px 0px" // Adjust bottom margin 
+        };
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    obs.unobserve(entry.target);
+                    obs.unobserve(entry.target); // Animate only once
                 }
             });
-        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+        }, observerOptions);
         animatedElements.forEach(el => observer.observe(el));
     }
 
-    // --- Parallax Background Effect ---
-    parallaxSections.forEach(section => {
-        const url = section.dataset.parallaxUrl;
-        if (url) section.style.backgroundImage = `url(${url})`;
-    });
-
-    // --- Animated Number Counters (If any are on this specific page) ---
-    // Note: Original stat counters were in the 'Impact' section, now likely on impact_mobile.html
-    // If you add counters to index_mobile.html previews, this code will work for them.
-    const statNumbers = document.querySelectorAll('.stat-item__number'); // Make sure class exists on index
-    function animateCounter(el, target) {
-        let current = 0;
-        const duration = 2000;
-        const increment = target / (duration / 16); // Aim for ~60fps updates
-
-        const updateCount = () => {
-            current += increment;
-            if (current < target) {
-                el.textContent = Math.ceil(current);
-                requestAnimationFrame(updateCount);
-            } else {
-                el.textContent = target;
-                el.classList.add('counted');
-            }
-        };
-        requestAnimationFrame(updateCount);
-    }
-
-    if (statNumbers.length > 0) {
-        const statObserver = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-                    const targetVal = parseInt(entry.target.dataset.target);
-                    if (!isNaN(targetVal)) {
-                        animateCounter(entry.target, targetVal);
-                    }
-                    // Unobserve after attempting, even if targetVal is bad, to prevent re-trigger
-                    obs.unobserve(entry.target); 
-                }
-            });
-        }, { threshold: 0.6 });
-        statNumbers.forEach(stat => statObserver.observe(stat));
-    }
+    // --- Parallax Background Effect (If used on this page, not currently in HTML) ---
+    // parallaxSections.forEach(section => {
+    //     const url = section.dataset.parallaxUrl;
+    //     if (url) section.style.backgroundImage = `url(${url})`;
+    // });
 
     // --- Form Submission (Placeholder for Newsletter on this page) ---
     const newsletterForm = document.getElementById('newsletterForm');
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            // Basic validation example
             const emailInput = newsletterForm.querySelector('input[type="email"]');
             if (emailInput && emailInput.value.trim() !== '' && emailInput.checkValidity()) {
                 alert('Thank you for subscribing to Redeeming Time Today! (This is a demo feature)');
                 newsletterForm.reset();
             } else {
-                alert('Please enter a valid email address.');
+                alert('Please enter a valid email address to subscribe to Redeeming Time Today.');
+                if(emailInput) emailInput.focus();
             }
         });
     }
-    // Contact form logic would be on contact_mobile.html's JS
 
     // --- Scroll to Top Button ---
     if (scrollTopBtn) {
         window.addEventListener('scroll', () => {
-            scrollTopBtn.classList.toggle('is-visible', window.scrollY > 400);
-        });
+            scrollTopBtn.classList.toggle('is-visible', window.scrollY > 300); // Show a bit earlier
+        }, { passive: true });
         scrollTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
