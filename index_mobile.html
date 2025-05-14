@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redeeming The Time Today - A New Dawn</title>
+    <title>Redeeming Time Today - A New Dawn</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -14,16 +14,16 @@
 
     <div class="site-preloader" id="sitePreloader">
         <div class="preloader-logo">
-            <!-- Simplified static SVG for preloader -->
-            <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg" width="80" height="48">
+            <svg viewBox="0 0 150 60" xmlns="http://www.w3.org/2000/svg" width="120" height="48">
                  <defs>
                     <linearGradient id="preloadStarGradientSimple" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stop-color="var(--color-accent-light)" />
                         <stop offset="100%" stop-color="var(--color-accent)" />
                     </linearGradient>
                 </defs>
-                <text x="50" y="30" font-family="Merriweather, serif" font-size="24" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">RTT</text>
-                <polygon points="50,38 47,42 50,46 53,42" fill="url(#preloadStarGradientSimple)" />
+                <text x="75" y="25" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Redeeming Time</text>
+                <text x="75" y="40" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Today</text>
+                <polygon points="75,48 72,52 75,56 78,52" fill="url(#preloadStarGradientSimple)" />
             </svg>
         </div>
         <div class="preloader-progress"><div class="preloader-bar"></div></div>
@@ -31,31 +31,9 @@
 
     <header class="site-header" id="siteHeader">
         <div class="container header__container">
-            <a href="#hero" class="header__logo-link" aria-label="Redeeming The Time Today Home">
-                <!-- Simplified SVG Logo -->
-                <svg class="header__logo-svg" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="rttStarGradientSimple" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="var(--color-accent-light)" />
-                            <stop offset="100%" stop-color="var(--color-accent)" />
-                        </linearGradient>
-                         <filter id="rttTextGlow" x="-20%" y="-20%" width="140%" height="140%">
-                            <feGaussianBlur stdDeviation="0.5" result="blur" />
-                            <feMerge>
-                                <feMergeNode in="blur" />
-                                <feMergeNode in="SourceGraphic" />
-                            </feMerge>
-                        </filter>
-                    </defs>
-                    <text x="50" y="25" font-family="Merriweather, serif" font-size="22" fill="var(--color-primary)" font-weight="bold" text-anchor="middle" filter="url(#rttTextGlow)">
-                        RTT
-                        <animate attributeName="opacity" from="0.7" to="1" dur="2s" repeatCount="indefinite" values="1;0.7;1" keyTimes="0;0.5;1"/>
-                    </text>
-                    <!-- Star element, smaller and subtle -->
-                    <polygon points="85,18 83,21 85,24 87,21" fill="url(#rttStarGradientSimple)">
-                         <animateTransform attributeName="transform" type="rotate" from="0 85 21" to="360 85 21" dur="15s" repeatCount="indefinite" />
-                    </polygon>
-                </svg>
+            <a href="index_mobile.html" class="header__logo-link" aria-label="Redeeming Time Today Home">
+                <img src="assets/logo.jpg" alt="Redeeming Time Today Logo" class="header__logo-image">
+                <span class="header__logo-placeholder-text">logo.png</span>
             </a>
             <button id="menuToggle" class="header__menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
                 <span class="menu-toggle__bar"></span>
@@ -67,16 +45,18 @@
 
     <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
         <ul class="mobile-nav__list">
-            <li><a href="#hero" class="mobile-nav__link">Home</a></li>
-            <li><a href="#about" class="mobile-nav__link">Our Story</a></li>
-            <li><a href="#mission" class="mobile-nav__link">Mission</a></li>
-            <li><a href="#services" class="mobile-nav__link">Services</a></li>
-            <li><a href="#impact" class="mobile-nav__link">Impact</a></li>
-            <li><a href="#join-us" class="mobile-nav__link">Get Involved</a></li>
-            <li><a href="#contact" class="mobile-nav__link">Contact</a></li>
+            <li><a href="index_mobile.html" class="mobile-nav__link">Home</a></li>
+            <li><a href="about_mobile.html" class="mobile-nav__link">About Us</a></li>
+            <li><a href="mission_mobile.html" class="mobile-nav__link">Our Mission</a></li>
+            <li><a href="services_mobile.html" class="mobile-nav__link">Services</a></li>
+            <li><a href="impact_mobile.html" class="mobile-nav__link">Impact</a></li>
+            <li><a href="shop_mobile.html" class="mobile-nav__link">Shop</a></li>
+            <li><a href="donate_mobile.html" class="mobile-nav__link">Donate</a></li>
+            <li><a href="get_involved_mobile.html" class="mobile-nav__link">Get Involved</a></li>
+            <li><a href="contact_mobile.html" class="mobile-nav__link">Contact</a></li>
         </ul>
         <div class="mobile-nav__footer">
-            <p>© <span id="navYear"></span> RTT. Every Moment Counts.</p>
+            <p>© <span id="navYear"></span> Redeeming Time Today. Every Moment Counts.</p>
         </div>
     </nav>
 
@@ -96,182 +76,103 @@
                     <span class="hero__title-line hero__title-line--3">Inspire Futures.</span>
                 </h1>
                 <p class="hero__subtitle">Empowering individuals to transform their lives through purpose, community, and the wise use of every precious moment.</p>
-                <a href="#about" class="btn btn--accent hero__cta">Discover Our Path <i class="fas fa-arrow-right btn__icon"></i></a>
+                <a href="about_mobile.html" class="btn btn--accent hero__cta">Discover Our Path <i class="fas fa-arrow-right btn__icon"></i></a>
             </div>
-            <a href="#about" class="hero__scroll-indicator" aria-label="Scroll to Our Story">
+            <a href="#preview-about" class="hero__scroll-indicator" aria-label="Scroll to About Us Preview">
                 <i class="fas fa-chevron-down"></i>
             </a>
         </section>
 
-        <section id="about" class="section about">
-            <div class="container about__container">
+        <section id="preview-about" class="section about-preview">
+            <div class="container about-preview__container">
                 <div class="section__header">
                     <span class="section__kicker">Our Genesis</span>
-                    <h2 class="section__title">From Vision to Reality</h2>
+                    <h2 class="section__title">About Redeeming Time Today</h2>
                 </div>
-                <div class="about__grid">
-                    <div class="about__image-wrapper animate-on-scroll" data-animation="fade-in-left">
-                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1lZXRpbmclMjBmb3IlMjBub25wcm9maXR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=80" alt="Diverse group in a supportive meeting" class="about__image">
-                         <div class="about__image-decoration"></div>
-                    </div>
-                    <div class="about__text-content animate-on-scroll" data-animation="fade-in-right" data-delay="0.2s">
-                        <p class="about__intro-text">Born from a shared vision within the walls of Rahway State Prison, Redeeming The Time Today (RTT) was conceived by our CEO and Rev. Rufus McClendon, alongside inmates dedicated to holistic growth—mentally, physically, and spiritually.</p>
-                        <p>Upon release in 2002, this powerful vision transcended prison barriers. RTT was established to be a beacon of hope, offering a supportive space for individuals navigating paths away from addiction, incarceration, and homelessness. We champion the journey of rejoining society with dignity and purpose.</p>
-                        <blockquote class="about__quote">
-                            <p>"Making the very most of your time [on earth], ...because the days are evil."</p>
-                            <footer>Ephesians 5:16 (AMP), The Guiding Word</footer>
-                        </blockquote>
-                        <p>We also invest in our youth, guiding them to make choices that build bright futures and avoid paths that could shatter their dreams.</p>
-                    </div>
+                <div class="about-preview__content animate-on-scroll" data-animation="fade-in-up">
+                    <p>Born from a shared vision within the walls of Rahway State Prison, Redeeming Time Today was conceived by our CEO and Rev. Rufus McClendon, alongside inmates dedicated to holistic growth. Since 2002, we have been a beacon of hope, offering support for individuals rejoining society with dignity and purpose.</p>
+                    <blockquote class="about__quote">
+                        <p>"Making the very most of your time [on earth], ...because the days are evil."</p>
+                        <footer>Ephesians 5:16 (AMP), The Guiding Word</footer>
+                    </blockquote>
+                    <a href="about_mobile.html" class="btn btn--primary">Learn More About Us <i class="fas fa-info-circle btn__icon"></i></a>
                 </div>
             </div>
         </section>
 
-        <section id="mission" class="section mission parallax-section" data-parallax-url="https://images.unsplash.com/photo-1505051508008-923feaf90180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGF0aCUyMGxpZ2h0fGVufDB8fDB8fHww&auto=format&fit=crop&w=1200&q=80">
+        <section id="preview-mission" class="section mission-preview parallax-section" data-parallax-url="https://images.unsplash.com/photo-1505051508008-923feaf90180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGF0aCUyMGxpZ2h0fGVufDB8fDB8fHww&auto=format&fit=crop&w=1200&q=80">
             <div class="section__overlay"></div>
-            <div class="container mission__container">
+            <div class="container mission-preview__container">
                 <i class="fas fa-crosshairs mission__icon animate-on-scroll" data-animation="zoom-in-fast"></i>
                 <h2 class="section__title section__title--light animate-on-scroll" data-animation="fade-in-up" data-delay="0.1s">Our Unwavering Mission</h2>
-                <p class="mission__text animate-on-scroll" data-animation="fade-in-up" data-delay="0.3s">Redeeming Time Today is dedicated to empowering individuals and communities to maximize their potential through the wise and purposeful use of time. We provide transformative resources, dedicated mentorship, and impactful programs that foster personal development, community service, and meaningful engagement. Our aim is to inspire and equip every person to live with intention, making each moment a stepping stone towards a brighter, better future.</p>
+                <p class="mission-preview__text animate-on-scroll" data-animation="fade-in-up" data-delay="0.3s">Redeeming Time Today is dedicated to empowering individuals and communities to maximize their potential. We provide transformative resources and impactful programs fostering personal development and community service.</p>
+                <a href="mission_mobile.html" class="btn btn--light animate-on-scroll" data-animation="fade-in-up" data-delay="0.5s">Explore Our Mission <i class="fas fa-bullseye btn__icon"></i></a>
             </div>
         </section>
-
-        <section id="services" class="section services">
-            <div class="container services__container">
+        
+        <section id="preview-shop" class="section shop-preview">
+            <div class="container shop-preview__container">
                 <div class="section__header">
-                    <span class="section__kicker">How We Serve</span>
-                    <h2 class="section__title">Pathways to Empowerment</h2>
+                    <span class="section__kicker">Support Our Cause</span>
+                    <h2 class="section__title">Official Merchandise</h2>
                 </div>
-                <div class="services__grid">
-                    <div class="service-card animate-on-scroll" data-animation="scale-up" style="--card-delay: 0s;">
-                        <div class="service-card__icon-wrapper"><i class="fas fa-people-roof service-card__icon"></i></div>
-                        <h3 class="service-card__title">Community Reintegration</h3>
-                        <p class="service-card__description">Support for individuals rejoining society, fostering stability and belonging.</p>
-                    </div>
-                    <div class="service-card animate-on-scroll" data-animation="scale-up" style="--card-delay: 0.15s;">
-                        <div class="service-card__icon-wrapper"><i class="fas fa-user-graduate service-card__icon"></i></div>
-                        <h3 class="service-card__title">Youth Mentorship</h3>
-                        <p class="service-card__description">Guiding young minds towards positive choices and realizing their potential.</p>
-                    </div>
-                    <div class="service-card animate-on-scroll" data-animation="scale-up" style="--card-delay: 0.3s;">
-                        <div class="service-card__icon-wrapper"><i class="fas fa-hand-holding-heart service-card__icon"></i></div>
-                        <h3 class="service-card__title">Recovery & Support</h3>
-                        <p class="service-card__description">Compassionate assistance for those overcoming addiction and hardship.</p>
-                    </div>
-                    <div class="service-card animate-on-scroll" data-animation="scale-up" style="--card-delay: 0.45s;">
-                        <div class="service-card__icon-wrapper"><i class="fas fa-brain service-card__icon"></i></div>
-                        <h3 class="service-card__title">Holistic Development</h3>
-                        <p class="service-card__description">Programs for mental, physical, and spiritual growth and well-being.</p>
-                    </div>
+                <div class="shop-preview__content animate-on-scroll" data-animation="fade-in-up">
+                    <img src="https://via.placeholder.com/300x200.png?text=Merch+Preview" alt="Redeeming Time Today Merchandise Preview" class="shop-preview__image">
+                    <p>Show your support and spread awareness with our exclusive Redeeming Time Today merchandise. Find T shirts, sweatshirts, and more. All proceeds directly fund our programs and initiatives.</p>
+                    <a href="shop_mobile.html" class="btn btn--accent">Visit Our Shop <i class="fas fa-shopping-cart btn__icon"></i></a>
                 </div>
             </div>
         </section>
 
-        <section id="impact" class="section impact">
-            <div class="container impact__container">
-                <div class="section__header">
-                    <span class="section__kicker">Our Results</span>
-                    <h2 class="section__title">Transforming Lives, One Moment at a Time</h2>
-                </div>
-                <div class="impact__stats-grid">
-                    <div class="stat-item animate-on-scroll" data-animation="fade-in-up" style="--stat-delay: 0s;">
-                        <span class="stat-item__number" data-target="750">0</span>+
-                        <span class="stat-item__label">Individuals Empowered Annually</span>
-                    </div>
-                    <div class="stat-item animate-on-scroll" data-animation="fade-in-up" style="--stat-delay: 0.2s;">
-                        <span class="stat-item__number" data-target="22">0</span>+
-                        <span class="stat-item__label">Years of Dedicated Service</span>
-                    </div>
-                    <div class="stat-item animate-on-scroll" data-animation="fade-in-up" style="--stat-delay: 0.4s;">
-                        <span class="stat-item__number" data-target="95">0</span>%
-                        <span class="stat-item__label">Positive Program Feedback</span>
-                    </div>
-                </div>
-                <div class="impact__narrative animate-on-scroll" data-animation="fade-in" data-delay="0.5s">
-                    <h3 class="impact__narrative-title">More Than Numbers</h3>
-                    <p>While statistics highlight our reach, the true measure of our success lies in the individual stories of renewed hope, reclaimed purpose, and lives rebuilt. Each person who finds their footing, mentors a youth, or overcomes adversity through our programs is a testament to the power of redeeming time. We are committed to fostering an environment where these transformations are not just possible, but frequent.</p>
-                    <a href="#contact" class="btn btn--secondary impact__contact-btn">Share Your Story or Learn More <i class="fas fa-pen-alt btn__icon"></i></a>
-                </div>
-            </div>
-        </section>
-
-        <section id="join-us" class="section join-us parallax-section" data-parallax-url="https://images.unsplash.com/photo-1604882355165-4605615847eta?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNvbW11bml0eSUyMGhhbmRzfGVufDB8fDB8fHww&auto=format&fit=crop&w=1200&q=80">
+        <section id="preview-donate" class="section donate-preview parallax-section" data-parallax-url="https://images.unsplash.com/photo-1604882355165-4605615847eta?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNvbW11bml0eSUyMGhhbmRzfGVufDB8fDB8fHww&auto=format&fit=crop&w=1200&q=80">
             <div class="section__overlay section__overlay--accent"></div>
-            <div class="container join-us__container">
-                <h2 class="section__title section__title--light animate-on-scroll" data-animation="fade-in-up">Make a Lasting Impact</h2>
-                <p class="join-us__text animate-on-scroll" data-animation="fade-in-up" data-delay="0.2s">Your support fuels our mission. Whether through donation or volunteering your time, you become a vital part of the transformation journey for countless individuals.</p>
-                <div class="join-us__buttons animate-on-scroll" data-animation="fade-in-up" data-delay="0.4s">
-                    <a href="#" class="btn btn--light join-us__btn">Donate Now <i class="fas fa-heart btn__icon"></i></a>
-                    <a href="#" class="btn btn--outline-light join-us__btn">Volunteer <i class="fas fa-hands-helping btn__icon"></i></a>
-                </div>
+            <div class="container donate-preview__container">
+                 <h2 class="section__title section__title--light animate-on-scroll" data-animation="fade-in-up">Make a Difference Today</h2>
+                <p class="donate-preview__text animate-on-scroll" data-animation="fade-in-up" data-delay="0.2s">Your generous contribution helps us continue our vital work in the community, empowering individuals and transforming lives. Every donation, no matter the size, has a significant impact.</p>
+                <a href="donate_mobile.html" class="btn btn--light animate-on-scroll" data-animation="fade-in-up" data-delay="0.4s">Donate Now <i class="fas fa-heart btn__icon"></i></a>
             </div>
         </section>
 
-        <section id="contact" class="section contact">
-            <div class="container contact__container">
+        <section id="preview-contact" class="section contact-preview">
+            <div class="container contact-preview__container">
                 <div class="section__header">
                     <span class="section__kicker">Get in Touch</span>
                     <h2 class="section__title">Let's Connect</h2>
                 </div>
-                <div class="contact__grid">
-                    <div class="contact__info animate-on-scroll" data-animation="fade-in-left">
-                        <h3 class="contact__info-title">Reach Out to Us</h3>
-                        <p>We're here to answer your questions and explore how we can work together.</p>
-                        <ul class="contact__details-list">
-                            <li><i class="fas fa-map-marker-alt"></i> <span>123 Redemption Way, Hope City, NJ (Example)</span></li>
-                            <li><i class="fas fa-phone"></i> <a href="tel:+11234567890">(123) 456-7890</a></li>
-                            <li><i class="fas fa-envelope"></i> <a href="mailto:connect@redeemingtimetoday.org">connect@redeemingtimetoday.org</a></li>
-                        </ul>
-                        <div class="contact__social-links">
-                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                    <form id="contactForm" class="contact__form animate-on-scroll" data-animation="fade-in-right" data-delay="0.2s">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" required placeholder=" ">
-                            <label for="name">Full Name</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" required placeholder=" ">
-                            <label for="email">Email Address</label>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
-                            <label for="message">Your Message</label>
-                        </div>
-                        <button type="submit" class="btn btn--primary contact__submit-btn">Send Message <i class="fas fa-paper-plane btn__icon"></i></button>
-                    </form>
+                <div class="contact-preview__content animate-on-scroll" data-animation="fade-in-up">
+                    <p>We would love to hear from you. Whether you have questions, want to get involved, or share your story, reach out to us.</p>
+                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:rob@redeemingthetimetoday.org">rob@redeemingthetimetoday.org</a></p>
+                    <a href="contact_mobile.html" class="btn btn--secondary">Contact Us <i class="fas fa-paper-plane btn__icon"></i></a>
                 </div>
             </div>
         </section>
+
+
     </main>
 
     <footer class="site-footer">
         <div class="container footer__container">
             <div class="footer__main">
                 <div class="footer__about">
-                     <!-- Simplified Footer Logo -->
-                    <svg class="footer__logo-svg" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
-                        <text x="50" y="25" font-family="Merriweather, serif" font-size="22" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">RTT</text>
-                        <polygon points="85,18 83,21 85,24 87,21" fill="var(--color-accent)" />
+                    <svg class="footer__logo-svg" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+                        <text x="100" y="25" font-family="Merriweather, serif" font-size="14" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Redeeming Time Today</text>
+                        <polygon points="175,18 173,21 175,24 177,21" fill="var(--color-accent)" />
                     </svg>
-                    <p>Empowering change, one moment at a time. Join us in building a community of hope and purpose.</p>
+                    <p>Empowering change, one moment at a time. Join us in building a community of hope and purpose under Redeeming Time Today.</p>
                 </div>
                 <div class="footer__links">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#about">Our Story</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#impact">Impact</a></li>
-                        <li><a href="#join-us">Support Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="about_mobile.html">About Us</a></li>
+                        <li><a href="services_mobile.html">Services</a></li>
+                        <li><a href="impact_mobile.html">Impact</a></li>
+                        <li><a href="donate_mobile.html">Donate</a></li>
+                        <li><a href="privacy_policy_mobile.html">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div class="footer__newsletter">
                     <h4>Stay Connected</h4>
-                    <p>Get updates on our work and stories of transformation.</p>
+                    <p>Get updates from Redeeming Time Today on our work and stories of transformation.</p>
                     <form id="newsletterForm" class="newsletter-form">
                         <input type="email" name="newsletter_email" placeholder="Your email address" required>
                         <button type="submit" aria-label="Subscribe"><i class="fas fa-envelope"></i></button>
@@ -279,7 +180,7 @@
                 </div>
             </div>
             <div class="footer__bottom">
-                <p>© <span id="footerYear"></span> Redeeming The Time Today. All Rights Reserved. Crafted with <i class="fas fa-heart footer__heart"></i> and purpose.</p>
+                <p>© <span id="footerYear"></span> Redeeming Time Today. All Rights Reserved. Crafted with <i class="fas fa-heart footer__heart"></i> and purpose.</p>
             </div>
         </div>
     </footer>
