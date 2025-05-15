@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let progress = 0;
         const initialLoad = () => {
             if (progress < 100) {
-                 progress += Math.floor(Math.random() * 10) + 5; // Slightly more organic loading
+                 progress += Math.floor(Math.random() * 10) + 5; 
                  if (progress > 100) progress = 100;
                  preloaderBar.style.width = progress + '%';
             }
@@ -23,11 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (progress >= 100) {
                 clearInterval(interval);
                 if (!sitePreloader.classList.contains('loaded')) {
-                    // Add a slight delay after bar hits 100% before fading out
                     setTimeout(() => sitePreloader.classList.add('loaded'), 250); 
                 }
             }
-        }, 80); // Slower interval for more visible progress
+        }, 80); 
 
         window.addEventListener('load', () => {
             clearInterval(interval); 
@@ -35,10 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
             preloaderBar.style.width = '100%';
             setTimeout(() => {
                 sitePreloader.classList.add('loaded');
-            }, 400); // Ensure it fades after everything is visually ready
+            }, 400); 
         });
 
-        // Fallback timeout to hide preloader
         setTimeout(() => {
             if (!sitePreloader.classList.contains('loaded')) {
                 clearInterval(interval);
@@ -56,13 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (document.body.classList.contains('no-scroll')) return; 
 
             const currentScrollY = window.scrollY;
-            // Hide header on scroll down, show on scroll up
-            if (currentScrollY > lastScrollY && currentScrollY > siteHeader.offsetHeight + 50) { // Add threshold
+            if (currentScrollY > lastScrollY && currentScrollY > siteHeader.offsetHeight + 50) { 
                 siteHeader.classList.add('header--hidden');
             } else {
                 siteHeader.classList.remove('header--hidden');
             }
-            // Add scrolled class for background change
             siteHeader.classList.toggle('header--scrolled', currentScrollY > 50);
             lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
         }, { passive: true });
@@ -77,10 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (siteOverlay) siteOverlay.classList.toggle('is-visible', isOpen);
         document.body.classList.toggle('no-scroll', isOpen);
 
-        // Ensure header is visible when nav is open, even if user scrolled down before opening
         if (isOpen && siteHeader) {
             siteHeader.classList.remove('header--hidden');
-            siteHeader.classList.add('header--scrolled'); // Keep scrolled style for consistency
+            siteHeader.classList.add('header--scrolled'); 
         }
     }
 
@@ -92,9 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         siteOverlay.addEventListener('click', () => toggleMobileNav(false));
         navLinks.forEach(link => {
-            link.addEventListener('click', (e) => { // Keep e for potential future use
-                // Only close nav if it's a link to another page or a #hash link
-                // This prevents closing if a link is e.g. a dropdown trigger (not applicable here but good practice)
+            link.addEventListener('click', (e) => { 
                 if (link.getAttribute('href') && (link.getAttribute('href').startsWith('#') || !link.getAttribute('href').startsWith('javascript:'))) {
                     toggleMobileNav(false);
                 }
@@ -107,7 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!navLinks.length) return;
 
         const currentPagePath = window.location.pathname;
-        // Normalize to handle cases where server might add/remove trailing slash or 'index.html'
         const currentPageName = currentPagePath.substring(currentPagePath.lastIndexOf('/') + 1) || 'index_mobile.html';
 
         navLinks.forEach(link => {
@@ -117,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
-            // Normalize link href for comparison
             let linkPageName = linkHref.substring(linkHref.lastIndexOf('/') + 1);
             if (linkPageName === '' || linkPageName === './') {
                 linkPageName = 'index_mobile.html';
@@ -125,11 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             let isActive = (currentPageName === linkPageName);
             
-            // Special handling for the root index_mobile.html
             if (currentPageName === 'index_mobile.html' && (linkPageName === 'index_mobile.html' || link.getAttribute('href') === 'index_mobile.html')) {
                  isActive = true;
             }
-
 
             link.classList.toggle('active-nav-link', isActive);
         });
@@ -147,20 +136,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-            // Ensure it's a valid on-page anchor and not just "#"
             if (targetId.length > 1 && targetId.startsWith('#')) { 
                 try {
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
                         e.preventDefault();
                         
-                        // Close mobile nav if open
                         if (mobileNav && mobileNav.classList.contains('is-open')) { 
                             toggleMobileNav(false); 
                         }
 
                         let offset = getHeaderHeight(); 
-                        // No offset if scrolling to very top or if target is already very high
                         if (targetId === '#hero' || targetElement.getBoundingClientRect().top + window.scrollY < offset + 20) { 
                             offset = 0; 
                         }
@@ -172,8 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 } catch (error) {
                     console.warn("Smooth scroll target not found or invalid selector:", targetId, error);
-                    // Fallback to default browser behavior if selector is invalid
-                    // window.location.hash = targetId; 
                 }
             }
         });
@@ -193,13 +177,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         entry.target.classList.add('is-visible');
                     }
-                    obs.unobserve(entry.target); // Unobserve after animation starts
+                    obs.unobserve(entry.target); 
                 }
             });
-        }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" }); // Trigger a bit earlier
+        }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" }); 
         animatedElements.forEach(el => observer.observe(el));
     } else {
-        // Fallback for older browsers or if observer fails
         animatedElements.forEach(el => el.classList.add('is-visible'));
     }
 
@@ -209,7 +192,6 @@ document.addEventListener('DOMContentLoaded', () => {
         newsletterForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const emailInput = newsletterForm.querySelector('input[type="email"]');
-            // Create or get feedback message element
             let feedbackMessage = newsletterForm.parentElement.querySelector('.form-feedback');
             if (!feedbackMessage) {
                 feedbackMessage = document.createElement('p');
@@ -227,15 +209,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 setTimeout(() => {
                     feedbackMessage.style.opacity = '0';
-                    setTimeout(() => feedbackMessage.remove(), 500); // Remove after fade out
+                    setTimeout(() => feedbackMessage.remove(), 500); 
                 }, 4000); 
-                feedbackMessage.style.opacity = '1'; // Ensure it's visible
+                feedbackMessage.style.opacity = '1'; 
                 feedbackMessage.style.transition = 'opacity 0.5s ease';
-
 
             } else {
                 feedbackMessage.textContent = 'Please enter a valid email address.';
-                feedbackMessage.style.color = 'var(--color-accent-dark)'; // Or a more distinct error color
+                feedbackMessage.style.color = 'var(--color-accent-dark)'; 
                 if(emailInput) emailInput.focus();
                 feedbackMessage.style.opacity = '1';
                 feedbackMessage.style.transition = 'opacity 0.5s ease';
@@ -246,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Scroll to Top Button ---
     if (scrollTopBtn) {
         window.addEventListener('scroll', () => {
-            scrollTopBtn.classList.toggle('is-visible', window.scrollY > 300); // Show a bit earlier
+            scrollTopBtn.classList.toggle('is-visible', window.scrollY > 300); 
         }, { passive: true });
         scrollTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
