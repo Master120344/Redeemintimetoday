@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donate - Redeeming Time Today</title>
+    <title>Support Our Mission - Donate to Redeeming Time Today</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/index_mobile.css">
     <link rel="stylesheet" href="css/donate_mobile.css">
-    <script src="https://js.stripe.com/v3/"></script> <!-- Stripe.js Library -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://js.stripe.com/v3/" defer></script> <!-- Stripe.js Library, defer for better performance -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 </head>
 <body>
 
@@ -71,106 +71,106 @@
             <div class="container donate-hero__container">
                 <h1 class="section__title section__title--light">Your Gift Changes Lives</h1>
                 <p class="donate-hero__intro">Every contribution to Redeeming Time Today fuels hope and creates pathways to stability for individuals and families in our community. Join us in making a tangible difference.</p>
-                <a href="#donation-form-section" class="btn btn--accent hero__cta">Donate Now <i class="fas fa-heartbeat btn__icon"></i></a>
+                <a href="#donation-form-section" class="btn btn--accent hero__cta scroll-link">Donate Now <i class="fas fa-heartbeat btn__icon"></i></a>
             </div>
         </section>
 
         <section id="donation-form-section" class="section donation-form-section">
             <div class="container">
                 <div class="section__header">
-                    <span class="section__kicker">Choose Your Impact</span>
+                    <span class="section__kicker">Support Our Cause</span>
                     <h2 class="section__title">Make a Secure Donation</h2>
+                    <p class="section__subtitle">Choose an amount or enter your own. Your generosity is deeply appreciated.</p>
                 </div>
-                <form id="donationForm" class="donation-form">
-                    <div class="donation-amounts">
-                        <button type="button" class="btn btn--outline-primary amount-btn" data-amount="25">$25</button>
-                        <button type="button" class="btn btn--outline-primary amount-btn" data-amount="50">$50</button>
-                        <button type="button" class="btn btn--outline-primary amount-btn selected" data-amount="100">$100</button>
-                        <button type="button" class="btn btn--outline-primary amount-btn" data-amount="250">$250</button>
-                    </div>
+                <form id="donationForm" class="donation-form" novalidate>
+                    <fieldset class="donation-amounts-fieldset">
+                        <legend class="sr-only">Select a donation amount</legend>
+                        <div class="donation-amounts">
+                            <button type="button" class="btn btn--outline-primary amount-btn" data-amount="25">$25</button>
+                            <button type="button" class="btn btn--outline-primary amount-btn" data-amount="50">$50</button>
+                            <button type="button" class="btn btn--outline-primary amount-btn selected" data-amount="100">$100</button>
+                            <button type="button" class="btn btn--outline-primary amount-btn" data-amount="250">$250</button>
+                        </div>
+                    </fieldset>
                     <div class="form-group custom-amount-group">
-                        <input type="number" id="customAmount" name="customAmount" placeholder=" " min="5" inputmode="numeric">
-                        <label for="customAmount">Or Enter Custom Amount (USD)</label>
+                        <label for="customAmount" class="form-label">Or Enter Custom Amount (USD)</label>
+                        <input type="number" id="customAmount" name="customAmount" class="form-control" placeholder="e.g., 75" min="5" step="1" inputmode="numeric">
                     </div>
-                    <div class="form-group-checkbox">
-                        <input type="checkbox" id="recurringDonation" name="recurringDonation">
-                        <label for="recurringDonation">Make this a monthly donation</label>
+                    <div class="form-group form-group-checkbox">
+                        <input type="checkbox" id="recurringDonation" name="recurringDonation" class="form-checkbox">
+                        <label for="recurringDonation" class="form-checkbox-label">Make this a monthly donation</label>
                     </div>
                     
-                    <!-- Stripe messages will be displayed here -->
-                    <div id="payment-message" class="payment-message" role="alert"></div>
+                    <div id="payment-message" class="payment-message" role="alert" aria-live="assertive"></div>
 
                     <button type="submit" id="submitDonation" class="btn btn--accent btn--full-width donation-submit-btn">
-                        Donate <span id="selectedAmountDisplay">$100</span> <i class="fas fa-lock btn__icon"></i>
+                        Donate <span id="selectedAmountDisplay">$100</span>
+                        <span class="btn__icon-wrapper"><i class="fas fa-arrow-right btn__icon"></i></span>
+                        <span class="btn__spinner-wrapper" style="display: none;"><span class="spinner"></span></span>
                     </button>
                     
-                    <div class="payment-methods-accepted">
-                        <p>We securely accept:</p>
-                        <div class="payment-icons">
-                            <img src="assets/payment_icons/visa.svg" alt="Visa" title="Visa">
-                            <img src="assets/payment_icons/mastercard.svg" alt="Mastercard" title="Mastercard">
-                            <img src="assets/payment_icons/amex.svg" alt="American Express" title="American Express">
-                            <img src="assets/payment_icons/discover.svg" alt="Discover" title="Discover">
-                            <img src="assets/payment_icons/apple-pay.svg" alt="Apple Pay" title="Apple Pay">
-                            <img src="assets/payment_icons/google-pay.svg" alt="Google Pay" title="Google Pay">
+                    <div class="payment-info-footer">
+                        <div class="payment-methods-accepted">
+                            <span class="payment-info-label">Secure payments processed by Stripe. We accept:</span>
+                            <div class="payment-icons">
+                                <img src="assets/payment_icons/visa.svg" alt="Visa" title="Visa">
+                                <img src="assets/payment_icons/mastercard.svg" alt="Mastercard" title="Mastercard">
+                                <img src="assets/payment_icons/amex.svg" alt="American Express" title="American Express">
+                                <img src="assets/payment_icons/discover.svg" alt="Discover" title="Discover">
+                                <!-- Apple Pay & Google Pay are often presented by Stripe Elements directly -->
+                            </div>
                         </div>
-                    </div>
-                    <div class="powered-by-stripe">
-                        <a href="https://stripe.com" target="_blank" rel="noopener noreferrer">
-                            <img src="assets/payment_icons/powered_by_stripe.svg" alt="Powered by Stripe">
-                        </a>
+                        <div class="powered-by-stripe">
+                            <a href="https://stripe.com" target="_blank" rel="noopener noreferrer" aria-label="Powered by Stripe">
+                                <img src="assets/payment_icons/powered_by_stripe.svg" alt="Powered by Stripe">
+                            </a>
+                        </div>
                     </div>
                 </form>
             </div>
         </section>
         
-        <!-- Success Message Container (Hidden by default) -->
-        <section id="donation-success-message" class="section donation-success-message" style="display: none;">
+        <section id="donation-success-message" class="section donation-success-message" style="display: none;" aria-labelledby="success-heading">
             <div class="container">
                 <div class="success-content">
-                    <i class="fas fa-check-circle success-icon"></i>
-                    <h2>Thank You for Your Generous Donation!</h2>
-                    <p>Your support makes a real difference in the lives of individuals and families in our community. A confirmation email has been sent to you (if applicable).</p>
+                    <i class="fas fa-check-circle success-icon" aria-hidden="true"></i>
+                    <h2 id="success-heading">Thank You for Your Generous Donation!</h2>
+                    <p>Your support makes a real difference in the lives of individuals and families in our community. A confirmation email from Stripe should arrive shortly.</p>
                     <p>Together, we are Redeeming Time Today.</p>
-                    <a href="index_mobile.html" class="btn btn--primary">Back to Home</a>
-                    <a href="impact_mobile.html" class="btn btn--outline-primary">See Our Impact</a>
+                    <div class="success-actions">
+                        <a href="index_mobile.html" class="btn btn--primary">Back to Home</a>
+                        <a href="impact_mobile.html" class="btn btn--outline-primary">See Our Impact</a>
+                    </div>
                 </div>
             </div>
         </section>
-
 
         <section id="impact-visualization" class="section impact-visualization-section">
             <div class="container">
                 <div class="section__header">
                     <span class="section__kicker section__kicker--on-dark">See Your Contribution at Work</span>
-                    <h2 class="section__title section__title--light">Where Your Money Goes</h2>
+                    <h2 class="section__title section__title--light">How Your Donation Helps</h2>
                 </div>
 
                 <div class="impact-grid">
                     <div class="impact-chart-container animate-on-scroll" data-animation="fade-in-left">
-                        <h3 class="impact-subsection-title">Fund Allocation</h3>
-                        <canvas id="fundAllocationChart"></canvas>
-                        <p class="chart-disclaimer">Illustrative breakdown of how general donations are typically used by Redeeming Time Today.</p>
+                        <h3 class="impact-subsection-title">Illustrative Fund Allocation</h3>
+                        <canvas id="fundAllocationChart" role="img" aria-label="Doughnut chart showing fund allocation: Community Reintegration 35%, Youth Mentorship 25%, Recovery & Support 20%, Holistic Development 15%, Operational Costs 5%"></canvas>
+                        <p class="chart-disclaimer">This is an illustrative breakdown of how general donations are typically utilized by Redeeming Time Today.</p>
                     </div>
 
-                    <div class="impact-stats-container animate-on-scroll" data-animation="fade-in-right" data-delay="0.2s">
-                        <h3 class="impact-subsection-title">Our Progress Together</h3>
-                        <div class="total-raised-container">
-                            <h4>Total Raised This Year</h4>
-                            <p class="total-raised-amount" id="totalRaisedAmount">$0</p>
-                            <div class="progress-bar-container">
-                                <div class="progress-bar" id="donationProgressBar"></div>
-                            </div>
-                            <p class="goal-text">Our Goal: <span id="yearlyGoal">$250,000</span></p>
-                        </div>
-                        <div class="impact-examples">
-                            <h4>Your Donation Can Provide:</h4>
-                            <ul>
-                                <li><i class="fas fa-utensils"></i> <strong>$25:</strong> A week of nutritious meals for an individual.</li>
-                                <li><i class="fas fa-user-friends"></i> <strong>$50:</strong> Support for one person to attend a life skills workshop.</li>
-                                <li><i class="fas fa-home"></i> <strong>$100:</strong> Essential supplies for a family transitioning to housing.</li>
-                                <li><i class="fas fa-briefcase"></i> <strong>$250:</strong> Contribution towards job training and placement services.</li>
-                            </ul>
+                    <div class="impact-stats-container animate-on-scroll" data-animation="fade-in-right" data-delay="0.15s">
+                        <h3 class="impact-subsection-title">Examples of Your Impact</h3>
+                         <p class="impact-intro-text">Your gift, no matter the size, contributes to meaningful change:</p>
+                        <ul class="impact-examples-list">
+                            <li><i class="fas fa-utensils impact-example__icon" aria-hidden="true"></i> <span class="impact-example__text"><strong>$25</strong> can provide a week of nutritious meals for an individual.</span></li>
+                            <li><i class="fas fa-user-friends impact-example__icon" aria-hidden="true"></i> <span class="impact-example__text"><strong>$50</strong> helps support one person's attendance at a life skills workshop.</span></li>
+                            <li><i class="fas fa-home impact-example__icon" aria-hidden="true"></i> <span class="impact-example__text"><strong>$100</strong> provides essential supplies for a family transitioning to stable housing.</span></li>
+                            <li><i class="fas fa-briefcase impact-example__icon" aria-hidden="true"></i> <span class="impact-example__text"><strong>$250</strong> contributes towards vital job training and placement services.</span></li>
+                        </ul>
+                        <div class="impact-goal-static">
+                             <h4>Our Annual Community Goal</h4>
+                             <p>We aim to raise <strong>$250,000</strong> this year to expand our reach and deepen our impact. Every donation brings us closer!</p>
                         </div>
                     </div>
                 </div>
@@ -184,9 +184,9 @@
                     <h2 class="section__title section__title--light">Transparency and Accountability</h2>
                 </div>
                 <div class="transparency-content animate-on-scroll" data-animation="fade-in-up">
-                    <i class="fas fa-file-invoice-dollar transparency__icon"></i>
-                    <p>Redeeming Time Today is committed to the highest standards of financial stewardship and transparency. We ensure that every dollar donated is used effectively to maximize our impact on the lives of those we serve. Detailed financial reports and impact stories are available to our supporters. Your trust is paramount to us.</p>
-                    <a href="financials_mobile.html" class="btn btn--light-on-dark">View Financial Reports</a>
+                    <i class="fas fa-file-invoice-dollar transparency__icon" aria-hidden="true"></i>
+                    <p>Redeeming Time Today is committed to the highest standards of financial stewardship and transparency. We ensure that every dollar donated is used effectively to maximize our impact on the lives of those we serve. Your trust is paramount to us.</p>
+                    <a href="financials_mobile.html" class="btn btn--light-on-dark">View Financial Reports (Example)</a>
                 </div>
             </div>
         </section>
@@ -239,7 +239,7 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="js/index_mobile.js"></script>
-    <script src="js/donate_mobile.js"></script>
+    <script src="js/index_mobile.js" defer></script>
+    <script src="js/donate_mobile.js" defer></script>
 </body>
 </html>
