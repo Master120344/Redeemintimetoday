@@ -3,44 +3,42 @@
     --font-heading: 'Merriweather', serif;
     --font-body: 'Poppins', sans-serif;
 
-    /* Solid Dark Blue Background for the entire page */
-    --color-page-background: #0d1b2a; /* Example: A deep, rich dark blue */
-    
-    /* Card Background - slightly lighter than page, or a contrasting dark grey/charcoal */
-    --color-card-background: #1b263b; /* Example: A slightly lighter dark blue/charcoal */
-    /* --color-card-background: #222831; /* Alternative: Dark grey */
+    /* --- BACKGROUNDS --- */
+    --color-page-background: #0a192f; /* Deep, solid dark blue for the entire page */
+    --color-card-background: #ffffff; /* SOLID WHITE for content cards - MAX CONTRAST */
+    --color-header-background-rgb: 10, 25, 47; /* RGB for header's dark blue */
+    --color-footer-background: #081424; /* Slightly darker blue for footer */
 
-    --color-primary-dark-rgb: 26, 37, 47; /* Retained for potential subtle uses if needed elsewhere */
-    --color-primary: #2C3E50; /* Can be used for card elements or secondary dark shades */
-    --color-primary-dark: var(--color-page-background); /* Aligning with the new solid bg */
-    --color-primary-light: #34495E; 
+    /* --- TEXT COLORS --- */
+    /* For dark backgrounds (Page, Hero, Header, Footer) */
+    --color-text-bright: #ffffff;         /* Pure white for maximum pop */
+    --color-text-subtle-light: #ccd6f6; /* Lighter blueish-white for less emphasis */
+    --color-link-bright: #f39c12;       /* Accent color for links on dark bg */
 
-    --color-secondary-rgb: 52, 152, 219;
-    --color-secondary: #3498DB; 
-    --color-secondary-light: #5DADE2; 
+    /* For light backgrounds (Content Cards) */
+    --color-text-dark-on-light: #1e293b;  /* Rich dark blue/grey for text on cards */
+    --color-heading-dark-on-light: #0f172a; /* Even darker for headings on cards */
+    --color-link-dark-on-light: #c87f0a; /* Darker accent for links on light cards */
+    --color-kicker-on-light: #e67e22; /* Accent color for kickers on light cards */
 
-    --color-accent-rgb: 243, 156, 18;
+    /* --- ACCENTS & MISC --- */
     --color-accent: #F39C12; 
     --color-accent-light: #F1C40F; 
     --color-accent-dark: #E67E22; 
+    --color-secondary: #3498DB; /* Blue for secondary buttons if needed */
+    --color-secondary-light: #5DADE2;
 
-    --color-surface-solid: #FFFFFF; 
-    --color-card-border: rgba(var(--color-accent-rgb), 0.7);
-    --color-card-icon: var(--color-accent-light);
-
-    /* Text Colors for Readability on Dark Backgrounds */
-    --color-text-bright: #FFFFFF; /* Pure white for main text */
-    --color-text-subtle-light: #E0E7FF; /* Slightly softer white for subtitles, less crucial text */
-    --color-link-bright: var(--color-accent-light); 
+    --color-card-border: rgba(243, 156, 18, 0.6); /* Accent border for cards */
+    --color-card-icon-on-light: var(--color-accent-dark); /* Icon color on light cards */
     
-    --hero-text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); /* Subtle shadow for hero text */
-    --card-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* Subtle shadow for card titles */
+    --hero-text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6); 
+    /* No text shadow needed for dark text on white cards */
 
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1); /* Softer shadows on solid bg */
-    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 6px 15px rgba(0, 0, 0, 0.2); 
-    --shadow-button: 0 3px 6px rgba(0,0,0,0.15);
-    --shadow-button-hover: 0 5px 10px rgba(0,0,0,0.2);
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.15); 
+    --shadow-button: 0 3px 7px rgba(0,0,0,0.15);
+    --shadow-button-hover: 0 5px 12px rgba(0,0,0,0.2);
 
     --header-height-mobile: 70px; 
     --header-height-desktop: 80px;
@@ -51,39 +49,35 @@
     --transition-fast: 0.2s ease-in-out;
 
     --container-padding: 20px;
-    --section-padding-y: 40px; 
-    --card-spacing-y: 30px;
-
-    /* NO global background image variable needed now */
+    --section-padding-y: 50px; /* Increased overall vertical spacing */
+    --card-spacing-y: 40px;
 }
 
 /* --- Global Reset & Base Styles --- */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { font-size: 100%; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scrollbar-width: thin; scrollbar-color: var(--color-accent) var(--color-primary-light); }
+html { font-size: 100%; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scrollbar-width: thin; scrollbar-color: var(--color-accent) #34495E; }
 html::-webkit-scrollbar { width: 10px; }
-html::-webkit-scrollbar-track { background: var(--color-primary-light); } 
-html::-webkit-scrollbar-thumb { background-color: var(--color-accent); border-radius: 10px; border: 2px solid var(--color-primary-light); }
+html::-webkit-scrollbar-track { background: #34495E; } 
+html::-webkit-scrollbar-thumb { background-color: var(--color-accent); border-radius: 10px; border: 2px solid #34495E; }
 
 body {
     font-family: var(--font-body);
     line-height: 1.7; 
-    color: var(--color-text-bright); /* Default text color is bright */
-    background-color: var(--color-page-background); /* SOLID DARK BLUE BACKGROUND */
-    background-image: none; /* Explicitly remove any image */
+    color: var(--color-text-bright); /* Default to bright text, overridden on cards */
+    background-color: var(--color-page-background); /* SOLID DARK BLUE PAGE BACKGROUND */
+    background-image: none; 
     overflow-x: hidden; 
     position: relative; 
 }
-body::before { /* Remove or neutralize any global overlay */
-    content: none; 
-}
+body::before { content: none; } /* No global overlay needed */
 body.no-scroll { overflow: hidden; } 
 
 /* --- Site Preloader --- */
 .site-preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--color-page-background); z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 1; visibility: visible; transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; }
 .site-preloader.loaded { opacity: 0; visibility: hidden; }
 .preloader-logo { margin-bottom: 25px; text-align: center; }
-#preloaderImage { max-width: 150px; max-height: 100px; height: auto; display: block; margin-left: auto; margin-right: auto; border-radius: var(--border-radius-sm); }
-.preloader-progress { width: 150px; height: 6px; background-color: var(--color-primary-light); border-radius: 3px; overflow: hidden; }
+#preloaderImage { max-width: 150px; max-height: 100px; height: auto; display: block; margin-left: auto; margin-right: auto; border-radius: var(--border-radius-sm); background-color: rgba(255,255,255,0.1); padding:5px; /* Helps if logo has transparency */ }
+.preloader-progress { width: 150px; height: 6px; background-color: rgba(204, 214, 246, 0.3); border-radius: 3px; overflow: hidden; }
 .preloader-bar { width: 0; height: 100%; background-color: var(--color-accent); border-radius: 3px; transition: width 0.1s linear; }
 
 /* --- Layout & Helpers --- */
@@ -91,9 +85,9 @@ body.no-scroll { overflow: hidden; }
 .content-wrapper { position: relative; z-index: 5; padding-top: var(--section-padding-y); padding-bottom: var(--section-padding-y); } 
 
 /* --- Site Header, Mobile Nav --- */
-.site-header { position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height-mobile); background-color: rgba(13, 27, 42, 0.85); /* Dark blue from --color-page-background with alpha */ backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: var(--shadow-sm); z-index: 999; transition: transform var(--transition-base), background-color var(--transition-base), box-shadow var(--transition-base); }
+.site-header { position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height-mobile); background-color: rgba(var(--color-header-background-rgb), 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: var(--shadow-sm); z-index: 999; transition: transform var(--transition-base), background-color var(--transition-base), box-shadow var(--transition-base); }
 .site-header.header--hidden { transform: translateY(-100%); }
-.site-header.header--scrolled { background-color: rgba(13, 27, 42, 0.95); box-shadow: var(--shadow-md); }
+.site-header.header--scrolled { background-color: rgba(var(--color-header-background-rgb), 0.95); box-shadow: var(--shadow-md); }
 .header__container { display: flex; justify-content: space-between; align-items: center; height: 100%; }
 .header__logo-text-link { font-family: var(--font-heading); font-size: clamp(1.2rem, 4.2vw, 1.5rem); font-weight: 700; color: var(--color-text-bright); text-decoration: none; transition: color var(--transition-fast); letter-spacing: -0.5px; line-height: 1; display: inline-block; padding: 5px 0; }
 .header__logo-text-link:hover { color: var(--color-link-bright); }
@@ -104,16 +98,16 @@ body.no-scroll { overflow: hidden; }
 .header__menu-toggle.is-active .menu-toggle__bar:nth-child(2) { opacity: 0; }
 .header__menu-toggle.is-active .menu-toggle__bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-.mobile-nav { position: fixed; top: var(--header-height-mobile); left: 0; width: 100%; background-color: var(--color-card-background); /* Using card bg for nav */ transform: translateY(-150%); opacity: 0; visibility: hidden; transition: transform var(--transition-base), opacity var(--transition-base), visibility var(--transition-base); z-index: 998; max-height: calc(100vh - var(--header-height-mobile)); overflow-y: auto; padding: 10px 0; box-shadow: var(--shadow-md); }
+.mobile-nav { position: fixed; top: var(--header-height-mobile); left: 0; width: 100%; background-color: #081424; /* Darker blue for nav */ transform: translateY(-150%); opacity: 0; visibility: hidden; transition: transform var(--transition-base), opacity var(--transition-base), visibility var(--transition-base); z-index: 998; max-height: calc(100vh - var(--header-height-mobile)); overflow-y: auto; padding: 10px 0; box-shadow: var(--shadow-md); }
 .mobile-nav.is-open { transform: translateY(0); opacity: 1; visibility: visible; }
 .mobile-nav__list { list-style: none; padding: 0; margin: 0; }
-.mobile-nav__link { display: block; padding: 16px var(--container-padding); color: var(--color-text-bright); text-decoration: none; font-size: 1.15rem; font-weight: 500; border-bottom: 1px solid rgba(255, 255, 255, 0.1); transition: background-color var(--transition-fast), color var(--transition-fast), padding-left var(--transition-fast); }
+.mobile-nav__link { display: block; padding: 16px var(--container-padding); color: var(--color-text-bright); text-decoration: none; font-size: 1.15rem; font-weight: 500; border-bottom: 1px solid rgba(var(--color-header-background-rgb), 0.5); transition: background-color var(--transition-fast), color var(--transition-fast), padding-left var(--transition-fast); }
 .mobile-nav__list li:last-child .mobile-nav__link { border-bottom: none; }
 .mobile-nav__link:hover, .mobile-nav__link.active-nav-link { background-color: var(--color-accent); color: var(--color-page-background); /* Dark text on accent bg */ padding-left: calc(var(--container-padding) + 10px); }
-.site-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); opacity: 0; visibility: hidden; transition: opacity var(--transition-base), visibility var(--transition-base); z-index: 997; }
+.site-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.65); opacity: 0; visibility: hidden; transition: opacity var(--transition-base), visibility var(--transition-base); z-index: 997; }
 .site-overlay.is-visible { opacity: 1; visibility: visible; }
 
-/* --- Hero Section --- */
+/* --- Hero Section (Sits on Dark Blue Page Background) --- */
 .hero { 
     min-height: 100vh; 
     height: auto;
@@ -124,53 +118,52 @@ body.no-scroll { overflow: hidden; }
     text-align: center; 
     color: var(--color-text-bright); 
     overflow: hidden; 
-    padding: var(--header-height-mobile) var(--container-padding) 50px;
+    padding: var(--header-height-mobile) var(--container-padding) 60px; /* Increased bottom padding */
     background-color: transparent; /* Hero is transparent, shows body's solid dark blue */
-    background-image: none; 
 }
-/* Removed .hero__overlay-main as it's not needed with a solid page background */
-
 .hero__content { 
     position: relative; z-index: 1; 
     width: 100%;
-    max-width: 700px; 
+    max-width: 750px; /* Slightly wider hero content */
     margin-top: 20px; 
     margin-bottom: 30px; 
 }
-.hero__logo-wrapper { margin-bottom: 25px; }
+.hero__logo-wrapper { margin-bottom: 30px; }
 .hero__logo-image { 
-    max-width: 160px; 
+    max-width: 180px; 
     height: auto; 
     border-radius: var(--border-radius-sm); 
-    background-color: rgba(255,255,255,0.05); 
-    padding: 8px;
-    box-shadow: 0 0 15px rgba(var(--color-accent-rgb), 0.15);
+    /* If logo is dark and has transparency, this light bg helps it show on dark page */
+    background-color: rgba(255, 255, 255, 0.08); 
+    padding: 10px;
+    box-shadow: 0 0 20px rgba(var(--color-accent-light), 0.1);
+    display: inline-block; /* Ensure it's treated as a block for padding */
 }
 .hero__title { 
     font-family: var(--font-heading);
     color: var(--color-text-bright); 
-    margin-bottom: 0.7em; 
-    line-height: 1.2; 
+    margin-bottom: 0.6em; 
+    line-height: 1.15; 
     text-shadow: var(--hero-text-shadow); 
-    font-size: clamp(2.2rem, 7vw, 3.2rem);
+    font-size: clamp(2.3rem, 7.5vw, 3.5rem); /* Slightly larger */
     font-weight: 700;
 }
-.hero__title-line { display: block; margin-bottom: 0.1em; }
+.hero__title-line { display: block; margin-bottom: 0.05em; }
 .hero__subtitle { 
     color: var(--color-text-subtle-light); 
     font-weight: 400; 
-    font-size: clamp(1.05rem, 3.5vw, 1.25rem); 
-    max-width: 600px; 
-    margin: 0 auto 2em; 
+    font-size: clamp(1.1rem, 3.8vw, 1.3rem); /* Slightly larger */
+    max-width: 650px; 
+    margin: 0 auto 2.2em; 
     text-shadow: var(--hero-text-shadow);
-    line-height: 1.6;
+    line-height: 1.65;
 }
-.hero__cta { font-size: clamp(1rem, 3vw, 1.15rem); }
-.hero__scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: var(--color-text-bright); font-size: 2rem; animation: bounce 2s infinite; opacity: 0.9; text-shadow: 0 1px 5px rgba(0,0,0,0.4); }
+.hero__cta { font-size: clamp(1.05rem, 3.2vw, 1.2rem); } /* CTA Slightly larger */
+.hero__scroll-indicator { position: absolute; bottom: 35px; left: 50%; transform: translateX(-50%); color: var(--color-text-bright); font-size: 2.2rem; animation: bounce 2s infinite; opacity: 0.85; text-shadow: 0 1px 5px rgba(0,0,0,0.5); }
 .hero__scroll-indicator:hover { opacity: 1; color: var(--color-link-bright); }
 @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-12px); } 60% { transform: translateX(-50%) translateY(-6px); } }
 
-/* --- Card-Based Preview Sections --- */
+/* --- LIGHT Content Cards on Dark Blue Page Background --- */
 .section.preview-section {
     padding-top: 0; 
     padding-bottom: var(--card-spacing-y); 
@@ -179,151 +172,172 @@ body.no-scroll { overflow: hidden; }
     text-align: center;
 }
 .preview-card {
-    background-color: var(--color-card-background); /* Using the defined card background */
+    background-color: var(--color-card-background); /* SOLID WHITE BACKGROUND */
+    color: var(--color-text-dark-on-light); /* DARK TEXT for cards */
     border-radius: var(--border-radius-lg);
-    padding: clamp(30px, 6vw, 50px) clamp(20px, 5vw, 40px);
+    padding: clamp(35px, 6vw, 55px) clamp(25px, 5vw, 45px); /* Generous padding */
     box-shadow: var(--shadow-lg);
-    border-top: 4px solid var(--color-card-border);
+    border-top: 5px solid var(--color-card-border); /* Accent border */
     position: relative;
     z-index: 12;
-    color: var(--color-text-subtle-light); /* Default text for cards */
 }
-.preview-card--accent-glow {
+.preview-card--accent-glow { /* For Donate card */
     border-color: var(--color-accent); 
-    box-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.2), var(--shadow-lg);
+    box-shadow: 0 0 25px rgba(243, 156, 18, 0.25), var(--shadow-lg); /* Accent glow */
 }
 
-.section__header { text-align: center; margin-bottom: clamp(1.5rem, 4vw, 2.2rem); }
-.section__kicker {
+.section__header { text-align: center; margin-bottom: clamp(1.8rem, 4vw, 2.5rem); }
+.section__kicker { /* On light cards, so needs to be dark */
     font-family: var(--font-body);
-    color: var(--color-link-bright); 
+    color: var(--color-kicker-on-light); 
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     display: block;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.6em;
 }
-.section__title { /* Applies to titles within cards */
+.section__title { /* On light cards, so needs to be dark */
     font-family: var(--font-heading);
-    color: var(--color-text-bright); /* Pure white for titles */
-    font-size: clamp(1.7rem, 5.5vw, 2.4rem);
+    color: var(--color-heading-dark-on-light); 
+    font-size: clamp(1.8rem, 5.8vw, 2.6rem); /* Larger section titles */
     margin-bottom: 0.7em;
     font-weight: 700;
-    line-height: 1.3;
-    text-shadow: var(--card-text-shadow);
+    line-height: 1.25;
 }
-.section__icon { 
-    font-size: clamp(3.5rem, 10vw, 4.5rem); 
-    color: var(--color-card-icon); 
-    margin-bottom: 0.4em; 
+.section__icon { /* On light cards */
+    font-size: clamp(3.8rem, 10vw, 4.8rem); 
+    color: var(--color-card-icon-on-light); 
+    margin-bottom: 0.5em; 
     display: inline-block; 
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-.preview-card__content p, .preview-card__text { /* General text within cards */
+.preview-card__content p, .preview-card__text { /* Text on light cards */
     font-weight: 400; 
-    font-size: clamp(1rem, 2.8vw, 1.1rem); 
-    line-height: 1.8;
-    max-width: 680px; 
+    font-size: clamp(1.05rem, 3vw, 1.15rem); 
+    line-height: 1.75;
+    max-width: 700px; 
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 1.2em;
-    color: var(--color-text-subtle-light); 
+    margin-bottom: 1.3em;
+    color: var(--color-text-dark-on-light); 
 }
-.preview-card__content strong, .preview-card__text strong {
-    color: var(--color-link-bright);
+.preview-card__content strong, .preview-card__text strong { /* Darker accent for strong text on light cards */
+    color: var(--color-accent-dark);
     font-weight: 600;
 }
-.link--on-card {
-    color: var(--color-link-bright);
+.link--on-light-card {
+    color: var(--color-link-dark-on-light);
     text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 4px;
     font-weight: 500;
     transition: color var(--transition-fast);
 }
-.link--on-card:hover {
-    color: var(--color-surface-solid);
+.link--on-light-card:hover {
+    color: var(--color-accent-dark); /* Darken on hover */
 }
-.quote { 
+.quote { /* Quote within a light card */
     padding: 1.3em 1.8em; 
-    margin: 2em auto; 
-    border-left: 5px solid var(--color-link-bright);
-    background-color: rgba(255, 255, 255, 0.03); /* Very subtle bg for quote within card */
+    margin: 2.2em auto; 
+    border-left: 5px solid var(--color-link-dark-on-light);
+    background-color: #f0f4f8; /* Slightly off-white bg for quote box */
     border-radius: var(--border-radius-sm);
-    max-width: 550px;
+    max-width: 580px;
     text-align: left;
+    color: var(--color-text-dark-on-light); /* Dark text */
 }
 .quote p { 
     font-style: italic; 
     margin-bottom: 0.5em; 
     font-weight: 500; 
-    font-size: clamp(1rem, 2.8vw, 1.15rem);
-    color: var(--color-text-bright);
+    font-size: clamp(1.05rem, 3vw, 1.2rem);
 }
 .quote footer { 
-    font-size: 0.9em; 
+    font-size: 0.9rem; 
     text-align: right; 
-    opacity: 0.9; 
+    opacity: 0.85; 
     font-weight: 500;
-    color: var(--color-text-subtle-light);
+    color: var(--color-heading-dark-on-light); /* Darker for footer */
 }
-.contact-info {
-    font-size: clamp(1rem, 2.8vw, 1.1rem);
-    margin-bottom: 1.5em;
+.contact-info { /* On light card */
+    font-size: clamp(1.05rem, 3vw, 1.15rem);
+    margin-bottom: 1.6em;
+    color: var(--color-text-dark-on-light);
 }
 .contact-info__icon {
-    color: var(--color-link-bright);
-    margin-right: 0.5em;
+    color: var(--color-link-dark-on-light);
+    margin-right: 0.6em;
 }
 
-/* --- "Nice" Button Styling --- */
+/* --- Button Styling (Contextual) --- */
 .btn {
     display: inline-block;
     font-family: var(--font-body);
     font-weight: 600; 
-    font-size: 0.95rem;
+    font-size: 1rem; /* Base button size */
     text-align: center;
     text-decoration: none;
     border-radius: var(--border-radius-md); 
-    padding: 0.9em 2.1em; 
+    padding: 0.95em 2.2em; 
     cursor: pointer;
     transition: background-color var(--transition-base), color var(--transition-base), border-color var(--transition-base), transform var(--transition-fast), box-shadow var(--transition-base);
     border: 2px solid transparent;
-    line-height: 1.4;
+    line-height: 1.45;
     box-shadow: var(--shadow-button); 
-    margin-top: 0.8em; 
+    margin-top: 1em; 
     margin-bottom: 0.5em;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
 }
 .btn:hover, .btn:focus { 
     transform: translateY(-3px); 
     box-shadow: var(--shadow-button-hover);
 }
-.btn .btn__icon { margin-left: 0.7em; }
-.btn--large {
-    font-size: 1.05rem;
-    padding: 1em 2.4em;
+.btn .btn__icon { margin-left: 0.8em; }
+.btn--large { /* For prominent CTAs like Donate */
+    font-size: 1.1rem;
+    padding: 1.05em 2.5em;
 }
 
-.btn--accent { background-color: var(--color-accent); color: var(--color-page-background); /* Dark text on accent */ border-color: var(--color-accent); }
-.btn--accent:hover, .btn--accent:focus { background-color: var(--color-accent-dark); border-color: var(--color-accent-dark); color: var(--color-page-background); }
+/* Buttons on DARK backgrounds (e.g., Hero) */
+.btn--accent-on-dark { 
+    background-color: var(--color-accent); 
+    color: var(--color-page-background); /* Dark text for contrast */
+    border-color: var(--color-accent); 
+}
+.btn--accent-on-dark:hover, .btn--accent-on-dark:focus { 
+    background-color: var(--color-accent-dark); 
+    border-color: var(--color-accent-dark); 
+    color: var(--color-page-background); 
+}
 
-.btn--secondary { 
-    background-color: var(--color-secondary); 
-    color: var(--color-text-bright); 
-    border-color: var(--color-secondary); 
+/* Buttons on LIGHT backgrounds (e.g., Cards) */
+.btn--accent-on-light {
+    background-color: var(--color-accent);
+    color: var(--color-page-background); /* Dark text for contrast */
+    border-color: var(--color-accent);
 }
-.btn--secondary:hover, .btn--secondary:focus { 
-    background-color: var(--color-secondary-light); 
-    border-color: var(--color-secondary-light);
-    color: var(--color-text-bright);
+.btn--accent-on-light:hover, .btn--accent-on-light:focus {
+    background-color: var(--color-accent-dark);
+    border-color: var(--color-accent-dark);
+    color: var(--color-page-background);
 }
+
+.btn--secondary-on-light { 
+    background-color: var(--color-text-dark-on-light); /* Dark button */
+    color: var(--color-card-background); /* Light text */
+    border-color: var(--color-text-dark-on-light); 
+}
+.btn--secondary-on-light:hover, .btn--secondary-on-light:focus { 
+    background-color: var(--color-heading-dark-on-light); 
+    border-color: var(--color-heading-dark-on-light);
+    color: var(--color-card-background);
+}
+
 
 /* --- Footer --- */
-.site-footer { background-color: var(--color-card-background); /* Footer uses card bg for consistency */ color: var(--color-text-subtle-light); padding: var(--section-padding-y) 0 0; position: relative; z-index: 10; font-size: 0.95rem; }
+.site-footer { background-color: var(--color-footer-background); color: var(--color-text-subtle-light); padding: var(--section-padding-y) 0 0; position: relative; z-index: 10; font-size: 0.95rem; }
 .footer__main { display: grid; grid-template-columns: 1fr; gap: 2.8rem; padding-bottom: 2.8rem; text-align: center; }
-.footer__logo-svg text { fill: var(--color-text-bright); }
+.footer__logo-svg text { fill: var(--color-text-bright); } /* Ensure SVG text is bright */
 .footer__logo-svg { max-width: 180px; height: auto; margin: 0 auto 1.2em; }
 .footer__about p { margin-bottom: 1.5em; line-height: 1.7; }
 .footer__social-links { display: flex; justify-content: center; gap: 1.2em; margin-top: 1.2em; }
@@ -336,12 +350,12 @@ body.no-scroll { overflow: hidden; }
 .footer__links ul li a:hover { color: var(--color-link-bright); padding-left: 6px; }
 .footer__newsletter p { margin-bottom: 1.2em; line-height: 1.7; }
 .newsletter-form { display: flex; max-width: 380px; margin: 1em auto 0; }
-.newsletter-form input[type="email"] { flex-grow: 1; padding: 0.85em 1.1em; border: 1px solid var(--color-primary-light); border-right: none; border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm); font-size: 0.9rem; background-color: var(--color-primary); color: var(--color-text-bright); outline: none; }
+.newsletter-form input[type="email"] { flex-grow: 1; padding: 0.85em 1.1em; border: 1px solid rgba(var(--color-header-background-rgb),0.7); border-right: none; border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm); font-size: 0.9rem; background-color: rgba(var(--color-header-background-rgb),0.4); color: var(--color-text-bright); outline: none; }
 .newsletter-form input[type="email"]::placeholder { color: var(--color-text-subtle-light); opacity: 0.7; }
-.newsletter-form input[type="email"]:focus { border-color: var(--color-accent); box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.25); background-color: var(--color-page-background); }
+.newsletter-form input[type="email"]:focus { border-color: var(--color-accent); box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.25); background-color: var(--color-page-background); }
 .newsletter-form button[type="submit"] { background-color: var(--color-accent); color: var(--color-page-background); border: 1px solid var(--color-accent); padding: 0.85em 1.2em; border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0; cursor: pointer; transition: background-color var(--transition-fast); font-size: 1.1rem; }
 .newsletter-form button[type="submit"]:hover { background-color: var(--color-accent-dark); border-color: var(--color-accent-dark); }
-.footer__bottom { border-top: 1px solid var(--color-primary-light); padding: 1.8em 0; text-align: center; }
+.footer__bottom { border-top: 1px solid rgba(var(--color-header-background-rgb),0.5); padding: 1.8em 0; text-align: center; }
 .footer__bottom p { color: var(--color-text-bright); font-weight: 500; font-size: 0.9rem; }
 .footer__heart { color: var(--color-accent); }
 
@@ -360,19 +374,19 @@ body.no-scroll { overflow: hidden; }
 
 /* --- Media Queries --- */
 @media (min-width: 768px) { 
-    :root { --header-height-desktop: 80px; --section-padding-y: 60px; --card-spacing-y: 40px;}
+    :root { --header-height-desktop: 80px; --section-padding-y: 70px; --card-spacing-y: 50px;}
     .site-header { height: var(--header-height-desktop); }
     .mobile-nav { top: var(--header-height-desktop); max-height: calc(100vh - var(--header-height-desktop));}
     .header__logo-text-link { font-size: 1.6rem; }
-    .hero { padding-top: var(--header-height-desktop); padding-bottom: 70px; }
-    .hero__logo-image { max-width: 180px; }
-    .hero__title { font-size: clamp(2.8rem, 6vw, 3.8rem); } 
-    .hero__subtitle { font-size: clamp(1.15rem, 3vw, 1.35rem); }
-    .btn { font-size: 1rem; padding: 1em 2.3em; }
-    .btn--large { font-size: 1.1rem; padding: 1.1em 2.6em; }
-    .preview-card { padding: clamp(40px, 5vw, 60px) clamp(30px, 4vw, 50px); }
-    .section__title { font-size: clamp(2rem, 5vw, 2.6rem); }
-    .preview-card__content p, .preview-card__text { font-size: clamp(1.05rem, 2.5vw, 1.15rem); }
+    .hero { padding-top: var(--header-height-desktop); padding-bottom: 80px; }
+    .hero__logo-image { max-width: 200px; }
+    .hero__title { font-size: clamp(3rem, 6.5vw, 4rem); } 
+    .hero__subtitle { font-size: clamp(1.2rem, 3.2vw, 1.4rem); }
+    .btn { font-size: 1.05rem; padding: 1em 2.4em; }
+    .btn--large { font-size: 1.15rem; padding: 1.1em 2.7em; }
+    .preview-card { padding: clamp(45px, 5vw, 65px) clamp(35px, 4vw, 55px); }
+    .section__title { font-size: clamp(2.2rem, 5.5vw, 2.8rem); }
+    .preview-card__content p, .preview-card__text { font-size: clamp(1.1rem, 2.8vw, 1.2rem); }
     .footer__main { grid-template-columns: 1.2fr 1fr 1fr; gap: 3.5rem; text-align: left; }
     .footer__logo-svg { margin-left: 0; margin-right:0; }
     .footer__social-links { justify-content: flex-start; }
@@ -380,9 +394,9 @@ body.no-scroll { overflow: hidden; }
     .newsletter-form { margin-left: 0; margin-right: auto; }
 }
 @media (min-width: 1024px) { 
-    :root { --section-padding-y: 80px; --card-spacing-y: 50px; }
+    :root { --section-padding-y: 90px; --card-spacing-y: 60px; }
     .container { width: 85%; max-width: 1200px; }
-    .hero__logo-image { max-width: 200px; }
-    .hero__title { font-size: clamp(3.2rem, 5.5vw, 4.2rem); } 
-    .hero__subtitle { font-size: clamp(1.2rem, 2.8vw, 1.4rem); }
+    .hero__logo-image { max-width: 220px; }
+    .hero__title { font-size: clamp(3.5rem, 6vw, 4.5rem); } 
+    .hero__subtitle { font-size: clamp(1.3rem, 3vw, 1.5rem); }
 }
