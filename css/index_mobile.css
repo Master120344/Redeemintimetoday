@@ -19,14 +19,13 @@
 
     --color-text-dark: #2C3E50; 
     --color-text-light: #4A5568; 
-    --color-text-on-dark-bg: #FFFFFF; 
-    --color-text-on-dark-bg-muted: #E0E0E0; /* Slightly brighter muted text */
+    --color-text-on-dark-bg: #FFFFFF; /* Pure White */
+    --color-text-on-dark-bg-muted: #FFFFFF; /* Changed to Pure White for max contrast in cards */
     --color-link-on-dark-bg: var(--color-accent-light); 
 
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
     --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.12);
     --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
-    /* --text-shadow-on-dark-cards: 0 1px 3px rgba(0, 0, 0, 0.5); /* Removed for now to test basic contrast */
 
     --header-height-mobile: 70px; 
     --header-height-desktop: 80px;
@@ -40,7 +39,6 @@
     --section-padding-y: 60px; 
 
     --global-background-image-url: url('https://images.unsplash.com/photo-1505051508008-923feaf90180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGF0aCUyMGxpZ2h0fGVufDB8fDB8fHww&auto=format&fit=crop&w=1920&q=85');
-    /* IMPORTANT: Ensure '../assets/logo.jpg' path is correct and the image itself is clear. */
     --hero-background-image-url: url('../assets/logo.jpg'); 
 }
 
@@ -82,41 +80,42 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(10, 20, 30, 0.55); /* Overall page dimming */
+    background-color: rgba(10, 20, 30, 0.55); 
     z-index: -1; 
 }
 body.no-scroll { overflow: hidden; } 
 
-/* --- Typography --- */
+/* --- Typography for Content Sections (Cards) --- */
 .content-on-global-bg .section__title,
 .content-on-global-bg .section__kicker,
-.content-on-global-bg h1, /* Titles/Headings in cards */
+.content-on-global-bg h1,
 .content-on-global-bg h2,
 .content-on-global-bg h3,
 .content-on-global-bg h4 {
-    color: var(--color-text-on-dark-bg); /* Bright white */
-    /* text-shadow: var(--text-shadow-on-dark-cards); */ /* Re-enable if basic contrast is good */
+    color: var(--color-text-on-dark-bg); /* Pure White */
+    text-shadow: none; /* Removed for max clarity on card */
 }
 .content-on-global-bg .section__kicker {
     color: var(--color-accent-light); 
 }
 .content-on-global-bg p { /* Paragraphs in cards */
-    color: var(--color-text-on-dark-bg-muted); /* Light grey, made slightly brighter */
-     /* text-shadow: var(--text-shadow-on-dark-cards); */
+    color: var(--color-text-on-dark-bg); /* Pure White for paragraphs */
+    text-shadow: none; /* Removed for max clarity on card */
 }
 .content-on-global-bg strong {
     color: var(--color-accent-light);
-    /* text-shadow: var(--text-shadow-on-dark-cards); */
+    text-shadow: none; /* Removed for max clarity on card */
 }
 .content-on-global-bg a:not(.btn) {
     color: var(--color-link-on-dark-bg);
     text-decoration: underline;
-    /* text-shadow: none; */
+    text-shadow: none;
 }
 .content-on-global-bg a:not(.btn):hover {
     color: var(--color-surface-solid);
 }
 
+/* Default heading styles (e.g., for forms if any, not cards) */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 700;
@@ -139,20 +138,20 @@ ul, ol { list-style-position: inside; padding-left: 0; }
     padding: 1.5em;
     margin: 1.5em 0;
     border-left: 5px solid var(--color-accent-light);
-    background-color: rgba(0, 0, 0, 0.25); /* Slightly more opaque quote bg */
+    background-color: rgba(0, 0, 0, 0.3); /* Slightly more opaque quote bg */
     border-radius: var(--border-radius-sm);
 }
 .quote--on-global-bg p {
     font-style: italic;
-    color: var(--color-text-on-dark-bg);
+    color: var(--color-text-on-dark-bg); /* Pure White */
     margin-bottom: 0.5em;
-    /* text-shadow: var(--text-shadow-on-dark-cards); */
+    text-shadow: none;
 }
 .quote--on-global-bg footer {
     font-size: 0.9em;
-    color: var(--color-text-on-dark-bg-muted);
+    color: var(--color-text-on-dark-bg); /* Pure White */
     text-align: right;
-    /* text-shadow: var(--text-shadow-on-dark-cards); */
+    text-shadow: none;
 }
 
 
@@ -184,36 +183,34 @@ main, .section, .site-footer .container, .site-header .container {
 }
 
 .section.preview-section > .container { /* This is the card */
-    background-color: rgba(5, 10, 18, 0.82); /* Darker, more opaque card background for high contrast */
+    background-color: rgba(0, 5, 10, 0.90); /* VERY Dark, VERY Opaque card background */
     padding-top: clamp(2.2rem, 5vw, 3rem);    
     padding-bottom: clamp(2.2rem, 5vw, 3rem); 
     border-radius: var(--border-radius-lg); 
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.45); /* More pronounced shadow */
-    border: 1px solid rgba(255, 255, 255, 0.15); /* Slightly more visible light border */
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); /* Strong shadow for depth */
+    border: 1px solid rgba(255, 255, 255, 0.1); 
 }
 
 .section.preview-section .section__header {
     text-align: center;
     margin-bottom: clamp(1.5rem, 4vw, 2.5rem); 
 }
-.section.preview-section .section__kicker--on-global-bg {
-    font-weight: 500; 
-}
+/* .section.preview-section .section__kicker--on-global-bg (already styled by .content-on-global-bg) */
 .section.preview-section .text--on-global-bg { /* Main paragraph text in cards */
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-    font-size: 1.1rem; /* Slightly larger for impact */
-    line-height: 1.75; /* Increased line height for readability */
-    margin-bottom: 1.75rem; /* More space after paragraphs */
-    font-weight: 600; /* Poppins SemiBold - very clearly bolder */
+    font-size: 1.1rem; 
+    line-height: 1.75; 
+    margin-bottom: 1.75rem; 
+    font-weight: 700; /* Poppins BOLD for maximum punch */
 }
 .section.preview-section .mission__icon--on-global-bg {
     font-size: 3.8rem; 
     color: var(--color-accent-light); 
     margin-bottom: 0.5em;
     display: inline-block;
-    /* text-shadow: none; */
+    text-shadow: none;
 }
 
 .section.preview-section .btn--light { 
@@ -477,7 +474,7 @@ main, .section, .site-footer .container, .site-header .container {
     background-size: contain; 
     background-position: center center;
     background-repeat: no-repeat;
-    background-color: var(--color-primary-dark); /* Fallback if image fails */
+    background-color: var(--color-primary-dark); 
 }
 .hero__overlay-main { 
     position: absolute;
@@ -485,8 +482,8 @@ main, .section, .site-footer .container, .site-header .container {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Significantly lighter overlay for MAX logo visibility */
-    background: linear-gradient(180deg, rgba(20, 30, 40, 0.15) 0%, rgba(20, 30, 40, 0.40) 100%); 
+    /* EXTREMELY light overlay for MAX logo visibility */
+    background: linear-gradient(180deg, rgba(10, 15, 20, 0.05) 0%, rgba(10, 15, 20, 0.25) 100%); 
     z-index: 0; 
 }
 .hero__content { position: relative; z-index: 1; padding: 0 var(--container-padding); }
@@ -494,15 +491,16 @@ main, .section, .site-footer .container, .site-header .container {
     color: var(--color-text-on-dark-bg); 
     margin-bottom: 0.75em;
     line-height: 1.2;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.6); /* Stronger shadow for hero title on lighter overlay */
+    text-shadow: 0 2px 6px rgba(0,0,0,0.7); /* STRONGER shadow for hero title */
 }
 .hero__title-line { display: block; }
 .hero__subtitle {
-    color: var(--color-text-on-dark-bg-muted); 
-    font-size: clamp(1rem, 3vw, 1.2rem);
-    max-width: 650px;
+    color: var(--color-text-on-dark-bg); /* Subtitle also pure white for this iteration */
+    font-weight: 500; /* Poppins Medium for subtitle */
+    font-size: clamp(1.05rem, 3.2vw, 1.25rem); /* Slightly larger subtitle */
+    max-width: 680px; /* Slightly wider */
     margin: 0 auto 1.5em;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.5); /* Stronger shadow for hero subtitle */
+    text-shadow: 0 1px 5px rgba(0,0,0,0.6); /* STRONGER shadow for hero subtitle */
 }
 .hero__cta {
     font-size: clamp(1rem, 3vw, 1.1rem);
@@ -515,8 +513,8 @@ main, .section, .site-footer .container, .site-header .container {
     color: var(--color-text-on-dark-bg); 
     font-size: 1.8rem;
     animation: bounce 2s infinite;
-    opacity: 0.8;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    opacity: 0.9; /* More visible scroll indicator */
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 .hero__scroll-indicator:hover {
     opacity: 1;
@@ -572,7 +570,7 @@ main, .section, .site-footer .container, .site-header .container {
 /* --- Site Footer --- */
 .site-footer {
     background-color: var(--color-primary-dark);
-    color: var(--color-text-on-dark-bg-muted);
+    color: var(--color-text-on-dark-bg-muted); /* Reverted to muted for footer as it's less critical than main content */
     padding: var(--section-padding-y) 0 0; 
     position: relative; 
     z-index: 10; 
@@ -706,33 +704,33 @@ main, .section, .site-footer .container, .site-header .container {
 }
 .animate-on-scroll[data-animation="fade-in-up"] {
     opacity: 0;
-    transform: translateY(60px); /* More travel for more "pop" */
-    transition-duration: 0.8s; /* Slightly longer for more noticeable effect */
-    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); 
+    transform: translateY(70px); /* Even more travel distance */
+    transition-duration: 0.9s; /* Longer, more impactful animation */
+    transition-timing-function: cubic-bezier(0.165, 0.840, 0.440, 1.000); /* EaseOutQuart */
 }
 .animate-on-scroll[data-animation="fade-in-down"] {
     opacity: 0;
-    transform: translateY(-60px);
-    transition-duration: 0.8s;
-    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transform: translateY(-70px);
+    transition-duration: 0.9s;
+    transition-timing-function: cubic-bezier(0.165, 0.840, 0.440, 1.000);
 }
 .animate-on-scroll[data-animation="zoom-in"] {
     opacity: 0;
-    transform: scale(0.9);
-    transition-duration: 0.6s;
-    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transform: scale(0.85); /* Start smaller */
+    transition-duration: 0.7s;
+    transition-timing-function: cubic-bezier(0.165, 0.840, 0.440, 1.000);
 }
 .animate-on-scroll[data-animation="zoom-in-fast"] { 
     opacity: 0;
-    transform: scale(0.8);
-    transition-duration: 0.45s;
-    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transform: scale(0.75); /* Start smaller */
+    transition-duration: 0.55s;
+    transition-timing-function: cubic-bezier(0.165, 0.840, 0.440, 1.000);
 }
 .animate-on-scroll[data-animation="card-zoom-in"] { 
     opacity: 0;
-    transform: scale(0.90) translateY(30px); /* Start smaller and further down for more pop */
-    transition-duration: 0.7s; /* Slightly longer animation for the card itself */
-    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: scale(0.88) translateY(40px); /* Start smaller and further down */
+    transition-duration: 0.8s; /* Slower, more majestic card entrance */
+    transition-timing-function: cubic-bezier(0.165, 0.840, 0.440, 1.000);
 }
 
 
