@@ -199,12 +199,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 feedbackMessage.style.marginTop = '12px';
                 feedbackMessage.style.fontSize = '0.9em';
                 feedbackMessage.style.textAlign = 'left'; 
+                // Ensure feedback message color contrasts with footer background
+                feedbackMessage.style.color = 'var(--color-link-bright)'; // Default to a bright color
                 newsletterForm.parentElement.appendChild(feedbackMessage);
             }
             
             if (emailInput && emailInput.value.trim() !== '' && emailInput.checkValidity()) {
-                feedbackMessage.textContent = 'Thank you for subscribing to Redeeming Time Today!';
-                feedbackMessage.style.color = 'var(--color-link-bright)'; 
+                feedbackMessage.textContent = 'Thank you for subscribing!';
+                feedbackMessage.style.color = 'var(--color-link-bright)'; // Success
                 newsletterForm.reset();
                 
                 setTimeout(() => {
@@ -216,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             } else {
                 feedbackMessage.textContent = 'Please enter a valid email address.';
-                feedbackMessage.style.color = 'var(--color-accent-dark)'; 
+                feedbackMessage.style.color = '#ff6b6b'; // A generic bright error red
                 if(emailInput) emailInput.focus();
                 feedbackMessage.style.opacity = '1';
                 feedbackMessage.style.transition = 'opacity 0.5s ease';
