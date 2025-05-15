@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Redeeming Time Today</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/index_mobile.css"> {/* Global Styles */}
+    <link rel="stylesheet" href="css/faq_mobile.css"> {/* Page-Specific Styles */}
+</head>
+<body>
+
+    <div class="site-preloader" id="sitePreloader">
+        <div class="preloader-logo">
+            <svg viewBox="0 0 150 60" xmlns="http://www.w3.org/2000/svg" width="120" height="48">
+                <defs>
+                    <linearGradient id="preloadStarGradientSimpleFAQ" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="var(--color-accent-light)" />
+                        <stop offset="100%" stop-color="var(--color-accent)" />
+                    </linearGradient>
+                </defs>
+                <text x="75" y="25" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Redeeming Time</text>
+                <text x="75" y="40" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Today</text>
+                <polygon points="75,48 72,52 75,56 78,52" fill="url(#preloadStarGradientSimpleFAQ)" />
+            </svg>
+        </div>
+        <div class="preloader-progress"><div class="preloader-bar"></div></div>
+    </div>
+
+    <header class="site-header" id="siteHeader">
+        <div class="container header__container">
+            <a href="index_mobile.html" class="header__logo-text-link" aria-label="Redeeming Time Today Home">
+                Redeeming Time Today
+            </a>
+            <button id="menuToggle" class="header__menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <ul class="mobile-nav__list">
+            <li><a href="index_mobile.html" class="mobile-nav__link">Home</a></li>
+            <li><a href="about_mobile.html" class="mobile-nav__link">About Us</a></li>
+            <li><a href="mission_mobile.html" class="mobile-nav__link">Our Mission</a></li>
+            <li><a href="services_mobile.html" class="mobile-nav__link">Services</a></li>
+            <li><a href="impact_mobile.html" class="mobile-nav__link">Impact</a></li>
+            <li><a href="events_mobile.html" class="mobile-nav__link">Events</a></li>
+            <li><a href="meetings_mobile.html" class="mobile-nav__link">Meetings</a></li>
+            <li><a href="shop_mobile.html" class="mobile-nav__link">Shop</a></li>
+            <li><a href="donate_mobile.html" class="mobile-nav__link">Donate</a></li>
+            <li><a href="get_involved_mobile.html" class="mobile-nav__link">Get Involved</a></li>
+            <li><a href="contact_mobile.html" class="mobile-nav__link">Contact</a></li>
+            <li><a href="faq_mobile.html" class="mobile-nav__link">FAQ</a></li> {/* New Link */}
+        </ul>
+    </nav>
+
+    <div class="site-overlay" id="siteOverlay"></div>
+
+    <main id="mainContent">
+        <section id="faq-hero" class="section faq-hero">
+            <div class="container">
+                <h1 class="section__title">Frequently Asked Questions</h1>
+                <p class="faq-hero__intro">Find answers to common questions about Redeeming Time Today, our mission, programs, and how you can be a part of our community.</p>
+            </div>
+        </section>
+
+        <section id="faq-list-section" class="section faq-list-section">
+            <div class="container">
+                <div class="faq-accordion">
+                    {/* FAQ Item 1 */}
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false" aria-controls="answer-1">
+                            <span>What is the primary mission of Redeeming Time Today?</span>
+                            <i class="fas fa-plus faq-icon"></i>
+                        </button>
+                        <div id="answer-1" class="faq-answer" hidden>
+                            <p>Redeeming Time Today is dedicated to empowering individuals and communities to maximize their potential through the wise and purposeful use of time. We provide transformative resources, dedicated mentorship, and impactful programs that foster personal development, community service, and meaningful engagement. Our aim is to inspire and equip every person to live with intention, making each moment a stepping stone towards a brighter, better future, particularly for those overcoming addiction, incarceration, and homelessness.</p>
+                        </div>
+                    </div>
+
+                    {/* FAQ Item 2 */}
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false" aria-controls="answer-2">
+                            <span>How can I get help from Redeeming Time Today?</span>
+                            <i class="fas fa-plus faq-icon"></i>
+                        </button>
+                        <div id="answer-2" class="faq-answer" hidden>
+                            <p>If you or someone you know needs support, please visit our <a href="get_involved_mobile.html#seek-help-section">Get Involved page</a> and fill out the "Need Support? Reach Out to Us" form. You can also contact us directly via email at <a href="mailto:robert@redeemingthetimetoday.com">robert@redeemingthetimetoday.com</a>. We are here to listen and connect you with available resources and programs.</p>
+                        </div>
+                    </div>
+
+                    {/* FAQ Item 3 */}
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false" aria-controls="answer-3">
+                            <span>How can I volunteer with Redeeming Time Today?</span>
+                            <i class="fas fa-plus faq-icon"></i>
+                        </button>
+                        <div id="answer-3" class="faq-answer" hidden>
+                            <p>We welcome passionate individuals to volunteer their time and skills! Please visit our <a href="get_involved_mobile.html#volunteer-section">Get Involved page</a> and complete the "Volunteer Your Time & Skills" form. You can specify your areas of interest, and our team will reach out to discuss current opportunities with Redeeming Time Today.</p>
+                        </div>
+                    </div>
+
+                    {/* FAQ Item 4 */}
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false" aria-controls="answer-4">
+                            <span>Where do my donations go?</span>
+                            <i class="fas fa-plus faq-icon"></i>
+                        </button>
+                        <div id="answer-4" class="faq-answer" hidden>
+                            <p>Your generous donations directly support Redeeming Time Today's programs and operational costs. This includes funding for community reintegration services, youth mentorship initiatives, recovery support programs, holistic development workshops, and essential resources for individuals and families in need. We are committed to transparency; you can find more details on our <a href="donate_mobile.html#impact-visualization">Donate page</a> and in our financial reports.</p>
+                        </div>
+                    </div>
+                    
+                    {/* FAQ Item 5 */}
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false" aria-controls="answer-5">
+                            <span>How was Redeeming Time Today started?</span>
+                            <i class="fas fa-plus faq-icon"></i>
+                        </button>
+                        <div id="answer-5" class="faq-answer" hidden>
+                            <p>Redeeming Time Today was born from a shared vision within Rahway State Prison by our CEO and Rev. Rufus McClendon, along with inmates dedicated to holistic growth. Upon release in 2002, this vision was established as an organization to offer hope and support for those rejoining society. You can read more about our origins on our <a href="about_mobile.html#our-genesis">About Us page</a>.</p>
+                        </div>
+                    </div>
+
+                    {/* FAQ Item 6 */}
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false" aria-controls="answer-6">
+                            <span>Are there any upcoming events or meetings I can attend?</span>
+                            <i class="fas fa-plus faq-icon"></i>
+                        </button>
+                        <div id="answer-6" class="faq-answer" hidden>
+                            <p>Yes! Redeeming Time Today regularly hosts community events and online meetings. You can find the latest schedules and details on our <a href="events_mobile.html">Events page</a> and our <a href="meetings_mobile.html">Meetings page</a>. We encourage you to join us!</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="faq-more-questions">
+                    <h3>Still Have Questions?</h3>
+                    <p>If you can't find the answer you're looking for, please don't hesitate to reach out to Redeeming Time Today directly.</p>
+                    <a href="contact_mobile.html" class="btn btn--accent">Contact Us</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer__container">
+            <div class="footer__main">
+                <div class="footer__about">
+                    <svg class="footer__logo-svg" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+                        <text x="100" y="25" font-family="Merriweather, serif" font-size="14" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Redeeming Time Today</text>
+                    </svg>
+                    <p>Empowering change, one moment at a time. Join us in building a community of hope and purpose under Redeeming Time Today.</p>
+                     <div class="footer__social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="X (formerly Twitter)"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer__links">
+                    <h4>Explore More</h4>
+                    <ul>
+                        <li><a href="meetings_mobile.html">Meetings</a></li>
+                        <li><a href="resources_mobile.html">Resources</a></li>
+                        <li><a href="programs_mobile.html">Our Programs</a></li>
+                        <li><a href="success_stories_mobile.html">Success Stories</a></li>
+                        <li><a href="news_blog_mobile.html">News & Blog</a></li>
+                        <li><a href="faq_mobile.html">FAQ</a></li>
+                        <li><a href="privacy_policy_mobile.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer__newsletter">
+                    <h4>Stay Connected</h4>
+                    <p class="footer__newsletter-text">Get updates from Redeeming Time Today on our work and stories of transformation.</p>
+                    <form id="newsletterFormFAQ" class="newsletter-form">
+                        <input type="email" name="newsletter_email_faq" placeholder="Your email address" required class="newsletter-form__input">
+                        <button type="submit" class="btn btn--accent newsletter-form__button">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>© <span id="footerYearFAQ"></span> Redeeming Time Today. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top of page">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/index_mobile.js"></script>
+    <script src="js/faq_mobile.js"></script>
+</body>
+</html>
