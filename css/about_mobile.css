@@ -2,22 +2,24 @@
 
 /* About Hero Section */
 .about-hero {
-    background-color: var(--color-primary); /* Dark primary for a strong intro */
-    color: var(--color-text-on-dark);
+    background-color: var(--color-primary-dark); /* Slightly darker primary for depth */
+    color: var(--color-text-on-dark-bg);
     text-align: center;
-    padding-top: calc(var(--header-height-mobile) + var(--section-padding-y) / 2);
-    padding-bottom: calc(var(--section-padding-y) / 1.5); /* Slightly more bottom padding */
+    padding-top: calc(var(--header-height-mobile) + var(--section-padding-y) / 1.8); /* Adjusted padding */
+    padding-bottom: calc(var(--section-padding-y) / 1.2);
+    position: relative;
+    overflow: hidden;
 }
+/* Optional: Add subtle background element or pattern to hero if desired */
 
-.about-hero .section__title {
-    color: var(--color-text-on-dark);
+.about-hero .section__title--light { /* Ensures title is light on dark background */
     margin-bottom: 0.5em;
-    font-size: clamp(2rem, 6vw, 3rem); /* Slightly smaller than main hero h1 */
+    font-size: clamp(2rem, 6vw, 2.8rem); /* Adjusted size */
 }
 
 .about-hero__intro {
-    font-size: clamp(1rem, 2.8vw, 1.2rem);
-    color: var(--color-text-on-dark-muted);
+    font-size: clamp(1rem, 2.8vw, 1.15rem); /* Adjusted size */
+    color: var(--color-text-on-dark-bg-muted);
     max-width: 750px;
     margin: 0 auto;
     line-height: 1.7;
@@ -29,27 +31,36 @@
     padding-bottom: var(--section-padding-y);
 }
 #our-genesis {
-    background-color: var(--color-surface); /* White for main story */
+    background-color: var(--color-surface-solid); /* Ensuring it's white as per index_mobile.css theme */
 }
 
 .about-subsection-title {
     font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 5vw, 2.5rem);
-    color: var(--color-primary);
+    font-size: clamp(1.7rem, 5vw, 2.3rem); /* Adjusted size */
+    color: var(--color-primary-dark); /* Consistent dark title for light sections */
     margin-bottom: 1em;
-    text-align: left; /* Align subsection titles left for readability in content blocks */
+    text-align: left;
 }
-.about-values-section .about-subsection-title, /* Center titles in specific sections */
-#meet-the-team .section__header .section__title {
-    text-align: center;
+.about-values-section .about-subsection-title,
+#meet-the-team .section__header .section__title,
+#join-our-journey .section__title {
+    text-align: center; /* Center titles in these specific sections */
+}
+
+/* Section Kicker specific for dark backgrounds */
+.section__kicker--on-dark {
+    color: var(--color-accent); /* Using accent color for kicker on dark backgrounds */
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.5em;
 }
 
 
 /* Our Genesis Section (About Grid) */
-.about-grid { /* Re-using styles from original index.html 'about__grid' */
+.about-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: clamp(2rem, 5vw, 3.5rem);
+    gap: clamp(2.5rem, 6vw, 4rem); /* Increased gap for better spacing */
     align-items: center;
 }
 .about-grid__image-wrapper {
@@ -59,202 +70,238 @@
     box-shadow: var(--shadow-lg);
 }
 .about-grid__image {
-    border-radius: var(--border-radius-lg);
+    border-radius: var(--border-radius-lg); /* Ensure image itself has radius if wrapper clips */
     width: 100%;
-    height: auto;
+    height: 100%; /* Make image fill wrapper */
+    object-fit: cover; /* Ensure image covers space well */
+    display: block;
 }
-.about-grid__image-decoration { /* Subtle decoration */
+.about-grid__image-decoration {
     position: absolute;
-    bottom: -25px;
-    right: -25px;
-    width: 120px;
-    height: 120px;
-    background-color: var(--color-accent);
-    opacity: 0.15;
+    bottom: -30px;
+    right: -30px;
+    width: 130px;
+    height: 130px;
+    background-color: var(--color-accent-light);
+    opacity: 0.2;
     border-radius: 50%;
     transform: rotate(30deg);
-    z-index: -1;
+    z-index: 0; /* Ensure it's behind text but respects image wrapper stacking */
 }
-.about-intro-text { /* For the first paragraph in genesis */
-    font-size: 1.15rem;
+.about-intro-text {
+    font-size: 1.1rem; /* Slightly reduced for balance */
     font-weight: 500;
-    color: var(--color-primary-dark);
+    color: var(--color-primary); /* Darker for emphasis */
     margin-bottom: 1.2em;
-    line-height: 1.6;
+    line-height: 1.65;
 }
 .about-grid__text-content p {
     font-size: 1rem;
-    line-height: 1.7;
-    color: var(--color-text-dark);
+    line-height: 1.75; /* Increased line-height for readability */
+    color: var(--color-text-light); /* Standard text color from global */
     margin-bottom: 1.2em;
 }
-.about-page__quote { /* Specific quote style for this page */
+/* Using global blockquote style, adding specific margin for this page context */
+.about-page__quote {
     margin-top: 2em;
-    margin-bottom: 2em;
-    border-left-color: var(--color-secondary); /* Different accent for about page quote */
-    background-color: var(--color-background); /* Lighter background for quote box */
+    margin-bottom: 2.5em;
+    border-left-color: var(--color-secondary-light); /* Brighter accent for quote */
+    /* background-color: var(--color-surface); Inherits from global, which is light */
 }
-.about-page__quote p {
-    color: var(--color-primary-dark);
-}
+/* .about-page__quote p, .about-page__quote footer will inherit from global .blockquote--standard */
 
 /* Our Values Section */
 .about-values-section {
-    color: var(--color-text-on-dark);
-    position: relative; /* For parallax */
+    color: var(--color-text-on-dark-bg);
+    position: relative; /* For parallax background */
+    background-attachment: fixed; /* Creates simple parallax effect */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-.about-values-section .section__overlay { /* Ensure overlay applies */
-    background-color: rgba(44, 62, 80, 0.8); /* Slightly darker overlay */
+.about-values-section .section__overlay {
+    background-color: rgba(26, 37, 47, 0.85); /* var(--color-primary-dark) with alpha, slightly more opaque */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
 }
-.values-container { /* To ensure content is above overlay */
+.values-container {
     position: relative;
     z-index: 1;
 }
 .values-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin-top: 2rem;
+    gap: 1.8rem; /* Adjusted gap */
+    margin-top: 2.5rem;
 }
 .value-card {
-    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent cards on parallax */
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.08); /* Slightly less transparent */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     padding: 2rem 1.5rem;
     border-radius: var(--border-radius-md);
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: background-color var(--transition-base), transform var(--transition-base);
+    border: 1px solid rgba(255, 255, 255, 0.15); /* More subtle border */
+    transition: background-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
 }
 .value-card:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-6px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 .value-card__icon {
-    font-size: 2.8rem;
-    color: var(--color-accent-light);
-    margin-bottom: 0.75em;
+    font-size: 2.6rem; /* Adjusted size */
+    color: var(--color-accent); /* Using main accent */
+    margin-bottom: 0.8em;
     display: block;
 }
 .value-card__title {
     font-family: var(--font-heading);
-    font-size: 1.4rem;
-    color: var(--color-text-on-dark);
+    font-size: 1.3rem; /* Adjusted size */
+    color: var(--color-text-on-dark-bg);
     margin-bottom: 0.5em;
 }
 .value-card__description {
-    font-size: 0.95rem;
-    color: var(--color-text-on-dark-muted);
-    line-height: 1.6;
+    font-size: 0.9rem; /* Adjusted size */
+    color: var(--color-text-on-dark-bg-muted);
+    line-height: 1.65;
     margin-bottom: 0;
 }
 
 /* Meet the Team Section */
 #meet-the-team {
-    background-color: var(--color-background); /* Main body background */
+    background-color: var(--color-background); /* Dark background from global */
 }
+/* Section header (kicker & title) already handled by .section__title--light and .section__kicker--on-dark in HTML */
 .team-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.2rem; /* Adjusted gap */
 }
 .team-member-card {
-    background-color: var(--color-surface);
-    padding: 1.5rem;
+    background-color: var(--color-surface-solid); /* White cards on dark bg */
+    padding: 1.8rem 1.5rem; /* Adjusted padding */
     border-radius: var(--border-radius-md);
     box-shadow: var(--shadow-md);
     text-align: center;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+.team-member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
 }
 .team-member-card__image {
-    width: 150px;
-    height: 150px;
+    width: 140px; /* Adjusted size */
+    height: 140px;
     border-radius: 50%;
     object-fit: cover;
-    margin: 0 auto 1rem auto;
-    box-shadow: 0 0 0 5px var(--color-surface), 0 0 0 7px var(--color-accent-light); /* Nice border effect */
+    margin: 0 auto 1.2rem auto; /* Adjusted margin */
+    /* Using a simpler border, shadow implies depth already */
+    border: 4px solid var(--color-accent-light);
 }
 .team-member-card__name {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
-    color: var(--color-primary);
+    font-size: 1.4rem; /* Adjusted size */
+    color: var(--color-primary-dark);
     margin-bottom: 0.25em;
 }
 .team-member-card__title {
-    font-size: 0.9rem;
+    font-size: 0.85rem; /* Adjusted size */
     color: var(--color-secondary);
-    font-weight: 500;
+    font-weight: 600; /* Bolder title */
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 0.75em;
+    letter-spacing: 0.7px;
+    margin-bottom: 0.8em;
 }
 .team-member-card__bio {
-    font-size: 0.95rem;
+    font-size: 0.9rem; /* Adjusted size */
     color: var(--color-text-light);
-    line-height: 1.6;
+    line-height: 1.65;
     margin-bottom: 0;
 }
 
 /* Join Our Journey Section */
 .join-journey-section {
-    background-color: var(--color-secondary); /* Use secondary color as background */
-    color: var(--color-text-on-dark);
+    background-color: var(--color-secondary); /* Accent color for CTA section */
+    color: var(--color-text-on-dark-bg);
     text-align: center;
-    padding: var(--section-padding-y) var(--container-padding);
+    padding: calc(var(--section-padding-y) * 1.2) var(--container-padding); /* More padding for impact */
 }
-.join-journey-section .section__title {
-    color: var(--color-text-on-dark);
+.join-journey-section .section__title--light { /* Ensures title is light */
     margin-bottom: 0.75em;
+    font-size: clamp(1.8rem, 5.5vw, 2.5rem);
 }
 .join-journey-text {
-    font-size: 1.1rem;
-    line-height: 1.7;
+    font-size: 1.05rem; /* Adjusted size */
+    line-height: 1.75;
     max-width: 700px;
-    margin: 0 auto 1.5rem auto;
-    color: var(--color-text-on-dark-muted);
+    margin: 0 auto 2rem auto; /* More space before buttons */
+    color: var(--color-text-on-dark-bg-muted);
 }
 .join-journey-buttons .btn {
-    margin: 0.5rem;
+    margin: 0.5rem 0.75rem; /* Adjusted margin for better spacing */
+    min-width: 180px; /* Give buttons a bit more presence */
 }
-.join-journey-buttons .btn--accent {
-    /* Default styles are fine */
+
+/* Defining a generic light button for dark backgrounds if not already in index_mobile.css */
+.btn--light-on-dark {
+    background-color: var(--color-surface-solid); /* White background */
+    color: var(--color-secondary); /* Text color matching the section's dark bg */
+    border: 2px solid transparent; /* Optional: can add border on hover */
 }
-.join-journey-buttons .btn--primary {
-    background-color: var(--color-surface); /* Light button on this dark bg */
-    color: var(--color-secondary); /* Text color matches bg for contrast */
-    border-color: var(--color-surface);
-}
-.join-journey-buttons .btn--primary:hover {
-    background-color: var(--color-background); /* Slightly off-white hover */
+.btn--light-on-dark:hover, .btn--light-on-dark:focus {
+    background-color: var(--color-text-on-dark-bg-muted); /* Slightly off-white hover */
+    color: var(--color-secondary-dark); /* Darken text slightly on hover */
+    border-color: transparent;
+    transform: translateY(-3px) scale(1.02); /* Keep consistent hover from global .btn */
+    box-shadow: var(--shadow-lg); /* Keep consistent hover from global .btn */
 }
 
 
 /* Responsive Adjustments */
 @media (min-width: 768px) {
     .about-grid {
-        grid-template-columns: 0.8fr 1.2fr; /* Image on left, text on right */
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: clamp(3rem, 7vw, 5rem);
     }
-    .about-grid__image-wrapper { /* If image is on right, swap order */
-        /* grid-column: 2 / 3;
-        grid-row: 1 / 2; */
-    }
-    .about-subsection-title {
-        /* text-align: left; Re-confirm this if sections differ */
+    .about-grid__image-wrapper {
+        /* Example: if you want image on right for tablet+ */
+        /* grid-column: 2 / 3; */
+        /* grid-row: 1 / 2; */
     }
      .values-grid {
-        grid-template-columns: repeat(2, 1fr); /* Two values per row */
+        grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
     }
     .team-grid {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 2rem;
     }
+    .join-journey-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 @media (min-width: 992px) {
+    .about-hero {
+        padding-top: calc(var(--header-height-desktop) + var(--section-padding-y) / 1.5);
+        padding-bottom: calc(var(--section-padding-y) / 1);
+    }
+    .about-subsection-title {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+    }
     .values-grid {
-        grid-template-columns: repeat(4, 1fr); /* Four values for wider screens */
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.8rem; /* Slightly reduce gap for 4 columns */
     }
     .team-grid {
-        grid-template-columns: repeat(3, 1fr); /* Max 3 team members per row */
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
     }
 }
