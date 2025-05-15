@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Impact - Redeeming Time Today</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Link to global styles -->
+    <link rel="stylesheet" href="css/index_mobile.css">
+    <!-- Link to impact-specific styles -->
+    <link rel="stylesheet" href="css/impact_mobile.css">
+</head>
+<body>
+
+    <div class="site-preloader" id="sitePreloader">
+        <div class="preloader-logo">
+            <svg viewBox="0 0 150 60" xmlns="http://www.w3.org/2000/svg" width="120" height="48">
+                 <defs>
+                    <linearGradient id="preloadStarGradientSimpleImpact" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="var(--color-accent-light)" />
+                        <stop offset="100%" stop-color="var(--color-accent)" />
+                    </linearGradient>
+                </defs>
+                <text x="75" y="25" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Redeeming Time</text>
+                <text x="75" y="40" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Today</text>
+                <polygon points="75,48 72,52 75,56 78,52" fill="url(#preloadStarGradientSimpleImpact)" />
+            </svg>
+        </div>
+        <div class="preloader-progress"><div class="preloader-bar"></div></div>
+    </div>
+
+    <header class="site-header" id="siteHeader">
+        <div class="container header__container">
+            <a href="index_mobile.html" class="header__logo-link" aria-label="Redeeming Time Today Home">
+                <img src="assets/logo.jpg" alt="Redeeming Time Today Logo" class="header__logo-image">
+            </a>
+            <button id="menuToggle" class="header__menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <ul class="mobile-nav__list">
+            <li><a href="index_mobile.html" class="mobile-nav__link">Home</a></li>
+            <li><a href="about_mobile.html" class="mobile-nav__link">About Us</a></li>
+            <li><a href="mission_mobile.html" class="mobile-nav__link">Our Mission</a></li>
+            <li><a href="services_mobile.html" class="mobile-nav__link">Services</a></li>
+            <li><a href="impact_mobile.html" class="mobile-nav__link">Impact</a></li>
+            <li><a href="events_mobile.html" class="mobile-nav__link">Events</a></li>
+            <li><a href="shop_mobile.html" class="mobile-nav__link">Shop</a></li>
+            <li><a href="donate_mobile.html" class="mobile-nav__link">Donate</a></li>
+            <li><a href="get_involved_mobile.html" class="mobile-nav__link">Get Involved</a></li>
+            <li><a href="contact_mobile.html" class="mobile-nav__link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="site-overlay" id="siteOverlay"></div>
+
+    <main id="mainContent">
+        <section id="impact-hero" class="section impact-hero parallax-section" data-parallax-url="https://images.unsplash.com/photo-1504805572947-34fad45aed93?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aW1wYWN0fGVufDB8fDB8fHww&auto=format&fit=crop&w=1200&q=80">
+            <div class="section__overlay"></div>
+            <div class="container impact-hero__container">
+                <h1 class="section__title section__title--light">Transforming Lives, Together</h1>
+                <p class="impact-hero__intro">Discover the profound and lasting difference Redeeming Time Today makes in our community, thanks to the collective effort of our supporters, volunteers, and partners.</p>
+            </div>
+        </section>
+
+        <section id="impact-stats" class="section impact-stats-section">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__kicker">Our Results by the Numbers</span>
+                    <h2 class="section__title">Measuring Our Success</h2>
+                </div>
+                <div class="impact__stats-grid">
+                    <div class="stat-item animate-on-scroll" data-animation="fade-in-up" style="--stat-delay: 0s;">
+                        <i class="fas fa-users stat-item__icon"></i>
+                        <span class="stat-item__number" data-target="750">0</span>+
+                        <span class="stat-item__label">Individuals Empowered Annually</span>
+                    </div>
+                    <div class="stat-item animate-on-scroll" data-animation="fade-in-up" style="--stat-delay: 0.15s;">
+                        <i class="fas fa-calendar-alt stat-item__icon"></i>
+                        <span class="stat-item__number" data-target="22">0</span>+
+                        <span class="stat-item__label">Years of Dedicated Service</span>
+                    </div>
+                    <div class="stat-item animate-on-scroll" data-animation="fade-in-up" style="--stat-delay: 0.3s;">
+                        <i class="fas fa-smile-beam stat-item__icon"></i>
+                        <span class="stat-item__number" data-target="95">0</span>%
+                        <span class="stat-item__label">Positive Program Feedback</span>
+                    </div>
+                    <div class="stat-item animate-on-scroll" data-animation="fade-in-up" style="--stat-delay: 0.45s;">
+                        <i class="fas fa-hand-holding-heart stat-item__icon"></i>
+                        <span class="stat-item__number" data-target="1200">0</span>+
+                        <span class="stat-item__label">Volunteer Hours Contributed Yearly</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="success-stories" class="section success-stories-section">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__kicker">Voices of Change</span>
+                    <h2 class="section__title">Stories of Redeemed Time</h2>
+                </div>
+                <div class="story-grid">
+                    <!-- Story 1 -->
+                    <div class="story-card animate-on-scroll" data-animation="fade-in-left">
+                        <img src="https://images.unsplash.com/photo-1599230683057-334b3c177458?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cG9ydHJhaXQlMjBzbWlsaW5nJTIwbWFufGVufDB8fDB8fHww&auto=format&fit=crop&w=300&h=300&q=80" alt="John D. - Success Story" class="story-card__image">
+                        <div class="story-card__content">
+                            <h3 class="story-card__name">John D.</h3>
+                            <p class="story-card__quote">"Redeeming Time Today gave me more than just a meal; they gave me a community and the tools to rebuild my life. I went from feeling lost to finding purpose as a mentor myself."</p>
+                            <span class="story-card__tag">Reintegration Success</span>
+                        </div>
+                    </div>
+                    <!-- Story 2 -->
+                    <div class="story-card animate-on-scroll" data-animation="fade-in-right" data-delay="0.15s">
+                        <img src="https://images.unsplash.com/photo-1541692209941-266551093464?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHBvcnRyYWl0JTIwc21pbGluZyUyMHlvdXRoJTIwZ2lybHxlbnwwfHwwfHx8MA&auto=format&fit=crop&w=300&h=300&q=80" alt="Maria S. - Success Story" class="story-card__image">
+                        <div class="story-card__content">
+                            <h3 class="story-card__name">Maria S.</h3>
+                            <p class="story-card__quote">"The youth mentorship program at Redeeming Time Today helped me see my potential. I am now the first in my family to attend college, and it all started with their guidance and belief in me."</p>
+                            <span class="story-card__tag">Youth Empowerment</span>
+                        </div>
+                    </div>
+                     <!-- Story 3 -->
+                    <div class="story-card animate-on-scroll" data-animation="fade-in-left" data-delay="0.3s">
+                        <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dm9sdW50ZWVyJTIwcG9ydHJhaXR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=300&h=300&q=80" alt="David K. - Volunteer Story" class="story-card__image">
+                        <div class="story-card__content">
+                            <h3 class="story-card__name">David K. (Volunteer)</h3>
+                            <p class="story-card__quote">"Volunteering with Redeeming Time Today has been incredibly rewarding. Seeing the direct impact of our collective efforts on individuals' lives is a powerful reminder of what community can achieve."</p>
+                            <span class="story-card__tag">Volunteer Perspective</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="share-story-cta animate-on-scroll" data-animation="fade-in" data-delay="0.4s">
+                    <p>Do you have a story of how Redeeming Time Today has impacted your life or the life of someone you know? We would be honored to hear it.</p>
+                    <a href="contact_mobile.html?subject=MyStory" class="btn btn--accent">Share Your Story <i class="fas fa-pen-alt btn__icon"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact-beyond-numbers" class="section impact-narrative-section parallax-section" data-parallax-url="https://images.unsplash.com/photo-1459254391928-549010c60923?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGhvcGUlMjBjb21tdW5pdHl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=80">
+            <div class="section__overlay section__overlay--accent"></div>
+            <div class="container impact-narrative__container">
+                <h2 class="section__title section__title--light animate-on-scroll" data-animation="fade-in-up">More Than Just Statistics</h2>
+                <p class="impact-narrative__text animate-on-scroll" data-animation="fade-in-up" data-delay="0.2s">
+                    While numbers help illustrate our reach, the true essence of Redeeming Time Today's impact lies in the renewed hope, reclaimed dignity, and rebuilt futures of each individual we serve. It is in the strengthened bonds of community, the courage found in recovery, and the bright paths forged by our youth. Every moment invested, every connection made, contributes to a tapestry of positive change that extends far beyond what can be quantified. We are committed to fostering an environment where these transformations are not just possible, but continuous.
+                </p>
+                 <a href="donate_mobile.html" class="btn btn--light animate-on-scroll" data-animation="fade-in-up" data-delay="0.4s">Help Us Continue This Work <i class="fas fa-hand-holding-usd btn__icon"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer__container">
+            <div class="footer__main">
+                <div class="footer__about">
+                    <svg class="footer__logo-svg" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+                        <text x="100" y="25" font-family="Merriweather, serif" font-size="14" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Redeeming Time Today</text>
+                        <polygon points="175,18 173,21 175,24 177,21" fill="var(--color-accent)" />
+                    </svg>
+                    <p>Empowering change, one moment at a time. Join us in building a community of hope and purpose under Redeeming Time Today.</p>
+                     <div class="footer__social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer__links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about_mobile.html">About Us</a></li>
+                        <li><a href="services_mobile.html">Services</a></li>
+                        <li><a href="impact_mobile.html">Impact</a></li>
+                        <li><a href="events_mobile.html">Events</a></li>
+                        <li><a href="shop_mobile.html">Shop</a></li>
+                        <li><a href="donate_mobile.html">Donate</a></li>
+                        <li><a href="get_involved_mobile.html">Get Involved</a></li>
+                        <li><a href="privacy_policy_mobile.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer__newsletter">
+                    <h4>Stay Connected</h4>
+                    <p>Get updates from Redeeming Time Today on our work and stories of transformation.</p>
+                    <form id="newsletterFormImpact" class="newsletter-form">
+                        <input type="email" name="newsletter_email_impact" placeholder="Your email address" required>
+                        <button type="submit" aria-label="Subscribe"><i class="fas fa-envelope"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>© <span id="footerYearImpact"></span> Redeeming Time Today. All Rights Reserved. Crafted with <i class="fas fa-heart footer__heart"></i> and purpose.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top of page">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Link to global JS -->
+    <script src="js/index_mobile.js"></script>
+    <!-- Link to impact-specific JS -->
+    <script src="js/impact_mobile.js"></script>
+</body>
+</html>
