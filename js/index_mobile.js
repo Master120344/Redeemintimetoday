@@ -7,9 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const siteOverlay = document.getElementById('siteOverlay');
     const navLinks = mobileNav ? mobileNav.querySelectorAll('.mobile-nav__link') : []; 
     const scrollTopBtn = document.getElementById('scrollTopBtn');
-    // Parallax sections are now effectively handled by the body's fixed background.
-    // If specific sections still need JS-driven parallax, query them here.
-    // const parallaxSections = document.querySelectorAll('.parallax-section'); // Keep if some sections still use JS parallax
 
     // --- Site Preloader ---
     if (sitePreloader && preloaderBar) {
@@ -125,15 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animatedElements.forEach(el => observer.observe(el));
     }
 
-    // --- Parallax Background Effect (If still used for individual sections beyond body) ---
-    // const parallaxSections = document.querySelectorAll('.parallax-section'); // This line was already commented out
-    // parallaxSections.forEach(section => {
-    //     const url = section.dataset.parallaxUrl;
-    //     if (url) section.style.backgroundImage = `url(${url})`;
-    // });
-
-
-    // --- Form Submission (Placeholder for Newsletter on this page) ---
+    // --- Form Submission (Newsletter on this page) ---
     const newsletterForm = document.getElementById('newsletterForm'); 
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', (e) => {
