@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/index_mobile.css">
     <link rel="stylesheet" href="css/donate_mobile.css">
+    <script src="https://js.stripe.com/v3/"></script> <!-- Stripe.js Library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -23,8 +24,8 @@
                         <stop offset="100%" stop-color="var(--color-accent)" />
                     </linearGradient>
                 </defs>
-                <text x="75" y="25" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Redeeming Time</text>
-                <text x="75" y="40" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Today</text>
+                <text x="75" y="25" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Redeeming Time</text>
+                <text x="75" y="40" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Today</text>
                 <polygon points="75,48 72,52 75,56 78,52" fill="url(#preloadStarGradientSimpleDonate)" />
             </svg>
         </div>
@@ -33,8 +34,8 @@
 
     <header class="site-header" id="siteHeader">
         <div class="container header__container">
-            <a href="index_mobile.html" class="header__logo-link" aria-label="Redeeming Time Today Home">
-                <img src="assets/logo.jpg" alt="Redeeming Time Today Logo" class="header__logo-image">
+            <a href="index_mobile.html" class="header__logo-text-link" aria-label="Redeeming Time Today Home">
+                Redeeming Time Today
             </a>
             <button id="menuToggle" class="header__menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
                 <span class="menu-toggle__bar"></span>
@@ -45,6 +46,9 @@
     </header>
 
     <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <button class="mobile-nav__close-btn" aria-label="Close navigation menu">
+            <i class="fas fa-times"></i>
+        </button>
         <ul class="mobile-nav__list">
             <li><a href="index_mobile.html" class="mobile-nav__link">Home</a></li>
             <li><a href="about_mobile.html" class="mobile-nav__link">About Us</a></li>
@@ -63,7 +67,7 @@
 
     <main id="mainContent">
         <section id="donate-hero" class="section donate-hero parallax-section" data-parallax-url="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9uYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=80">
-            <div class="section__overlay donate-hero__overlay"></div> {/* Added specific class for donate hero overlay */}
+            <div class="section__overlay donate-hero__overlay"></div>
             <div class="container donate-hero__container">
                 <h1 class="section__title section__title--light">Your Gift Changes Lives</h1>
                 <p class="donate-hero__intro">Every contribution to Redeeming Time Today fuels hope and creates pathways to stability for individuals and families in our community. Join us in making a tangible difference.</p>
@@ -85,27 +89,61 @@
                         <button type="button" class="btn btn--outline-primary amount-btn" data-amount="250">$250</button>
                     </div>
                     <div class="form-group custom-amount-group">
-                        <input type="number" id="customAmount" name="customAmount" placeholder=" " min="5">
-                        <label for="customAmount">Or Enter Custom Amount ($)</label>
+                        <input type="number" id="customAmount" name="customAmount" placeholder=" " min="5" inputmode="numeric">
+                        <label for="customAmount">Or Enter Custom Amount (USD)</label>
                     </div>
                     <div class="form-group-checkbox">
                         <input type="checkbox" id="recurringDonation" name="recurringDonation">
                         <label for="recurringDonation">Make this a monthly donation</label>
                     </div>
-                    <p class="donation-form__info">Your secure payment will be processed by our trusted partner. For a real application, payment fields (e.g., Stripe Elements, PayPal button) would appear here.</p>
-                    <button type="submit" class="btn btn--accent btn--full-width donation-submit-btn">
+                    
+                    <!-- Stripe messages will be displayed here -->
+                    <div id="payment-message" class="payment-message" role="alert"></div>
+
+                    <button type="submit" id="submitDonation" class="btn btn--accent btn--full-width donation-submit-btn">
                         Donate <span id="selectedAmountDisplay">$100</span> <i class="fas fa-lock btn__icon"></i>
                     </button>
-                    <p class="donation-form__security-note"><i class="fas fa-shield-alt"></i> Secure donation processing.</p>
+                    
+                    <div class="payment-methods-accepted">
+                        <p>We securely accept:</p>
+                        <div class="payment-icons">
+                            <img src="assets/payment_icons/visa.svg" alt="Visa" title="Visa">
+                            <img src="assets/payment_icons/mastercard.svg" alt="Mastercard" title="Mastercard">
+                            <img src="assets/payment_icons/amex.svg" alt="American Express" title="American Express">
+                            <img src="assets/payment_icons/discover.svg" alt="Discover" title="Discover">
+                            <img src="assets/payment_icons/apple-pay.svg" alt="Apple Pay" title="Apple Pay">
+                            <img src="assets/payment_icons/google-pay.svg" alt="Google Pay" title="Google Pay">
+                        </div>
+                    </div>
+                    <div class="powered-by-stripe">
+                        <a href="https://stripe.com" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/payment_icons/powered_by_stripe.svg" alt="Powered by Stripe">
+                        </a>
+                    </div>
                 </form>
             </div>
         </section>
+        
+        <!-- Success Message Container (Hidden by default) -->
+        <section id="donation-success-message" class="section donation-success-message" style="display: none;">
+            <div class="container">
+                <div class="success-content">
+                    <i class="fas fa-check-circle success-icon"></i>
+                    <h2>Thank You for Your Generous Donation!</h2>
+                    <p>Your support makes a real difference in the lives of individuals and families in our community. A confirmation email has been sent to you (if applicable).</p>
+                    <p>Together, we are Redeeming Time Today.</p>
+                    <a href="index_mobile.html" class="btn btn--primary">Back to Home</a>
+                    <a href="impact_mobile.html" class="btn btn--outline-primary">See Our Impact</a>
+                </div>
+            </div>
+        </section>
+
 
         <section id="impact-visualization" class="section impact-visualization-section">
             <div class="container">
                 <div class="section__header">
-                    <span class="section__kicker">See Your Contribution at Work</span>
-                    <h2 class="section__title">Where Your Money Goes</h2>
+                    <span class="section__kicker section__kicker--on-dark">See Your Contribution at Work</span>
+                    <h2 class="section__title section__title--light">Where Your Money Goes</h2>
                 </div>
 
                 <div class="impact-grid">
@@ -142,13 +180,13 @@
         <section id="transparency" class="section transparency-section">
             <div class="container">
                 <div class="section__header">
-                     <span class="section__kicker">Our Commitment</span>
-                    <h2 class="section__title">Transparency and Accountability</h2>
+                     <span class="section__kicker section__kicker--on-light">Our Commitment</span>
+                    <h2 class="section__title section__title--light">Transparency and Accountability</h2>
                 </div>
                 <div class="transparency-content animate-on-scroll" data-animation="fade-in-up">
                     <i class="fas fa-file-invoice-dollar transparency__icon"></i>
                     <p>Redeeming Time Today is committed to the highest standards of financial stewardship and transparency. We ensure that every dollar donated is used effectively to maximize our impact on the lives of those we serve. Detailed financial reports and impact stories are available to our supporters. Your trust is paramount to us.</p>
-                    <a href="financials_mobile.html" class="btn btn--secondary">View Financial Reports</a>
+                    <a href="financials_mobile.html" class="btn btn--light-on-dark">View Financial Reports</a>
                 </div>
             </div>
         </section>
@@ -159,13 +197,12 @@
             <div class="footer__main">
                 <div class="footer__about">
                     <svg class="footer__logo-svg" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
-                        <text x="100" y="25" font-family="Merriweather, serif" font-size="14" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Redeeming Time Today</text>
-                        <polygon points="175,18 173,21 175,24 177,21" fill="var(--color-accent)" />
+                        <text x="100" y="25" font-family="Merriweather, serif" font-size="14" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Redeeming Time Today</text>
                     </svg>
                     <p>Empowering change, one moment at a time. Join us in building a community of hope and purpose under Redeeming Time Today.</p>
                      <div class="footer__social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="X (formerly Twitter)"><i class="fab fa-x-twitter"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
@@ -185,15 +222,15 @@
                 </div>
                 <div class="footer__newsletter">
                     <h4>Stay Connected</h4>
-                    <p>Get updates from Redeeming Time Today on our work and stories of transformation.</p>
+                    <p class="footer__newsletter-text">Get updates from Redeeming Time Today on our work and stories of transformation.</p>
                     <form id="newsletterFormDonate" class="newsletter-form">
-                        <input type="email" name="newsletter_email_donate" placeholder="Your email address" required>
-                        <button type="submit" aria-label="Subscribe"><i class="fas fa-envelope"></i></button>
+                        <input type="email" name="newsletter_email_donate" placeholder="Your email address" required class="newsletter-form__input">
+                        <button type="submit" class="btn btn--accent newsletter-form__button">Subscribe</button>
                     </form>
                 </div>
             </div>
             <div class="footer__bottom">
-                <p>© <span id="footerYearDonate"></span> Redeeming Time Today. All Rights Reserved. Crafted with <i class="fas fa-heart footer__heart"></i> and purpose.</p>
+                <p>© <span id="footerYearDonate"></span> Redeeming Time Today. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
