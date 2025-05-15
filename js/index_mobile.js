@@ -93,21 +93,29 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Active Nav Link Highlighting for Multi-Page Site ---
     function updateActiveLinkForMultiPage() {
-        if (!navLinks.length) return; 
-        const currentPath = window.location.pathname.split('/').pop() || 'index_mobile.html'; 
-        
+        if (!navLinks.length) return;
+
+        // Get the filename of the current page, defaulting to index_mobile.html for root.
+        const currentPageName = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1) || 'index_mobile.html';
+
         navLinks.forEach(link => {
             const linkHref = link.getAttribute('href');
-            if (!linkHref) return;
-            const linkPath = linkHref.split('/').pop();
+            if (!linkHref) {
+                link.classList.remove('active-nav-link'); // Ensure no lingering active class if href is missing
+                return;
+            }
 
-            let isActive = (linkPath === currentPath);
-            
-            if ((currentPath === 'index_mobile.html' || currentPath === '') && (linkPath === 'index_mobile.html' || linkPath === '' || linkPath === './')) {
-                 isActive = true;
-            } else if (linkHref === window.location.pathname || linkHref === '.' + window.location.pathname || ('./' + linkPath === currentPath && currentPath !== 'index_mobile.html') ) {
-                 isActive = true;
-            } else if (window.location.pathname.endsWith(linkHref) && linkHref !== '') { // More robust for relative paths not at root
+            // Get the filename from the link's href.
+            const linkPageName = linkHref.substring(linkHref.lastIndexOf('/') + 1);
+
+            let isActive = false;
+            if (currentPageName === linkPageName) {
+                isActive = true;
+            } else if (currentPageName === 'index_mobile.html' && (linkPageName === '' || linkPageName === './' || linkPageName === 'index_mobile.html')) {
+                // Handles cases where index link is '', './', or 'index_mobile.html' and current page is index
+                isActive = true;
+            } else if ((linkPageName === 'index_mobile.html' || linkPageName === '' || linkPageName === './') && currentPageName === 'index_mobile.html') {
+                 // Handles cases where current page is index and link is to index (accounts for variations like "" or "./")
                 isActive = true;
             }
 
@@ -167,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     obs.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" }); // Adjusted rootMargin slightly
+        }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" }); 
         animatedElements.forEach(el => observer.observe(el));
     } else {
         animatedElements.forEach(el => el.classList.add('is-visible'));
