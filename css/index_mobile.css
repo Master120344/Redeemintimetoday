@@ -4,41 +4,43 @@
     --font-body: 'Poppins', sans-serif;
 
     /* --- BACKGROUNDS --- */
-    --color-page-background: #0a192f; /* Deep, solid dark blue for the entire page */
-    --color-card-background: #ffffff; /* SOLID WHITE for content cards - MAX CONTRAST */
-    --color-header-background-rgb: 10, 25, 47; /* RGB for header's dark blue */
-    --color-footer-background: #081424; /* Slightly darker blue for footer */
+    --color-page-background: #0a192f;         /* Solid Dark Blue for the entire page */
+    --color-hero-section-background: #111827; /* Contrasting Dark Grey/Charcoal for Hero Section */
+    --color-card-background: #ffffff;         /* SOLID WHITE for content cards */
+    
+    --color-header-background-rgb: 10, 25, 47; /* RGB for header's dark blue (matches page) */
+    --color-footer-background: #081424;       /* Slightly darker blue for footer */
+    --color-mobile-nav-background: #0d1b2a;  /* Dark blue for mobile nav */
+
 
     /* --- TEXT COLORS --- */
-    /* For dark backgrounds (Page, Hero, Header, Footer) */
-    --color-text-bright: #ffffff;         /* Pure white for maximum pop */
-    --color-text-subtle-light: #ccd6f6; /* Lighter blueish-white for less emphasis */
-    --color-link-bright: #f39c12;       /* Accent color for links on dark bg */
+    /* For dark backgrounds (Page, Hero, Header, Footer, Mobile Nav) */
+    --color-text-bright: #ffffff;             /* Pure white for maximum pop */
+    --color-text-subtle-light: #ccd6f6;     /* Lighter blueish-white for less emphasis */
+    --color-link-bright: #f39c12;           /* Accent color for links on dark bg */
 
     /* For light backgrounds (Content Cards) */
-    --color-text-dark-on-light: #1e293b;  /* Rich dark blue/grey for text on cards */
-    --color-heading-dark-on-light: #0f172a; /* Even darker for headings on cards */
-    --color-link-dark-on-light: #c87f0a; /* Darker accent for links on light cards */
-    --color-kicker-on-light: #e67e22; /* Accent color for kickers on light cards */
+    --color-text-on-light-card: #1e293b;      /* Rich dark blue/grey for text on cards */
+    --color-heading-on-light-card: #0f172a; /* Even darker for headings on cards */
+    --color-link-on-light-card: #c87f0a;    /* Darker accent for links on light cards */
+    --color-kicker-on-light-card: #e67e22;  /* Accent color for kickers on light cards */
 
     /* --- ACCENTS & MISC --- */
     --color-accent: #F39C12; 
     --color-accent-light: #F1C40F; 
     --color-accent-dark: #E67E22; 
-    --color-secondary: #3498DB; /* Blue for secondary buttons if needed */
-    --color-secondary-light: #5DADE2;
+    --color-secondary: #3498DB; 
 
-    --color-card-border: rgba(243, 156, 18, 0.6); /* Accent border for cards */
-    --color-card-icon-on-light: var(--color-accent-dark); /* Icon color on light cards */
+    --color-card-border: rgba(243, 156, 18, 0.7); 
+    --color-card-icon-on-light: var(--color-accent-dark); 
     
-    --hero-text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6); 
-    /* No text shadow needed for dark text on white cards */
+    --hero-text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); 
 
-    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.12);
-    --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.15); 
-    --shadow-button: 0 3px 7px rgba(0,0,0,0.15);
-    --shadow-button-hover: 0 5px 12px rgba(0,0,0,0.2);
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.12);
+    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.18); 
+    --shadow-button: 0 3px 7px rgba(0,0,0,0.18);
+    --shadow-button-hover: 0 5px 12px rgba(0,0,0,0.22);
 
     --header-height-mobile: 70px; 
     --header-height-desktop: 80px;
@@ -49,7 +51,7 @@
     --transition-fast: 0.2s ease-in-out;
 
     --container-padding: 20px;
-    --section-padding-y: 50px; /* Increased overall vertical spacing */
+    --section-padding-y: 50px;
     --card-spacing-y: 40px;
 }
 
@@ -63,26 +65,27 @@ html::-webkit-scrollbar-thumb { background-color: var(--color-accent); border-ra
 body {
     font-family: var(--font-body);
     line-height: 1.7; 
-    color: var(--color-text-bright); /* Default to bright text, overridden on cards */
+    color: var(--color-text-bright); 
     background-color: var(--color-page-background); /* SOLID DARK BLUE PAGE BACKGROUND */
-    background-image: none; 
     overflow-x: hidden; 
     position: relative; 
 }
-body::before { content: none; } /* No global overlay needed */
+body::before { content: none; } 
 body.no-scroll { overflow: hidden; } 
 
 /* --- Site Preloader --- */
-.site-preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--color-page-background); z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 1; visibility: visible; transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; }
-.site-preloader.loaded { opacity: 0; visibility: hidden; }
+.site-preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--color-page-background); z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 1; visibility: visible; transition: opacity 0.5s ease-in-out 0.3s, visibility 0.5s ease-in-out 0.3s; } /* Added delay to transition */
+.site-preloader.loaded { opacity: 0; visibility: hidden; pointer-events: none; }
 .preloader-logo { margin-bottom: 25px; text-align: center; }
-#preloaderImage { max-width: 150px; max-height: 100px; height: auto; display: block; margin-left: auto; margin-right: auto; border-radius: var(--border-radius-sm); background-color: rgba(255,255,255,0.1); padding:5px; /* Helps if logo has transparency */ }
-.preloader-progress { width: 150px; height: 6px; background-color: rgba(204, 214, 246, 0.3); border-radius: 3px; overflow: hidden; }
+#preloaderImage { max-width: 150px; max-height: 100px; height: auto; display: block; margin-left: auto; margin-right: auto; border-radius: var(--border-radius-sm); background-color: rgba(255,255,255,0.05); padding:5px; }
+.preloader-progress { width: 150px; height: 6px; background-color: rgba(204, 214, 246, 0.2); border-radius: 3px; overflow: hidden; }
 .preloader-bar { width: 0; height: 100%; background-color: var(--color-accent); border-radius: 3px; transition: width 0.1s linear; }
 
 /* --- Layout & Helpers --- */
 .container { width: 90%; max-width: 1100px; margin-left: auto; margin-right: auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
-.content-wrapper { position: relative; z-index: 5; padding-top: var(--section-padding-y); padding-bottom: var(--section-padding-y); } 
+/* Ensure main content area is not collapsed */
+main#mainContent { display: block; position: relative; z-index: 1; }
+.content-wrapper { display: block; position: relative; z-index: 5; padding-top: var(--section-padding-y); padding-bottom: var(--section-padding-y); } 
 
 /* --- Site Header, Mobile Nav --- */
 .site-header { position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height-mobile); background-color: rgba(var(--color-header-background-rgb), 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: var(--shadow-sm); z-index: 999; transition: transform var(--transition-base), background-color var(--transition-base), box-shadow var(--transition-base); }
@@ -98,67 +101,74 @@ body.no-scroll { overflow: hidden; }
 .header__menu-toggle.is-active .menu-toggle__bar:nth-child(2) { opacity: 0; }
 .header__menu-toggle.is-active .menu-toggle__bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-.mobile-nav { position: fixed; top: var(--header-height-mobile); left: 0; width: 100%; background-color: #081424; /* Darker blue for nav */ transform: translateY(-150%); opacity: 0; visibility: hidden; transition: transform var(--transition-base), opacity var(--transition-base), visibility var(--transition-base); z-index: 998; max-height: calc(100vh - var(--header-height-mobile)); overflow-y: auto; padding: 10px 0; box-shadow: var(--shadow-md); }
+.mobile-nav { position: fixed; top: var(--header-height-mobile); left: 0; width: 100%; background-color: var(--color-mobile-nav-background); transform: translateY(-150%); opacity: 0; visibility: hidden; transition: transform var(--transition-base), opacity var(--transition-base), visibility var(--transition-base); z-index: 998; max-height: calc(100vh - var(--header-height-mobile)); overflow-y: auto; padding: 10px 0; box-shadow: var(--shadow-md); }
 .mobile-nav.is-open { transform: translateY(0); opacity: 1; visibility: visible; }
 .mobile-nav__list { list-style: none; padding: 0; margin: 0; }
 .mobile-nav__link { display: block; padding: 16px var(--container-padding); color: var(--color-text-bright); text-decoration: none; font-size: 1.15rem; font-weight: 500; border-bottom: 1px solid rgba(var(--color-header-background-rgb), 0.5); transition: background-color var(--transition-fast), color var(--transition-fast), padding-left var(--transition-fast); }
 .mobile-nav__list li:last-child .mobile-nav__link { border-bottom: none; }
-.mobile-nav__link:hover, .mobile-nav__link.active-nav-link { background-color: var(--color-accent); color: var(--color-page-background); /* Dark text on accent bg */ padding-left: calc(var(--container-padding) + 10px); }
+.mobile-nav__link:hover, .mobile-nav__link.active-nav-link { background-color: var(--color-accent); color: var(--color-page-background); padding-left: calc(var(--container-padding) + 10px); }
 .site-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.65); opacity: 0; visibility: hidden; transition: opacity var(--transition-base), visibility var(--transition-base); z-index: 997; }
 .site-overlay.is-visible { opacity: 1; visibility: visible; }
 
-/* --- Hero Section (Sits on Dark Blue Page Background) --- */
+/* --- Hero Section --- */
 .hero { 
     min-height: 100vh; 
     height: auto;
-    position: relative; display: flex; 
+    position: relative; 
+    display: flex; 
     flex-direction: column; 
     justify-content: center; 
     align-items: center; 
     text-align: center; 
     color: var(--color-text-bright); 
     overflow: hidden; 
-    padding: var(--header-height-mobile) var(--container-padding) 60px; /* Increased bottom padding */
-    background-color: transparent; /* Hero is transparent, shows body's solid dark blue */
+    padding: var(--header-height-mobile) var(--container-padding) 60px;
+    background-color: var(--color-hero-section-background); /* DISTINCT HERO BACKGROUND */
+    width: 100%; /* Ensure hero takes full width */
 }
 .hero__content { 
     position: relative; z-index: 1; 
     width: 100%;
-    max-width: 750px; /* Slightly wider hero content */
+    max-width: 750px; 
     margin-top: 20px; 
     margin-bottom: 30px; 
 }
-.hero__logo-wrapper { margin-bottom: 30px; }
+.hero__logo-container { /* Renamed from hero__logo-wrapper for clarity */
+    margin-bottom: 30px;
+    /* Light backdrop for the logo image itself */
+    background-color: rgba(255, 255, 255, 0.07); 
+    display: inline-block; /* To contain the padding around the image */
+    padding: 15px;
+    border-radius: 50%; /* Circular backdrop */
+    box-shadow: 0 0 15px rgba(255,255,255,0.05);
+}
 .hero__logo-image { 
-    max-width: 180px; 
+    max-width: 150px; /* Adjust as needed */
+    max-height: 100px; /* Adjust as needed */
     height: auto; 
-    border-radius: var(--border-radius-sm); 
-    /* If logo is dark and has transparency, this light bg helps it show on dark page */
-    background-color: rgba(255, 255, 255, 0.08); 
-    padding: 10px;
-    box-shadow: 0 0 20px rgba(var(--color-accent-light), 0.1);
-    display: inline-block; /* Ensure it's treated as a block for padding */
+    display: block; /* Remove extra space below image */
+    border-radius: var(--border-radius-sm); /* Optional: if logo itself has corners */
 }
 .hero__title { 
     font-family: var(--font-heading);
-    color: var(--color-text-bright); 
+    color: var(--color-text-bright); /* BRIGHT WHITE TEXT */
     margin-bottom: 0.6em; 
     line-height: 1.15; 
     text-shadow: var(--hero-text-shadow); 
-    font-size: clamp(2.3rem, 7.5vw, 3.5rem); /* Slightly larger */
+    font-size: clamp(2.3rem, 7.5vw, 3.5rem); 
     font-weight: 700;
 }
 .hero__title-line { display: block; margin-bottom: 0.05em; }
 .hero__subtitle { 
-    color: var(--color-text-subtle-light); 
+    color: var(--color-text-subtle-light); /* BRIGHT WHITE (OR SLIGHTLY OFF-WHITE) TEXT */
     font-weight: 400; 
-    font-size: clamp(1.1rem, 3.8vw, 1.3rem); /* Slightly larger */
+    font-size: clamp(1.1rem, 3.8vw, 1.3rem); 
     max-width: 650px; 
     margin: 0 auto 2.2em; 
     text-shadow: var(--hero-text-shadow);
     line-height: 1.65;
 }
-.hero__cta { font-size: clamp(1.05rem, 3.2vw, 1.2rem); } /* CTA Slightly larger */
+.hero__cta { font-size: clamp(1.05rem, 3.2vw, 1.2rem); } 
 .hero__scroll-indicator { position: absolute; bottom: 35px; left: 50%; transform: translateX(-50%); color: var(--color-text-bright); font-size: 2.2rem; animation: bounce 2s infinite; opacity: 0.85; text-shadow: 0 1px 5px rgba(0,0,0,0.5); }
 .hero__scroll-indicator:hover { opacity: 1; color: var(--color-link-bright); }
 @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-12px); } 60% { transform: translateX(-50%) translateY(-6px); } }
@@ -173,23 +183,23 @@ body.no-scroll { overflow: hidden; }
 }
 .preview-card {
     background-color: var(--color-card-background); /* SOLID WHITE BACKGROUND */
-    color: var(--color-text-dark-on-light); /* DARK TEXT for cards */
+    color: var(--color-text-on-light-card);    /* DARK TEXT for cards */
     border-radius: var(--border-radius-lg);
-    padding: clamp(35px, 6vw, 55px) clamp(25px, 5vw, 45px); /* Generous padding */
+    padding: clamp(35px, 6vw, 55px) clamp(25px, 5vw, 45px); 
     box-shadow: var(--shadow-lg);
-    border-top: 5px solid var(--color-card-border); /* Accent border */
+    border-top: 5px solid var(--color-card-border); 
     position: relative;
     z-index: 12;
 }
-.preview-card--accent-glow { /* For Donate card */
+.preview-card--accent-glow { 
     border-color: var(--color-accent); 
-    box-shadow: 0 0 25px rgba(243, 156, 18, 0.25), var(--shadow-lg); /* Accent glow */
+    box-shadow: 0 0 25px rgba(243, 156, 18, 0.25), var(--shadow-lg); 
 }
 
 .section__header { text-align: center; margin-bottom: clamp(1.8rem, 4vw, 2.5rem); }
-.section__kicker { /* On light cards, so needs to be dark */
+.section__kicker { 
     font-family: var(--font-body);
-    color: var(--color-kicker-on-light); 
+    color: var(--color-kicker-on-light-card); 
     font-weight: 600;
     font-size: 0.95rem;
     text-transform: uppercase;
@@ -197,21 +207,21 @@ body.no-scroll { overflow: hidden; }
     display: block;
     margin-bottom: 0.6em;
 }
-.section__title { /* On light cards, so needs to be dark */
+.section__title { 
     font-family: var(--font-heading);
-    color: var(--color-heading-dark-on-light); 
-    font-size: clamp(1.8rem, 5.8vw, 2.6rem); /* Larger section titles */
+    color: var(--color-heading-on-light-card); 
+    font-size: clamp(1.8rem, 5.8vw, 2.6rem); 
     margin-bottom: 0.7em;
     font-weight: 700;
     line-height: 1.25;
 }
-.section__icon { /* On light cards */
+.section__icon { 
     font-size: clamp(3.8rem, 10vw, 4.8rem); 
     color: var(--color-card-icon-on-light); 
     margin-bottom: 0.5em; 
     display: inline-block; 
 }
-.preview-card__content p, .preview-card__text { /* Text on light cards */
+.preview-card__content p, .preview-card__text { 
     font-weight: 400; 
     font-size: clamp(1.05rem, 3vw, 1.15rem); 
     line-height: 1.75;
@@ -219,14 +229,14 @@ body.no-scroll { overflow: hidden; }
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1.3em;
-    color: var(--color-text-dark-on-light); 
+    color: var(--color-text-on-light-card); 
 }
-.preview-card__content strong, .preview-card__text strong { /* Darker accent for strong text on light cards */
+.preview-card__content strong, .preview-card__text strong { 
     color: var(--color-accent-dark);
     font-weight: 600;
 }
 .link--on-light-card {
-    color: var(--color-link-dark-on-light);
+    color: var(--color-link-on-light-card);
     text-decoration: underline;
     text-decoration-thickness: 1.5px;
     text-underline-offset: 4px;
@@ -234,17 +244,17 @@ body.no-scroll { overflow: hidden; }
     transition: color var(--transition-fast);
 }
 .link--on-light-card:hover {
-    color: var(--color-accent-dark); /* Darken on hover */
+    color: var(--color-accent-dark); 
 }
-.quote { /* Quote within a light card */
+.quote { 
     padding: 1.3em 1.8em; 
     margin: 2.2em auto; 
-    border-left: 5px solid var(--color-link-dark-on-light);
-    background-color: #f0f4f8; /* Slightly off-white bg for quote box */
+    border-left: 5px solid var(--color-link-on-light-card);
+    background-color: #f0f4f8; 
     border-radius: var(--border-radius-sm);
     max-width: 580px;
     text-align: left;
-    color: var(--color-text-dark-on-light); /* Dark text */
+    color: var(--color-text-on-light-card); 
 }
 .quote p { 
     font-style: italic; 
@@ -257,15 +267,15 @@ body.no-scroll { overflow: hidden; }
     text-align: right; 
     opacity: 0.85; 
     font-weight: 500;
-    color: var(--color-heading-dark-on-light); /* Darker for footer */
+    color: var(--color-heading-on-light-card); 
 }
-.contact-info { /* On light card */
+.contact-info { 
     font-size: clamp(1.05rem, 3vw, 1.15rem);
     margin-bottom: 1.6em;
-    color: var(--color-text-dark-on-light);
+    color: var(--color-text-on-light-card);
 }
 .contact-info__icon {
-    color: var(--color-link-dark-on-light);
+    color: var(--color-link-on-light-card);
     margin-right: 0.6em;
 }
 
@@ -274,7 +284,7 @@ body.no-scroll { overflow: hidden; }
     display: inline-block;
     font-family: var(--font-body);
     font-weight: 600; 
-    font-size: 1rem; /* Base button size */
+    font-size: 1rem; 
     text-align: center;
     text-decoration: none;
     border-radius: var(--border-radius-md); 
@@ -293,7 +303,7 @@ body.no-scroll { overflow: hidden; }
     box-shadow: var(--shadow-button-hover);
 }
 .btn .btn__icon { margin-left: 0.8em; }
-.btn--large { /* For prominent CTAs like Donate */
+.btn--large { 
     font-size: 1.1rem;
     padding: 1.05em 2.5em;
 }
@@ -301,7 +311,7 @@ body.no-scroll { overflow: hidden; }
 /* Buttons on DARK backgrounds (e.g., Hero) */
 .btn--accent-on-dark { 
     background-color: var(--color-accent); 
-    color: var(--color-page-background); /* Dark text for contrast */
+    color: var(--color-page-background); 
     border-color: var(--color-accent); 
 }
 .btn--accent-on-dark:hover, .btn--accent-on-dark:focus { 
@@ -313,7 +323,7 @@ body.no-scroll { overflow: hidden; }
 /* Buttons on LIGHT backgrounds (e.g., Cards) */
 .btn--accent-on-light {
     background-color: var(--color-accent);
-    color: var(--color-page-background); /* Dark text for contrast */
+    color: var(--color-page-background); 
     border-color: var(--color-accent);
 }
 .btn--accent-on-light:hover, .btn--accent-on-light:focus {
@@ -323,23 +333,22 @@ body.no-scroll { overflow: hidden; }
 }
 
 .btn--secondary-on-light { 
-    background-color: var(--color-text-dark-on-light); /* Dark button */
-    color: var(--color-card-background); /* Light text */
-    border-color: var(--color-text-dark-on-light); 
+    background-color: var(--color-text-on-light-card); 
+    color: var(--color-card-background); 
+    border-color: var(--color-text-on-light-card); 
 }
 .btn--secondary-on-light:hover, .btn--secondary-on-light:focus { 
-    background-color: var(--color-heading-dark-on-light); 
-    border-color: var(--color-heading-dark-on-light);
+    background-color: var(--color-heading-on-light-card); 
+    border-color: var(--color-heading-on-light-card);
     color: var(--color-card-background);
 }
-
 
 /* --- Footer --- */
 .site-footer { background-color: var(--color-footer-background); color: var(--color-text-subtle-light); padding: var(--section-padding-y) 0 0; position: relative; z-index: 10; font-size: 0.95rem; }
 .footer__main { display: grid; grid-template-columns: 1fr; gap: 2.8rem; padding-bottom: 2.8rem; text-align: center; }
-.footer__logo-svg text { fill: var(--color-text-bright); } /* Ensure SVG text is bright */
+.footer__logo-svg text { fill: var(--color-text-bright); } 
 .footer__logo-svg { max-width: 180px; height: auto; margin: 0 auto 1.2em; }
-.footer__about p { margin-bottom: 1.5em; line-height: 1.7; }
+.footer__about p { margin-bottom: 1.5em; line-height: 1.7; color: var(--color-text-subtle-light);}
 .footer__social-links { display: flex; justify-content: center; gap: 1.2em; margin-top: 1.2em; }
 .footer__social-links a { color: var(--color-text-subtle-light); font-size: 1.4rem; transition: color var(--transition-fast), transform var(--transition-fast); }
 .footer__social-links a:hover { color: var(--color-link-bright); transform: translateY(-3px); }
@@ -348,7 +357,7 @@ body.no-scroll { overflow: hidden; }
 .footer__links ul { list-style: none; padding: 0; margin: 0; }
 .footer__links ul li a { color: var(--color-text-subtle-light); text-decoration: none; padding: 0.4em 0; display: inline-block; transition: color var(--transition-fast), padding-left var(--transition-fast); }
 .footer__links ul li a:hover { color: var(--color-link-bright); padding-left: 6px; }
-.footer__newsletter p { margin-bottom: 1.2em; line-height: 1.7; }
+.footer__newsletter p { margin-bottom: 1.2em; line-height: 1.7; color: var(--color-text-subtle-light); }
 .newsletter-form { display: flex; max-width: 380px; margin: 1em auto 0; }
 .newsletter-form input[type="email"] { flex-grow: 1; padding: 0.85em 1.1em; border: 1px solid rgba(var(--color-header-background-rgb),0.7); border-right: none; border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm); font-size: 0.9rem; background-color: rgba(var(--color-header-background-rgb),0.4); color: var(--color-text-bright); outline: none; }
 .newsletter-form input[type="email"]::placeholder { color: var(--color-text-subtle-light); opacity: 0.7; }
@@ -379,7 +388,7 @@ body.no-scroll { overflow: hidden; }
     .mobile-nav { top: var(--header-height-desktop); max-height: calc(100vh - var(--header-height-desktop));}
     .header__logo-text-link { font-size: 1.6rem; }
     .hero { padding-top: var(--header-height-desktop); padding-bottom: 80px; }
-    .hero__logo-image { max-width: 200px; }
+    .hero__logo-image { max-width: 180px; max-height: 120px; }
     .hero__title { font-size: clamp(3rem, 6.5vw, 4rem); } 
     .hero__subtitle { font-size: clamp(1.2rem, 3.2vw, 1.4rem); }
     .btn { font-size: 1.05rem; padding: 1em 2.4em; }
@@ -396,7 +405,7 @@ body.no-scroll { overflow: hidden; }
 @media (min-width: 1024px) { 
     :root { --section-padding-y: 90px; --card-spacing-y: 60px; }
     .container { width: 85%; max-width: 1200px; }
-    .hero__logo-image { max-width: 220px; }
+    .hero__logo-image { max-width: 200px; max-height: 140px; }
     .hero__title { font-size: clamp(3.5rem, 6vw, 4.5rem); } 
     .hero__subtitle { font-size: clamp(1.3rem, 3vw, 1.5rem); }
 }
