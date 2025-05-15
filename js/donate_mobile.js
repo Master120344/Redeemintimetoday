@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Donate page JavaScript loaded.");
+    // console.log("Donate page JavaScript loaded."); // Keep for debugging if needed
 
     // Donation Form Logic
     const donationForm = document.getElementById('donationForm');
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             amountButtons.forEach(btn => btn.classList.remove('selected'));
             button.classList.add('selected');
             currentSelectedAmount = parseInt(button.dataset.amount);
-            if (customAmountInput) customAmountInput.value = ''; // Clear custom input
+            if (customAmountInput) customAmountInput.value = ''; 
             updateSelectedAmountDisplay(currentSelectedAmount);
         });
     });
@@ -27,31 +27,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (customAmountInput) {
         customAmountInput.addEventListener('input', () => {
             const customVal = parseInt(customAmountInput.value);
-            if (customVal && customVal >= 5) { // Minimum custom amount
+            if (customVal && customVal >= 5) { 
                 amountButtons.forEach(btn => btn.classList.remove('selected'));
                 currentSelectedAmount = customVal;
             } else if (customAmountInput.value === '') {
-                // If custom is cleared, re-select the default or last button
                 const defaultButton = document.querySelector('.amount-btn[data-amount="100"]') || amountButtons[0];
                 if (defaultButton) {
                     defaultButton.classList.add('selected');
                     currentSelectedAmount = parseInt(defaultButton.dataset.amount);
                 }
-            } else {
-                 // Handle invalid input, perhaps show small error or revert
             }
             updateSelectedAmountDisplay(currentSelectedAmount);
         });
-        // Ensure a button is selected on load if custom is empty
         if(customAmountInput.value === '') {
             const selectedButton = document.querySelector('.amount-btn.selected');
             if(selectedButton) {
                 currentSelectedAmount = parseInt(selectedButton.dataset.amount);
-                updateSelectedAmountDisplay(currentSelectedAmount);
             }
         }
     }
-     // Initial display update
     updateSelectedAmountDisplay(currentSelectedAmount);
 
 
@@ -59,11 +53,15 @@ document.addEventListener('DOMContentLoaded', () => {
         donationForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const isRecurring = document.getElementById('recurringDonation')?.checked;
-            alert(`Thank you for your ${isRecurring ? 'recurring ' : ''}donation of $${currentSelectedAmount}! (Payment processing simulation)`);
-            // Here you would integrate with a payment gateway.
-            // donationForm.reset(); // Optionally reset form
+            // In a real application, this is where you would trigger your payment processing.
+            // For now, we just show a success message.
+            alert(`Thank you for your ${isRecurring ? 'recurring ' : ''}donation of $${currentSelectedAmount}! Your contribution is being processed.`);
+            
+            // Optionally reset form fields after submission
+            // donationForm.reset(); 
             // amountButtons.forEach(btn => btn.classList.remove('selected'));
-            // document.querySelector('.amount-btn[data-amount="100"]')?.classList.add('selected');
+            // const defaultButton = document.querySelector('.amount-btn[data-amount="100"]');
+            // if (defaultButton) defaultButton.classList.add('selected');
             // currentSelectedAmount = 100;
             // updateSelectedAmountDisplay(currentSelectedAmount);
         });
@@ -73,18 +71,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = document.getElementById('fundAllocationChart');
     if (ctx) {
         new Chart(ctx, {
-            type: 'doughnut', // or 'pie'
+            type: 'doughnut', 
             data: {
                 labels: ['Community Reintegration', 'Youth Mentorship', 'Recovery & Support', 'Holistic Development', 'Operational Costs'],
                 datasets: [{
                     label: 'Fund Allocation',
-                    data: [35, 25, 20, 15, 5], // Example percentages
+                    data: [35, 25, 20, 15, 5], 
                     backgroundColor: [
-                        'rgba(243, 156, 18, 0.8)', // Accent
-                        'rgba(52, 152, 219, 0.8)', // Secondary
-                        'rgba(44, 62, 80, 0.8)',  // Primary
-                        'rgba(241, 196, 15, 0.8)', // Accent Light
-                        'rgba(149, 165, 166, 0.8)' // Grey
+                        'rgba(243, 156, 18, 0.8)', 
+                        'rgba(52, 152, 219, 0.8)', 
+                        'rgba(44, 62, 80, 0.8)',  
+                        'rgba(241, 196, 15, 0.8)', 
+                        'rgba(149, 165, 166, 0.8)' 
                     ],
                     borderColor: [
                         'rgba(243, 156, 18, 1)',
@@ -128,16 +126,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const yearlyGoalEl = document.getElementById('yearlyGoal');
 
     if (totalRaisedAmountEl && donationProgressBarEl && yearlyGoalEl) {
-        // Simulate fetching these values
-        const currentRaised = 115750; // Example: Fetched from server
-        const goalAmount = 250000;    // Example: Fetched from server
+        const currentRaised = 115750; 
+        const goalAmount = 250000;    
 
         yearlyGoalEl.textContent = `$${goalAmount.toLocaleString()}`;
 
-        // Animate the "total raised" counter
         let startVal = 0;
-        const duration = 2000; // 2 seconds
-        const increment = currentRaised / (duration / 16); // ~60fps update
+        const duration = 2000; 
+        const increment = currentRaised / (duration / 16); 
 
         function updateCounter() {
             startVal += increment;
@@ -150,23 +146,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         requestAnimationFrame(updateCounter);
         
-        // Update progress bar
         const progressPercentage = (currentRaised / goalAmount) * 100;
-        // Timeout to allow counter to animate first, then bar (or sync them)
         setTimeout(() => {
              donationProgressBarEl.style.width = `${Math.min(progressPercentage, 100)}%`;
-        }, 500); // Delay slightly for visual effect
+        }, 500); 
     }
 
-
-    // Handle Newsletter Form Submission specifically for this page if ID is unique
     const newsletterFormDonate = document.getElementById('newsletterFormDonate');
     if (newsletterFormDonate) {
         newsletterFormDonate.addEventListener('submit', (e) => {
             e.preventDefault();
             const emailInput = newsletterFormDonate.querySelector('input[type="email"]');
             if (emailInput && emailInput.value.trim() !== '' && emailInput.checkValidity()) {
-                alert('Thank you for subscribing to Redeeming Time Today! (This is a demo feature from donate page)');
+                alert('Thank you for subscribing to Redeeming Time Today!');
                 newsletterFormDonate.reset();
             } else {
                 alert('Please enter a valid email address.');
@@ -174,13 +166,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Update year in donate page footer if ID is unique
     const footerYearDonate = document.getElementById('footerYearDonate');
     if (footerYearDonate) {
         footerYearDonate.textContent = new Date().getFullYear().toString();
     }
 
-    // Smooth scroll for hero button to donation form
     const heroDonateButton = document.querySelector('.donate-hero .hero__cta');
     if (heroDonateButton) {
         heroDonateButton.addEventListener('click', function(e) {
@@ -199,5 +189,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
 });
