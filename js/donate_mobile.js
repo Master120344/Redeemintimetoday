@@ -1,42 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Stripe Integration ---
     // IMPORTANT: Replace with your actual Stripe Publishable Key.
-    // In a real production app, you might load this from an environment variable
-    // during your build process, but for a static site, it's common to have it here.
-    // Example: const stripePublishableKey = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY || 'pk_test_YOUR_STRIPE_PUBLISHABLE_KEY';
-    const stripePublishableKey = 'pk_test_YOUR_STRIPE_PUBLISHABLE_KEY_HERE'; // REPLACE THIS!
-    
-    // Check if the key is still the placeholder
-    if (stripePublishableKey === 'pk_test_YOUR_STRIPE_PUBLISHABLE_KEY_HERE') {
-        console.warn('Stripe Publishable Key is not set. Please replace the placeholder in js/donate_mobile.js.');
-        const paymentMessage = document.getElementById('payment-message');
-        if (paymentMessage) {
-            paymentMessage.textContent = 'Donation system is currently unavailable. Stripe key not configured.';
-            paymentMessage.style.display = 'block';
-        }
-        // Disable the submit button if Stripe isn't configured
-        const submitButton = document.getElementById('submitDonation');
-        if (submitButton) {
-            submitButton.disabled = true;
-        }
-    }
+    // For client-side JavaScript that's directly served (not part of a complex build process),
+    // the publishable key is typically embedded here.
+    // If you use a build system (e.g., Vite, Webpack, Next.js), you could use environment
+    // variables injected at build time (e.g., import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY).
+    // For a simple static site, direct embedding is common.
+    // DO NOT PUT YOUR STRIPE SECRET KEY HERE. IT IS FOR SERVER-SIDE USE ONLY.
+    const stripePublishableKey = 'pk_test_YOUR_STRIPE_PUBLISHABLE_KEY_HERE'; // <<< REPLACE THIS!
 
     let stripe;
-    try {
-        stripe = Stripe(stripePublishableKey);
-    } catch (error) {
-        console.error('Error initializing Stripe:', error);
-        const paymentMessage = document.getElementById('payment-message');
-        if (paymentMessage) {
-            paymentMessage.textContent = 'Could not initialize donation system. Please try again later.';
-            paymentMessage.style.display = 'block';
-        }
-        const submitButton = document.getElementById('submitDonation');
-        if (submitButton) {
-            submitButton.disabled = true;
-        }
-    }
-
     const donationForm = document.getElementById('donationForm');
     const amountButtons = document.querySelectorAll('.amount-btn');
     const customAmountInput = document.getElementById('customAmount');
@@ -44,9 +17,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitButton = document.getElementById('submitDonation');
     const recurringCheckbox = document.getElementById('recurringDonation');
     const paymentMessageDiv = document.getElementById('payment-message');
+    const submitButtonIconWrapper = submitButton ? submitButton.querySelector('.btn__icon-wrapper') : null;
+    const submitButtonSpinnerWrapper = submitButton ? submitButton.querySelector('.btn__spinner-wrapper') : null;
 
-    let currentSelectedAmount = 100; // Default in USD
+    let currentSelectedAmount = 100; // Default in USD (cents will be calculated later)
 
+    function initializeStripe() {
+        if (!stripePublishableKey || stripePublishableKey === 'pk_test_YOUR_STRIPE_PUBLISHABLE_KEY_HERE') {
+            console.warn('Stripe Publishable Key is not set. Please replace the placeholder in js/donate_mobile.js.');
+            showPaymentMessage('Donation system is currently unavailable (Configuration issue).');
+            if (submitButton) submitButton.disabled = true;
+            return false;
+        }
+        try {
+            stripe = Stripe(stripePublishableKey);
+            return true;
+        } catch (error) {
+            console.error('Error initializing Stripe:', error);
+            showPaymentMessage('Could not initialize donation system. Please try again later.');
+            if (submitButton) submitButton.disabled = true;
+            return false;
+        }
+    }
+    
     function updateSelectedAmountDisplay(amount) {
         if (selectedAmountDisplay) {
             selectedAmountDisplay.textContent = `$${amount}`;
@@ -54,31 +47,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function setLoadingState(isLoading) {
+        if (!submitButton) return;
         if (isLoading) {
             submitButton.disabled = true;
-            // Add spinner to button text
-            const originalText = submitButton.innerHTML.split(' <span class="spinner">')[0]; // Get text before spinner
-            submitButton.innerHTML = `${originalText} <span class="spinner"></span>`;
+            if (submitButtonIconWrapper) submitButtonIconWrapper.style.display = 'none';
+            if (submitButtonSpinnerWrapper) submitButtonSpinnerWrapper.style.display = 'inline-block';
         } else {
             submitButton.disabled = false;
-            // Restore original button text (remove spinner)
-            const baseText = submitButton.innerHTML.split(' <span class="spinner">')[0];
-            const iconHTML = submitButton.querySelector('.btn__icon') ? submitButton.querySelector('.btn__icon').outerHTML : '<i class="fas fa-lock btn__icon"></i>';
-            submitButton.innerHTML = `Donate <span id="selectedAmountDisplay">$${currentSelectedAmount}</span> ${iconHTML}`;
+            if (submitButtonIconWrapper) submitButtonIconWrapper.style.display = 'inline-block';
+            if (submitButtonSpinnerWrapper) submitButtonSpinnerWrapper.style.display = 'none';
+            // Restore original button text (amount display updated separately)
+            if (selectedAmountDisplay) updateSelectedAmountDisplay(currentSelectedAmount);
         }
     }
     
     function showPaymentMessage(message, isSuccess = false) {
         if (paymentMessageDiv) {
             paymentMessageDiv.textContent = message;
-            paymentMessageDiv.className = 'payment-message'; // Reset classes
-            if (isSuccess) {
-                paymentMessageDiv.classList.add('success');
-            }
+            paymentMessageDiv.className = 'payment-message';
+            if (isSuccess) paymentMessageDiv.classList.add('success');
             paymentMessageDiv.style.display = 'block';
+            paymentMessageDiv.focus(); // For accessibility
         }
     }
 
+    function hidePaymentMessage() {
+        if (paymentMessageDiv) paymentMessageDiv.style.display = 'none';
+    }
 
     amountButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -87,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             currentSelectedAmount = parseInt(button.dataset.amount);
             if (customAmountInput) customAmountInput.value = '';
             updateSelectedAmountDisplay(currentSelectedAmount);
-            paymentMessageDiv.style.display = 'none'; // Hide message on amount change
+            hidePaymentMessage();
         });
     });
 
@@ -95,44 +90,45 @@ document.addEventListener('DOMContentLoaded', () => {
         customAmountInput.addEventListener('input', () => {
             amountButtons.forEach(btn => btn.classList.remove('selected'));
             let customVal = parseInt(customAmountInput.value);
-            if (isNaN(customVal) || customVal < 5) { // Minimum donation $5
-                if (customAmountInput.value !== '' && customVal < 5) {
-                     currentSelectedAmount = 5; // Default to min if typed less
-                } else {
-                    // If empty or invalid, revert to a default or last selected preset
-                    const defaultButton = document.querySelector('.amount-btn[data-amount="100"]') || amountButtons[0];
-                     if (defaultButton) {
-                        defaultButton.classList.add('selected');
-                        currentSelectedAmount = parseInt(defaultButton.dataset.amount);
-                    }
+            
+            if (customAmountInput.value === '') { // If input is cleared
+                const defaultButton = document.querySelector('.amount-btn[data-amount="100"]') || amountButtons[2] || amountButtons[0];
+                 if (defaultButton) {
+                    defaultButton.classList.add('selected');
+                    currentSelectedAmount = parseInt(defaultButton.dataset.amount);
                 }
+            } else if (isNaN(customVal) || customVal < 5) {
+                currentSelectedAmount = 5; // Enforce minimum for display if invalid or too low, actual validation on submit
             } else {
                 currentSelectedAmount = customVal;
             }
             updateSelectedAmountDisplay(currentSelectedAmount);
-            paymentMessageDiv.style.display = 'none'; // Hide message
+            hidePaymentMessage();
         });
-         // Initialize on load if custom amount is empty
         if(customAmountInput.value === '') {
             const selectedButton = document.querySelector('.amount-btn.selected');
-            if(selectedButton) {
-                currentSelectedAmount = parseInt(selectedButton.dataset.amount);
-            }
+            if(selectedButton) currentSelectedAmount = parseInt(selectedButton.dataset.amount);
         }
     }
-    updateSelectedAmountDisplay(currentSelectedAmount); // Initial display
+    if (submitButton) updateSelectedAmountDisplay(currentSelectedAmount); // Initial display
 
-    if (donationForm && stripe) {
+    if (donationForm && initializeStripe()) { // Initialize Stripe here
         donationForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             setLoadingState(true);
-            paymentMessageDiv.style.display = 'none'; // Clear previous messages
+            hidePaymentMessage();
 
-            if (currentSelectedAmount < 5) { // Stripe minimums might be $0.50 or $1, but $5 is a reasonable app min.
+            // Validate amount (Stripe minimum is $0.50, but $5 is a good app minimum)
+            const finalAmount = customAmountInput.value ? parseInt(customAmountInput.value) : currentSelectedAmount;
+            if (isNaN(finalAmount) || finalAmount < 5) {
                 showPaymentMessage('Minimum donation amount is $5.');
+                customAmountInput.focus();
                 setLoadingState(false);
                 return;
             }
+            currentSelectedAmount = finalAmount; // Ensure currentSelectedAmount is up-to-date
+            updateSelectedAmountDisplay(currentSelectedAmount);
+
 
             const isRecurring = recurringCheckbox.checked;
             const lineItemName = isRecurring ? 
@@ -142,12 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let lineItems = [{
                 price_data: {
                     currency: 'usd',
-                    product_data: {
-                        name: lineItemName,
-                        // You can add description or images here if desired
-                        // description: 'Your generous contribution.',
-                        // images: ['https://example.com/your-org-logo.png'],
-                    },
+                    product_data: { name: lineItemName },
                     unit_amount: currentSelectedAmount * 100, // Amount in cents
                 },
                 quantity: 1,
@@ -157,9 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 lineItems[0].price_data.recurring = { interval: 'month' };
             }
             
-            // Replace with your actual domain and paths
-            const successUrl = `${window.location.origin}${window.location.pathname}?session_id={CHECKOUT_SESSION_ID}&donation=success`;
-            const cancelUrl = `${window.location.origin}${window.location.pathname}?donation=cancelled`;
+            const successUrl = `${window.location.origin}${window.location.pathname.replace(/\/[^/]*$/, '')}/?session_id={CHECKOUT_SESSION_ID}&donation=success#donation-success-message`;
+            const cancelUrl = `${window.location.origin}${window.location.pathname.replace(/\/[^/]*$/, '')}/?donation=cancelled#donation-form-section`;
 
             try {
                 const { error } = await stripe.redirectToCheckout({
@@ -167,19 +157,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     mode: isRecurring ? 'subscription' : 'payment',
                     successUrl: successUrl,
                     cancelUrl: cancelUrl,
-                    // Optional: Collect billing address if needed for your records or tax receipts
-                    // billingAddressCollection: 'required', 
-                    // Optional: Submit type can be 'donate'
-                    // submitType: 'donate',
+                    // submitType: 'donate', // Makes button say "Donate" in Stripe UI
+                    // billingAddressCollection: 'auto', // Or 'required'
+                    // locale: 'auto' // Stripe detects browser locale
                 });
 
                 if (error) {
                     console.error('Stripe Checkout error:', error);
-                    showPaymentMessage(error.message);
+                    showPaymentMessage(error.message || 'An error occurred during checkout.');
                     setLoadingState(false);
                 }
-                // If redirectToCheckout is successful, the user is redirected
-                // so setLoadingState(false) might not be hit here unless there's an immediate error.
             } catch (err) {
                 console.error('Error during Stripe Checkout process:', err);
                 showPaymentMessage('An unexpected error occurred. Please try again.');
@@ -194,25 +181,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const donationStatus = urlParams.get('donation');
 
     if (sessionId && donationStatus === 'success') {
-        // Hide the form, show success message
         const formSection = document.getElementById('donation-form-section');
         const successSection = document.getElementById('donation-success-message');
-        if (formSection) formSection.style.display = 'none';
-        if (successSection) successSection.style.display = 'block';
-        
-        // Scroll to success message for better UX
-        successSection.scrollIntoView({ behavior: 'smooth' });
-
-        // Optional: You could fetch the session details from your server here
-        // to confirm the payment and get customer details if needed.
-        // For client-only, displaying a generic success message is typical.
+        if (formSection) formSection.style.display = 'none'; // Hide form
+        if (successSection) {
+            successSection.style.display = 'block'; // Show success message
+            // Scroll to success message if hash is present
+            if (window.location.hash === '#donation-success-message') {
+                 successSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
         console.log('Donation successful! Session ID:', sessionId);
     } else if (donationStatus === 'cancelled') {
         showPaymentMessage('Your donation process was cancelled. You can try again anytime.');
+        if (window.location.hash === '#donation-form-section') {
+            const formSection = document.getElementById('donation-form-section');
+            if (formSection) formSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
     }
 
 
-    // --- Chart.js and Other Page Logic (Existing) ---
+    // --- Chart.js and Other Page Logic ---
     const ctx = document.getElementById('fundAllocationChart');
     if (ctx) {
         new Chart(ctx, {
@@ -220,31 +209,42 @@ document.addEventListener('DOMContentLoaded', () => {
             data: {
                 labels: ['Community Reintegration', 'Youth Mentorship', 'Recovery & Support', 'Holistic Development', 'Operational Costs'],
                 datasets: [{
-                    label: 'Fund Allocation',
+                    label: 'Fund Allocation (%)',
                     data: [35, 25, 20, 15, 5],
                     backgroundColor: [
-                        'rgba(243, 156, 18, 0.9)', 
-                        'rgba(52, 152, 219, 0.9)', 
-                        'rgba(44, 62, 80, 0.9)',  
-                        'rgba(241, 196, 15, 0.9)', 
-                        'rgba(149, 165, 166, 0.9)' 
+                        'rgba(243, 156, 18, 0.85)', 
+                        'rgba(52, 152, 219, 0.85)', 
+                        'rgba(44, 62, 80, 0.85)',  
+                        'rgba(230, 126, 34, 0.85)', // Different orange
+                        'rgba(127, 140, 141, 0.85)'  // Grey
                     ],
-                    borderColor: var(--color-surface-solid), // Use surface color for borders for a cleaner look
-                    borderWidth: 2
+                    borderColor: 'var(--color-primary-dark)', // Use card background for border
+                    borderWidth: 2,
+                    hoverOffset: 8
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                },
                 plugins: {
                     legend: {
                         position: 'bottom',
                         labels: {
-                            color: var(--color-text-light), // Match text color
-                            font: { size: 10 }
+                            color: 'var(--color-text-on-dark-bg-muted)',
+                            font: { size: 11, family: 'var(--font-body)' },
+                            padding: 15
                         }
                     },
                     tooltip: {
+                        backgroundColor: 'rgba(0,0,0,0.7)',
+                        titleFont: { family: 'var(--font-body)', weight: 'bold' },
+                        bodyFont: { family: 'var(--font-body)' },
+                        padding: 10,
+                        cornerRadius: 4,
                         callbacks: {
                             label: function(context) {
                                 let label = context.label || '';
@@ -258,52 +258,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    const totalRaisedAmountEl = document.getElementById('totalRaisedAmount');
-    const donationProgressBarEl = document.getElementById('donationProgressBar');
-    const yearlyGoalEl = document.getElementById('yearlyGoal');
-
-    if (totalRaisedAmountEl && donationProgressBarEl && yearlyGoalEl) {
-        const currentRaised = 115750;
-        const goalAmountText = yearlyGoalEl.textContent.replace(/[^0-9]/g, ''); // Extract number from goal text
-        const goalAmount = parseInt(goalAmountText) || 250000;
-
-        yearlyGoalEl.textContent = `$${goalAmount.toLocaleString()}`;
-
-        let startVal = 0;
-        const duration = 1500;
-        const frameDuration = 1000 / 60; // 60 FPS
-        const totalFrames = Math.round(duration / frameDuration);
-        const increment = currentRaised / totalFrames;
-
-        function updateCounter() {
-            startVal += increment;
-            if (startVal < currentRaised) {
-                totalRaisedAmountEl.textContent = `$${Math.ceil(startVal).toLocaleString()}`;
-                requestAnimationFrame(updateCounter);
-            } else {
-                totalRaisedAmountEl.textContent = `$${currentRaised.toLocaleString()}`;
+    
+    // Smooth scroll for hero CTA
+    const heroCtaButton = document.querySelector('.donate-hero .scroll-link');
+    if (heroCtaButton) {
+        heroCtaButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const headerOffset = document.getElementById('siteHeader') ? document.getElementById('siteHeader').offsetHeight : 0;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - headerOffset - 20; // Extra 20px offset
+                
+                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
             }
-        }
-        if (currentRaised > 0) {
-            requestAnimationFrame(updateCounter);
-        } else {
-            totalRaisedAmountEl.textContent = `$0`;
-        }
-        
-        const progressPercentage = (currentRaised / goalAmount) * 100;
-        setTimeout(() => {
-             donationProgressBarEl.style.width = `${Math.min(progressPercentage, 100)}%`;
-        }, 300);
+        });
     }
 
+    // Shared form submission logic (e.g., newsletter) - could be refactored into global if identical
     const newsletterFormDonate = document.getElementById('newsletterFormDonate');
     if (newsletterFormDonate) {
         newsletterFormDonate.addEventListener('submit', (e) => {
             e.preventDefault();
             const emailInput = newsletterFormDonate.querySelector('input[type="email"]');
             if (emailInput && emailInput.value.trim() !== '' && emailInput.checkValidity()) {
-                alert('Thank you for subscribing to Redeeming Time Today!');
+                alert('Thank you for subscribing!'); // Keep it simple
                 newsletterFormDonate.reset();
             } else {
                 alert('Please enter a valid email address.');
@@ -315,21 +295,5 @@ document.addEventListener('DOMContentLoaded', () => {
     const footerYearDonate = document.getElementById('footerYearDonate');
     if (footerYearDonate) {
         footerYearDonate.textContent = new Date().getFullYear().toString();
-    }
-
-    const heroDonateButton = document.querySelector('.donate-hero .hero__cta');
-    if (heroDonateButton) {
-        heroDonateButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const headerOffset = document.getElementById('siteHeader') ? document.getElementById('siteHeader').offsetHeight : 0;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.scrollY - headerOffset;
-                
-                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-            }
-        });
     }
 });
