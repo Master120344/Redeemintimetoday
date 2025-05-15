@@ -10,36 +10,34 @@
     --color-secondary: #2980B9; 
     --color-secondary-light: #3498DB; 
 
-    --color-accent: #F39C12; /* Orange for accent buttons */
+    --color-accent: #F39C12; 
     --color-accent-light: #F1C40F; 
     --color-accent-dark: #E67E22; 
 
-    --color-background: #0A192F; /* Very Dark Navy Blue Solid Background */
-    --color-surface-solid: #FFFFFF; /* Solid white for content blocks (preview sections) */
-    --color-border: #2A445E; /* Adjusted border for dark theme on light surfaces */
+    --color-background: #0A192F; 
+    --color-surface-solid: #FFFFFF; 
+    --color-border: #4A6B8A; 
 
     --color-text-dark: #1A252F; 
     --color-text-light: #525F6F; 
     --color-text-on-dark-bg: #FFFFFF; 
-    --color-text-on-dark-bg-muted: #CCD6F6; /* Lighter muted text for better contrast on very dark blue */
+    --color-text-on-dark-bg-muted: #E0E6EB; 
     --color-link-on-dark-bg: var(--color-accent-light); 
 
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.2);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
 
-    --header-height-mobile: 65px; /* Slightly reduced header height */
+    --header-height-mobile: 65px; 
     --header-height-desktop: 75px;
     --border-radius-sm: 6px;
     --border-radius-md: 10px;
-    --border-radius-lg: 28px; /* More rounded for "bubble" buttons */
+    --border-radius-lg: 28px; 
     --transition-base: 0.3s ease-in-out;
     --transition-fast: 0.2s ease-in-out;
 
     --container-padding: 15px;
-    --section-padding-y: 50px; /* Slightly reduced section padding */
-
-    /* Hero background is now directly on body dark blue */
+    --section-padding-y: 50px; 
 }
 
 /* --- Global Reset & Base Styles --- */
@@ -73,18 +71,18 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 700;
     line-height: 1.25;
-    color: var(--color-text-dark); /* Default for text on light surfaces (preview sections) */
+    color: var(--color-text-dark); 
     margin-bottom: 0.75em; 
 }
 .hero-on-dark-bg .hero__title {
     color: var(--color-text-on-dark-bg);
-    font-size: clamp(2.4rem, 7.5vw, 4rem); /* Increased hero title size */
+    font-size: clamp(2.4rem, 7.5vw, 4rem); 
     line-height: 1.15;
 }
 .hero-on-dark-bg .hero__subtitle {
     color: var(--color-text-on-dark-bg-muted);
-    font-size: clamp(1.1rem, 3.2vw, 1.4rem); /* Increased hero subtitle size */
-    max-width: 680px; /* Allow subtitle to be a bit wider */
+    font-size: clamp(1.1rem, 3.2vw, 1.4rem); 
+    max-width: 680px; 
 }
 
 .section__title--light { 
@@ -100,14 +98,19 @@ h1, h2, h3, h4, h5, h6 {
 p { margin-bottom: 1.25em; font-size: 1rem; color: var(--color-text-light); } 
 a { text-decoration: none; color: var(--color-secondary); }
 a:hover, a:focus { color: var(--color-secondary-light); outline-offset: 2px; }
+a:visited { color: var(--color-secondary); } /* Neutralize visited link color */
+.text--on-dark-bg a:visited { color: var(--color-link-on-dark-bg); } /* Visited for links on dark bg */
+.footer__links ul li a:visited { color: var(--color-text-on-dark-bg); } /* Footer visited link */
+
+
 img { max-width: 100%; height: auto; display: block; }
 ul {list-style: none; padding-left: 0;} 
 ol { list-style-position: inside; padding-left: 0; } 
 
 .blockquote--standard { 
     padding: 1.5em;
-    margin: 2em auto; /* Centered blockquote */
-    max-width: 600px; /* Limit width of blockquote */
+    margin: 2em auto; 
+    max-width: 600px; 
     border-left: 5px solid var(--color-accent);
     background-color: #f8f9fa; 
     border-radius: var(--border-radius-sm);
@@ -176,14 +179,49 @@ main, .section, .container, .site-footer .container, .site-header .container {
     display: inline-block;
 }
 
-/* Parallax specific section styling (Mission & Donate previews if we keep them as parallax) */
-/* For now, these are treated like other .preview-section with solid white backgrounds */
-/* If you want them parallax again, uncomment and adjust this section */
-/*
-.parallax-section { ... }
-.parallax-section .section__overlay { ... }
-... etc.
-*/
+/* Parallax specific section styling (Mission & Donate previews) */
+.parallax-section {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: var(--color-text-on-dark-bg); 
+    border-radius: var(--border-radius-md); 
+    box-shadow: var(--shadow-lg);
+    margin-bottom: calc(var(--section-padding-y) * 0.9);
+    padding: var(--section-padding-y) var(--container-padding);
+    text-align: center;
+}
+.parallax-section:last-of-type { margin-bottom: 0; }
+
+.parallax-section .section__overlay { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 20, 30, 0.75); 
+    z-index: 0;
+    border-radius: inherit; 
+}
+.parallax-section .section__overlay--accent { background-color: rgba(243, 156, 18, 0.75); } 
+.parallax-section .container { position: relative; z-index: 1; } 
+.parallax-section .section__kicker { color: var(--color-accent-light); }
+.parallax-section .section__title { color: var(--color-text-on-dark-bg); }
+.parallax-section p { color: var(--color-text-on-dark-bg-muted); }
+.parallax-section a:not(.btn) { color: var(--color-link-on-dark-bg); }
+.parallax-section .mission__icon { 
+    color: var(--color-accent-light);
+}
+.parallax-section .btn--light { /* Button on parallax sections */
+    background-color: var(--color-surface-solid);
+    color: var(--color-primary-dark);
+    border: 2px solid var(--color-surface-solid);
+}
+.parallax-section .btn--light:hover {
+    background-color: rgba(255,255,255,0.85);
+    border-color: rgba(255,255,255,0.85);
+}
 
 
 /* --- Buttons --- */
@@ -191,7 +229,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
     display: inline-block;
     font-family: var(--font-body);
     font-weight: 600;
-    font-size: 0.95rem; /* Slightly smaller font for better fit in bubble */
+    font-size: 0.95rem; 
     padding: 0.9em 2.2em; 
     border-radius: var(--border-radius-lg); 
     border: none; 
@@ -203,16 +241,32 @@ main, .section, .container, .site-footer .container, .site-header .container {
     box-shadow: var(--shadow-md); 
 }
 .btn:hover, .btn:focus { 
-    transform: translateY(-3px) scale(1.02); /* Refined hover */
+    transform: translateY(-3px) scale(1.02); 
     box-shadow: var(--shadow-lg); 
 }
-/* All preview section buttons will now use .btn--accent */
+/* Default CTA button style (orange) */
 .btn--accent { 
     background-color: var(--color-accent); 
-    color: var(--color-primary-dark); /* Dark text on orange */
+    color: var(--color-primary-dark); 
 } 
 .btn--accent:hover, .btn--accent:focus { 
     background-color: var(--color-accent-dark); 
+}
+/* Primary (often dark blue, used less on homepage previews now) */
+.btn--primary { 
+    background-color: var(--color-primary); 
+    color: var(--color-text-on-dark-bg); 
+}
+.btn--primary:hover, .btn--primary:focus { 
+    background-color: var(--color-primary-dark); 
+}
+/* Secondary (often medium blue, used less on homepage previews now) */
+.btn--secondary { 
+    background-color: var(--color-secondary); 
+    color: var(--color-text-on-dark-bg); 
+}
+.btn--secondary:hover, .btn--secondary:focus { 
+    background-color: var(--color-secondary-light); 
 }
 .btn__icon { margin-left: 0.8em; }
 
@@ -248,12 +302,12 @@ main, .section, .container, .site-footer .container, .site-header .container {
 }
 .header__logo-text-link {
     font-family: var(--font-heading);
-    font-size: clamp(1rem, 3.5vw, 1.2rem); /* Further refined for small header */
+    font-size: clamp(1rem, 3.5vw, 1.2rem); 
     font-weight: 700;
     color: var(--color-primary);
     text-decoration: none;
     transition: color var(--transition-fast);
-    letter-spacing: -0.1px; 
+    letter-spacing: -0.2px; 
     line-height: 1.1; 
     padding: 8px 0; 
     white-space: nowrap; 
@@ -319,7 +373,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
 } 
 .mobile-nav__link {
     display: block;
-    padding: 15px 10px; /* Added horizontal padding */
+    padding: 15px 10px; 
     color: var(--color-text-on-dark-bg-muted);
     font-family: var(--font-heading);
     font-size: 1.4rem; 
@@ -331,8 +385,8 @@ main, .section, .container, .site-footer .container, .site-header .container {
 }
 .mobile-nav__link:hover, .mobile-nav__link.active-nav-link {
     color: var(--color-accent-light);
-    background-color: rgba(255,255,255,0.08); /* Slightly more visible hover bg */
-    padding-left: 20px; /* More indent on hover/active */
+    background-color: rgba(255,255,255,0.08); 
+    padding-left: 20px; 
 }
 .mobile-nav__link:last-child { border-bottom: none; }
 
@@ -341,7 +395,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
 
 /* --- Top Page Logo --- */
 .top-logo-container {
-    padding: calc(var(--section-padding-y) * 0.7) var(--container-padding) calc(var(--section-padding-y) * 0.3); /* Adjusted padding */
+    padding: calc(var(--section-padding-y) * 0.8) var(--container-padding) calc(var(--section-padding-y) * 0.5); /* Adjusted padding */
     text-align: center;
     position: relative; 
     z-index: 5; 
@@ -349,13 +403,13 @@ main, .section, .container, .site-footer .container, .site-header .container {
 .top-page-logo {
     max-width: 100%; 
     width: auto; 
-    max-height: 170px; 
-    object-fit: contain; /* Ensures logo fits and aspect ratio is maintained */
+    max-height: 200px; /* Increased max height */
+    object-fit: contain; 
     display: inline-block;
-    border: 4px solid rgba(255,255,255,0.6); /* Brighter border */
+    border: 5px solid rgba(255,255,255,0.7); /* Thicker, more visible border */
     border-radius: var(--border-radius-md);
-    padding: 5px; /* Padding inside the border */
-    background-color: rgba(255,255,255,0.1); /* Slight background to pop logo */
+    padding: 8px; /* More padding inside border */
+    background-color: rgba(255,255,255,0.15); 
 }
 
 
@@ -371,7 +425,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
     padding: var(--section-padding-y) var(--container-padding) calc(var(--section-padding-y) * 1.5); 
     position: relative;
     z-index: 1; 
-    /* No background-image here as it's on the body */
+    /* Background is now the dark blue body */
 }
 .hero-on-dark-bg .hero__content { 
     position: relative; 
@@ -386,21 +440,42 @@ main, .section, .container, .site-footer .container, .site-header .container {
     color: var(--color-text-on-dark-bg-muted);
     font-size: clamp(1.1rem, 3vw, 1.35rem); 
     max-width: 650px;
-    margin-top: 0.5em; /* Space between title and subtitle */
+    margin-top: 0.5em; 
+}
+
+/* --- Form Styling (for newsletter) --- */
+.form-group input, .form-group textarea {
+    background-color: var(--color-surface-solid); 
+}
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label, 
+.form-group textarea:focus + label,
+.form-group textarea:not(:placeholder-shown) + label {
+    background-color: var(--color-surface-solid); 
 }
 
 
-/* --- Form Styling (for newsletter) --- */
-/* Styles remain largely the same, ensure background colors are solid if needed */
-
 /* --- Site Footer --- */
-/* Styles remain largely the same, footer links updated */
 .site-footer {
     background-color: var(--color-primary-dark);
     color: var(--color-text-on-dark-bg-muted);
     padding: var(--section-padding-y) 0 0;
     position: relative; 
     z-index: 10; 
+}
+.footer__social-links { 
+    margin-top: 1.2rem; /* More space above social links */
+    text-align: left; 
+}
+.footer__social-links a {
+    font-size: 1.7rem; /* Larger social icons */
+    color: var(--color-text-on-dark-bg-muted);
+    margin: 0 1.2rem 0 0; /* More space between icons */
+    transition: color var(--transition-fast), transform var(--transition-fast);
+}
+.footer__social-links a:hover {
+    color: var(--color-accent-light);
+    transform: translateY(-3px) scale(1.1); /* More hover effect */
 }
 .footer__links h4 {
     font-family: var(--font-heading);
@@ -423,6 +498,33 @@ main, .section, .container, .site-footer .container, .site-header .container {
     padding-left: 10px; 
     opacity: 1;
 }
+.footer__newsletter-text { /* Specific class for the newsletter intro text */
+    font-weight: bold;
+    color: var(--color-text-on-dark-bg);
+    font-size: 1rem; /* Ensure it's readable */
+    margin-bottom: 1rem;
+}
+.newsletter-form { display: flex; align-items: stretch; } /* Align items for consistent height */
+.newsletter-form input {
+    flex-grow: 1;
+    padding: 0.8em 1em; /* Increased padding */
+    border: 1px solid var(--color-primary-light);
+    border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
+    background-color: rgba(255,255,255,0.08); /* Slightly lighter input bg */
+    color: var(--color-text-on-dark-bg);
+    font-family: var(--font-body);
+    font-size: 1rem; /* Larger font */
+}
+.newsletter-form input::placeholder { color: var(--color-text-on-dark-bg-muted); opacity: 0.7; }
+.newsletter-form input:focus { outline: none; border-color: var(--color-accent); background-color: rgba(255,255,255,0.12); }
+
+.newsletter-form__button { /* Specific class for the newsletter button */
+    padding: 0.8em 1.5em;
+    font-size: 0.95rem;
+    border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0 !important; /* Override .btn */
+    flex-shrink: 0; /* Prevent button from shrinking */
+}
+
 .footer__bottom p {
     color: var(--color-text-on-dark-bg-muted); 
 }
@@ -444,7 +546,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
     }
     .site-header { height: var(--header-height-desktop); }
     .header__logo-text-link {
-        font-size: clamp(1.2rem, 2.2vw, 1.35rem); /* Max size slightly smaller */
+        font-size: clamp(1.2rem, 2.2vw, 1.35rem); 
     }
     .hero-on-dark-bg { 
         padding-top: var(--header-height-desktop); 
@@ -453,8 +555,8 @@ main, .section, .container, .site-footer .container, .site-header .container {
         padding-top: calc(var(--header-height-desktop) + var(--section-padding-y) / 1.5);
     }
     .top-page-logo {
-        max-width: 30%; /* Smaller percentage on desktop for balance */
-        max-height: 150px; 
+        max-width: 30%; 
+        max-height: 180px; /* Slightly larger on desktop */
     }
     
     .content-wrapper {
