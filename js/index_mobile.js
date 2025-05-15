@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (emailInput && emailInput.value.trim() !== '' && emailInput.checkValidity()) {
                 feedbackMessage.textContent = 'Thank you for subscribing to Redeeming Time Today!';
-                feedbackMessage.style.color = 'var(--color-accent-light)'; 
+                feedbackMessage.style.color = 'var(--color-link-bright)'; 
                 newsletterForm.reset();
                 
                 setTimeout(() => {
