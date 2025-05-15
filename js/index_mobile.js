@@ -5,9 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menuToggle');
     const mobileNav = document.getElementById('mobileNav');
     const siteOverlay = document.getElementById('siteOverlay');
-    const navLinks = mobileNav ? mobileNav.querySelectorAll('.mobile-nav__link') : []; // Check if mobileNav exists
+    const navLinks = mobileNav ? mobileNav.querySelectorAll('.mobile-nav__link') : []; 
     const scrollTopBtn = document.getElementById('scrollTopBtn');
-    const parallaxSections = document.querySelectorAll('.parallax-section');
+    // Parallax sections are now effectively handled by the body's fixed background.
+    // If specific sections still need JS-driven parallax, query them here.
+    // const parallaxSections = document.querySelectorAll('.parallax-section'); // Keep if some sections still use JS parallax
 
     // --- Site Preloader ---
     if (sitePreloader && preloaderBar) {
@@ -63,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         siteOverlay.addEventListener('click', () => toggleMobileNav(false));
         navLinks.forEach(link => {
-            // Close nav if it's a direct page link, not an on-page anchor
             if (!link.getAttribute('href').startsWith('#')) {
                 link.addEventListener('click', () => toggleMobileNav(false));
             }
@@ -72,13 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Active Nav Link Highlighting for Multi-Page Site ---
     function updateActiveLinkForMultiPage() {
-        if (!navLinks.length) return; // Don't run if no nav links
+        if (!navLinks.length) return; 
         const currentPath = window.location.pathname.split('/').pop();
         navLinks.forEach(link => {
             const linkPath = link.getAttribute('href').split('/').pop();
             const isActive = (linkPath === currentPath) || 
                              (currentPath === '' && (linkPath === 'index_mobile.html' || linkPath === '/')) ||
-                             (currentPath === 'index_mobile.html' && (linkPath === '' || linkPath === '/')); // Handle empty path for index
+                             (currentPath === 'index_mobile.html' && (linkPath === '' || linkPath === '/'));
             link.classList.toggle('active-nav-link', isActive);
         });
     }
@@ -124,14 +125,16 @@ document.addEventListener('DOMContentLoaded', () => {
         animatedElements.forEach(el => observer.observe(el));
     }
 
-    // --- Parallax Background Effect ---
-    parallaxSections.forEach(section => {
-        const url = section.dataset.parallaxUrl;
-        if (url) section.style.backgroundImage = `url(${url})`;
-    });
+    // --- Parallax Background Effect (If still used for individual sections beyond body) ---
+    // const parallaxSections = document.querySelectorAll('.parallax-section'); // This line was already commented out
+    // parallaxSections.forEach(section => {
+    //     const url = section.dataset.parallaxUrl;
+    //     if (url) section.style.backgroundImage = `url(${url})`;
+    // });
+
 
     // --- Form Submission (Placeholder for Newsletter on this page) ---
-    const newsletterForm = document.getElementById('newsletterForm'); // Use the original ID if it's unique to index
+    const newsletterForm = document.getElementById('newsletterForm'); 
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -157,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Update Year in Footers ---
     const currentYear = new Date().getFullYear();
-    const footerYearEl = document.getElementById('footerYear'); // Use original ID
+    const footerYearEl = document.getElementById('footerYear'); 
     if (footerYearEl) {
         footerYearEl.textContent = currentYear.toString();
     }
