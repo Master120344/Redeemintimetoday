@@ -31,12 +31,9 @@
 
     <header class="site-header" id="siteHeader">
         <div class="container header__container">
-            <div class="header__logo-area">
-                <a href="index_mobile.html" class="header__logo-text-link" aria-label="Redeeming Time Today Home">
-                    Redeeming Time Today
-                </a>
-                <!-- Plant icon removed -->
-            </div>
+            <a href="index_mobile.html" class="header__logo-text-link" aria-label="Redeeming Time Today Home">
+                Redeeming Time Today
+            </a>
             <button id="menuToggle" class="header__menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
                 <span class="menu-toggle__bar"></span>
                 <span class="menu-toggle__bar"></span>
@@ -53,7 +50,7 @@
             <li><a href="services_mobile.html" class="mobile-nav__link">Services</a></li>
             <li><a href="impact_mobile.html" class="mobile-nav__link">Impact</a></li>
             <li><a href="events_mobile.html" class="mobile-nav__link">Events</a></li>
-            <li><a href="shop_mobile.html" class="mobile-nav__link">Shop</a>
+            <li><a href="shop_mobile.html" class="mobile-nav__link">Shop</a></li>
             <li><a href="donate_mobile.html" class="mobile-nav__link">Donate</a></li>
             <li><a href="get_involved_mobile.html" class="mobile-nav__link">Get Involved</a></li>
             <li><a href="contact_mobile.html" class="mobile-nav__link">Contact</a></li>
@@ -65,8 +62,8 @@
     <main id="mainContent">
 
         <section id="hero" class="hero">
-            <!-- assets/logo.jpg will be applied as background via CSS -->
-            <div class="hero__overlay"></div> {/* Overlay for text readability over logo.jpg */}
+            {/* assets/logo.jpg will be applied as background via CSS */}
+            <div class="hero__overlay-main"></div> {/* Specific overlay for hero over logo.jpg */}
             <div class="container hero__content">
                 <h1 class="hero__title">
                     <span class="hero__title-line hero__title-line--1">Unlock Potential.</span>
@@ -81,55 +78,55 @@
             </a>
         </section>
 
-        <section id="preview-about" class="section content-preview about-preview"> {/* Added .content-preview class */}
-            <div class="container about-preview__container">
-                <div class="section__header">
-                    <span class="section__kicker">Our Genesis</span>
-                    <h2 class="section__title">About Redeeming Time Today</h2>
+        <div class="content-wrapper"> {/* Wrapper for sections on global background */}
+            <section id="preview-about" class="section content-preview about-preview">
+                <div class="container about-preview__container">
+                    <div class="section__header">
+                        <span class="section__kicker">Our Genesis</span>
+                        <h2 class="section__title">About Redeeming Time Today</h2>
+                    </div>
+                    <div class="about-preview__content animate-on-scroll" data-animation="fade-in-up">
+                        <p>Born from a shared vision within the walls of Rahway State Prison, Redeeming Time Today was conceived by our CEO and Rev. Rufus McClendon, alongside inmates dedicated to holistic growth. Since 2002, we have been a beacon of hope, offering support for individuals rejoining society with dignity and purpose.</p>
+                        <blockquote class="about__quote">
+                            <p>"Making the very most of your time [on earth], ...because the days are evil."</p>
+                            <footer>Ephesians 5:16 (AMP), The Guiding Word</footer>
+                        </blockquote>
+                        <a href="about_mobile.html" class="btn btn--primary">Learn More About Us <i class="fas fa-info-circle btn__icon"></i></a>
+                    </div>
                 </div>
-                <div class="about-preview__content animate-on-scroll" data-animation="fade-in-up">
-                    <p>Born from a shared vision within the walls of Rahway State Prison, Redeeming Time Today was conceived by our CEO and Rev. Rufus McClendon, alongside inmates dedicated to holistic growth. Since 2002, we have been a beacon of hope, offering support for individuals rejoining society with dignity and purpose.</p>
-                    <blockquote class="about__quote">
-                        <p>"Making the very most of your time [on earth], ...because the days are evil."</p>
-                        <footer>Ephesians 5:16 (AMP), The Guiding Word</footer>
-                    </blockquote>
-                    <a href="about_mobile.html" class="btn btn--primary">Learn More About Us <i class="fas fa-info-circle btn__icon"></i></a>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="preview-mission" class="section mission-preview"> {/* Parallax removed, will use body background */}
-            {/* Overlay removed as it's not a separate parallax now */}
-            <div class="container mission-preview__container">
-                <i class="fas fa-compass mission__icon animate-on-scroll" data-animation="zoom-in-fast"></i>
-                <h2 class="section__title section__title--on-global-bg animate-on-scroll" data-animation="fade-in-up" data-delay="0.1s">Our Unwavering Mission</h2>
-                <p class="mission-preview__text text--on-global-bg animate-on-scroll" data-animation="fade-in-up" data-delay="0.3s">Redeeming Time Today is dedicated to empowering individuals and communities to maximize their potential. We provide transformative resources and impactful programs fostering personal development and community service.</p>
-                <a href="mission_mobile.html" class="btn btn--light animate-on-scroll" data-animation="fade-in-up" data-delay="0.5s">Explore Our Mission <i class="fas fa-route btn__icon"></i></a>
-            </div>
-        </section>
-        
-        <section id="preview-donate" class="section donate-preview"> {/* Parallax removed, will use body background */}
-            {/* Overlay removed */}
-            <div class="container donate-preview__container">
-                 <h2 class="section__title section__title--on-global-bg animate-on-scroll" data-animation="fade-in-up">Make a Difference Today</h2>
-                <p class="donate-preview__text text--on-global-bg animate-on-scroll" data-animation="fade-in-up" data-delay="0.2s">Your generous contribution helps Redeeming Time Today continue our vital work in the community, empowering individuals and transforming lives. Every donation has a significant impact.</p>
-                <a href="donate_mobile.html" class="btn btn--light animate-on-scroll" data-animation="fade-in-up" data-delay="0.4s">Donate Now <i class="fas fa-heart btn__icon"></i></a>
-            </div>
-        </section>
+            <section id="preview-mission" class="section mission-preview">
+                <div class="container mission-preview__container">
+                    <i class="fas fa-compass mission__icon animate-on-scroll" data-animation="zoom-in-fast"></i>
+                    <h2 class="section__title section__title--on-global-bg animate-on-scroll" data-animation="fade-in-up" data-delay="0.1s">Our Unwavering Mission</h2>
+                    <p class="mission-preview__text text--on-global-bg animate-on-scroll" data-animation="fade-in-up" data-delay="0.3s">Redeeming Time Today is dedicated to empowering individuals and communities to maximize their potential. We provide transformative resources and impactful programs fostering personal development and community service.</p>
+                    <a href="mission_mobile.html" class="btn btn--light animate-on-scroll" data-animation="fade-in-up" data-delay="0.5s">Explore Our Mission <i class="fas fa-route btn__icon"></i></a>
+                </div>
+            </section>
+            
+            <section id="preview-donate" class="section donate-preview">
+                <div class="container donate-preview__container">
+                    <h2 class="section__title section__title--on-global-bg animate-on-scroll" data-animation="fade-in-up">Make a Difference Today</h2>
+                    <p class="donate-preview__text text--on-global-bg animate-on-scroll" data-animation="fade-in-up" data-delay="0.2s">Your generous contribution helps Redeeming Time Today continue our vital work in the community, empowering individuals and transforming lives. Every donation has a significant impact.</p>
+                    <a href="donate_mobile.html" class="btn btn--light animate-on-scroll" data-animation="fade-in-up" data-delay="0.4s">Donate Now <i class="fas fa-heart btn__icon"></i></a>
+                </div>
+            </section>
 
-        <section id="preview-contact" class="section content-preview contact-preview"> {/* Added .content-preview class */}
-            <div class="container contact-preview__container">
-                <div class="section__header">
-                    <span class="section__kicker">Get in Touch</span>
-                    <h2 class="section__title">Let's Connect</h2>
+            <section id="preview-contact" class="section content-preview contact-preview">
+                <div class="container contact-preview__container">
+                    <div class="section__header">
+                        <span class="section__kicker">Get in Touch</span>
+                        <h2 class="section__title">Let's Connect</h2>
+                    </div>
+                    <div class="contact-preview__content animate-on-scroll" data-animation="fade-in-up">
+                        <p>We would love to hear from you. Whether you have questions, want to get involved with Redeeming Time Today, or share your story, reach out to us.</p>
+                        <p><i class="fas fa-envelope"></i> Email: <a href="mailto:rob@redeemingthetimetoday.org">rob@redeemingthetimetoday.org</a></p>
+                        <a href="contact_mobile.html" class="btn btn--secondary">Contact Us <i class="fas fa-paper-plane btn__icon"></i></a>
+                    </div>
                 </div>
-                <div class="contact-preview__content animate-on-scroll" data-animation="fade-in-up">
-                    <p>We would love to hear from you. Whether you have questions, want to get involved with Redeeming Time Today, or share your story, reach out to us.</p>
-                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:rob@redeemingthetimetoday.org">rob@redeemingthetimetoday.org</a></p>
-                    <a href="contact_mobile.html" class="btn btn--secondary">Contact Us <i class="fas fa-paper-plane btn__icon"></i></a>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div> {/* End .content-wrapper */}
 
     </main>
 
