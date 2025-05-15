@@ -7,39 +7,39 @@
     --color-primary-dark: #1A252F;
     --color-primary-light: #34495E; 
 
-    --color-secondary: #3498DB; 
-    --color-secondary-light: #5DADE2; 
+    --color-secondary: #2980B9; /* Slightly deeper blue for secondary actions */
+    --color-secondary-light: #3498DB; 
 
     --color-accent: #F39C12; 
     --color-accent-light: #F1C40F; 
     --color-accent-dark: #E67E22; 
 
-    --color-background: #0D2F4F; /* Darker Blue Solid Background */
+    --color-background: #0B1F3A; /* Darker, Rich Blue Solid Background */
     --color-surface-solid: #FFFFFF; 
-    --color-border: #4A6B8A; /* Adjusted border for dark theme */
+    --color-border: #4A6B8A; 
 
-    --color-text-dark: #2C3E50; /* For text on light surfaces (e.g., forms, preview sections) */
-    --color-text-light: #4A5568; /* Muted text on light surfaces */
-    --color-text-on-dark-bg: #FFFFFF; /* Primary text for on dark backgrounds (body, footer, parallax) */
-    --color-text-on-dark-bg-muted: #E2E8F0; 
+    --color-text-dark: #1A252F; /* Darker text for on white surfaces */
+    --color-text-light: #525F6F; /* Muted text on white surfaces */
+    --color-text-on-dark-bg: #FFFFFF; 
+    --color-text-on-dark-bg-muted: #E0E6EB; /* Softer muted text */
     --color-link-on-dark-bg: var(--color-accent-light); 
 
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.2);
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.12);
+    --shadow-md: 0 5px 12px rgba(0, 0, 0, 0.18);
+    --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.22);
 
     --header-height-mobile: 70px; 
     --header-height-desktop: 80px;
     --border-radius-sm: 6px;
     --border-radius-md: 10px;
-    --border-radius-lg: 16px;
+    --border-radius-lg: 25px; /* For "bubble" buttons */
     --transition-base: 0.3s ease-in-out;
     --transition-fast: 0.2s ease-in-out;
 
     --container-padding: 15px;
     --section-padding-y: 60px; 
 
-    --hero-background-image-url: url('../assets/logo.jpg'); 
+    /* Hero background image is now only via inline style in HTML or specific CSS */
 }
 
 /* --- Global Reset & Base Styles --- */
@@ -54,70 +54,70 @@ html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    scrollbar-width: thin;
+    scrollbar-width: auto; /* Browser default */
     scrollbar-color: var(--color-accent) var(--color-primary-light); 
 }
-html::-webkit-scrollbar { width: 10px; }
-html::-webkit-scrollbar-track { background: var(--color-primary-light); } 
-html::-webkit-scrollbar-thumb { background-color: var(--color-accent); border-radius: 10px; border: 2px solid var(--color-primary-light); }
+/* Webkit scrollbar styles can be kept or removed based on preference */
 
 body {
     font-family: var(--font-body);
     line-height: 1.7; 
-    color: var(--color-text-on-dark-bg); /* Default text is now light for dark body */
-    background-color: var(--color-background); /* Darker Blue Solid Background */
+    color: var(--color-text-on-dark-bg); 
+    background-color: var(--color-background); 
     overflow-x: hidden; 
     position: relative; 
 }
-/* body::before overlay is removed */
 body.no-scroll { overflow: hidden; } 
 
 /* --- Typography --- */
-/* Headings and text within sections now on the global background */
-.section__title, .section__kicker, p {
-    /* Default text color for these is now handled by body or specific overrides */
-}
-
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 700;
     line-height: 1.25;
-    color: var(--color-primary); /* Default for preview sections text */
+    color: var(--color-text-dark); /* Default for text on light surfaces (preview sections) */
     margin-bottom: 0.75em; 
 }
-.section__title--light { /* For text on explicit dark backgrounds like parallax or hero overlay */
+/* Hero title is specifically styled */
+.hero-on-dark-bg .hero__title {
+    color: var(--color-text-on-dark-bg);
+}
+.hero-on-dark-bg .hero__subtitle {
+    color: var(--color-text-on-dark-bg-muted);
+}
+
+.section__title--light { 
     color: var(--color-text-on-dark-bg) !important;
 }
-.text--on-dark-bg { /* For p on explicit dark backgrounds like parallax */
+.text--on-dark-bg { 
     color: var(--color-text-on-dark-bg-muted) !important;
 }
 .text--on-dark-bg strong, .section__title--light strong { color: var(--color-accent-light); }
 .text--on-dark-bg a:not(.btn) { color: var(--color-link-on-dark-bg); }
 .text--on-dark-bg a:not(.btn):hover { color: var(--color-surface-solid); }
 
-p { margin-bottom: 1.25em; font-size: 1rem; color: var(--color-text-light); } /* Default for preview sections */
-a { text-decoration: none; color: var(--color-accent-dark); transition: color var(--transition-base); }
-a:hover, a:focus { color: var(--color-accent); outline-offset: 2px; }
+p { margin-bottom: 1.25em; font-size: 1rem; color: var(--color-text-light); } 
+a { text-decoration: none; color: var(--color-secondary); /* Default link color for light surfaces */ }
+a:hover, a:focus { color: var(--color-secondary-light); outline-offset: 2px; }
 img { max-width: 100%; height: auto; display: block; }
-ul {list-style: none; padding-left: 0;} /* Remove default list styles for nav */
+ul {list-style: none; padding-left: 0;} 
 ol { list-style-position: inside; padding-left: 0; } 
 
 .blockquote--standard { 
     padding: 1.5em;
     margin: 2em 0; 
     border-left: 5px solid var(--color-accent);
-    background-color: rgba(255, 255, 255, 0.05); /* Subtle dark transparent for quote on dark body */
+    background-color: #f8f9fa; 
     border-radius: var(--border-radius-sm);
-    color: var(--color-text-on-dark-bg-muted); /* Text color for quote on dark body */
+    box-shadow: var(--shadow-sm);
 }
 .blockquote--standard p {
     font-style: italic;
-    color: var(--color-text-on-dark-bg); /* Main quote text brighter */
+    color: var(--color-text-dark);
     margin-bottom: 0.5em;
 }
 .blockquote--standard footer {
     font-size: 0.9em;
-    color: var(--color-text-on-dark-bg-muted);
+    color: var(--color-text-light);
     text-align: right;
 }
 
@@ -142,91 +142,71 @@ main, .section, .container, .site-footer .container, .site-header .container {
 }
 
 .section.preview-section { 
-    padding: var(--section-padding-y) var(--container-padding);
+    padding: calc(var(--section-padding-y) * 0.8) var(--container-padding); /* Adjusted padding */
     position: relative; 
     overflow: hidden; 
-    background-color: var(--color-surface-solid); /* Solid white background for preview sections */
+    background-color: var(--color-surface-solid); 
     border-radius: var(--border-radius-md);
-    box-shadow: var(--shadow-lg); /* More prominent shadow */
-    margin-bottom: calc(var(--section-padding-y) * 1); /* Increased space between sections */
+    box-shadow: var(--shadow-lg); 
+    margin-bottom: calc(var(--section-padding-y) * 0.8); /* Adjusted margin */
     text-align: center; 
 }
 .section.preview-section:last-of-type {
     margin-bottom: 0;
 }
-/* Text inside .preview-section should be dark */
-.section.preview-section .section__header .section__kicker { color: var(--color-accent); }
-.section.preview-section .section__header .section__title { color: var(--color-primary); }
+.section.preview-section .section__header {
+    text-align: center;
+    margin-bottom: clamp(1.8rem, 4vw, 2.8rem); 
+}
+.section.preview-section .section__kicker { color: var(--color-accent-dark); font-weight: 600; }
+.section.preview-section .section__title { color: var(--color-primary-dark); }
 .section.preview-section p { color: var(--color-text-light); }
-.section.preview-section strong { color: var(--color-primary-dark); }
+.section.preview-section strong { color: var(--color-primary); }
 .section.preview-section a:not(.btn) { color: var(--color-secondary); }
 .section.preview-section a:not(.btn):hover { color: var(--color-secondary-light); }
-.section.preview-section .blockquote--standard { /* Styles for blockquote inside preview section */
-    background-color: #f8f9fa;
-    color: var(--color-text-dark);
-}
-.section.preview-section .blockquote--standard p { color: var(--color-text-dark); }
-.section.preview-section .blockquote--standard footer { color: var(--color-text-light); }
+.section.preview-section .blockquote--standard { background-color: #f0f4f8; }
 
-
-.section.preview-section .mission__icon { /* For mission preview on its own parallax */
+.section.preview-section .mission__icon--on-light-surface { /* Icon for mission if it's on light surface */
     font-size: 3.8rem; 
-    color: var(--color-accent-light); 
+    color: var(--color-accent); 
     margin-bottom: 0.75em; 
     display: inline-block;
 }
-/* Button styles for preview sections */
-.section.preview-section .btn--primary {
-    background-color: var(--color-primary);
-    color: var(--color-text-on-dark-bg);
-}
-.section.preview-section .btn--primary:hover {
-    background-color: var(--color-primary-dark);
-}
-.section.preview-section .btn--light { 
-    background-color: var(--color-surface-solid);
-    color: var(--color-primary-dark);
-    border: 2px solid var(--color-primary-dark); 
-}
-.section.preview-section .btn--light:hover {
-    background-color: var(--color-primary-dark);
-    color: var(--color-surface-solid);
-}
-.section.preview-section .btn--secondary { 
-    background-color: var(--color-secondary);
-    color: var(--color-text-on-dark-bg);
-}
-.section.preview-section .btn--secondary:hover {
-    background-color: var(--color-secondary-light);
-}
-
-
-/* Parallax specific section styling (Mission & Donate previews) */
+/* Specific styles for Mission and Donate previews if they are parallax (as originally intended) */
 .parallax-section {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     color: var(--color-text-on-dark-bg); 
-    border-radius: 0; /* Parallax sections should not have rounded corners like other previews */
-    box-shadow: none; /* No shadow for parallax */
+    border-radius: var(--border-radius-md); /* Keep rounded corners for these */
+    box-shadow: var(--shadow-lg);
+    margin-bottom: calc(var(--section-padding-y) * 0.8);
+    padding: var(--section-padding-y) var(--container-padding);
+    text-align: center;
 }
+.parallax-section:last-of-type { margin-bottom: 0; }
+
 .parallax-section .section__overlay { 
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(10, 20, 30, 0.7); /* Darker overlay for parallax */
+    background-color: rgba(10, 20, 30, 0.75); /* Darker overlay for parallax sections */
     z-index: 0;
+    border-radius: inherit; /* Match parent's border-radius */
 }
-.parallax-section .section__overlay--accent { background-color: rgba(243, 156, 18, 0.7); } 
+.parallax-section .section__overlay--accent { background-color: rgba(243, 156, 18, 0.75); } 
 .parallax-section .container { position: relative; z-index: 1; } 
 .parallax-section .section__kicker { color: var(--color-accent-light); }
-.parallax-section .section__title { color: var(--color-text-on-dark-bg); } /* Already .section__title--light */
+.parallax-section .section__title { color: var(--color-text-on-dark-bg); }
 .parallax-section p { color: var(--color-text-on-dark-bg-muted); }
 .parallax-section a:not(.btn) { color: var(--color-link-on-dark-bg); }
-.parallax-section .btn--light { /* This btn style is for on dark parallax */
+.parallax-section .mission__icon { /* Icon color for on parallax */
+    color: var(--color-accent-light);
+}
+.parallax-section .btn--light {
     background-color: var(--color-surface-solid);
     color: var(--color-primary-dark);
     border: 2px solid var(--color-surface-solid);
@@ -236,6 +216,41 @@ main, .section, .container, .site-footer .container, .site-header .container {
     border-color: rgba(255,255,255,0.85);
 }
 
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem; 
+    padding: 0.9em 2.2em; /* Generous padding for "bubble" feel */
+    border-radius: var(--border-radius-lg); 
+    border: none; /* No border for bubble buttons */
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.8px; /* More spacing */
+    cursor: pointer;
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-md); /* Start with a noticeable shadow */
+}
+.btn:hover, .btn:focus { 
+    transform: translateY(-4px) scale(1.03); /* More hover effect */
+    box-shadow: var(--shadow-lg); 
+}
+.btn--primary { background-color: var(--color-primary); color: var(--color-text-on-dark-bg); }
+.btn--primary:hover, .btn--primary:focus { background-color: var(--color-primary-dark); }
+.btn--accent { background-color: var(--color-accent); color: var(--color-primary-dark); } 
+.btn--accent:hover, .btn--accent:focus { background-color: var(--color-accent-dark); }
+.btn--secondary { background-color: var(--color-secondary); color: var(--color-text-on-dark-bg); }
+.btn--secondary:hover, .btn--secondary:focus { background-color: var(--color-secondary-light); }
+.btn--light { /* For use on dark backgrounds like parallax */
+    background-color: var(--color-surface-solid); 
+    color: var(--color-primary-dark); 
+}
+.btn--light:hover, .btn--light:focus { 
+    background-color: #E2E8F0; 
+}
+.btn__icon { margin-left: 0.8em; }
 
 /* --- Site Preloader --- */
 /* Styles remain the same */
@@ -269,15 +284,16 @@ main, .section, .container, .site-footer .container, .site-header .container {
 }
 .header__logo-text-link {
     font-family: var(--font-heading);
-    font-size: clamp(1.05rem, 3.5vw, 1.3rem); /* Adjusted for balance */
+    font-size: clamp(1rem, 3.6vw, 1.25rem); /* Adjusted for better balance */
     font-weight: 700;
     color: var(--color-primary);
     text-decoration: none;
     transition: color var(--transition-fast);
-    letter-spacing: -0.25px; 
+    letter-spacing: -0.2px; 
     line-height: 1.1; 
     padding: 8px 0; 
     white-space: nowrap; 
+    margin-right: 10px; /* Ensure space between logo and burger */
 }
 .header__logo-text-link:hover {
     color: var(--color-accent-dark);
@@ -319,38 +335,40 @@ main, .section, .container, .site-footer .container, .site-header .container {
 .mobile-nav {
     position: fixed;
     top: 0;
-    right: -100%; /* Slide in from the right */
-    width: clamp(280px, 80vw, 320px); /* Slightly narrower max width */
+    right: -100%; 
+    width: clamp(280px, 80vw, 320px); 
     height: 100vh;
-    background-color: var(--color-primary-dark);
-    box-shadow: -5px 0 25px rgba(0,0,0,0.3); /* Slightly stronger shadow */
-    padding: calc(var(--header-height-mobile) + 25px) 30px 30px; /* More padding */
-    z-index: 998; 
+    background-color: var(--color-primary-dark); /* Dark background for nav */
+    box-shadow: -8px 0 30px rgba(0,0,0,0.35); 
+    padding: calc(var(--header-height-mobile) + 25px) 30px 30px; 
+    z-index: 1000; /* Above site overlay */
     display: flex;
     flex-direction: column;
-    transition: transform 0.35s cubic-bezier(0.645, 0.045, 0.355, 1); /* Faster, smoother transition */
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); 
     overflow-y: auto;
 }
 .mobile-nav.is-open { transform: translateX(-100%); }
 .mobile-nav__list { 
     margin-bottom: auto; 
-    list-style-type: none; /* Explicitly remove bullet points */
-    padding-left: 0;  /* Explicitly remove padding */
+    list-style-type: none; 
+    padding-left: 0;  
 } 
 .mobile-nav__link {
     display: block;
-    padding: 14px 0; /* More vertical padding for links */
+    padding: 15px 5px; /* Increased padding, slight horizontal padding */
     color: var(--color-text-on-dark-bg-muted);
     font-family: var(--font-heading);
-    font-size: 1.35rem; 
-    font-weight: 500; /* Slightly bolder for readability */
-    transition: color var(--transition-fast), padding-left var(--transition-fast);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Subtler border */
-    text-decoration: none; /* Ensure no underlines */
+    font-size: 1.4rem; /* Larger font size */
+    font-weight: 500; 
+    transition: color var(--transition-fast), background-color var(--transition-fast), padding-left var(--transition-fast);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+    text-decoration: none; 
+    border-radius: var(--border-radius-sm); /* Slight rounding to link area */
 }
 .mobile-nav__link:hover, .mobile-nav__link.active-nav-link {
     color: var(--color-accent-light);
-    padding-left: 8px; /* Indent on hover/active */
+    background-color: rgba(255,255,255,0.05); /* Subtle hover background */
+    padding-left: 15px; 
 }
 .mobile-nav__link:last-child { border-bottom: none; }
 
@@ -361,8 +379,8 @@ main, .section, .container, .site-footer .container, .site-header .container {
     left: 0; 
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.65); /* Darker overlay */
-    z-index: 997; 
+    background-color: rgba(0,0,0,0.7); /* Darker overlay */
+    z-index: 998; /* Below nav, above content */
     opacity: 0;
     visibility: hidden;
     transition: opacity var(--transition-base), visibility var(--transition-base);
@@ -371,76 +389,68 @@ main, .section, .container, .site-footer .container, .site-header .container {
 
 /* --- Top Page Logo --- */
 .top-logo-container {
-    padding: calc(var(--section-padding-y) / 1.2) var(--container-padding) calc(var(--section-padding-y) / 2.5);
+    padding: calc(var(--section-padding-y) * 0.8) var(--container-padding) calc(var(--section-padding-y) * 0.4);
     text-align: center;
     position: relative; 
     z-index: 5; 
 }
 .top-page-logo {
-    max-width: 65%; 
+    max-width: 100%; /* Allow it to take full width of its container */
     width: auto; 
-    height: auto;
-    max-height: 150px; 
-    border-radius: var(--border-radius-md);
-    box-shadow: var(--shadow-lg);
+    max-height: 180px; /* Max height to control size */
+    object-fit: contain; /* Ensure entire logo is visible within bounds */
     display: inline-block;
-    border: 3px solid rgba(255,255,255,0.5); /* Whiteish border on dark bg */
+    /* Removed border and shadow for cleaner look on dark bg */
 }
 
 
-/* --- Hero Section (background is logo.jpg) --- */
-.hero {
-    height: auto; /* Let content define height more naturally */
-    min-height: 75vh; /* Ensure good viewport coverage */
-    position: relative;
+/* --- Hero Section (sits on dark blue body) --- */
+.hero-on-dark-bg {
+    min-height: auto; /* Let content define height */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: var(--color-text-on-dark-bg); 
+    color: var(--color-text-on-dark-bg);
     overflow: hidden; 
-    padding: var(--section-padding-y) var(--container-padding) calc(var(--section-padding-y) * 1.2);
-    background-image: var(--hero-background-image-url); 
+    padding: var(--section-padding-y) var(--container-padding) calc(var(--section-padding-y) * 1.5); 
+    position: relative;
+    z-index: 1; 
+    background-image: var(--hero-background-image-url); /* Background is logo.jpg */
     background-size: cover;
-    background-position: center center;
+    background-position: center;
     background-repeat: no-repeat;
-    margin-bottom: var(--section-padding-y); /* Space after hero */
 }
-.hero__overlay-main { 
+.hero-on-dark-bg .hero__overlay-main { /* This is for the hero with logo.jpg bg */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, rgba(10, 20, 30, 0.78) 0%, rgba(10, 20, 30, 0.96) 100%); /* Darker, more consistent overlay */
+    background: linear-gradient(180deg, rgba(10, 20, 30, 0.82) 0%, rgba(10, 20, 30, 0.98) 100%); /* Even darker overlay for logo */
     z-index: 0; 
 }
-.hero__content { position: relative; z-index: 1; padding: 0 var(--container-padding); }
-.hero__title {
-    color: var(--color-text-on-dark-bg); 
-    font-size: clamp(2.1rem, 6.5vw, 3.6rem);
-    margin-bottom: 0.75em;
-    line-height: 1.2;
+
+.hero-on-dark-bg .hero__content { 
+    position: relative; 
+    z-index: 1; 
 }
-.hero__subtitle {
-    color: var(--color-text-on-dark-bg-muted); 
-    font-size: clamp(1.05rem, 2.8vw, 1.3rem); 
+.hero-on-dark-bg .hero__title {
+    color: var(--color-text-on-dark-bg);
+    font-size: clamp(2.2rem, 7vw, 3.8rem); 
+}
+.hero-on-dark-bg .hero__subtitle {
+    color: var(--color-text-on-dark-bg-muted);
+    font-size: clamp(1.1rem, 3vw, 1.35rem); 
     max-width: 650px;
 }
-.hero__scroll-indicator {
-    color: var(--color-text-on-dark-bg); 
-    font-size: 2rem; 
-    opacity: 0.8;
-    animation: bounce-subtle 2.5s infinite; 
-    z-index: 2;
-    bottom: 20px; /* Closer to bottom edge */
-}
-
+/* hero__scroll-indicator removed from HTML */
 
 /* --- Form Styling (for newsletter) --- */
 /* Styles remain largely the same, ensure background colors are solid if needed */
 
 /* --- Site Footer --- */
+/* Styles remain largely the same, footer links updated */
 .site-footer {
     background-color: var(--color-primary-dark);
     color: var(--color-text-on-dark-bg-muted);
@@ -448,55 +458,33 @@ main, .section, .container, .site-footer .container, .site-header .container {
     position: relative; 
     z-index: 10; 
 }
-.footer__main {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Lighter border */
-}
-.footer__logo-svg { /* Styles are fine */ }
-.footer__about p { font-size: 0.9rem; line-height: 1.6; }
-.footer__social-links { 
-    margin-top: 1rem;
-    text-align: left; 
-}
-.footer__social-links a {
-    font-size: 1.6rem; /* Slightly larger social icons */
-    color: var(--color-text-on-dark-bg-muted);
-    margin: 0 0.9rem 0 0; 
-    transition: color var(--transition-fast), transform var(--transition-fast);
-}
-.footer__social-links a:hover {
-    color: var(--color-accent-light);
-    transform: translateY(-2px);
-}
 .footer__links h4 {
     font-family: var(--font-heading);
     color: var(--color-text-on-dark-bg);
-    margin-bottom: 1.2rem; /* More space below heading */
+    margin-bottom: 1.2rem; 
     font-size: 1.25rem; 
 }
 .footer__links ul { list-style: none; padding-left: 0; }
 .footer__links ul li a {
     color: var(--color-text-on-dark-bg); 
-    padding: 0.5em 0; /* More padding for touch */
+    padding: 0.5em 0; /* Increased padding */
     display: block;
-    font-size: 1.05rem; /* Larger and bolder footer links */
+    font-size: 1.05rem; 
     font-weight: 500;
-    transition: color var(--transition-fast), padding-left var(--transition-fast);
-    opacity: 0.85; /* Slightly muted until hover */
+    transition: color var(--transition-fast), padding-left var(--transition-fast), opacity var(--transition-fast);
+    opacity: 0.9; 
 }
 .footer__links ul li a:hover {
     color: var(--color-accent-light);
     padding-left: 10px; 
-    text-decoration: none; /* Remove underline on hover if not desired */
     opacity: 1;
 }
-.footer__newsletter p { font-size: 0.9rem; margin-bottom: 1rem; }
-/* Newsletter form styles are fine */
-.footer__bottom { padding: 1.5rem 0; text-align: center; font-size: 0.85rem; }
-.footer__heart { color: var(--color-accent); } 
+.footer__bottom p {
+    color: var(--color-text-on-dark-bg-muted); /* Ensure footer bottom text is light */
+}
+.footer__bottom .footer__heart {
+    color: var(--color-accent);
+}
 
 /* --- Scroll to Top Button --- */
 /* Styles remain the same */
@@ -512,17 +500,17 @@ main, .section, .container, .site-footer .container, .site-header .container {
     }
     .site-header { height: var(--header-height-desktop); }
     .header__logo-text-link {
-        font-size: clamp(1.2rem, 2.2vw, 1.45rem); /* Adjust desktop size */
+        font-size: clamp(1.2rem, 2.2vw, 1.4rem); 
     }
-    .hero { 
+    .hero-on-dark-bg { 
         padding-top: var(--header-height-desktop); 
     }
     .top-logo-container {
         padding-top: calc(var(--header-height-desktop) + var(--section-padding-y) / 1.5);
     }
     .top-page-logo {
-        max-width: 40%;
-        max-height: 180px;
+        max-width: 35%; /* Smaller percentage for desktop */
+        max-height: 160px; /* Control max height on desktop */
     }
     
     .content-wrapper {
@@ -531,10 +519,10 @@ main, .section, .container, .site-footer .container, .site-header .container {
         margin-right: auto;
         padding: 0; 
     }
-    .preview-section-grid { /* If using grid for previews on desktop */
+    .preview-section-grid { 
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: var(--section-padding-y);
+        gap: calc(var(--section-padding-y) * 0.8);
     }
     .section.preview-section {
         padding: var(--section-padding-y) calc(var(--container-padding) * 1.5); 
