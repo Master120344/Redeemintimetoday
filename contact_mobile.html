@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Redeeming Time Today</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Link to global styles -->
+    <link rel="stylesheet" href="css/index_mobile.css">
+    <!-- Link to contact-specific styles -->
+    <link rel="stylesheet" href="css/contact_mobile.css">
+</head>
+<body>
+
+    <div class="site-preloader" id="sitePreloader">
+        <div class="preloader-logo">
+            <svg viewBox="0 0 150 60" xmlns="http://www.w3.org/2000/svg" width="120" height="48">
+                 <defs>
+                    <linearGradient id="preloadStarGradientSimpleContact" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="var(--color-accent-light)" />
+                        <stop offset="100%" stop-color="var(--color-accent)" />
+                    </linearGradient>
+                </defs>
+                <text x="75" y="25" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Redeeming Time</text>
+                <text x="75" y="40" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Today</text>
+                <polygon points="75,48 72,52 75,56 78,52" fill="url(#preloadStarGradientSimpleContact)" />
+            </svg>
+        </div>
+        <div class="preloader-progress"><div class="preloader-bar"></div></div>
+    </div>
+
+    <header class="site-header" id="siteHeader">
+        <div class="container header__container">
+            <a href="index_mobile.html" class="header__logo-link" aria-label="Redeeming Time Today Home">
+                <img src="assets/logo.jpg" alt="Redeeming Time Today Logo" class="header__logo-image">
+            </a>
+            <button id="menuToggle" class="header__menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <ul class="mobile-nav__list">
+            <li><a href="index_mobile.html" class="mobile-nav__link">Home</a></li>
+            <li><a href="about_mobile.html" class="mobile-nav__link">About Us</a></li>
+            <li><a href="mission_mobile.html" class="mobile-nav__link">Our Mission</a></li>
+            <li><a href="services_mobile.html" class="mobile-nav__link">Services</a></li>
+            <li><a href="impact_mobile.html" class="mobile-nav__link">Impact</a></li>
+            <li><a href="events_mobile.html" class="mobile-nav__link">Events</a></li>
+            <li><a href="shop_mobile.html" class="mobile-nav__link">Shop</a></li>
+            <li><a href="donate_mobile.html" class="mobile-nav__link">Donate</a></li>
+            <li><a href="get_involved_mobile.html" class="mobile-nav__link">Get Involved</a></li>
+            <li><a href="contact_mobile.html" class="mobile-nav__link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="site-overlay" id="siteOverlay"></div>
+
+    <main id="mainContent">
+        <section id="contact-hero" class="section contact-hero">
+            <div class="container">
+                <h1 class="section__title">Connect With Redeeming Time Today</h1>
+                <p class="contact-hero__intro">We are here to listen, support, and collaborate. Whether you have a question, need assistance, or want to explore partnership opportunities, reach out to us.</p>
+            </div>
+        </section>
+
+        <section id="general-contact" class="section contact-form-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info animate-on-scroll" data-animation="fade-in-left">
+                        <h2 class="contact-subsection-title">Get In Touch</h2>
+                        <p>Your inquiries are important to Redeeming Time Today. Please use the form for general questions or feedback. For urgent needs, refer to the contact details below.</p>
+                        <ul class="contact-details-list">
+                            <li><i class="fas fa-map-marker-alt"></i> <span>123 Redemption Way, Hope City, NJ 07001 (Example)</span></li>
+                            <li><i class="fas fa-phone"></i> <a href="tel:+11234567890">(123) 456-7890</a></li>
+                            <li><i class="fas fa-envelope"></i> <a href="mailto:rob@redeemingthetimetoday.org">rob@redeemingthetimetoday.org</a></li>
+                        </ul>
+                        <div class="contact-social-links">
+                            <h4 class="social-links-title">Follow Our Journey:</h4>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+
+                    <form id="generalContactForm" class="contact-form animate-on-scroll" data-animation="fade-in-right" data-delay="0.1s">
+                        <div class="form-group">
+                            <input type="text" id="generalName" name="generalName" required placeholder=" ">
+                            <label for="generalName">Your Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="generalEmail" name="generalEmail" required placeholder=" ">
+                            <label for="generalEmail">Your Email</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="generalSubject" name="generalSubject" placeholder=" ">
+                            <label for="generalSubject">Subject (Optional)</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="generalMessage" name="generalMessage" rows="5" required placeholder=" " maxlength="1000"></textarea>
+                            <label for="generalMessage">Your Message</label>
+                            <div class="char-counter" id="generalMessageCharCount">0 / 1000</div>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full-width">Send Message <i class="fas fa-paper-plane btn__icon"></i></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="partner-with-us" class="section contact-form-section section--alt-bg">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__kicker">Collaborate for Impact</span>
+                    <h2 class="section__title">Partner With Redeeming Time Today</h2>
+                </div>
+                <div class="partner-intro-text animate-on-scroll" data-animation="fade-in-up">
+                    <p>Redeeming Time Today believes in the power of partnership to amplify our impact and reach more individuals in need. We welcome collaborations with businesses, community organizations, educational institutions, and individuals who share our vision of empowerment and positive change. Whether it is through event sponsorship, program collaboration, resource sharing, or innovative initiatives, let us explore how we can work together.</p>
+                </div>
+                <form id="partnershipForm" class="contact-form partnership-form animate-on-scroll" data-animation="fade-in-up" data-delay="0.1s">
+                     <h3 class="form-section-title">Partnership Inquiry</h3>
+                    <div class="form-group">
+                        <input type="text" id="partnerName" name="partnerName" required placeholder=" ">
+                        <label for="partnerName">Your Name / Organization Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="partnerEmail" name="partnerEmail" required placeholder=" ">
+                        <label for="partnerEmail">Contact Email</label>
+                    </div>
+                     <div class="form-group">
+                        <input type="text" id="partnerPhone" name="partnerPhone" placeholder=" ">
+                        <label for="partnerPhone">Contact Phone (Optional)</label>
+                    </div>
+                    <div class="form-group">
+                        <select id="partnershipType" name="partnershipType">
+                            <option value="">Type of Partnership Interest (Optional)</option>
+                            <option value="event_sponsorship">Event Sponsorship</option>
+                            <option value="program_collaboration">Program Collaboration</option>
+                            <option value="corporate_giving">Corporate Giving / CSR</option>
+                            <option value="resource_sharing">Resource / In-Kind Donation</option>
+                            <option value="community_initiative">Joint Community Initiative</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="partnershipMessage" name="partnershipMessage" rows="6" required placeholder=" " maxlength="1500"></textarea>
+                        <label for="partnershipMessage">Tell us about your partnership idea or how you would like to collaborate with Redeeming Time Today</label>
+                        <div class="char-counter" id="partnershipMessageCharCount">0 / 1500</div>
+                    </div>
+                    <button type="submit" class="btn btn--accent btn--full-width">Submit Partnership Inquiry <i class="fas fa-handshake btn__icon"></i></button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Optional: Map Section -->
+        <!-- 
+        <section id="map-location" class="section map-section">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">Find Us</h2>
+                </div>
+                <div class="map-embed-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2000000000003!2d-74.00594138459365!3d40.71277597933194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDA4JzU4LjAiTiA3NMKwMDAnMzUuMCJX!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Our Location"></iframe>
+                </div>
+            </div>
+        </section>
+        -->
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer__container">
+            <div class="footer__main">
+                <div class="footer__about">
+                    <svg class="footer__logo-svg" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+                        <text x="100" y="25" font-family="Merriweather, serif" font-size="14" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Redeeming Time Today</text>
+                        <polygon points="175,18 173,21 175,24 177,21" fill="var(--color-accent)" />
+                    </svg>
+                    <p>Empowering change, one moment at a time. Join us in building a community of hope and purpose under Redeeming Time Today.</p>
+                     <div class="footer__social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer__links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about_mobile.html">About Us</a></li>
+                        <li><a href="mission_mobile.html">Our Mission</a></li>
+                        <li><a href="services_mobile.html">Services</a></li>
+                        <li><a href="impact_mobile.html">Impact</a></li>
+                        <li><a href="events_mobile.html">Events</a></li>
+                        <li><a href="shop_mobile.html">Shop</a></li>
+                        <li><a href="donate_mobile.html">Donate</a></li>
+                        <li><a href="get_involved_mobile.html">Get Involved</a></li>
+                        <li><a href="privacy_policy_mobile.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer__newsletter">
+                    <h4>Stay Connected</h4>
+                    <p>Get updates from Redeeming Time Today on our work and stories of transformation.</p>
+                    <form id="newsletterFormContact" class="newsletter-form">
+                        <input type="email" name="newsletter_email_contact" placeholder="Your email address" required>
+                        <button type="submit" aria-label="Subscribe"><i class="fas fa-envelope"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>© <span id="footerYearContact"></span> Redeeming Time Today. All Rights Reserved. Crafted with <i class="fas fa-heart footer__heart"></i> and purpose.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top of page">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Link to global JS -->
+    <script src="js/index_mobile.js"></script>
+    <!-- Link to contact-specific JS -->
+    <script src="js/contact_mobile.js"></script>
+</body>
+</html>
