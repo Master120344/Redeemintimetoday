@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     obs.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" }); 
+        }, { threshold: 0.05, rootMargin: "0px 0px -20px 0px" }); // Adjusted threshold and rootMargin
         animatedElements.forEach(el => observer.observe(el));
     } else {
         animatedElements.forEach(el => el.classList.add('is-visible'));
