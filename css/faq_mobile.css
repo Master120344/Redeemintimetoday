@@ -1,0 +1,151 @@
+/* --- FAQ Page Specific Styles --- */
+
+/* FAQ Hero Section */
+.faq-hero {
+    background-color: var(--color-primary-light); /* Using a calm, informative color */
+    color: var(--color-text-on-dark-bg);
+    text-align: center;
+    padding-top: calc(var(--header-height-mobile) + var(--section-padding-y) / 2);
+    padding-bottom: calc(var(--section-padding-y) / 1.5);
+}
+
+.faq-hero .section__title {
+    color: var(--color-text-on-dark-bg);
+    margin-bottom: 0.5em;
+}
+
+.faq-hero__intro {
+    font-size: clamp(1rem, 2.8vw, 1.2rem);
+    color: var(--color-text-on-dark-bg-muted);
+    max-width: 750px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* FAQ List Section */
+.faq-list-section {
+    background-color: var(--color-surface-solid); /* White background for FAQ content */
+    padding-bottom: calc(var(--section-padding-y) * 1.5); /* More bottom padding */
+}
+
+.faq-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    overflow: hidden; /* To contain border-radius with items */
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--color-border);
+}
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-question {
+    background-color: transparent; /* Match .faq-list-section background */
+    color: var(--color-text-dark);
+    cursor: pointer;
+    padding: 1.2rem 1.5rem;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color var(--transition-fast);
+}
+.faq-question:hover, .faq-question:focus {
+    background-color: #f8f9fa; /* Slight hover/focus background */
+}
+.faq-question span {
+    flex-grow: 1;
+    padding-right: 1rem; /* Space before icon */
+}
+.faq-icon {
+    font-size: 1rem;
+    color: var(--color-accent-dark);
+    transition: transform 0.3s ease-in-out;
+    flex-shrink: 0;
+}
+.faq-question[aria-expanded="true"] .faq-icon {
+    transform: rotate(45deg); /* Rotates plus to an X */
+}
+
+.faq-answer {
+    padding: 0 1.5rem 1.5rem 1.5rem; /* Padding for content, no top padding as it's handled by question */
+    background-color: #fdfdff; /* Very slightly off-white for answer panel */
+    color: var(--color-text-light);
+    line-height: 1.7;
+    overflow: hidden; /* Needed for transition */
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out, padding-bottom 0.4s ease-in-out;
+}
+.faq-answer[hidden] {
+    display: block !important; /* Override default 'hidden' to allow transition */
+    /* max-height, opacity, and padding are controlled by JS toggle */
+}
+
+.faq-question[aria-expanded="true"] + .faq-answer {
+    max-height: 1000px; /* Large enough to fit content */
+    opacity: 1;
+    padding-bottom: 1.5rem;
+}
+
+.faq-answer p {
+    margin-bottom: 1em;
+    font-size: 0.95rem;
+}
+.faq-answer p:last-child {
+    margin-bottom: 0;
+}
+.faq-answer a {
+    color: var(--color-secondary);
+    font-weight: 500;
+    text-decoration: underline;
+}
+.faq-answer a:hover {
+    color: var(--color-secondary-light);
+    text-decoration: none;
+}
+
+/* More Questions CTA */
+.faq-more-questions {
+    margin-top: 3rem;
+    padding: 2rem;
+    text-align: center;
+    background-color: #f8f9fa; /* Light background for this CTA box */
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+}
+.faq-more-questions h3 {
+    color: var(--color-primary-dark);
+    margin-bottom: 0.75em;
+}
+.faq-more-questions p {
+    color: var(--color-text-light);
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+    .faq-question {
+        font-size: 1.2rem;
+        padding: 1.5rem 2rem;
+    }
+    .faq-answer {
+        padding: 0 2rem 2rem 2rem;
+    }
+    .faq-question[aria-expanded="true"] + .faq-answer {
+        padding-bottom: 2rem;
+    }
+    .faq-answer p {
+        font-size: 1rem;
+    }
+}
