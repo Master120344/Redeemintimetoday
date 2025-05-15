@@ -3,30 +3,32 @@
     --font-heading: 'Merriweather', serif;
     --font-body: 'Poppins', sans-serif;
 
-    --color-primary: #2C3E50; /* Charcoal Blue */
+    --color-primary: #2C3E50; 
     --color-primary-dark: #1A252F;
     --color-primary-light: #34495E; 
 
-    --color-secondary: #3498DB; /* Peter River Blue */
+    --color-secondary: #3498DB; 
     --color-secondary-light: #5DADE2; 
 
-    --color-accent: #F39C12; /* Orange/Gold */
-    --color-accent-light: #F1C40F; /* Sunflower */
-    --color-accent-dark: #E67E22; /* Carrot */
-    --color-plant-green: #2ECC71; /* Emerald Green for plant icon */
+    --color-accent: #F39C12; 
+    --color-accent-light: #F1C40F; 
+    --color-accent-dark: #E67E22; 
 
-    --color-background: #E4E9EF; /* Light Bluish Gray */
-    --color-surface: #FFFFFF; /* White for cards */
+    /* --color-background is now set on body with an image */
+    --color-surface: rgba(255, 255, 255, 0.92); /* Semi-transparent white for content cards on image bg */
+    --color-surface-solid: #FFFFFF; /* Solid white for elements needing full opacity */
     --color-border: #D1D9E0; 
 
     --color-text-dark: #2C3E50; 
     --color-text-light: #566573; 
-    --color-text-on-dark: #ECF0F1; /* Clouds */
-    --color-text-on-dark-muted: #BDC3C7; /* Silver */
+    --color-text-on-dark: #ECF0F1; 
+    --color-text-on-dark-muted: #BDC3C7; 
+    --color-text-on-global-bg: #FFFFFF; /* For text directly on the new body background */
+    --color-text-on-global-bg-muted: #E0E0E0;
 
-    --shadow-sm: 0 2px 5px rgba(44, 62, 80, 0.08);
-    --shadow-md: 0 5px 15px rgba(44, 62, 80, 0.12);
-    --shadow-lg: 0 10px 30px rgba(44, 62, 80, 0.15);
+    --shadow-sm: 0 2px 5px rgba(44, 62, 80, 0.1); /* Adjusted shadow for better visibility on image bg */
+    --shadow-md: 0 5px 15px rgba(44, 62, 80, 0.15);
+    --shadow-lg: 0 10px 30px rgba(44, 62, 80, 0.2);
 
     --header-height-mobile: 70px; 
     --header-height-desktop: 80px;
@@ -38,6 +40,11 @@
 
     --container-padding: 15px;
     --section-padding-y: 60px; 
+
+    /* Path to the new global background image */
+    --global-background-image-url: url('https://images.unsplash.com/photo-1505051508008-923feaf90180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGF0aCUyMGxpZ2h0fGVufDB8fDB8fHww&auto=format&fit=crop&w=1920&q=85');
+    /* Path to the hero background image (logo.jpg) */
+    --hero-background-image-url: url('../assets/logo.jpg'); /* Relative path to assets folder */
 }
 
 /* --- Global Reset & Base Styles --- */
@@ -53,20 +60,35 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scrollbar-width: thin;
-    scrollbar-color: var(--color-accent) var(--color-background);
+    scrollbar-color: var(--color-accent) #ccc; /* Adjusted scrollbar track for new bg */
 }
 html::-webkit-scrollbar { width: 8px; }
-html::-webkit-scrollbar-track { background: var(--color-background); }
-html::-webkit-scrollbar-thumb { background-color: var(--color-accent); border-radius: 10px; border: 2px solid var(--color-background); }
+html::-webkit-scrollbar-track { background: #ccc; } /* Light grey track */
+html::-webkit-scrollbar-thumb { background-color: var(--color-accent); border-radius: 10px; border: 2px solid #ccc; }
 
 body {
     font-family: var(--font-body);
     line-height: 1.65;
-    color: var(--color-text-dark);
-    background-color: var(--color-background);
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    color: var(--color-text-dark); /* Default text color for content on --color-surface */
+    background-image: var(--global-background-image-url);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Creates the parallax-like effect for the whole page */
+    overflow-x: hidden; 
     position: relative; 
 }
+body::before { /* Optional: Add a subtle overlay to the body background for better text contrast on some sections */
+    content: '';
+    position: fixed; /* Fixed to cover viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 20, 30, 0.35); /* Subtle dark overlay */
+    z-index: -1; /* Behind all content */
+}
+
 body.no-scroll { overflow: hidden; } 
 
 /* --- Typography --- */
@@ -74,7 +96,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 700;
     line-height: 1.3;
-    color: var(--color-primary);
+    color: var(--color-primary); /* Default for on-surface text */
     margin-bottom: 0.6em; 
 }
 h1 { font-size: clamp(2.2rem, 5.5vw, 3.5rem); }
@@ -82,7 +104,25 @@ h2 { font-size: clamp(1.8rem, 4.5vw, 2.75rem); }
 h3 { font-size: clamp(1.4rem, 3.5vw, 2rem); }
 h4 { font-size: clamp(1.2rem, 3vw, 1.6rem); font-family: var(--font-body); font-weight: 600;}
 
-p { margin-bottom: 1.25em; font-size: 1rem; color: var(--color-text-light); }
+/* Specific text colors for elements directly on the new global background */
+.section__title--on-global-bg {
+    color: var(--color-text-on-global-bg) !important;
+}
+.text--on-global-bg {
+    color: var(--color-text-on-global-bg-muted) !important;
+}
+.text--on-global-bg strong, .section__title--on-global-bg strong {
+    color: var(--color-accent-light); /* Brighter strong text */
+}
+.text--on-global-bg a {
+    color: var(--color-accent-light);
+}
+.text--on-global-bg a:hover {
+    color: var(--color-surface-solid);
+}
+
+
+p { margin-bottom: 1.25em; font-size: 1rem; color: var(--color-text-light); } /* Default for on-surface */
 a { text-decoration: none; color: var(--color-accent-dark); transition: color var(--transition-base); }
 a:hover, a:focus { color: var(--color-accent); outline-offset: 2px; }
 strong { font-weight: 600; color: var(--color-primary); }
@@ -102,25 +142,33 @@ blockquote footer { font-size: 0.9em; color: var(--color-text-light); text-align
 /* --- Layout & Helpers --- */
 .container {
     width: 90%;
-    max-width: 1140px; /* Added max-width to prevent overflow on larger mobile screens */
+    max-width: 1140px; 
     margin-left: auto;
     margin-right: auto;
     padding-left: var(--container-padding);
     padding-right: var(--container-padding);
 }
-/* Ensure all direct children of body or main that might cause overflow are constrained */
 main, .section, .container, .site-footer .container, .site-header .container {
-    max-width: 100%; /* This should prevent overflow for these specific containers */
+    max-width: 100%; 
 }
-
 
 .section {
     padding-top: var(--section-padding-y);
     padding-bottom: var(--section-padding-y);
     position: relative; 
-    overflow: hidden; /* Add overflow hidden to sections to help contain elements */
+    overflow: hidden; 
 }
-.about-preview, .contact-preview { background-color: var(--color-surface); } 
+/* Sections that will have a distinct card-like background on the new global body background */
+.content-preview { 
+    background-color: var(--color-surface); 
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--section-padding-y); /* Add margin between these distinct sections */
+}
+.content-preview:last-of-type {
+    margin-bottom: 0; /* No bottom margin for the last preview section */
+}
+
 
 .section__header {
     text-align: center;
@@ -136,18 +184,18 @@ main, .section, .container, .site-footer .container, .site-header .container {
     font-size: 0.9rem;
     margin-bottom: 0.5em;
 }
-.section__title--light { color: var(--color-text-on-dark) !important; }
-.section__overlay {
+.section__title--light { color: var(--color-text-on-dark) !important; } /* For text on dark explicit backgrounds, like header or hero overlay */
+.section__overlay { /* For specific sections that need their own overlay, e.g., hero */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(44, 62, 80, 0.75); 
+    background-color: rgba(44, 62, 80, 0.65); /* Default overlay for sections */
     z-index: 0;
 }
-.section__overlay--accent { background-color: rgba(243, 156, 18, 0.85); } 
-.parallax-section .container { position: relative; z-index: 1; }
+.section__overlay--accent { background-color: rgba(243, 156, 18, 0.75); } 
+
 
 /* --- Buttons --- */
 .btn {
@@ -172,16 +220,16 @@ main, .section, .container, .site-footer .container, .site-header .container {
 .btn--accent:hover, .btn--accent:focus { background-color: var(--color-accent-dark); color: var(--color-primary-dark); }
 .btn--secondary { background-color: var(--color-secondary); color: var(--color-text-on-dark); }
 .btn--secondary:hover, .btn--secondary:focus { background-color: var(--color-secondary-light); }
-.btn--light { background-color: var(--color-surface); color: var(--color-primary); }
-.btn--light:hover, .btn--light:focus { background-color: #f8f9fa; } 
+.btn--light { background-color: var(--color-surface-solid); color: var(--color-primary); } /* Solid white for light buttons on image bg */
+.btn--light:hover, .btn--light:focus { background-color: #f0f0f0; } 
 .btn--outline-light {
     background-color: transparent;
-    color: var(--color-text-on-dark);
-    border-color: var(--color-text-on-dark);
+    color: var(--color-text-on-global-bg); /* Text for on global bg */
+    border-color: var(--color-text-on-global-bg);
 }
 .btn--outline-light:hover, .btn--outline-light:focus {
-    background-color: var(--color-text-on-dark);
-    color: var(--color-primary);
+    background-color: var(--color-text-on-global-bg);
+    color: var(--color-primary-dark);
 }
 .btn__icon { margin-left: 0.6em; }
 
@@ -227,16 +275,16 @@ main, .section, .container, .site-footer .container, .site-header .container {
     left: 0;
     width: 100%;
     height: var(--header-height-mobile);
-    background-color: rgba(255, 255, 255, 0.9); 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.85); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     box-shadow: var(--shadow-sm);
     z-index: 999;
     transition: transform var(--transition-base), background-color var(--transition-base), box-shadow var(--transition-base);
 }
 .site-header.header--hidden { transform: translateY(-100%); }
 .site-header.header--scrolled {
-    background-color: rgba(255, 255, 255, 0.98); 
+    background-color: rgba(255, 255, 255, 0.95); 
     box-shadow: var(--shadow-md);
 }
 .header__container {
@@ -248,57 +296,49 @@ main, .section, .container, .site-footer .container, .site-header .container {
 .header__logo-area {
     display: flex;
     align-items: center;
-    gap: 8px; /* Space between text and icon */
 }
 .header__logo-text-link {
     font-family: var(--font-heading);
-    font-size: clamp(1.1rem, 3.5vw, 1.4rem); /* Responsive font size */
+    font-size: clamp(1.2rem, 4vw, 1.5rem); 
     font-weight: 700;
     color: var(--color-primary);
     text-decoration: none;
     transition: color var(--transition-fast);
+    letter-spacing: -0.5px; /* Slightly tighter spacing */
 }
 .header__logo-text-link:hover {
     color: var(--color-accent-dark);
 }
-.header__logo-plant-icon {
-    width: 26px; /* Adjusted size */
-    height: 26px; /* Adjusted size */
-    fill: var(--color-plant-green); /* Using the new green color */
-    display: inline-block; /* For alignment */
-    vertical-align: middle; /* Align with text */
-    margin-bottom: 2px; /* Fine-tune alignment */
-}
-
 
 /* Hamburger Menu Toggle */
 .header__menu-toggle {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 12px 8px; /* Adjust padding for touch target vs visual size */
+    padding: 10px; /* Clickable area */
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Adjusted for bar height */
-    width: 40px;  /* Increased width */
-    height: 36px; /* Increased height to make it feel more substantial */
+    justify-content: space-around; /* Better spacing for bars */
+    width: 44px;  /* Larger width */
+    height: 44px; /* Larger height for better touch */
     z-index: 1001;
-    position: relative; /* For potential absolute positioning of bars if needed for complex animations */
+    position: relative; 
 }
 .menu-toggle__bar {
     display: block;
-    width: 100%;
-    height: 4px; /* Thicker bars */
+    width: 30px; /* Actual bar width */
+    height: 3.5px; /* Slightly thicker bars */
     background-color: var(--color-primary);
-    border-radius: 4px; /* Rounded bars */
+    border-radius: 3px; 
     transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+    margin: 0 auto; /* Center bars if toggle button is wider */
 }
 .header__menu-toggle.is-active .menu-toggle__bar:nth-child(1) { 
-    transform: rotate(45deg) translate(8px, 8px); /* Adjusted for thicker bars and size */
+    transform: translateY(8.5px) rotate(45deg); /* Adjusted for bar height and spacing */
 }
 .header__menu-toggle.is-active .menu-toggle__bar:nth-child(2) { opacity: 0; }
 .header__menu-toggle.is-active .menu-toggle__bar:nth-child(3) { 
-    transform: rotate(-45deg) translate(7px, -7px); /* Adjusted for thicker bars and size */
+    transform: translateY(-8.5px) rotate(-45deg); /* Adjusted for bar height and spacing */
 }
 
 
@@ -322,10 +362,10 @@ main, .section, .container, .site-footer .container, .site-header .container {
 .mobile-nav__list { margin-bottom: auto; } 
 .mobile-nav__link {
     display: block;
-    padding: 12px 0;
+    padding: 13px 0; /* Slightly more padding */
     color: var(--color-text-on-dark-muted);
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: 1.3rem; /* Slightly larger font */
     font-weight: 400; 
     transition: color var(--transition-fast), transform var(--transition-fast);
     border-bottom: 1px solid rgba(236, 240, 241, 0.1);
@@ -343,7 +383,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.6); /* Slightly darker overlay */
     z-index: 997; 
     opacity: 0;
     visibility: hidden;
@@ -363,30 +403,21 @@ main, .section, .container, .site-footer .container, .site-header .container {
     color: var(--color-text-on-dark);
     overflow: hidden; 
     padding-top: var(--header-height-mobile); 
+    background-image: var(--hero-background-image-url); /* Using logo.jpg as hero bg */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
 }
-.hero__bg-image-container {
+.hero__overlay { /* Overlay for hero to ensure text readability over logo.jpg */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -2;
+    background: linear-gradient(180deg, rgba(26, 37, 47, 0.6) 0%, rgba(26, 37, 47, 0.85) 100%); /* Adjusted gradient */
+    z-index: 0; /* Behind hero content */
 }
-.hero__bg-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-}
-.hero__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, rgba(44, 62, 80, 0.5) 0%, rgba(26, 37, 47, 0.8) 100%);
-    z-index: -1;
-}
-.hero__content { position: relative; z-index: 1; padding: 0 var(--container-padding); /* Ensure hero content respects container padding */}
+.hero__content { position: relative; z-index: 1; padding: 0 var(--container-padding); }
 .hero__title {
     color: var(--color-text-on-dark);
     margin-bottom: 0.75em;
@@ -435,57 +466,31 @@ main, .section, .container, .site-footer .container, .site-header .container {
     60% { transform: translateX(-50%) translateY(-4px); }
 }
 
-/* --- Preview Sections General Styling --- */
-.about-preview, .mission-preview, .donate-preview, .contact-preview {
+/* --- Preview Sections Styling for New Global Background --- */
+.mission-preview, .donate-preview {
     text-align: center;
+    padding: var(--section-padding-y) var(--container-padding); /* Ensure padding */
+    /* These sections now sit directly on the body's image background */
 }
-.about-preview__content, .mission-preview__text, .donate-preview__text, .contact-preview__content {
+.mission-preview .mission__icon { 
+    color: var(--color-accent-light); /* Brighter icon on dark bg */
+}
+.mission-preview .section__title, .donate-preview .section__title {
+    color: var(--color-text-on-global-bg);
+}
+.mission-preview__text, .donate-preview__text {
+    color: var(--color-text-on-global-bg-muted);
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-}
-.about-preview__content p, .mission-preview__text, .donate-preview__text, .contact-preview__content p {
     font-size: 1.05rem;
     line-height: 1.7;
     margin-bottom: 1.5rem;
 }
-.about-preview__content .btn, .mission-preview .btn, .donate-preview .btn, .contact-preview__content .btn {
-    margin-top: 1rem;
+.mission-preview .btn--light, .donate-preview .btn--light {
+    /* btn--light already styled for light button on dark background */
 }
 
-/* Mission Preview */
-.mission-preview {
-    color: var(--color-text-on-dark);
-    background-color: var(--color-primary-dark); /* Fallback */
-}
-.mission__icon { 
-    font-size: 3.5rem;
-    color: var(--color-accent);
-    margin-bottom: 0.5em;
-    display: inline-block;
-}
-.mission-preview__text { color: var(--color-text-on-dark-muted); }
-
-/* Shop Preview Section - Removed from HTML, styles can be removed if not used elsewhere */
-
-/* Donate Preview */
-.donate-preview {
-    color: var(--color-text-on-dark);
-    background-color: var(--color-secondary); /* Fallback */
-}
-.donate-preview__text { color: var(--color-text-on-dark-muted); }
-
-/* Contact Preview */
-.contact-preview__content p i { margin-right: 0.5em; color: var(--color-accent); }
-
-
-/* --- Parallax Background (General) --- */
-.parallax-section {
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed; /* Parallax effect */
-}
 
 /* --- Form Styling (Example for newsletter form) --- */
 .form-group { 
@@ -500,7 +505,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
     font-family: var(--font-body);
     font-size: 1rem;
     color: var(--color-text-dark);
-    background-color: var(--color-surface); 
+    background-color: var(--color-surface-solid); /* Solid white for inputs */
     transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 .form-group input:focus, .form-group textarea:focus {
@@ -525,7 +530,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
     left: 0.8em;
     font-size: 0.8rem;
     color: var(--color-accent-dark);
-    background-color: var(--color-background); 
+    background-color: var(--color-surface-solid); /* Match input bg for floating label */
     padding: 0 0.3em;
 }
 
@@ -535,7 +540,10 @@ main, .section, .container, .site-footer .container, .site-header .container {
     background-color: var(--color-primary-dark);
     color: var(--color-text-on-dark-muted);
     padding: var(--section-padding-y) 0 0;
+    position: relative; /* To ensure it's above body::before overlay */
+    z-index: 10;
 }
+/* ... rest of footer styles remain the same ... */
 .footer__main {
     display: grid;
     grid-template-columns: 1fr;
@@ -551,21 +559,20 @@ main, .section, .container, .site-footer .container, .site-header .container {
     overflow: visible;
 }
 .footer__about p { font-size: 0.9rem; line-height: 1.6; }
-.footer__social-links { /* Added from contact page for consistency */
+.footer__social-links { 
     margin-top: 1rem;
-    text-align: left; /* Default for footer layout */
+    text-align: left; 
 }
 .footer__social-links a {
     font-size: 1.5rem;
     color: var(--color-text-on-dark-muted);
-    margin: 0 0.8rem 0 0; /* Adjust spacing */
+    margin: 0 0.8rem 0 0; 
     transition: color var(--transition-fast), transform var(--transition-fast);
 }
 .footer__social-links a:hover {
     color: var(--color-accent-light);
     transform: translateY(-2px);
 }
-
 .footer__links h4, .footer__newsletter h4 {
     font-family: var(--font-heading);
     color: var(--color-text-on-dark);
@@ -608,6 +615,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
 .footer__bottom { padding: 1.5rem 0; text-align: center; font-size: 0.85rem; }
 .footer__heart { color: var(--color-accent); transition: color var(--transition-fast); }
 .footer__heart:hover { color: #E74C3C; } 
+
 
 /* --- Scroll to Top Button --- */
 .scroll-top-btn {
@@ -657,18 +665,14 @@ main, .section, .container, .site-footer .container, .site-header .container {
 }
 
 /* --- Media Queries for Responsiveness --- */
-@media (min-width: 768px) { /* Tablet and larger */
+@media (min-width: 768px) { 
     :root {
         --header-height-desktop: 80px;
         --section-padding-y: 80px;
     }
     .site-header { height: var(--header-height-desktop); }
     .header__logo-text-link {
-        font-size: 1.5rem; /* Slightly larger text logo on desktop */
-    }
-     .header__logo-plant-icon {
-        width: 30px;
-        height: 30px;
+        font-size: 1.6rem; 
     }
     .hero { padding-top: var(--header-height-desktop); }
     
@@ -677,7 +681,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
     .newsletter-form { max-width: 100%; }
 }
 
-@media (min-width: 1024px) { /* Desktop */
+@media (min-width: 1024px) { 
     :root { --section-padding-y: 100px; }
     .container { padding-left: 0; padding-right: 0; } 
 }
