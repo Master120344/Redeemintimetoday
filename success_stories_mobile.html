@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Stories - Redeeming Time Today</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/index_mobile.css"> {/* Global Styles */}
+    <link rel="stylesheet" href="css/success_stories_mobile.css"> {/* Page-Specific Styles */}
+</head>
+<body>
+
+    <div class="site-preloader" id="sitePreloader">
+        <div class="preloader-logo">
+            <svg viewBox="0 0 150 60" xmlns="http://www.w3.org/2000/svg" width="120" height="48">
+                <defs>
+                    <linearGradient id="preloadStarGradientSimpleSuccess" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="var(--color-accent-light)" />
+                        <stop offset="100%" stop-color="var(--color-accent)" />
+                    </linearGradient>
+                </defs>
+                <text x="75" y="25" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Redeeming Time</text>
+                <text x="75" y="40" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Today</text>
+                <polygon points="75,48 72,52 75,56 78,52" fill="url(#preloadStarGradientSimpleSuccess)" />
+            </svg>
+        </div>
+        <div class="preloader-progress"><div class="preloader-bar"></div></div>
+    </div>
+
+    <header class="site-header" id="siteHeader">
+        <div class="container header__container">
+            <a href="index_mobile.html" class="header__logo-text-link" aria-label="Redeeming Time Today Home">
+                Redeeming Time Today
+            </a>
+            <button id="menuToggle" class="header__menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <ul class="mobile-nav__list">
+            <li><a href="index_mobile.html" class="mobile-nav__link">Home</a></li>
+            <li><a href="about_mobile.html" class="mobile-nav__link">About Us</a></li>
+            <li><a href="mission_mobile.html" class="mobile-nav__link">Our Mission</a></li>
+            <li><a href="services_mobile.html" class="mobile-nav__link">Services</a></li>
+            <li><a href="impact_mobile.html" class="mobile-nav__link">Impact</a></li>
+            <li><a href="success_stories_mobile.html" class="mobile-nav__link">Success Stories</a></li> {/* New Link */}
+            <li><a href="events_mobile.html" class="mobile-nav__link">Events</a></li>
+            <li><a href="meetings_mobile.html" class="mobile-nav__link">Meetings</a></li>
+            <li><a href="news_blog_mobile.html" class="mobile-nav__link">News & Blog</a></li>
+            <li><a href="shop_mobile.html" class="mobile-nav__link">Shop</a></li>
+            <li><a href="donate_mobile.html" class="mobile-nav__link">Donate</a></li>
+            <li><a href="get_involved_mobile.html" class="mobile-nav__link">Get Involved</a></li>
+            <li><a href="faq_mobile.html" class="mobile-nav__link">FAQ</a></li>
+            <li><a href="contact_mobile.html" class="mobile-nav__link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="site-overlay" id="siteOverlay"></div>
+
+    <main id="mainContent">
+        <section id="stories-hero" class="section stories-hero">
+            <div class="container">
+                <h1 class="section__title">Journeys of Transformation</h1>
+                <p class="stories-hero__intro">Be inspired by the real life stories of individuals whose lives have been positively impacted through the support and community at Redeeming Time Today. Each story is a testament to resilience, hope, and the power of redeeming every moment.</p>
+            </div>
+        </section>
+
+        <section id="stories-grid-section" class="section stories-grid-section">
+            <div class="container">
+                <div class="stories-grid">
+                    {/* Story Card 1 */}
+                    <article class="story-card animate-on-scroll" data-animation="fade-in-up">
+                        <div class="story-card__image-container">
+                            <img src="https://images.unsplash.com/photo-1599230683057-334b3c177458?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cG9ydHJhaXQlMjBzbWlsaW5nJTIwbWFufGVufDB8fDB8fHww&auto=format&fit=crop&w=400&h=400&q=80" alt="Portrait of John D." class="story-card__image">
+                        </div>
+                        <div class="story-card__content">
+                            <h2 class="story-card__name">John D.</h2>
+                            <blockquote class="story-card__quote">
+                                <p>"Before finding Redeeming Time Today, I felt lost and without direction after my release. Their reintegration program didn't just provide resources; it gave me a community that believed in me. Now, I am employed, reconnected with my family, and volunteer as a mentor to help others on their path. Redeeming Time Today helped me find my purpose again."</p>
+                            </blockquote>
+                            <span class="story-card__tag">Reintegration & Mentorship</span>
+                        </div>
+                    </article>
+
+                    {/* Story Card 2 */}
+                    <article class="story-card animate-on-scroll" data-animation="fade-in-up" data-delay="0.1s">
+                         <div class="story-card__image-container">
+                            <img src="https://images.unsplash.com/photo-1541692209941-266551093464?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHBvcnRyYWl0JTIwc21pbGluZyUyMHlvdXRoJTIwZ2lybHxlbnwwfHwwfHx8MA&auto=format&fit=crop&w=400&h=400&q=80" alt="Portrait of Maria S." class="story-card__image">
+                        </div>
+                        <div class="story-card__content">
+                            <h2 class="story-card__name">Maria S.</h2>
+                             <blockquote class="story-card__quote">
+                                <p>"The youth empowerment workshops at Redeeming Time Today were a game changer for me. I learned valuable life skills, gained confidence, and connected with mentors who genuinely cared about my future. I am now pursuing my college degree and feel equipped to overcome any obstacle. Thank you, Redeeming Time Today, for showing me what's possible!"</p>
+                            </blockquote>
+                            <span class="story-card__tag">Youth Empowerment</span>
+                        </div>
+                    </article>
+
+                    {/* Story Card 3 */}
+                    <article class="story-card animate-on-scroll" data-animation="fade-in-up" data-delay="0.2s">
+                         <div class="story-card__image-container">
+                             <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cHJvZmVzc2lvbmFsJTIwbWFufGVufDB8fDB8fHww&auto=format&fit=crop&w=400&h=400&q=80" alt="Portrait of David K." class="story-card__image">
+                        </div>
+                        <div class="story-card__content">
+                            <h2 class="story-card__name">David K.</h2>
+                            <blockquote class="story-card__quote">
+                                <p>"As someone who struggled with addiction for years, the recovery support meetings and holistic development programs at Redeeming Time Today were my lifeline. They provided a safe, non judgmental space for healing and growth. Today, I am sober, healthy, and actively contributing to my community. My time is truly redeemed."</p>
+                            </blockquote>
+                            <span class="story-card__tag">Recovery & Holistic Growth</span>
+                        </div>
+                    </article>
+                     {/* Add more stories as needed */}
+                </div>
+
+                <div class="stories-cta-section animate-on-scroll" data-animation="fade-in" data-delay="0.3s">
+                    <h2>Share Your Story of Redeemed Time</h2>
+                    <p>Your journey can inspire hope and courage in others. If Redeeming Time Today has made a positive impact on your life, or the life of someone you know, we would be honored to hear from you. Your story matters.</p>
+                    <a href="contact_mobile.html?subject=ShareMySuccessStory" class="btn btn--accent">Share Your Story <i class="fas fa-pen-fancy btn__icon"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer__container">
+            <div class="footer__main">
+                <div class="footer__about">
+                    <svg class="footer__logo-svg" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+                        <text x="100" y="25" font-family="Merriweather, serif" font-size="14" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Redeeming Time Today</text>
+                    </svg>
+                    <p>Empowering change, one moment at a time. Join us in building a community of hope and purpose under Redeeming Time Today.</p>
+                     <div class="footer__social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="X (formerly Twitter)"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer__links">
+                    <h4>Explore More</h4>
+                    <ul>
+                        <li><a href="meetings_mobile.html">Meetings</a></li>
+                        <li><a href="resources_mobile.html">Resources</a></li>
+                        <li><a href="programs_mobile.html">Our Programs</a></li>
+                        <li><a href="success_stories_mobile.html">Success Stories</a></li>
+                        <li><a href="news_blog_mobile.html">News & Blog</a></li>
+                        <li><a href="faq_mobile.html">FAQ</a></li>
+                        <li><a href="privacy_policy_mobile.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer__newsletter">
+                    <h4>Stay Connected</h4>
+                    <p class="footer__newsletter-text">Get updates from Redeeming Time Today on our work and stories of transformation.</p>
+                    <form id="newsletterFormSuccess" class="newsletter-form">
+                        <input type="email" name="newsletter_email_success" placeholder="Your email address" required class="newsletter-form__input">
+                        <button type="submit" class="btn btn--accent newsletter-form__button">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>© <span id="footerYearSuccess"></span> Redeeming Time Today. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top of page">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/index_mobile.js"></script>
+    <script src="js/success_stories_mobile.js"></script>
+</body>
+</html>
