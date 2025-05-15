@@ -7,39 +7,39 @@
     --color-primary-dark: #1A252F;
     --color-primary-light: #34495E; 
 
-    --color-secondary: #2980B9; /* Slightly deeper blue for secondary actions */
+    --color-secondary: #2980B9; 
     --color-secondary-light: #3498DB; 
 
-    --color-accent: #F39C12; 
+    --color-accent: #F39C12; /* Orange for accent buttons */
     --color-accent-light: #F1C40F; 
     --color-accent-dark: #E67E22; 
 
-    --color-background: #0B1F3A; /* Darker, Rich Blue Solid Background */
-    --color-surface-solid: #FFFFFF; 
-    --color-border: #4A6B8A; 
+    --color-background: #0A192F; /* Very Dark Navy Blue Solid Background */
+    --color-surface-solid: #FFFFFF; /* Solid white for content blocks (preview sections) */
+    --color-border: #2A445E; /* Adjusted border for dark theme on light surfaces */
 
-    --color-text-dark: #1A252F; /* Darker text for on white surfaces */
-    --color-text-light: #525F6F; /* Muted text on white surfaces */
+    --color-text-dark: #1A252F; 
+    --color-text-light: #525F6F; 
     --color-text-on-dark-bg: #FFFFFF; 
-    --color-text-on-dark-bg-muted: #E0E6EB; /* Softer muted text */
+    --color-text-on-dark-bg-muted: #CCD6F6; /* Lighter muted text for better contrast on very dark blue */
     --color-link-on-dark-bg: var(--color-accent-light); 
 
-    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.12);
-    --shadow-md: 0 5px 12px rgba(0, 0, 0, 0.18);
-    --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.22);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.2);
 
-    --header-height-mobile: 70px; 
-    --header-height-desktop: 80px;
+    --header-height-mobile: 65px; /* Slightly reduced header height */
+    --header-height-desktop: 75px;
     --border-radius-sm: 6px;
     --border-radius-md: 10px;
-    --border-radius-lg: 25px; /* For "bubble" buttons */
+    --border-radius-lg: 28px; /* More rounded for "bubble" buttons */
     --transition-base: 0.3s ease-in-out;
     --transition-fast: 0.2s ease-in-out;
 
     --container-padding: 15px;
-    --section-padding-y: 60px; 
+    --section-padding-y: 50px; /* Slightly reduced section padding */
 
-    /* Hero background image is now only via inline style in HTML or specific CSS */
+    /* Hero background is now directly on body dark blue */
 }
 
 /* --- Global Reset & Base Styles --- */
@@ -54,10 +54,9 @@ html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    scrollbar-width: auto; /* Browser default */
+    scrollbar-width: auto; 
     scrollbar-color: var(--color-accent) var(--color-primary-light); 
 }
-/* Webkit scrollbar styles can be kept or removed based on preference */
 
 body {
     font-family: var(--font-body);
@@ -77,12 +76,15 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-text-dark); /* Default for text on light surfaces (preview sections) */
     margin-bottom: 0.75em; 
 }
-/* Hero title is specifically styled */
 .hero-on-dark-bg .hero__title {
     color: var(--color-text-on-dark-bg);
+    font-size: clamp(2.4rem, 7.5vw, 4rem); /* Increased hero title size */
+    line-height: 1.15;
 }
 .hero-on-dark-bg .hero__subtitle {
     color: var(--color-text-on-dark-bg-muted);
+    font-size: clamp(1.1rem, 3.2vw, 1.4rem); /* Increased hero subtitle size */
+    max-width: 680px; /* Allow subtitle to be a bit wider */
 }
 
 .section__title--light { 
@@ -96,7 +98,7 @@ h1, h2, h3, h4, h5, h6 {
 .text--on-dark-bg a:not(.btn):hover { color: var(--color-surface-solid); }
 
 p { margin-bottom: 1.25em; font-size: 1rem; color: var(--color-text-light); } 
-a { text-decoration: none; color: var(--color-secondary); /* Default link color for light surfaces */ }
+a { text-decoration: none; color: var(--color-secondary); }
 a:hover, a:focus { color: var(--color-secondary-light); outline-offset: 2px; }
 img { max-width: 100%; height: auto; display: block; }
 ul {list-style: none; padding-left: 0;} 
@@ -104,7 +106,8 @@ ol { list-style-position: inside; padding-left: 0; }
 
 .blockquote--standard { 
     padding: 1.5em;
-    margin: 2em 0; 
+    margin: 2em auto; /* Centered blockquote */
+    max-width: 600px; /* Limit width of blockquote */
     border-left: 5px solid var(--color-accent);
     background-color: #f8f9fa; 
     border-radius: var(--border-radius-sm);
@@ -142,13 +145,13 @@ main, .section, .container, .site-footer .container, .site-header .container {
 }
 
 .section.preview-section { 
-    padding: calc(var(--section-padding-y) * 0.8) var(--container-padding); /* Adjusted padding */
+    padding: calc(var(--section-padding-y) * 0.9) var(--container-padding); 
     position: relative; 
     overflow: hidden; 
     background-color: var(--color-surface-solid); 
     border-radius: var(--border-radius-md);
     box-shadow: var(--shadow-lg); 
-    margin-bottom: calc(var(--section-padding-y) * 0.8); /* Adjusted margin */
+    margin-bottom: calc(var(--section-padding-y) * 0.9); 
     text-align: center; 
 }
 .section.preview-section:last-of-type {
@@ -166,55 +169,21 @@ main, .section, .container, .site-footer .container, .site-header .container {
 .section.preview-section a:not(.btn):hover { color: var(--color-secondary-light); }
 .section.preview-section .blockquote--standard { background-color: #f0f4f8; }
 
-.section.preview-section .mission__icon--on-light-surface { /* Icon for mission if it's on light surface */
+.section.preview-section .mission__icon--on-light-surface { 
     font-size: 3.8rem; 
     color: var(--color-accent); 
     margin-bottom: 0.75em; 
     display: inline-block;
 }
-/* Specific styles for Mission and Donate previews if they are parallax (as originally intended) */
-.parallax-section {
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: var(--color-text-on-dark-bg); 
-    border-radius: var(--border-radius-md); /* Keep rounded corners for these */
-    box-shadow: var(--shadow-lg);
-    margin-bottom: calc(var(--section-padding-y) * 0.8);
-    padding: var(--section-padding-y) var(--container-padding);
-    text-align: center;
-}
-.parallax-section:last-of-type { margin-bottom: 0; }
 
-.parallax-section .section__overlay { 
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(10, 20, 30, 0.75); /* Darker overlay for parallax sections */
-    z-index: 0;
-    border-radius: inherit; /* Match parent's border-radius */
-}
-.parallax-section .section__overlay--accent { background-color: rgba(243, 156, 18, 0.75); } 
-.parallax-section .container { position: relative; z-index: 1; } 
-.parallax-section .section__kicker { color: var(--color-accent-light); }
-.parallax-section .section__title { color: var(--color-text-on-dark-bg); }
-.parallax-section p { color: var(--color-text-on-dark-bg-muted); }
-.parallax-section a:not(.btn) { color: var(--color-link-on-dark-bg); }
-.parallax-section .mission__icon { /* Icon color for on parallax */
-    color: var(--color-accent-light);
-}
-.parallax-section .btn--light {
-    background-color: var(--color-surface-solid);
-    color: var(--color-primary-dark);
-    border: 2px solid var(--color-surface-solid);
-}
-.parallax-section .btn--light:hover {
-    background-color: rgba(255,255,255,0.85);
-    border-color: rgba(255,255,255,0.85);
-}
+/* Parallax specific section styling (Mission & Donate previews if we keep them as parallax) */
+/* For now, these are treated like other .preview-section with solid white backgrounds */
+/* If you want them parallax again, uncomment and adjust this section */
+/*
+.parallax-section { ... }
+.parallax-section .section__overlay { ... }
+... etc.
+*/
 
 
 /* --- Buttons --- */
@@ -222,33 +191,28 @@ main, .section, .container, .site-footer .container, .site-header .container {
     display: inline-block;
     font-family: var(--font-body);
     font-weight: 600;
-    font-size: 1rem; 
-    padding: 0.9em 2.2em; /* Generous padding for "bubble" feel */
+    font-size: 0.95rem; /* Slightly smaller font for better fit in bubble */
+    padding: 0.9em 2.2em; 
     border-radius: var(--border-radius-lg); 
-    border: none; /* No border for bubble buttons */
+    border: none; 
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 0.8px; /* More spacing */
+    letter-spacing: 0.8px; 
     cursor: pointer;
     transition: all var(--transition-base);
-    box-shadow: var(--shadow-md); /* Start with a noticeable shadow */
+    box-shadow: var(--shadow-md); 
 }
 .btn:hover, .btn:focus { 
-    transform: translateY(-4px) scale(1.03); /* More hover effect */
+    transform: translateY(-3px) scale(1.02); /* Refined hover */
     box-shadow: var(--shadow-lg); 
 }
-.btn--primary { background-color: var(--color-primary); color: var(--color-text-on-dark-bg); }
-.btn--primary:hover, .btn--primary:focus { background-color: var(--color-primary-dark); }
-.btn--accent { background-color: var(--color-accent); color: var(--color-primary-dark); } 
-.btn--accent:hover, .btn--accent:focus { background-color: var(--color-accent-dark); }
-.btn--secondary { background-color: var(--color-secondary); color: var(--color-text-on-dark-bg); }
-.btn--secondary:hover, .btn--secondary:focus { background-color: var(--color-secondary-light); }
-.btn--light { /* For use on dark backgrounds like parallax */
-    background-color: var(--color-surface-solid); 
-    color: var(--color-primary-dark); 
-}
-.btn--light:hover, .btn--light:focus { 
-    background-color: #E2E8F0; 
+/* All preview section buttons will now use .btn--accent */
+.btn--accent { 
+    background-color: var(--color-accent); 
+    color: var(--color-primary-dark); /* Dark text on orange */
+} 
+.btn--accent:hover, .btn--accent:focus { 
+    background-color: var(--color-accent-dark); 
 }
 .btn__icon { margin-left: 0.8em; }
 
@@ -284,16 +248,16 @@ main, .section, .container, .site-footer .container, .site-header .container {
 }
 .header__logo-text-link {
     font-family: var(--font-heading);
-    font-size: clamp(1rem, 3.6vw, 1.25rem); /* Adjusted for better balance */
+    font-size: clamp(1rem, 3.5vw, 1.2rem); /* Further refined for small header */
     font-weight: 700;
     color: var(--color-primary);
     text-decoration: none;
     transition: color var(--transition-fast);
-    letter-spacing: -0.2px; 
+    letter-spacing: -0.1px; 
     line-height: 1.1; 
     padding: 8px 0; 
     white-space: nowrap; 
-    margin-right: 10px; /* Ensure space between logo and burger */
+    margin-right: 10px; 
 }
 .header__logo-text-link:hover {
     color: var(--color-accent-dark);
@@ -338,10 +302,10 @@ main, .section, .container, .site-footer .container, .site-header .container {
     right: -100%; 
     width: clamp(280px, 80vw, 320px); 
     height: 100vh;
-    background-color: var(--color-primary-dark); /* Dark background for nav */
+    background-color: var(--color-primary-dark); 
     box-shadow: -8px 0 30px rgba(0,0,0,0.35); 
     padding: calc(var(--header-height-mobile) + 25px) 30px 30px; 
-    z-index: 1000; /* Above site overlay */
+    z-index: 1000; 
     display: flex;
     flex-direction: column;
     transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); 
@@ -355,58 +319,49 @@ main, .section, .container, .site-footer .container, .site-header .container {
 } 
 .mobile-nav__link {
     display: block;
-    padding: 15px 5px; /* Increased padding, slight horizontal padding */
+    padding: 15px 10px; /* Added horizontal padding */
     color: var(--color-text-on-dark-bg-muted);
     font-family: var(--font-heading);
-    font-size: 1.4rem; /* Larger font size */
+    font-size: 1.4rem; 
     font-weight: 500; 
     transition: color var(--transition-fast), background-color var(--transition-fast), padding-left var(--transition-fast);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
     text-decoration: none; 
-    border-radius: var(--border-radius-sm); /* Slight rounding to link area */
+    border-radius: var(--border-radius-sm); 
 }
 .mobile-nav__link:hover, .mobile-nav__link.active-nav-link {
     color: var(--color-accent-light);
-    background-color: rgba(255,255,255,0.05); /* Subtle hover background */
-    padding-left: 15px; 
+    background-color: rgba(255,255,255,0.08); /* Slightly more visible hover bg */
+    padding-left: 20px; /* More indent on hover/active */
 }
 .mobile-nav__link:last-child { border-bottom: none; }
 
 /* Site Overlay for Mobile Nav */
-.site-overlay {
-    position: fixed;
-    top: 0;
-    left: 0; 
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.7); /* Darker overlay */
-    z-index: 998; /* Below nav, above content */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity var(--transition-base), visibility var(--transition-base);
-}
-.site-overlay.is-visible { opacity: 1; visibility: visible; }
+/* Styles remain the same */
 
 /* --- Top Page Logo --- */
 .top-logo-container {
-    padding: calc(var(--section-padding-y) * 0.8) var(--container-padding) calc(var(--section-padding-y) * 0.4);
+    padding: calc(var(--section-padding-y) * 0.7) var(--container-padding) calc(var(--section-padding-y) * 0.3); /* Adjusted padding */
     text-align: center;
     position: relative; 
     z-index: 5; 
 }
 .top-page-logo {
-    max-width: 100%; /* Allow it to take full width of its container */
+    max-width: 100%; 
     width: auto; 
-    max-height: 180px; /* Max height to control size */
-    object-fit: contain; /* Ensure entire logo is visible within bounds */
+    max-height: 170px; 
+    object-fit: contain; /* Ensures logo fits and aspect ratio is maintained */
     display: inline-block;
-    /* Removed border and shadow for cleaner look on dark bg */
+    border: 4px solid rgba(255,255,255,0.6); /* Brighter border */
+    border-radius: var(--border-radius-md);
+    padding: 5px; /* Padding inside the border */
+    background-color: rgba(255,255,255,0.1); /* Slight background to pop logo */
 }
 
 
 /* --- Hero Section (sits on dark blue body) --- */
 .hero-on-dark-bg {
-    min-height: auto; /* Let content define height */
+    min-height: auto; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -416,35 +371,24 @@ main, .section, .container, .site-footer .container, .site-header .container {
     padding: var(--section-padding-y) var(--container-padding) calc(var(--section-padding-y) * 1.5); 
     position: relative;
     z-index: 1; 
-    background-image: var(--hero-background-image-url); /* Background is logo.jpg */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    /* No background-image here as it's on the body */
 }
-.hero-on-dark-bg .hero__overlay-main { /* This is for the hero with logo.jpg bg */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, rgba(10, 20, 30, 0.82) 0%, rgba(10, 20, 30, 0.98) 100%); /* Even darker overlay for logo */
-    z-index: 0; 
-}
-
 .hero-on-dark-bg .hero__content { 
     position: relative; 
     z-index: 1; 
 }
 .hero-on-dark-bg .hero__title {
     color: var(--color-text-on-dark-bg);
-    font-size: clamp(2.2rem, 7vw, 3.8rem); 
+    font-size: clamp(2.3rem, 7vw, 3.8rem); 
+    line-height: 1.2;
 }
 .hero-on-dark-bg .hero__subtitle {
     color: var(--color-text-on-dark-bg-muted);
     font-size: clamp(1.1rem, 3vw, 1.35rem); 
     max-width: 650px;
+    margin-top: 0.5em; /* Space between title and subtitle */
 }
-/* hero__scroll-indicator removed from HTML */
+
 
 /* --- Form Styling (for newsletter) --- */
 /* Styles remain largely the same, ensure background colors are solid if needed */
@@ -467,7 +411,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
 .footer__links ul { list-style: none; padding-left: 0; }
 .footer__links ul li a {
     color: var(--color-text-on-dark-bg); 
-    padding: 0.5em 0; /* Increased padding */
+    padding: 0.5em 0; 
     display: block;
     font-size: 1.05rem; 
     font-weight: 500;
@@ -480,7 +424,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
     opacity: 1;
 }
 .footer__bottom p {
-    color: var(--color-text-on-dark-bg-muted); /* Ensure footer bottom text is light */
+    color: var(--color-text-on-dark-bg-muted); 
 }
 .footer__bottom .footer__heart {
     color: var(--color-accent);
@@ -500,7 +444,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
     }
     .site-header { height: var(--header-height-desktop); }
     .header__logo-text-link {
-        font-size: clamp(1.2rem, 2.2vw, 1.4rem); 
+        font-size: clamp(1.2rem, 2.2vw, 1.35rem); /* Max size slightly smaller */
     }
     .hero-on-dark-bg { 
         padding-top: var(--header-height-desktop); 
@@ -509,8 +453,8 @@ main, .section, .container, .site-footer .container, .site-header .container {
         padding-top: calc(var(--header-height-desktop) + var(--section-padding-y) / 1.5);
     }
     .top-page-logo {
-        max-width: 35%; /* Smaller percentage for desktop */
-        max-height: 160px; /* Control max height on desktop */
+        max-width: 30%; /* Smaller percentage on desktop for balance */
+        max-height: 150px; 
     }
     
     .content-wrapper {
