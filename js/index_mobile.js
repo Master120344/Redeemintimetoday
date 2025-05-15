@@ -99,18 +99,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         topLogoHeight = topLogoContainer.offsetHeight;
                     }
 
-                    // Adjust offset calculation based on target
-                    if (targetId === '#hero') { // If scrolling to the hero section itself
-                        // The hero section is now below the top logo, so offset should account for header
+                    if (targetId === '#hero') { 
                         offset = headerHeight(); 
                     } else if (targetElement.id && targetElement.closest('.preview-section')) {
-                        // If scrolling to a preview section, standard header offset is fine
                          offset = headerHeight();
                     } else if (targetElement.offsetTop < (topLogoHeight + headerHeight() + 20)) {
-                        // Fallback for other elements near the top
                         offset = headerHeight(); 
                     }
-
 
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.scrollY - offset;
