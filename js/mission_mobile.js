@@ -1,47 +1,44 @@
-// This JS file will be very similar to index_mobile.js as most functionality is shared.
-// Specific page interactions for Mission page would go here if needed.
 document.addEventListener('DOMContentLoaded', () => {
     const sitePreloader = document.getElementById('sitePreloader');
     const preloaderBar = document.querySelector('.preloader-bar');
     const siteHeader = document.getElementById('siteHeader');
     const menuToggle = document.getElementById('menuToggle');
     const mobileNav = document.getElementById('mobileNav');
+    const mobileNavCloseBtn = mobileNav ? mobileNav.querySelector('.mobile-nav__close-btn') : null;
     const siteOverlay = document.getElementById('siteOverlay');
-    const navLinks = mobileNav.querySelectorAll('.mobile-nav__link');
+    const navLinks = mobileNav ? mobileNav.querySelectorAll('.mobile-nav__link') : [];
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     
     // --- Site Preloader ---
     if (sitePreloader && preloaderBar) {
         let progress = 0;
-        const intervalTime = 40;
-        const totalTime = 800;
-        const progressIncrement = (intervalTime / totalTime) * 100;
-
+        const intervalTime = 30; // Slightly faster interval
+        // Simulate loading completion, window.load will be the final trigger
         const interval = setInterval(() => {
-            progress += progressIncrement;
+            progress += 5; // Faster progress steps
             preloaderBar.style.width = Math.min(progress, 100) + '%';
             if (progress >= 100) {
                 clearInterval(interval);
-                setTimeout(() => sitePreloader.classList.add('loaded'), 150); 
+                // Wait for window.load to add 'loaded' class for actual content readiness
             }
         }, intervalTime);
 
         window.addEventListener('load', () => {
             clearInterval(interval); 
-            preloaderBar.style.width = '100%';
-            setTimeout(() => {
+            preloaderBar.style.width = '100%'; // Ensure bar is full
+            setTimeout(() => { // Short delay for visual completion
                 sitePreloader.classList.add('loaded');
-            }, 250); 
+            }, 200); 
         });
     }
 
     // --- Header Scroll Behavior ---
     let lastScrollY = window.scrollY;
-    const headerScrollThreshold = 50; 
+    const headerScrollThreshold = 30; // Reduced threshold for quicker effect
     if (siteHeader) {
         window.addEventListener('scroll', () => {
             const currentScrollY = window.scrollY;
-            if (currentScrollY > lastScrollY && currentScrollY > siteHeader.offsetHeight + headerScrollThreshold) {
+            if (currentScrollY > lastScrollY && currentScrollY > (siteHeader.offsetHeight + headerScrollThreshold)) {
                 siteHeader.classList.add('header--hidden');
             } else {
                 siteHeader.classList.remove('header--hidden');
@@ -53,47 +50,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Mobile Navigation ---
     function toggleMobileNav(forceOpen) {
+        if (!menuToggle || !mobileNav || !siteOverlay) return;
         const isOpen = typeof forceOpen === 'boolean' ? forceOpen : !mobileNav.classList.contains('is-open');
+        
         menuToggle.classList.toggle('is-active', isOpen);
         menuToggle.setAttribute('aria-expanded', isOpen.toString());
+        
         mobileNav.classList.toggle('is-open', isOpen);
         mobileNav.setAttribute('aria-hidden', (!isOpen).toString());
+        
         siteOverlay.classList.toggle('is-visible', isOpen);
         document.body.classList.toggle('no-scroll', isOpen);
+
+        if (isOpen) {
+            // Optional: Focus the close button or first link when nav opens
+            if (mobileNavCloseBtn) mobileNavCloseBtn.focus();
+            else if (navLinks.length > 0) navLinks[0].focus();
+        } else {
+            menuToggle.focus(); // Return focus to menu toggle when nav closes
+        }
     }
 
     if (menuToggle && mobileNav && siteOverlay) {
         menuToggle.addEventListener('click', () => toggleMobileNav());
+        if (mobileNavCloseBtn) {
+            mobileNavCloseBtn.addEventListener('click', () => toggleMobileNav(false));
+        }
         siteOverlay.addEventListener('click', () => toggleMobileNav(false));
+        // Close nav on Escape key press
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileNav.classList.contains('is-open')) {
+                toggleMobileNav(false);
+            }
+        });
     }
     
-    // --- Active Nav Link Highlighting for Multi-Page Site ---
-    function updateActiveLinkForMultiPage() {
-        const currentPath = window.location.pathname.split('/').pop() || 'index_mobile.html';
+    // --- Active Nav Link Highlighting ---
+    function updateActiveLink() {
+        if (!navLinks.length) return;
+        const currentPath = window.location.pathname.split('/').pop() || 'index_mobile.html'; // Default to index if path is '/'
         navLinks.forEach(link => {
-            const linkPath = link.getAttribute('href').split('/').pop();
+            const linkHref = link.getAttribute('href');
+            if (!linkHref) return;
+            const linkPath = linkHref.split('/').pop() || (linkHref === '/' || linkHref === './' ? 'index_mobile.html' : '');
             link.classList.toggle('active-nav-link', linkPath === currentPath);
         });
     }
-    if (navLinks.length > 0) {
-        updateActiveLinkForMultiPage(); // Call on page load to highlight current page
-    }
+    updateActiveLink(); // Call on page load
 
-    // --- Smooth Scroll for On-Page Anchors (if any on this page) ---
-    // This Mission page doesn't have on-page anchors, but keeping for consistency
-    const headerHeight = () => siteHeader ? siteHeader.offsetHeight : 0;
+    // --- Smooth Scroll for On-Page Anchors ---
+    // (Not used on this specific page based on HTML, but good to keep for global script consistency)
+    const getHeaderHeight = () => siteHeader ? siteHeader.offsetHeight : 0;
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-            if (targetId.length > 1 && targetId.startsWith('#')) {
+            if (targetId.length > 1 && targetId.startsWith('#')) { // Ensure it's not just "#"
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     e.preventDefault();
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.scrollY - headerHeight();
+                    const offsetPosition = targetElement.getBoundingClientRect().top + window.scrollY - getHeaderHeight() - 10; // 10px extra offset
 
                     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                    if (mobileNav.classList.contains('is-open')) {
+                    if (mobileNav && mobileNav.classList.contains('is-open')) {
                         toggleMobileNav(false);
                     }
                 }
@@ -103,33 +121,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Intersection Observer for Animations ---
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
-    if (animatedElements.length > 0) {
+    if (animatedElements.length > 0 && 'IntersectionObserver' in window) {
         const observerOptions = {
-            threshold: 0.15, 
-            rootMargin: "0px 0px -60px 0px" 
+            threshold: 0.1, // Start animation earlier
+            rootMargin: "0px 0px -50px 0px" // Trigger sooner when scrolling down
         };
-        const observer = new IntersectionObserver((entries, obs) => {
+        const animationObserver = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    obs.unobserve(entry.target); 
+                    const delay = entry.target.dataset.delay;
+                    if (delay) {
+                        setTimeout(() => {
+                            entry.target.classList.add('is-visible');
+                        }, parseInt(delay.replace('s', '') * 1000));
+                    } else {
+                        entry.target.classList.add('is-visible');
+                    }
+                    obs.unobserve(entry.target); // Animate only once
                 }
             });
         }, observerOptions);
-        animatedElements.forEach(el => observer.observe(el));
+        animatedElements.forEach(el => animationObserver.observe(el));
     }
 
-    // --- Form Submission (Placeholder for Newsletter in Footer) ---
+    // --- Form Submission (Placeholder for Newsletter) ---
     const newsletterForm = document.getElementById('newsletterForm');
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const emailInput = newsletterForm.querySelector('input[type="email"]');
             if (emailInput && emailInput.value.trim() !== '' && emailInput.checkValidity()) {
-                alert('Thank you for subscribing to Redeeming Time Today! (This is a demo feature)');
+                alert('Thank you for subscribing!'); // Simplified message
                 newsletterForm.reset();
             } else {
-                alert('Please enter a valid email address to subscribe to Redeeming Time Today.');
+                alert('Please enter a valid email address.');
                 if(emailInput) emailInput.focus();
             }
         });
@@ -138,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Scroll to Top Button ---
     if (scrollTopBtn) {
         window.addEventListener('scroll', () => {
-            scrollTopBtn.classList.toggle('is-visible', window.scrollY > 300); 
+            scrollTopBtn.classList.toggle('is-visible', window.scrollY > 250); // Show a bit earlier
         }, { passive: true });
         scrollTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
