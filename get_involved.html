@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Involved - Redeeming Time Today</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Link to global styles -->
+    <link rel="stylesheet" href="css/index_mobile.css">
+    <!-- Link to get-involved-specific styles -->
+    <link rel="stylesheet" href="css/get_involved_mobile.css">
+</head>
+<body>
+
+    <div class="site-preloader" id="sitePreloader">
+        <div class="preloader-logo">
+            <svg viewBox="0 0 150 60" xmlns="http://www.w3.org/2000/svg" width="120" height="48">
+                 <defs>
+                    <linearGradient id="preloadStarGradientSimpleInvolved" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="var(--color-accent-light)" />
+                        <stop offset="100%" stop-color="var(--color-accent)" />
+                    </linearGradient>
+                </defs>
+                <text x="75" y="25" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Redeeming Time</text>
+                <text x="75" y="40" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Today</text>
+                <polygon points="75,48 72,52 75,56 78,52" fill="url(#preloadStarGradientSimpleInvolved)" />
+            </svg>
+        </div>
+        <div class="preloader-progress"><div class="preloader-bar"></div></div>
+    </div>
+
+    <header class="site-header" id="siteHeader">
+        <div class="container header__container">
+            <a href="index_mobile.html" class="header__logo-link" aria-label="Redeeming Time Today Home">
+                <img src="assets/logo.jpg" alt="Redeeming Time Today Logo" class="header__logo-image">
+            </a>
+            <button id="menuToggle" class="header__menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <ul class="mobile-nav__list">
+            <li><a href="index_mobile.html" class="mobile-nav__link">Home</a></li>
+            <li><a href="about_mobile.html" class="mobile-nav__link">About Us</a></li>
+            <li><a href="mission_mobile.html" class="mobile-nav__link">Our Mission</a></li>
+            <li><a href="services_mobile.html" class="mobile-nav__link">Services</a></li>
+            <li><a href="impact_mobile.html" class="mobile-nav__link">Impact</a></li>
+            <li><a href="events_mobile.html" class="mobile-nav__link">Events</a></li>
+            <li><a href="shop_mobile.html" class="mobile-nav__link">Shop</a></li>
+            <li><a href="donate_mobile.html" class="mobile-nav__link">Donate</a></li>
+            <li><a href="get_involved_mobile.html" class="mobile-nav__link">Get Involved</a></li>
+            <li><a href="contact_mobile.html" class="mobile-nav__link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="site-overlay" id="siteOverlay"></div>
+
+    <main id="mainContent">
+        <section id="get-involved-hero" class="section get-involved-hero parallax-section" data-parallax-url="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29tbXVuaXR5JTIwaGVscGluZ3xlbnwwfHwwfHx8MA&auto=format&fit=crop&w=1200&q=80">
+            <div class="section__overlay"></div>
+            <div class="container get-involved-hero__container">
+                <h1 class="section__title section__title--light">Join Hands With Us</h1>
+                <p class="get-involved-hero__intro">Your involvement is the cornerstone of our community. Whether you wish to offer your skills, seek support, or partner with Redeeming Time Today, this is where connection begins.</p>
+            </div>
+        </section>
+
+        <section id="involvement-intro" class="section involvement-intro-section">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__kicker">Be Part of the Change</span>
+                    <h2 class="section__title">Your Contribution Matters</h2>
+                </div>
+                <div class="involvement-intro__content animate-on-scroll" data-animation="fade-in-up">
+                    <p>At Redeeming Time Today, we believe in the power of collective action and individual compassion. Every act of kindness, every hour volunteered, and every voice seeking help strengthens our shared mission. We are dedicated to creating a supportive environment where everyone feels valued and empowered. Explore the ways you can connect with us below.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="volunteer-section" class="section involvement-form-section">
+            <div class="container">
+                <div class="form-container volunteer-form-container animate-on-scroll" data-animation="fade-in-left">
+                    <i class="fas fa-hands-helping form-icon"></i>
+                    <h3>Volunteer Your Time & Skills</h3>
+                    <p>Share your talents and passion with Redeeming Time Today. We have various opportunities where your help can make a real difference.</p>
+                    <form id="volunteerForm" class="involvement-form">
+                        <div class="form-group">
+                            <input type="text" id="volunteerName" name="volunteerName" required placeholder=" ">
+                            <label for="volunteerName">Your Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="volunteerEmail" name="volunteerEmail" required placeholder=" ">
+                            <label for="volunteerEmail">Your Email</label>
+                        </div>
+                        <div class="form-group">
+                            <select id="volunteerInterest" name="volunteerInterest">
+                                <option value="">Area of Interest (Optional)</option>
+                                <option value="mentoring">Mentoring & Support</option>
+                                <option value="events">Event Support & Logistics</option>
+                                <option value="admin">Administrative Tasks</option>
+                                <option value="skills_based">Skills-Based (e.g., Tutoring, Trades)</option>
+                                <option value="outreach">Community Outreach</option>
+                                <option value="other">Other / Flexible</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="volunteerMessage" name="volunteerMessage" rows="5" required placeholder=" " maxlength="500"></textarea>
+                            <label for="volunteerMessage">How would you like to help? (Availability, Skills)</label>
+                            <div class="char-counter" id="volunteerCharCount">0 / 500</div>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full-width">Submit Volunteer Interest</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <section id="seek-help-section" class="section involvement-form-section section--alt-bg">
+            <div class="container">
+                 <div class="form-container seek-help-form-container animate-on-scroll" data-animation="fade-in-right">
+                    <i class="fas fa-hand-holding-heart form-icon"></i>
+                    <h3>Need Support? Reach Out to Us</h3>
+                    <p>If you or someone you know needs assistance, please connect with Redeeming Time Today. We are here to listen and help guide you to available resources. All inquiries are treated with respect.</p>
+                    <form id="seekHelpForm" class="involvement-form">
+                        <div class="form-group">
+                            <input type="text" id="seekHelpName" name="seekHelpName" required placeholder=" ">
+                            <label for="seekHelpName">Your Name (or name of person needing help)</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="seekHelpContact" name="seekHelpContact" required placeholder=" ">
+                            <label for="seekHelpContact">Preferred Contact (Email or Phone)</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="seekHelpMessage" name="seekHelpMessage" rows="5" required placeholder=" " maxlength="1000"></textarea>
+                            <label for="seekHelpMessage">Briefly describe your situation or need</label>
+                             <div class="char-counter" id="seekHelpCharCount">0 / 1000</div>
+                        </div>
+                        <div class="form-group-checkbox">
+                            <input type="checkbox" id="consentToContact" name="consentToContact" required>
+                            <label for="consentToContact">I consent to be contacted by Redeeming Time Today regarding this inquiry.</label>
+                        </div>
+                        <button type="submit" class="btn btn--secondary btn--full-width">Request Assistance</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="other-ways-to-help" class="section other-ways-section">
+            <div class="container">
+                <div class="section__header">
+                    <h3 class="section__title">More Ways to Make an Impact</h3>
+                </div>
+                <div class="other-ways-grid">
+                    <div class="other-way-card animate-on-scroll" data-animation="scale-up">
+                        <i class="fas fa-donate"></i>
+                        <h4>Donate</h4>
+                        <p>Your financial gift, no matter the size, provides critical resources.</p>
+                        <a href="donate_mobile.html" class="btn btn--outline-primary">Give Today</a>
+                    </div>
+                    <div class="other-way-card animate-on-scroll" data-animation="scale-up" style="--card-delay: 0.1s;">
+                        <i class="fas fa-store"></i>
+                        <h4>Shop Our Merch</h4>
+                        <p>Support our cause and spread awareness with every purchase.</p>
+                        <a href="shop_mobile.html" class="btn btn--outline-primary">Visit Shop</a>
+                    </div>
+                    <div class="other-way-card animate-on-scroll" data-animation="scale-up" style="--card-delay: 0.2s;">
+                        <i class="fas fa-share-alt"></i>
+                        <h4>Spread the Word</h4>
+                        <p>Follow Redeeming Time Today on social media and share our mission.</p>
+                        <a href="#contact" class="btn btn--outline-primary contact-scroll-btn">Follow Us</a> <!-- Scrolls to footer social links -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer class="site-footer" id="contact"> <!-- Added ID for scroll target -->
+        <div class="container footer__container">
+            <div class="footer__main">
+                <div class="footer__about">
+                    <svg class="footer__logo-svg" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+                        <text x="100" y="25" font-family="Merriweather, serif" font-size="14" fill="var(--color-text-on-dark)" font-weight="bold" text-anchor="middle">Redeeming Time Today</text>
+                        <polygon points="175,18 173,21 175,24 177,21" fill="var(--color-accent)" />
+                    </svg>
+                    <p>Empowering change, one moment at a time. Join us in building a community of hope and purpose under Redeeming Time Today.</p>
+                     <div class="footer__social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer__links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about_mobile.html">About Us</a></li>
+                        <li><a href="services_mobile.html">Services</a></li>
+                        <li><a href="impact_mobile.html">Impact</a></li>
+                        <li><a href="events_mobile.html">Events</a></li>
+                        <li><a href="shop_mobile.html">Shop</a></li>
+                        <li><a href="donate_mobile.html">Donate</a></li>
+                        <li><a href="get_involved_mobile.html">Get Involved</a></li>
+                        <li><a href="privacy_policy_mobile.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer__newsletter">
+                    <h4>Stay Connected</h4>
+                    <p>Get updates from Redeeming Time Today on our work and stories of transformation.</p>
+                    <form id="newsletterFormInvolved" class="newsletter-form">
+                        <input type="email" name="newsletter_email_involved" placeholder="Your email address" required>
+                        <button type="submit" aria-label="Subscribe"><i class="fas fa-envelope"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>© <span id="footerYearInvolved"></span> Redeeming Time Today. All Rights Reserved. Crafted with <i class="fas fa-heart footer__heart"></i> and purpose.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top of page">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Link to global JS -->
+    <script src="js/index_mobile.js"></script>
+    <!-- Link to get-involved-specific JS -->
+    <script src="js/get_involved_mobile.js"></script>
+</body>
+</html>
