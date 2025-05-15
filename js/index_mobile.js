@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     if (targetId === '#hero') { 
-                        offset = headerHeight(); 
+                        offset = headerHeight(); // Offset by header when scrolling to hero below top logo
                     } else if (targetElement.id && targetElement.closest('.preview-section')) {
                          offset = headerHeight();
                     } else if (targetElement.offsetTop < (topLogoHeight + headerHeight() + 20)) {
