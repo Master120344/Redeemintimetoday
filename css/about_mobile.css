@@ -1,0 +1,260 @@
+/* --- About Us Page Specific Styles --- */
+
+/* About Hero Section */
+.about-hero {
+    background-color: var(--color-primary); /* Dark primary for a strong intro */
+    color: var(--color-text-on-dark);
+    text-align: center;
+    padding-top: calc(var(--header-height-mobile) + var(--section-padding-y) / 2);
+    padding-bottom: calc(var(--section-padding-y) / 1.5); /* Slightly more bottom padding */
+}
+
+.about-hero .section__title {
+    color: var(--color-text-on-dark);
+    margin-bottom: 0.5em;
+    font-size: clamp(2rem, 6vw, 3rem); /* Slightly smaller than main hero h1 */
+}
+
+.about-hero__intro {
+    font-size: clamp(1rem, 2.8vw, 1.2rem);
+    color: var(--color-text-on-dark-muted);
+    max-width: 750px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* General About Content Sections */
+.about-content-section {
+    padding-top: var(--section-padding-y);
+    padding-bottom: var(--section-padding-y);
+}
+#our-genesis {
+    background-color: var(--color-surface); /* White for main story */
+}
+
+.about-subsection-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    color: var(--color-primary);
+    margin-bottom: 1em;
+    text-align: left; /* Align subsection titles left for readability in content blocks */
+}
+.about-values-section .about-subsection-title, /* Center titles in specific sections */
+#meet-the-team .section__header .section__title {
+    text-align: center;
+}
+
+
+/* Our Genesis Section (About Grid) */
+.about-grid { /* Re-using styles from original index.html 'about__grid' */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: center;
+}
+.about-grid__image-wrapper {
+    position: relative;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+.about-grid__image {
+    border-radius: var(--border-radius-lg);
+    width: 100%;
+    height: auto;
+}
+.about-grid__image-decoration { /* Subtle decoration */
+    position: absolute;
+    bottom: -25px;
+    right: -25px;
+    width: 120px;
+    height: 120px;
+    background-color: var(--color-accent);
+    opacity: 0.15;
+    border-radius: 50%;
+    transform: rotate(30deg);
+    z-index: -1;
+}
+.about-intro-text { /* For the first paragraph in genesis */
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--color-primary-dark);
+    margin-bottom: 1.2em;
+    line-height: 1.6;
+}
+.about-grid__text-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-dark);
+    margin-bottom: 1.2em;
+}
+.about-page__quote { /* Specific quote style for this page */
+    margin-top: 2em;
+    margin-bottom: 2em;
+    border-left-color: var(--color-secondary); /* Different accent for about page quote */
+    background-color: var(--color-background); /* Lighter background for quote box */
+}
+.about-page__quote p {
+    color: var(--color-primary-dark);
+}
+
+/* Our Values Section */
+.about-values-section {
+    color: var(--color-text-on-dark);
+    position: relative; /* For parallax */
+}
+.about-values-section .section__overlay { /* Ensure overlay applies */
+    background-color: rgba(44, 62, 80, 0.8); /* Slightly darker overlay */
+}
+.values-container { /* To ensure content is above overlay */
+    position: relative;
+    z-index: 1;
+}
+.values-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.value-card {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent cards on parallax */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 2rem 1.5rem;
+    border-radius: var(--border-radius-md);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: background-color var(--transition-base), transform var(--transition-base);
+}
+.value-card:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+.value-card__icon {
+    font-size: 2.8rem;
+    color: var(--color-accent-light);
+    margin-bottom: 0.75em;
+    display: block;
+}
+.value-card__title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--color-text-on-dark);
+    margin-bottom: 0.5em;
+}
+.value-card__description {
+    font-size: 0.95rem;
+    color: var(--color-text-on-dark-muted);
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Meet the Team Section */
+#meet-the-team {
+    background-color: var(--color-background); /* Main body background */
+}
+.team-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+.team-member-card {
+    background-color: var(--color-surface);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+}
+.team-member-card__image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem auto;
+    box-shadow: 0 0 0 5px var(--color-surface), 0 0 0 7px var(--color-accent-light); /* Nice border effect */
+}
+.team-member-card__name {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 0.25em;
+}
+.team-member-card__title {
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75em;
+}
+.team-member-card__bio {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Join Our Journey Section */
+.join-journey-section {
+    background-color: var(--color-secondary); /* Use secondary color as background */
+    color: var(--color-text-on-dark);
+    text-align: center;
+    padding: var(--section-padding-y) var(--container-padding);
+}
+.join-journey-section .section__title {
+    color: var(--color-text-on-dark);
+    margin-bottom: 0.75em;
+}
+.join-journey-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto 1.5rem auto;
+    color: var(--color-text-on-dark-muted);
+}
+.join-journey-buttons .btn {
+    margin: 0.5rem;
+}
+.join-journey-buttons .btn--accent {
+    /* Default styles are fine */
+}
+.join-journey-buttons .btn--primary {
+    background-color: var(--color-surface); /* Light button on this dark bg */
+    color: var(--color-secondary); /* Text color matches bg for contrast */
+    border-color: var(--color-surface);
+}
+.join-journey-buttons .btn--primary:hover {
+    background-color: var(--color-background); /* Slightly off-white hover */
+}
+
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+    .about-grid {
+        grid-template-columns: 0.8fr 1.2fr; /* Image on left, text on right */
+    }
+    .about-grid__image-wrapper { /* If image is on right, swap order */
+        /* grid-column: 2 / 3;
+        grid-row: 1 / 2; */
+    }
+    .about-subsection-title {
+        /* text-align: left; Re-confirm this if sections differ */
+    }
+     .values-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two values per row */
+        gap: 2rem;
+    }
+    .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .values-grid {
+        grid-template-columns: repeat(4, 1fr); /* Four values for wider screens */
+    }
+    .team-grid {
+        grid-template-columns: repeat(3, 1fr); /* Max 3 team members per row */
+    }
+}
