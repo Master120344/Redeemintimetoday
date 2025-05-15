@@ -6,27 +6,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileNav = document.getElementById('mobileNav');
     const siteOverlay = document.getElementById('siteOverlay');
     const navLinks = mobileNav ? mobileNav.querySelectorAll('.mobile-nav__link') : []; 
+    const mobileNavCloseBtn = mobileNav ? mobileNav.querySelector('.mobile-nav__close-btn') : null; // Added close button
     const scrollTopBtn = document.getElementById('scrollTopBtn');
 
     // Site Preloader
     if (sitePreloader && preloaderBar) {
         let progress = 0;
+        const intervalTime = 50; // ms
+        const totalSteps = 100 / 10; // Assuming progress increases by 10
+
         const interval = setInterval(() => {
             progress += 10; 
             preloaderBar.style.width = progress + '%';
             if (progress >= 100) {
                 clearInterval(interval);
-                setTimeout(() => sitePreloader.classList.add('loaded'), 200);
+                // Don't hide here, let window.load handle it for a more accurate load feel
             }
-        }, 50);
+        }, intervalTime);
 
         window.addEventListener('load', () => {
-            clearInterval(interval);
-            preloaderBar.style.width = '100%';
+            clearInterval(interval); // Clear interval if not already cleared
+            preloaderBar.style.width = '100%'; // Ensure it's 100%
             setTimeout(() => {
                 sitePreloader.classList.add('loaded');
-            }, 300);
+            }, 250); // Delay after bar hits 100% on load
         });
+
+        // Fallback if load event is too slow or preloader finishes too fast
+        setTimeout(() => {
+            if (progress < 100) {
+                clearInterval(interval);
+                preloaderBar.style.width = '100%';
+            }
+            if (!sitePreloader.classList.contains('loaded')) {
+                 setTimeout(() => sitePreloader.classList.add('loaded'), 200);
+            }
+        }, (totalSteps * intervalTime) + 500); // Max preloader time + buffer
     }
 
     // Header Scroll Behavior
@@ -41,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             siteHeader.classList.toggle('header--scrolled', currentScrollY > 50);
             lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
-        });
+        }, { passive: true });
     }
 
     // Mobile Navigation
@@ -60,11 +75,26 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleMobileNav(!isOpen);
         });
 
+        if (mobileNavCloseBtn) { // Added event listener for new close button
+            mobileNavCloseBtn.addEventListener('click', () => toggleMobileNav(false));
+        }
+
         siteOverlay.addEventListener('click', () => toggleMobileNav(false));
+        
         navLinks.forEach(link => {
-            if (!link.getAttribute('href').startsWith('#')) {
-                link.addEventListener('click', () => toggleMobileNav(false));
-            }
+            // Close nav for any link click, whether it's an anchor or a new page
+            link.addEventListener('click', (e) => {
+                if (!link.getAttribute('href').startsWith('#') || (link.getAttribute('href').length > 1 && document.querySelector(link.getAttribute('href')))) {
+                    // If it's not a simple "#" or if it's an anchor that exists on page, allow smooth scroll to handle, then close.
+                    // For actual page navigation, it will close and navigate.
+                    // For on-page anchors, smooth scroll logic below will also close it.
+                    // This ensures closure for links leading to other pages directly.
+                    if (!link.getAttribute('href').startsWith('#')) {
+                         toggleMobileNav(false);
+                    }
+                    // Smooth scroll part will handle closing for # links
+                }
+            });
         });
     }
     
@@ -72,11 +102,23 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateActiveLinkForMultiPage() {
         if (!navLinks.length) return; 
         const currentPath = window.location.pathname.split('/').pop();
+        const homeFilenames = ['index_mobile.html', '']; // Handles both "index_mobile.html" and "/"
+
         navLinks.forEach(link => {
-            const linkPath = link.getAttribute('href').split('/').pop();
-            const isActive = (linkPath === currentPath) || 
-                             (currentPath === '' && (linkPath === 'index_mobile.html' || linkPath === '/')) ||
-                             (currentPath === 'index_mobile.html' && (linkPath === '' || linkPath === '/'));
+            const linkHref = link.getAttribute('href');
+            if (!linkHref) return;
+            const linkPath = linkHref.split('/').pop();
+            
+            let isActive = (linkPath === currentPath);
+
+            if (homeFilenames.includes(currentPath) && homeFilenames.includes(linkPath)) {
+                isActive = true;
+            }
+            // Special case for root if index_mobile.html is home
+            if (currentPath === '' && linkPath === 'index_mobile.html') isActive = true;
+            if (currentPath === 'index_mobile.html' && linkPath === '') isActive = true;
+
+
             link.classList.toggle('active-nav-link', isActive);
         });
     }
@@ -87,30 +129,21 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-            if (targetId.length > 1 && targetId.startsWith('#')) {
+            if (targetId.length > 1 && targetId.startsWith('#')) { // Ensure it's not just "#"
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     e.preventDefault();
-                    let offset = headerHeight();
                     
-                    const topLogoContainer = document.getElementById('top-logo-container');
-                    let topLogoHeight = 0;
-                    if (topLogoContainer) {
-                        topLogoHeight = topLogoContainer.offsetHeight;
-                    }
-
-                    if (targetId === '#hero') { 
-                        offset = headerHeight(); 
-                    } else if (targetElement.id && targetElement.closest('.preview-section')) {
-                         offset = headerHeight();
-                    } else if (targetElement.offsetTop < (topLogoHeight + headerHeight() + 20)) {
-                        offset = headerHeight(); 
-                    }
-
+                    let offset = headerHeight();
+                    // No special offset logic needed for general anchor scroll with fixed header
+                    // The previous complex offset logic for hero/toplogo might not be necessary if headerHeight is consistent
+                    
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.scrollY - offset;
 
                     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    
+                    // Close mobile nav if it's open after clicking an anchor link
                     if (mobileNav && mobileNav.classList.contains('is-open')) { 
                         toggleMobileNav(false);
                     }
@@ -122,14 +155,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Intersection Observer for Animations
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     if (animatedElements.length > 0) {
+        const observerOptions = {
+            threshold: 0.1, // Start animation when 10% of element is visible
+            rootMargin: "0px 0px -50px 0px" // Trigger a bit sooner when scrolling down
+        };
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    obs.unobserve(entry.target);
+                    // Apply delay if specified
+                    const delay = entry.target.dataset.delay;
+                    if (delay) {
+                        setTimeout(() => {
+                            entry.target.classList.add('is-visible');
+                        }, parseInt(delay.replace('s', '') * 1000));
+                    } else {
+                        entry.target.classList.add('is-visible');
+                    }
+                    obs.unobserve(entry.target); // Animate only once
                 }
             });
-        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+        }, observerOptions);
         animatedElements.forEach(el => observer.observe(el));
     }
 
@@ -140,10 +185,13 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const emailInput = newsletterForm.querySelector('input[type="email"]');
             if (emailInput && emailInput.value.trim() !== '' && emailInput.checkValidity()) {
+                // Consider a more subtle notification than alert
+                console.log('Newsletter subscribed:', emailInput.value);
                 alert('Thank you for subscribing to Redeeming Time Today!');
                 newsletterForm.reset();
             } else {
                 alert('Please enter a valid email address.');
+                if(emailInput) emailInput.focus();
             }
         });
     }
@@ -152,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (scrollTopBtn) {
         window.addEventListener('scroll', () => {
             scrollTopBtn.classList.toggle('is-visible', window.scrollY > 400);
-        });
+        }, { passive: true });
         scrollTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
