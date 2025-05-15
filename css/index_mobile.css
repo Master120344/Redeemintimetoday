@@ -178,8 +178,6 @@ main, .section, .container, .site-footer .container, .site-header .container {
     margin-bottom: 0.75em; 
     display: inline-block;
 }
-/* Parallax sections are no longer used on index_mobile.html for previews */
-
 
 /* --- Buttons --- */
 .btn {
@@ -201,18 +199,52 @@ main, .section, .container, .site-footer .container, .site-header .container {
     transform: translateY(-3px) scale(1.02); 
     box-shadow: var(--shadow-lg); 
 }
-/* All preview section buttons now use .btn--accent */
 .btn--accent { 
     background-color: var(--color-accent); 
-    color: var(--color-primary-dark); 
+    color: var(--color-text-on-dark-bg); /* Changed from primary-dark to white */
 } 
 .btn--accent:hover, .btn--accent:focus { 
     background-color: var(--color-accent-dark); 
+    color: var(--color-text-on-dark-bg); /* Ensure hover maintains text color if needed */
 }
 .btn__icon { margin-left: 0.8em; }
 
 /* --- Site Preloader --- */
 /* Styles remain the same */
+.site-preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-background);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+.site-preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+}
+.preloader-logo { margin-bottom: 20px; }
+.preloader-progress {
+    width: 150px;
+    height: 5px;
+    background-color: var(--color-primary-light);
+    border-radius: 3px;
+    overflow: hidden;
+}
+.preloader-bar {
+    width: 0%;
+    height: 100%;
+    background-color: var(--color-accent);
+    border-radius: 3px;
+    transition: width 0.1s linear; /* Faster, smoother transition */
+}
+
 
 /* --- Site Header --- */
 .site-header {
@@ -243,9 +275,9 @@ main, .section, .container, .site-footer .container, .site-header .container {
 }
 .header__logo-text-link {
     font-family: var(--font-heading);
-    font-size: clamp(1.1rem, 4vw, 1.45rem); /* Increased base and max size */
+    font-size: clamp(1.1rem, 4vw, 1.45rem);
     font-weight: 700;
-    color: var(--color-primary); /* Restored to primary dark blue/charcoal */
+    color: var(--color-primary);
     text-decoration: none;
     transition: color var(--transition-fast);
     letter-spacing: -0.2px; 
@@ -253,6 +285,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
     padding: 8px 0; 
     white-space: nowrap; 
     margin-right: 10px; 
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.08); /* Added subtle text shadow */
 }
 .header__logo-text-link:hover {
     color: var(--color-accent-dark);
@@ -299,7 +332,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
     height: 100vh;
     background-color: var(--color-primary-dark); 
     box-shadow: -8px 0 30px rgba(0,0,0,0.35); 
-    padding: calc(var(--header-height-mobile) + 25px) 30px 30px; 
+    padding: calc(var(--header-height-mobile) + 20px) 25px 50px 25px; /* Adjusted padding, esp. bottom */
     z-index: 1000; 
     display: flex;
     flex-direction: column;
@@ -307,10 +340,29 @@ main, .section, .container, .site-footer .container, .site-header .container {
     overflow-y: auto;
 }
 .mobile-nav.is-open { transform: translateX(-100%); }
+
+.mobile-nav__close-btn {
+    position: absolute;
+    top: 15px; /* Distance from the top of the nav panel */
+    right: 20px; /* Distance from the right of the nav panel */
+    background: none;
+    border: none;
+    color: var(--color-text-on-dark-bg-muted);
+    font-size: 1.9rem; /* Slightly larger for easier tapping */
+    cursor: pointer;
+    padding: 10px; /* Larger tap area */
+    line-height: 1;
+    z-index: 2; /* Ensure it's above the list */
+    transition: color var(--transition-fast);
+}
+.mobile-nav__close-btn:hover {
+    color: var(--color-accent-light);
+}
+
 .mobile-nav__list { 
-    margin-bottom: auto; 
     list-style-type: none; 
     padding-left: 0;  
+    /* margin-bottom: auto; Removed as overflow-y on parent handles scroll better */
 } 
 .mobile-nav__link {
     display: block;
@@ -332,7 +384,22 @@ main, .section, .container, .site-footer .container, .site-header .container {
 .mobile-nav__link:last-child { border-bottom: none; }
 
 /* Site Overlay for Mobile Nav */
-/* Styles remain the same */
+.site-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 998; /* Below nav, above content */
+    transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+.site-overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+}
 
 /* --- Top Page Logo --- */
 .top-logo-container {
@@ -344,13 +411,14 @@ main, .section, .container, .site-footer .container, .site-header .container {
 .top-page-logo {
     max-width: 100%; 
     width: auto; 
-    max-height: 240px; /* Increased max height for bigger logo */
+    max-height: 270px; /* Increased max height */
     object-fit: contain; 
     display: inline-block;
-    border: 5px solid rgba(255,255,255,0.7); 
-    border-radius: var(--border-radius-md);
-    padding: 8px; 
-    background-color: rgba(255,255,255,0.15); 
+    /* Removed border, padding, and background-color */
+    /* border: 5px solid rgba(255,255,255,0.7); */
+    border-radius: var(--border-radius-md); /* Kept radius if desired for image itself */
+    /* padding: 8px; */
+    /* background-color: rgba(255,255,255,0.15); */
 }
 
 
@@ -385,6 +453,12 @@ main, .section, .container, .site-footer .container, .site-header .container {
 
 /* --- Form Styling (for newsletter) --- */
 /* Styles remain largely the same, ensure background colors are solid if needed */
+.footer__newsletter h4 { /* Ensure title is styled */
+    font-family: var(--font-heading);
+    color: var(--color-text-on-dark-bg);
+    margin-bottom: 1.2rem; 
+    font-size: 1.25rem; 
+}
 
 /* --- Site Footer --- */
 .site-footer {
@@ -394,29 +468,41 @@ main, .section, .container, .site-footer .container, .site-header .container {
     position: relative; 
     z-index: 10; 
 }
+.footer__main { /* Add grid setup for mobile first, then override for desktop */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem; /* Spacing between sections in mobile */
+    padding-bottom: var(--section-padding-y); /* Space before bottom bar */
+}
+.footer__about, .footer__links, .footer__newsletter {
+    text-align: center; /* Center content on mobile */
+}
+.footer__logo-svg {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.8rem;
+}
 .footer__social-links { 
     margin-top: 1.2rem; 
-    text-align: left; 
+    text-align: center; /* Centered social links on mobile */
     margin-bottom: 1.5rem; 
 }
 .footer__social-links a {
     font-size: 1.8rem; 
     color: var(--color-text-on-dark-bg-muted);
-    margin-right: 1.8rem; /* Increased space between icons */
+    margin: 0 0.9rem; /* Adjusted spacing for centered layout */
     transition: color var(--transition-fast), transform var(--transition-fast);
-}
-.footer__social-links a:last-child {
-    margin-right: 0;
 }
 .footer__social-links a:hover {
     color: var(--color-accent-light);
     transform: translateY(-3px) scale(1.1); 
 }
-.footer__links h4 {
+.footer__links h4, .footer__newsletter h4 { /* Shared styling for titles */
     font-family: var(--font-heading);
     color: var(--color-text-on-dark-bg);
     margin-bottom: 1.2rem; 
     font-size: 1.25rem; 
+    text-align: center; /* Center titles on mobile */
 }
 .footer__links ul { list-style: none; padding-left: 0; }
 .footer__links ul li a {
@@ -443,10 +529,13 @@ main, .section, .container, .site-footer .container, .site-header .container {
     display: flex; 
     flex-direction: column; 
     gap: 0.8rem; 
+    max-width: 350px; /* Constrain width on mobile for centered form */
+    margin-left: auto;
+    margin-right: auto;
 } 
 .newsletter-form__input { 
     width: 100%; 
-    padding: 0.9em 1.1em; /* Increased padding */
+    padding: 0.9em 1.1em;
     border: 1px solid var(--color-primary-light);
     border-radius: var(--border-radius-sm);
     background-color: rgba(255,255,255,0.08); 
@@ -463,19 +552,73 @@ main, .section, .container, .site-footer .container, .site-header .container {
     font-size: 1rem; 
     border-radius: var(--border-radius-sm) !important; 
 }
-
+.footer__bottom {
+    border-top: 1px solid var(--color-border);
+    padding: 1.5rem 0;
+    text-align: center;
+}
 .footer__bottom p {
     color: var(--color-text-on-dark-bg-muted); 
+    font-size: 0.9rem;
+    margin-bottom: 0;
 }
 .footer__bottom .footer__heart {
     color: var(--color-accent);
 }
 
 /* --- Scroll to Top Button --- */
-/* Styles remain the same */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--color-accent);
+    color: var(--color-primary-dark);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity var(--transition-base), visibility var(--transition-base), transform var(--transition-base), background-color var(--transition-fast);
+    z-index: 990;
+}
+.scroll-top-btn.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.scroll-top-btn:hover {
+    background-color: var(--color-accent-dark);
+}
 
 /* --- Animation Utilities --- */
-/* Styles remain the same */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.animate-on-scroll[data-animation="fade-in-up"] { /* Default, can be more specific */
+    /* transform already translateY(30px) */
+}
+.animate-on-scroll[data-animation="zoom-in-fast"] {
+    transform: scale(0.8);
+    transition-duration: 0.4s;
+}
+.animate-on-scroll[data-animation="zoom-in-fast"].is-visible {
+    transform: scale(1);
+}
+/* Add data-delay support if needed via JS or more classes */
 
 /* --- Media Queries for Responsiveness --- */
 @media (min-width: 768px) { 
@@ -485,7 +628,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
     }
     .site-header { height: var(--header-height-desktop); }
     .header__logo-text-link {
-        font-size: clamp(1.2rem, 2.2vw, 1.45rem); 
+        font-size: clamp(1.2rem, 2.2vw, 1.5rem); /* Slightly increased max */
     }
     .hero-on-dark-bg { 
         padding-top: var(--header-height-desktop); 
@@ -495,7 +638,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
     }
     .top-page-logo {
         max-width: 30%; 
-        max-height: 220px; 
+        max-height: 240px; /* Increased max height for desktop too */
     }
     
     .content-wrapper {
@@ -517,10 +660,27 @@ main, .section, .container, .site-footer .container, .site-header .container {
         margin-bottom: 0; 
     }
 
-    .footer__main { grid-template-columns: 1.2fr 1fr 1fr; gap: 3rem; text-align: left; }
-    .footer__logo-svg, .footer__links h4, .footer__newsletter h4 { margin-left: 0; }
-    
-    .newsletter-form { /* Revert to side-by-side on desktop */
+    .footer__main { 
+        grid-template-columns: 1.2fr 1fr 1fr; 
+        gap: 3rem; 
+        text-align: left; 
+    }
+    .footer__about, .footer__links, .footer__newsletter {
+        text-align: left; /* Align left on desktop */
+    }
+    .footer__logo-svg {
+        margin-left: 0; /* Align left */
+        margin-right: 0;
+    }
+    .footer__social-links { text-align: left; margin-left:0; } /* Align left */
+    .footer__social-links a { margin: 0 1.8rem 0 0; } /* Adjust spacing for left align */
+    .footer__links h4, .footer__newsletter h4 { 
+        text-align: left; /* Align left */
+    }
+    .newsletter-form { 
+        max-width: none; /* Remove mobile constraint */
+        margin-left: 0;
+        margin-right: 0;
         display: flex; 
         flex-direction: row; 
         gap: 0; 
