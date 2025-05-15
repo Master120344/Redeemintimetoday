@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Site Preloader ---
     if (sitePreloader && preloaderBar) {
         let progress = 0;
-        // Fallback for quick load or if window.load fires too fast
         const initialLoad = () => {
             if (progress < 100) {
                  progress += 10; 
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
             initialLoad();
             if (progress >= 100) {
                 clearInterval(interval);
-                // Ensure loaded class is added even if window.load was missed or fast
                 if (!sitePreloader.classList.contains('loaded')) {
                     setTimeout(() => sitePreloader.classList.add('loaded'), 200);
                 }
@@ -107,14 +105,10 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if ((currentPath === 'index_mobile.html' || currentPath === '') && (linkPath === 'index_mobile.html' || linkPath === '' || linkPath === './')) {
                  isActive = true;
-            }
-            if (window.location.pathname.endsWith(linkHref)){ // Handles cases where href might be 'page.html' and current path is '/folder/page.html'
-                // More specific check for exact match or index:
-                if (linkHref === currentPath || (currentPath === 'index_mobile.html' && (linkHref === './' || linkHref === 'index_mobile.html'))) {
-                    isActive = true;
-                } else if (window.location.pathname === linkHref || window.location.pathname === '/' + linkHref) { // Absolute path check
-                    isActive = true;
-                }
+            } else if (linkHref === window.location.pathname || linkHref === '.' + window.location.pathname || ('./' + linkPath === currentPath && currentPath !== 'index_mobile.html') ) {
+                 isActive = true;
+            } else if (window.location.pathname.endsWith(linkHref) && linkHref !== '') { // More robust for relative paths not at root
+                isActive = true;
             }
 
 
@@ -173,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     obs.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }); 
+        }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" }); // Adjusted rootMargin slightly
         animatedElements.forEach(el => observer.observe(el));
     } else {
         animatedElements.forEach(el => el.classList.add('is-visible'));
@@ -188,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const feedbackMessage = document.createElement('p'); 
             feedbackMessage.style.marginTop = '10px';
             feedbackMessage.style.fontSize = '0.9em';
-            feedbackMessage.style.textAlign = 'left'; // Align with form
+            feedbackMessage.style.textAlign = 'left'; 
 
             const existingFeedback = newsletterForm.parentElement.querySelector('.form-feedback');
             if (existingFeedback) existingFeedback.remove();
