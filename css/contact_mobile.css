@@ -1,0 +1,200 @@
+/* --- Contact Page Specific Styles --- */
+
+/* Contact Hero Section */
+.contact-hero {
+    background-color: var(--color-secondary); /* Using secondary color for a friendly contact hero */
+    color: var(--color-text-on-dark);
+    text-align: center;
+    padding-top: calc(var(--header-height-mobile) + var(--section-padding-y) / 2);
+    padding-bottom: calc(var(--section-padding-y) / 1.5);
+}
+
+.contact-hero .section__title {
+    color: var(--color-text-on-dark);
+    margin-bottom: 0.5em;
+}
+
+.contact-hero__intro {
+    font-size: clamp(1rem, 2.8vw, 1.2rem);
+    color: var(--color-text-on-dark-muted);
+    max-width: 750px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* General Contact Form Section & Partnership Section */
+.contact-form-section {
+    background-color: var(--color-surface); /* Default white for contact area */
+}
+.contact-form-section.section--alt-bg {
+    background-color: var(--color-background); /* Alternate bg for partnership */
+}
+
+.contact-grid { /* For general contact: info on left, form on right on larger screens */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: flex-start; /* Align items top */
+}
+
+.contact-subsection-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 4.5vw, 2.2rem);
+    color: var(--color-primary);
+    margin-bottom: 1em;
+}
+
+.contact-info p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-light);
+    margin-bottom: 1.5em;
+}
+
+.contact-details-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 2rem;
+}
+.contact-details-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: var(--color-text-dark);
+}
+.contact-details-list i {
+    font-size: 1.3rem;
+    color: var(--color-accent);
+    margin-right: 1rem;
+    width: 25px;
+    text-align: center;
+    flex-shrink: 0;
+    padding-top: 0.1em;
+}
+.contact-details-list a {
+    color: var(--color-secondary); /* Links within contact info */
+}
+.contact-details-list a:hover {
+    color: var(--color-secondary-light);
+}
+
+.social-links-title {
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    margin-bottom: 0.75em;
+}
+.contact-social-links a { /* From index_mobile.css, re-affirming style context */
+    font-size: 1.6rem;
+    color: var(--color-secondary); /* Match other contact links */
+    margin-right: 1.2rem;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+}
+.contact-social-links a:last-child { margin-right: 0; }
+.contact-social-links a:hover {
+    color: var(--color-accent);
+    transform: translateY(-2px);
+}
+
+/* General Contact Form & Partnership Form Styling */
+.contact-form {
+    background-color: #fff; /* Ensure forms are white if section bg is different */
+    padding: 2rem 1.5rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+}
+.section--alt-bg .contact-form { /* If form is on alt bg, it's already white */
+    /* No change needed unless specific shadow/border adjustments */
+}
+
+.form-section-title { /* For titles within a form, e.g., "Partnership Inquiry" */
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.contact-form .form-group { /* From index_mobile.css - should apply */
+    margin-bottom: 1.5rem;
+}
+.contact-form .form-group select { /* Copied from get_involved for consistency */
+    width: 100%;
+    padding: 0.9em 1em;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    background-color: var(--color-surface);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2334495e'%3E%3Cpath d='M7 10l5 5 5-5H7z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1em center;
+    background-size: 1.2em;
+    padding-right: 2.5em;
+}
+.contact-form .form-group select:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px rgba(243, 156, 18, 0.2);
+}
+
+.char-counter { /* From get_involved for consistency */
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+    text-align: right;
+    margin-top: 0.3em;
+}
+.btn--full-width { /* From get_involved for consistency */
+    width: 100%;
+}
+
+/* Partnership Section Specifics */
+.partner-intro-text {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 2.5rem auto;
+}
+.partner-intro-text p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-text-dark);
+}
+.partnership-form {
+    max-width: 750px; /* Slightly wider form for partnership details */
+    margin: 0 auto;
+}
+
+
+/* Map Section (Optional) */
+.map-section {
+    background-color: var(--color-background);
+}
+.map-embed-container {
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    line-height: 0; /* Prevents extra space below iframe */
+}
+.map-embed-container iframe {
+    border:0;
+}
+
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr 1.2fr; /* Info on left, form on right */
+    }
+    .contact-form {
+        padding: 2.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+    /* Further refinements if needed */
+}
