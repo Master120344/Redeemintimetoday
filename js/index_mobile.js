@@ -95,9 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     // For hero, no offset if it's the very first visible content after header
                     if (targetId === '#hero' || (targetElement.getBoundingClientRect().top - offset) < 10) { 
                         offset = 0; 
-                    } else if (targetElement.id && document.getElementById('top-logo-container') && targetId !== '#hero' && targetElement.offsetTop < (document.getElementById('top-logo-container').offsetHeight + headerHeight())) {
-                        // If scrolling to an anchor below the top logo but above where normal offset calculation is fine
-                        offset = headerHeight(); // Standard header offset
+                    } else if (document.getElementById('top-logo-container') && 
+                               targetId !== '#hero' && 
+                               targetElement.offsetTop < (document.getElementById('top-logo-container').offsetHeight + headerHeight() + 20)) { 
+                        // If scrolling to an anchor just below the top logo container
+                        offset = headerHeight(); 
                     }
 
 
