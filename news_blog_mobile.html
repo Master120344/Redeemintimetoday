@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News & Blog - Redeeming Time Today</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/index_mobile.css"> {/* Global Styles */}
+    <link rel="stylesheet" href="css/news_blog_mobile.css"> {/* Page-Specific Styles */}
+</head>
+<body>
+
+    <div class="site-preloader" id="sitePreloader">
+        <div class="preloader-logo">
+            <svg viewBox="0 0 150 60" xmlns="http://www.w3.org/2000/svg" width="120" height="48">
+                <defs>
+                    <linearGradient id="preloadStarGradientSimpleNewsBlog" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="var(--color-accent-light)" />
+                        <stop offset="100%" stop-color="var(--color-accent)" />
+                    </linearGradient>
+                </defs>
+                <text x="75" y="25" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Redeeming Time</text>
+                <text x="75" y="40" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Today</text>
+                <polygon points="75,48 72,52 75,56 78,52" fill="url(#preloadStarGradientSimpleNewsBlog)" />
+            </svg>
+        </div>
+        <div class="preloader-progress"><div class="preloader-bar"></div></div>
+    </div>
+
+    <header class="site-header" id="siteHeader">
+        <div class="container header__container">
+            <a href="index_mobile.html" class="header__logo-text-link" aria-label="Redeeming Time Today Home">
+                Redeeming Time Today
+            </a>
+            <button id="menuToggle" class="header__menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <ul class="mobile-nav__list">
+            <li><a href="index_mobile.html" class="mobile-nav__link">Home</a></li>
+            <li><a href="about_mobile.html" class="mobile-nav__link">About Us</a></li>
+            <li><a href="mission_mobile.html" class="mobile-nav__link">Our Mission</a></li>
+            <li><a href="services_mobile.html" class="mobile-nav__link">Services</a></li>
+            <li><a href="impact_mobile.html" class="mobile-nav__link">Impact</a></li>
+            <li><a href="events_mobile.html" class="mobile-nav__link">Events</a></li>
+            <li><a href="meetings_mobile.html" class="mobile-nav__link">Meetings</a></li>
+            <li><a href="news_blog_mobile.html" class="mobile-nav__link">News & Blog</a></li>
+            <li><a href="shop_mobile.html" class="mobile-nav__link">Shop</a></li>
+            <li><a href="donate_mobile.html" class="mobile-nav__link">Donate</a></li>
+            <li><a href="get_involved_mobile.html" class="mobile-nav__link">Get Involved</a></li>
+            <li><a href="faq_mobile.html" class="mobile-nav__link">FAQ</a></li>
+            <li><a href="contact_mobile.html" class="mobile-nav__link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="site-overlay" id="siteOverlay"></div>
+
+    <main id="mainContent">
+        <section id="news-hero" class="section news-hero">
+            <div class="container">
+                <h1 class="section__title">Insights & Updates from Redeeming Time Today</h1>
+                <p class="news-hero__intro">Stay informed with the latest news, compelling stories, and thought provoking articles from our team and community. Explore how Redeeming Time Today is making a difference, every day.</p>
+            </div>
+        </section>
+
+        <section id="blog-posts-section" class="section blog-posts-section">
+            <div class="container">
+                <div class="blog-layout">
+                    <div class="blog-posts-list">
+                        {/* Blog Post Card 1 */}
+                        <article class="blog-post-card animate-on-scroll" data-animation="fade-in-up">
+                            <a href="blog_post_detail_1_mobile.html" class="blog-post-card__image-link">
+                                <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y29tbXVuaXR5JTIwc3VwcG9ydHxlbnwwfHwwfHx8MA&auto=format&fit=crop&w=600&q=80" alt="Community members working together" class="blog-post-card__image">
+                            </a>
+                            <div class="blog-post-card__content">
+                                <div class="blog-post-card__meta">
+                                    <span class="blog-post-card__category">Community Impact</span>
+                                    <span class="blog-post-card__date">June 1, 2024</span>
+                                </div>
+                                <h2 class="blog-post-card__title">
+                                    <a href="blog_post_detail_1_mobile.html">The Ripple Effect: How Small Acts of Kindness Transform Communities</a>
+                                </h2>
+                                <p class="blog-post-card__excerpt">Discover how Redeeming Time Today witnesses daily the profound impact of compassion. From mentorship to shared meals, every supportive gesture creates waves of positive change that extend far beyond the initial act...</p>
+                                <a href="blog_post_detail_1_mobile.html" class="btn btn--secondary btn--small blog-post-card__read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </article>
+
+                        {/* Blog Post Card 2 */}
+                        <article class="blog-post-card animate-on-scroll" data-animation="fade-in-up" data-delay="0.1s">
+                            <a href="blog_post_detail_2_mobile.html" class="blog-post-card__image-link">
+                                <img src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGVyc29uYWwlMjBncm93dGh8ZW58MHx8MHx8fDA&auto=format&fit=crop&w=600&q=80" alt="Silhouette of a person looking at a sunrise" class="blog-post-card__image">
+                            </a>
+                            <div class="blog-post-card__content">
+                                <div class="blog-post-card__meta">
+                                    <span class="blog-post-card__category">Personal Growth</span>
+                                    <span class="blog-post-card__date">May 25, 2024</span>
+                                </div>
+                                <h2 class="blog-post-card__title">
+                                    <a href="blog_post_detail_2_mobile.html">Redeeming Your Time: Strategies for Purposeful Living After Adversity</a>
+                                </h2>
+                                <p class="blog-post-card__excerpt">Navigating life after facing significant challenges requires resilience and a new perspective on time. Redeeming Time Today shares insights on setting meaningful goals, building healthy habits, and finding your unique purpose...</p>
+                                <a href="blog_post_detail_2_mobile.html" class="btn btn--secondary btn--small blog-post-card__read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </article>
+
+                        {/* Blog Post Card 3 - News Update */}
+                        <article class="blog-post-card animate-on-scroll" data-animation="fade-in-up" data-delay="0.2s">
+                            <a href="blog_post_detail_3_mobile.html" class="blog-post-card__image-link">
+                                 <img src="https://images.unsplash.com/photo-1606857521015-7f9fcf423740?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG5ld3MlMjB1cGRhdGV8ZW58MHx8MHx8fDA&auto=format&fit=crop&w=600&q=80" alt="Organization announcement" class="blog-post-card__image">
+                            </a>
+                            <div class="blog-post-card__content">
+                                <div class="blog-post-card__meta">
+                                    <span class="blog-post-card__category">Organizational News</span>
+                                    <span class="blog-post-card__date">May 18, 2024</span>
+                                </div>
+                                <h2 class="blog-post-card__title">
+                                    <a href="blog_post_detail_3_mobile.html">Redeeming Time Today Announces New Youth Leadership Program</a>
+                                </h2>
+                                <p class="blog-post-card__excerpt">We are thrilled to launch an innovative leadership program aimed at empowering young individuals in our community. This initiative will provide mentorship, skill development workshops, and opportunities for civic engagement...</p>
+                                <a href="blog_post_detail_3_mobile.html" class="btn btn--secondary btn--small blog-post-card__read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </article>
+                        
+                        {/* Pagination (Placeholder) */}
+                        <nav class="pagination animate-on-scroll" data-animation="fade-in" data-delay="0.3s">
+                            <a href="#" class="page-numbers current">1</a>
+                            <a href="#" class="page-numbers">2</a>
+                            <a href="#" class="page-numbers">3</a>
+                            <a href="#" class="next page-numbers"><i class="fas fa-chevron-right"></i></a>
+                        </nav>
+                    </div>
+
+                    {/* Sidebar (Optional) */}
+                    <aside class="blog-sidebar animate-on-scroll" data-animation="fade-in-left" data-delay="0.2s">
+                        <div class="sidebar-widget">
+                            <h3 class="widget-title">Search</h3>
+                            <form class="search-form">
+                                <input type="search" placeholder="Search articles..." aria-label="Search articles">
+                                <button type="submit"><i class="fas fa-search"></i></button>
+                            </form>
+                        </div>
+                        <div class="sidebar-widget">
+                            <h3 class="widget-title">Categories</h3>
+                            <ul class="category-list">
+                                <li><a href="#">Community Impact (12)</a></li>
+                                <li><a href="#">Personal Growth (8)</a></li>
+                                <li><a href="#">Organizational News (5)</a></li>
+                                <li><a href="#">Volunteer Stories (3)</a></li>
+                                <li><a href="#">Recovery Journeys (6)</a></li>
+                            </ul>
+                        </div>
+                        <div class="sidebar-widget">
+                            <h3 class="widget-title">Recent Posts</h3>
+                            <ul class="recent-posts-list">
+                                <li><a href="blog_post_detail_1_mobile.html">The Ripple Effect: How Small Acts...</a></li>
+                                <li><a href="blog_post_detail_2_mobile.html">Redeeming Your Time: Strategies for...</a></li>
+                                <li><a href="blog_post_detail_3_mobile.html">Announcing New Youth Leadership Program</a></li>
+                            </ul>
+                        </div>
+                         <div class="sidebar-widget sidebar-widget--cta">
+                            <h3 class="widget-title">Share Your Voice</h3>
+                            <p>Have a story or insight to share with the Redeeming Time Today community? We welcome contributions.</p>
+                            <a href="contact_mobile.html?subject=BlogContribution" class="btn btn--accent btn--full-width">Submit an Article</a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer__container">
+            <div class="footer__main">
+                <div class="footer__about">
+                    <svg class="footer__logo-svg" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+                        <text x="100" y="25" font-family="Merriweather, serif" font-size="14" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Redeeming Time Today</text>
+                    </svg>
+                    <p>Empowering change, one moment at a time. Join us in building a community of hope and purpose under Redeeming Time Today.</p>
+                     <div class="footer__social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="X (formerly Twitter)"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer__links">
+                    <h4>Explore More</h4>
+                    <ul>
+                        <li><a href="meetings_mobile.html">Meetings</a></li>
+                        <li><a href="resources_mobile.html">Resources</a></li>
+                        <li><a href="programs_mobile.html">Our Programs</a></li>
+                        <li><a href="success_stories_mobile.html">Success Stories</a></li>
+                        <li><a href="news_blog_mobile.html">News & Blog</a></li>
+                        <li><a href="faq_mobile.html">FAQ</a></li>
+                        <li><a href="privacy_policy_mobile.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer__newsletter">
+                    <h4>Stay Connected</h4>
+                    <p class="footer__newsletter-text">Get updates from Redeeming Time Today on our work and stories of transformation.</p>
+                    <form id="newsletterFormNewsBlog" class="newsletter-form">
+                        <input type="email" name="newsletter_email_newsblog" placeholder="Your email address" required class="newsletter-form__input">
+                        <button type="submit" class="btn btn--accent newsletter-form__button">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>© <span id="footerYearNewsBlog"></span> Redeeming Time Today. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top of page">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/index_mobile.js"></script>
+    <script src="js/news_blog_mobile.js"></script>
+</body>
+</html>
