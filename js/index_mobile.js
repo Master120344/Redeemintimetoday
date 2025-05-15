@@ -27,25 +27,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     setTimeout(() => sitePreloader.classList.add('loaded'), 200);
                 }
             }
-        }, 50); // Reduced interval for quicker visual progress
+        }, 50); 
 
         window.addEventListener('load', () => {
-            clearInterval(interval); // Clear our interval
-            progress = 100; // Force to 100%
+            clearInterval(interval); 
+            progress = 100; 
             preloaderBar.style.width = '100%';
             setTimeout(() => {
                 sitePreloader.classList.add('loaded');
-            }, 300); // Delay to allow 100% bar to be seen briefly
+            }, 300); 
         });
 
-        // Safety net: if load event somehow fails or is extremely delayed
         setTimeout(() => {
             if (!sitePreloader.classList.contains('loaded')) {
                 clearInterval(interval);
                 preloaderBar.style.width = '100%';
                 sitePreloader.classList.add('loaded');
             }
-        }, 3000); // Max wait 3 seconds
+        }, 3000); 
     }
 
 
@@ -53,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastScrollY = window.scrollY;
     if (siteHeader) {
         window.addEventListener('scroll', () => {
-            if (document.body.classList.contains('no-scroll')) return; // Don't change header if nav is open
+            if (document.body.classList.contains('no-scroll')) return; 
 
             const currentScrollY = window.scrollY;
             if (currentScrollY > lastScrollY && currentScrollY > siteHeader.offsetHeight) {
@@ -75,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (siteOverlay) siteOverlay.classList.toggle('is-visible', isOpen);
         document.body.classList.toggle('no-scroll', isOpen);
 
-        // If opening the nav, ensure header is not hidden
         if (isOpen && siteHeader) {
             siteHeader.classList.remove('header--hidden');
         }
@@ -89,11 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         siteOverlay.addEventListener('click', () => toggleMobileNav(false));
         navLinks.forEach(link => {
-            // Close nav for any link click, not just non-anchor ones for a dropdown
             link.addEventListener('click', () => {
-                // If it's not an on-page anchor link, or if it is but we always want to close
-                // For a dropdown menu, it's common to always close.
-                // The smooth scroll part will handle scrolling after close.
                 toggleMobileNav(false);
             });
         });
@@ -102,24 +96,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Active Nav Link Highlighting for Multi-Page Site ---
     function updateActiveLinkForMultiPage() {
         if (!navLinks.length) return; 
-        const currentPath = window.location.pathname.split('/').pop() || 'index_mobile.html'; // Default to index if path is empty
+        const currentPath = window.location.pathname.split('/').pop() || 'index_mobile.html'; 
         
         navLinks.forEach(link => {
             const linkHref = link.getAttribute('href');
             if (!linkHref) return;
             const linkPath = linkHref.split('/').pop();
 
-            // More robust check for active link
             let isActive = (linkPath === currentPath);
             
-            // Handle cases like '/' or 'index.html' for home page
             if ((currentPath === 'index_mobile.html' || currentPath === '') && (linkPath === 'index_mobile.html' || linkPath === '' || linkPath === './')) {
                  isActive = true;
             }
-            // Check if current path ends with link path (e.g. /folder/page.html and page.html)
-            if (window.location.pathname.endsWith(linkHref)){
-                isActive = true;
+            if (window.location.pathname.endsWith(linkHref)){ // Handles cases where href might be 'page.html' and current path is '/folder/page.html'
+                // More specific check for exact match or index:
+                if (linkHref === currentPath || (currentPath === 'index_mobile.html' && (linkHref === './' || linkHref === 'index_mobile.html'))) {
+                    isActive = true;
+                } else if (window.location.pathname === linkHref || window.location.pathname === '/' + linkHref) { // Absolute path check
+                    isActive = true;
+                }
             }
+
 
             link.classList.toggle('active-nav-link', isActive);
         });
@@ -132,21 +129,18 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-            if (targetId.length > 1 && targetId.startsWith('#')) { // Ensure it's a valid ID selector
+            if (targetId.length > 1 && targetId.startsWith('#')) { 
                 try {
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
                         e.preventDefault();
                         
-                        // If mobile nav is open, close it first. The scroll might be slightly delayed.
-                        // Or, calculate position immediately.
                         if (mobileNav && mobileNav.classList.contains('is-open')) { 
-                            toggleMobileNav(false); // This might trigger a layout change
+                            toggleMobileNav(false); 
                         }
 
-                        // Recalculate offset *after* potential nav close
                         let offset = headerHeight(); 
-                        if (targetId === '#hero' || targetElement.offsetTop < offset) { // If target is hero or above where header would obscure it
+                        if (targetId === '#hero' || targetElement.offsetTop < offset) { 
                             offset = 0; 
                         }
     
@@ -168,7 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Add delay if data-delay attribute is present
                     const delay = entry.target.dataset.delay;
                     if (delay) {
                         setTimeout(() => {
@@ -180,10 +173,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     obs.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }); // Trigger a bit earlier
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }); 
         animatedElements.forEach(el => observer.observe(el));
     } else {
-        // Fallback for older browsers or if no elements to animate
         animatedElements.forEach(el => el.classList.add('is-visible'));
     }
 
@@ -193,11 +185,11 @@ document.addEventListener('DOMContentLoaded', () => {
         newsletterForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const emailInput = newsletterForm.querySelector('input[type="email"]');
-            const feedbackMessage = document.createElement('p'); // For better feedback
+            const feedbackMessage = document.createElement('p'); 
             feedbackMessage.style.marginTop = '10px';
             feedbackMessage.style.fontSize = '0.9em';
+            feedbackMessage.style.textAlign = 'left'; // Align with form
 
-            // Clear previous messages
             const existingFeedback = newsletterForm.parentElement.querySelector('.form-feedback');
             if (existingFeedback) existingFeedback.remove();
             
@@ -205,17 +197,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
             if (emailInput && emailInput.value.trim() !== '' && emailInput.checkValidity()) {
-                // Simulate submission
                 feedbackMessage.textContent = 'Thank you for subscribing to Redeeming Time Today!';
-                feedbackMessage.style.color = 'var(--color-accent-light)'; // Or a success color
+                feedbackMessage.style.color = 'var(--color-accent-light)'; 
                 newsletterForm.parentElement.appendChild(feedbackMessage);
                 newsletterForm.reset();
                 
-                setTimeout(() => feedbackMessage.remove(), 4000); // Remove after a few seconds
+                setTimeout(() => feedbackMessage.remove(), 4000); 
 
             } else {
                 feedbackMessage.textContent = 'Please enter a valid email address.';
-                feedbackMessage.style.color = 'var(--color-accent-dark)'; // Or an error color
+                feedbackMessage.style.color = 'var(--color-accent-dark)'; 
                 newsletterForm.parentElement.appendChild(feedbackMessage);
                 if(emailInput) emailInput.focus();
             }
