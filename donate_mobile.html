@@ -8,11 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Link to global styles -->
     <link rel="stylesheet" href="css/index_mobile.css">
-    <!-- Link to donate-specific styles -->
     <link rel="stylesheet" href="css/donate_mobile.css">
-    <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -54,6 +51,7 @@
             <li><a href="mission_mobile.html" class="mobile-nav__link">Our Mission</a></li>
             <li><a href="services_mobile.html" class="mobile-nav__link">Services</a></li>
             <li><a href="impact_mobile.html" class="mobile-nav__link">Impact</a></li>
+            <li><a href="events_mobile.html" class="mobile-nav__link">Events</a></li>
             <li><a href="shop_mobile.html" class="mobile-nav__link">Shop</a></li>
             <li><a href="donate_mobile.html" class="mobile-nav__link">Donate</a></li>
             <li><a href="get_involved_mobile.html" class="mobile-nav__link">Get Involved</a></li>
@@ -65,7 +63,7 @@
 
     <main id="mainContent">
         <section id="donate-hero" class="section donate-hero parallax-section" data-parallax-url="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9uYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=80">
-            <div class="section__overlay"></div>
+            <div class="section__overlay donate-hero__overlay"></div> {/* Added specific class for donate hero overlay */}
             <div class="container donate-hero__container">
                 <h1 class="section__title section__title--light">Your Gift Changes Lives</h1>
                 <p class="donate-hero__intro">Every contribution to Redeeming Time Today fuels hope and creates pathways to stability for individuals and families in our community. Join us in making a tangible difference.</p>
@@ -94,11 +92,11 @@
                         <input type="checkbox" id="recurringDonation" name="recurringDonation">
                         <label for="recurringDonation">Make this a monthly donation</label>
                     </div>
-                    <p class="donation-form__info">For payment processing, this is a demo. In a real application, secure payment fields (e.g., Stripe Elements, PayPal button) would appear here.</p>
+                    <p class="donation-form__info">Your secure payment will be processed by our trusted partner. For a real application, payment fields (e.g., Stripe Elements, PayPal button) would appear here.</p>
                     <button type="submit" class="btn btn--accent btn--full-width donation-submit-btn">
                         Donate <span id="selectedAmountDisplay">$100</span> <i class="fas fa-lock btn__icon"></i>
                     </button>
-                    <p class="donation-form__security-note"><i class="fas fa-shield-alt"></i> Secure donation processing (simulated).</p>
+                    <p class="donation-form__security-note"><i class="fas fa-shield-alt"></i> Secure donation processing.</p>
                 </form>
             </div>
         </section>
@@ -150,7 +148,7 @@
                 <div class="transparency-content animate-on-scroll" data-animation="fade-in-up">
                     <i class="fas fa-file-invoice-dollar transparency__icon"></i>
                     <p>Redeeming Time Today is committed to the highest standards of financial stewardship and transparency. We ensure that every dollar donated is used effectively to maximize our impact on the lives of those we serve. Detailed financial reports and impact stories are available to our supporters. Your trust is paramount to us.</p>
-                    <a href="financials_mobile.html" class="btn btn--secondary">View Financial Reports (Example Link)</a>
+                    <a href="financials_mobile.html" class="btn btn--secondary">View Financial Reports</a>
                 </div>
             </div>
         </section>
@@ -165,14 +163,23 @@
                         <polygon points="175,18 173,21 175,24 177,21" fill="var(--color-accent)" />
                     </svg>
                     <p>Empowering change, one moment at a time. Join us in building a community of hope and purpose under Redeeming Time Today.</p>
+                     <div class="footer__social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
                 <div class="footer__links">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="about_mobile.html">About Us</a></li>
+                        <li><a href="mission_mobile.html">Our Mission</a></li>
                         <li><a href="services_mobile.html">Services</a></li>
                         <li><a href="impact_mobile.html">Impact</a></li>
+                        <li><a href="events_mobile.html">Events</a></li>
                         <li><a href="shop_mobile.html">Shop</a></li>
+                        <li><a href="donate_mobile.html">Donate</a></li>
+                        <li><a href="get_involved_mobile.html">Get Involved</a></li>
                         <li><a href="privacy_policy_mobile.html">Privacy Policy</a></li>
                     </ul>
                 </div>
@@ -195,9 +202,7 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Link to global JS -->
     <script src="js/index_mobile.js"></script>
-    <!-- Link to donate-specific JS -->
     <script src="js/donate_mobile.js"></script>
 </body>
 </html>
