@@ -95,31 +95,24 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateActiveLinkForMultiPage() {
         if (!navLinks.length) return;
 
-        // Get the filename of the current page, defaulting to index_mobile.html for root.
         const currentPageName = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1) || 'index_mobile.html';
 
         navLinks.forEach(link => {
             const linkHref = link.getAttribute('href');
             if (!linkHref) {
-                link.classList.remove('active-nav-link'); // Ensure no lingering active class if href is missing
+                link.classList.remove('active-nav-link');
                 return;
             }
-
-            // Get the filename from the link's href.
             const linkPageName = linkHref.substring(linkHref.lastIndexOf('/') + 1);
 
             let isActive = false;
             if (currentPageName === linkPageName) {
                 isActive = true;
             } else if (currentPageName === 'index_mobile.html' && (linkPageName === '' || linkPageName === './' || linkPageName === 'index_mobile.html')) {
-                // Handles cases where index link is '', './', or 'index_mobile.html' and current page is index
                 isActive = true;
             } else if ((linkPageName === 'index_mobile.html' || linkPageName === '' || linkPageName === './') && currentPageName === 'index_mobile.html') {
-                 // Handles cases where current page is index and link is to index (accounts for variations like "" or "./")
                 isActive = true;
             }
-
-
             link.classList.toggle('active-nav-link', isActive);
         });
     }
