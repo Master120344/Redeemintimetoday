@@ -4,7 +4,7 @@
     --font-body: 'Poppins', sans-serif;
 
     --color-primary: #2C3E50; 
-    --color-primary-dark: #1A252F; /* Used for Preloader BG */
+    --color-primary-dark: #1A252F;
     --color-primary-light: #34495E; 
 
     --color-secondary: #3498DB; 
@@ -21,11 +21,14 @@
     --color-text-light: #4A5568; 
     --color-text-on-dark-bg: #FFFFFF; 
     --color-link-on-dark-bg: var(--color-accent-light); 
+    
+    --card-final-bg: rgba(15, 25, 38, 0.92); /* Sophisticated dark, highly opaque card bg */
+    --card-text-shadow: 0 1px 2px rgba(0,0,0,0.3); /* Subtle shadow for text in cards */
 
-    /* DEBUG COLORS - These will be very obvious */
-    --debug-card-bg: red; 
-    --debug-text-color: black;
-    --debug-text-bg: yellow;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --shadow-button: 0 3px 7px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.1); /* For nice buttons */
 
     --header-height-mobile: 70px; 
     --header-height-desktop: 80px;
@@ -61,7 +64,7 @@ body {
     overflow-x: hidden; 
     position: relative; 
 }
-body::before { /* Main page background overlay */
+body::before { 
     content: '';
     position: fixed; 
     top: 0; left: 0; width: 100%; height: 100%;
@@ -71,138 +74,80 @@ body::before { /* Main page background overlay */
 body.no-scroll { overflow: hidden; } 
 
 /* --- Site Preloader --- */
-.site-preloader {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background-color: var(--color-primary-dark); 
-    z-index: 10000;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    opacity: 1; visibility: visible;
-    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-}
+.site-preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--color-primary-dark); z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 1; visibility: visible; transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; }
 .site-preloader.loaded { opacity: 0; visibility: hidden; }
 .preloader-logo { margin-bottom: 25px; text-align: center; }
-/* Styling for the new image in preloader */
-#preloaderImage {
-    max-width: 150px; /* Adjust as needed */
-    max-height: 100px; /* Adjust as needed */
-    height: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: var(--border-radius-sm); /* Optional: if logo has sharp edges */
-}
+#preloaderImage { max-width: 150px; max-height: 100px; height: auto; display: block; margin-left: auto; margin-right: auto; border-radius: var(--border-radius-sm); }
 .preloader-progress { width: 150px; height: 6px; background-color: var(--color-primary-light); border-radius: 3px; overflow: hidden; }
 .preloader-bar { width: 0; height: 100%; background-color: var(--color-accent); border-radius: 3px; transition: width 0.1s linear; }
 
-
-/* --- Typography for Content Sections (Cards) - DEBUG STYLES --- */
+/* --- Typography for Content Sections (Cards) --- */
 .content-on-global-bg .section__title,
 .content-on-global-bg .section__kicker,
 .content-on-global-bg h1,
 .content-on-global-bg h2,
 .content-on-global-bg h3,
 .content-on-global-bg h4 {
-    color: var(--debug-text-color) !important; 
-    background-color: var(--debug-text-bg) !important;
-    font-weight: 700 !important;
-    text-shadow: none !important; 
-    padding: 2px 4px; /* To make background more visible */
+    color: var(--color-text-on-dark-bg); 
+    text-shadow: var(--card-text-shadow); 
 }
 .content-on-global-bg .section__kicker {
-    color: var(--debug-text-color) !important;  /* Forcing kicker to debug colors too */
+    color: var(--color-accent-light); 
 }
 .content-on-global-bg p { 
-    color: var(--debug-text-color) !important; 
-    background-color: var(--debug-text-bg) !important;
-    font-weight: 700 !important;
-    text-shadow: none !important; 
-    padding: 2px 4px;
+    color: var(--color-text-on-dark-bg); 
+    text-shadow: var(--card-text-shadow);
 }
 .content-on-global-bg strong {
-    color: var(--debug-text-color) !important; 
-    background-color: var(--debug-text-bg) !important;
-    text-shadow: none !important; 
+    color: var(--color-accent-light);
+    text-shadow: var(--card-text-shadow);
 }
 .content-on-global-bg a:not(.btn) {
-    color: blue !important; /* Different debug color for links */
-    background-color: lightgreen !important;
-    text-decoration: underline !important;
-    text-shadow: none !important; 
+    color: var(--color-link-on-dark-bg);
+    text-decoration: underline;
+    text-shadow: none;
 }
 .content-on-global-bg a:not(.btn):hover {
-    color: darkblue !important;
+    color: var(--color-surface-solid);
 }
 
-.quote--on-global-bg {
-    padding: 1.5em; margin: 1.5em 0;
-    border-left: 5px solid var(--color-accent-light);
-    background-color: rgba(0, 0, 0, 0.3); 
-    border-radius: var(--border-radius-sm);
-}
-.quote--on-global-bg p,
-.quote--on-global-bg footer {
-    color: var(--debug-text-color) !important; 
-    background-color: var(--debug-text-bg) !important;
-    font-weight: 700 !important;
-    text-shadow: none !important; 
-    padding: 2px 4px;
-}
-.quote--on-global-bg p { font-style: italic; margin-bottom: 0.5em; }
-.quote--on-global-bg footer { font-size: 0.9em; text-align: right; }
+.quote--on-global-bg { padding: 1.5em; margin: 1.5em 0; border-left: 5px solid var(--color-accent-light); background-color: rgba(25, 40, 55, 0.5); /* Slightly more transparent quote bg within card */ border-radius: var(--border-radius-sm); }
+.quote--on-global-bg p { font-style: italic; color: var(--color-text-on-dark-bg); margin-bottom: 0.5em; text-shadow: var(--card-text-shadow); }
+.quote--on-global-bg footer { font-size: 0.9em; color: var(--color-text-on-dark-bg); text-align: right; text-shadow: var(--card-text-shadow); opacity: 0.85; }
 
 /* --- Layout & Helpers --- */
 .container { width: 92%; max-width: 1200px; margin-left: auto; margin-right: auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
 main, .section, .site-footer .container, .site-header .container { max-width: 100vw; box-sizing: border-box; }
+.content-on-global-bg { position: relative; z-index: 5; opacity: 1; }
 
-.content-on-global-bg { 
-    position: relative; 
-    z-index: 1; 
-    opacity: 1 !important; /* Ensure wrapper is opaque */
-}
-
-/* --- Preview Sections as "Cards" - DEBUG STYLES --- */
+/* --- Preview Sections as "Cards" --- */
 .section.preview-section {
     padding-top: var(--section-padding-y); padding-bottom: var(--section-padding-y); 
-    position: relative; 
-    z-index: 2; 
-    background-color: transparent; /* Section itself is transparent */
-    opacity: 1 !important; /* Ensure section wrapper is opaque */
-    visibility: visible !important;
+    position: relative; z-index: 10; 
+    background-color: transparent; 
+    opacity: 1; visibility: visible;
 }
-
 .section.preview-section > .container { /* This is the card */
-    background-color: var(--debug-card-bg) !important; /* BRIGHT RED SOLID BACKGROUND */
-    opacity: 1 !important; /* Ensure card is fully opaque */
-    visibility: visible !important; /* Ensure card is visible */
-    display: block !important; /* Ensure card is a block */
+    background-color: var(--card-final-bg); 
+    opacity: 1; visibility: visible; display: block; 
     padding-top: clamp(2.5rem, 5.5vw, 3.2rem);    
     padding-bottom: clamp(2.5rem, 5.5vw, 3.2rem); 
     border-radius: var(--border-radius-lg); 
-    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55); 
-    border: 3px dashed yellow !important; /* Very obvious border for debugging */
-    position: relative; 
-    z-index: 100 !important; /* EXTREMELY HIGH Z-INDEX */
+    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.45); 
+    border: 1px solid rgba(255, 255, 255, 0.12); 
+    position: relative; z-index: 15; 
 }
-
 .section.preview-section .section__header { text-align: center; margin-bottom: clamp(1.8rem, 4.5vw, 2.8rem); }
-.section.preview-section .text--on-global-bg { max-width: 700px; margin-left: auto; margin-right: auto; font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.8rem; }
-.section.preview-section .mission__icon--on-global-bg {
-    font-size: 4rem; 
-    color: var(--debug-text-color) !important; /* Icon with debug colors */
-    background-color: var(--debug-text-bg) !important;
-    margin-bottom: 0.6em; display: inline-block; text-shadow: none !important; 
+.section.preview-section .text--on-global-bg { 
+    max-width: 700px; margin-left: auto; margin-right: auto; 
+    font-size: 1.05rem; /* Adjusted from 1.1rem for balance */
+    line-height: 1.75; 
+    margin-bottom: 1.75rem; 
+    font-weight: 500; /* Poppins Medium - good visibility, less heavy than Bold */
 }
+.section.preview-section .mission__icon--on-global-bg { font-size: 4rem; color: var(--color-accent-light); margin-bottom: 0.6em; display: inline-block; text-shadow: none; }
 
-/* Buttons inside cards - ensure they are visible */
-.section.preview-section .btn {
-    border: 2px solid black !important; /* Make buttons stand out */
-}
-.section.preview-section .btn--light { background-color: lightblue !important; color: black !important; }
-.section.preview-section .btn--primary { background-color: darkblue !important; color: white !important; }
-.section.preview-section .btn--secondary-on-global-bg { background-color: green !important; color: white !important; }
-
-
-/* --- Site Header, Mobile Nav (assuming okay) --- */
+/* --- Site Header, Mobile Nav (largely unchanged) --- */
 .site-header { position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height-mobile); background-color: rgba(255, 255, 255, 0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: var(--shadow-sm); z-index: 999; transition: transform var(--transition-base), background-color var(--transition-base), box-shadow var(--transition-base); }
 .site-header.header--hidden { transform: translateY(-100%); }
 .site-header.header--scrolled { background-color: rgba(255, 255, 255, 0.98); box-shadow: var(--shadow-md); }
@@ -224,23 +169,91 @@ main, .section, .site-footer .container, .site-header .container { max-width: 10
 .site-overlay.is-visible { opacity: 1; visibility: visible; }
 
 /* --- Hero Section --- */
-.hero { height: 100vh; min-height: 600px; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--color-text-on-dark-bg); overflow: hidden; padding-top: var(--header-height-mobile); background-image: var(--hero-background-image-url); background-size: contain; background-position: center center; background-repeat: no-repeat; background-color: var(--color-primary-dark); }
+.hero { 
+    height: 100vh; min-height: 650px; /* Slightly taller min-height */
+    position: relative; display: flex; 
+    /* Pushing content to the bottom */
+    align-items: flex-end; /* Align items to the bottom */
+    justify-content: center; text-align: center; 
+    color: var(--color-text-on-dark-bg); overflow: hidden; 
+    padding-top: var(--header-height-mobile); 
+    padding-bottom: clamp(40px, 10vh, 80px); /* Add bottom padding to hero content area */
+    background-image: var(--hero-background-image-url); 
+    background-size: contain; background-position: center center; 
+    background-repeat: no-repeat; background-color: var(--color-primary-dark); 
+}
 .hero__overlay-main { 
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    /* Minimal overlay */
-    background: linear-gradient(180deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.02) 50%, rgba(0,0,0,0.1) 100%); 
+    background: linear-gradient(180deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.02) 30%, rgba(0,0,0,0.20) 100%); 
     z-index: 0; 
 }
-.hero__content { position: relative; z-index: 1; padding: 0 var(--container-padding); }
-.hero__title { color: var(--color-text-on-dark-bg); margin-bottom: 0.75em; line-height: 1.2; text-shadow: 0 3px 8px rgba(0,0,0,0.85); }
+.hero__content { position: relative; z-index: 1; padding-left: var(--container-padding); padding-right: var(--container-padding); width: 100%; }
+.hero__title { color: var(--color-text-on-dark-bg); margin-bottom: 0.6em; line-height: 1.15; text-shadow: 0 3px 8px rgba(0,0,0,0.85); font-size: clamp(1.8rem, 5.5vw, 3rem); }
 .hero__title-line { display: block; }
-.hero__subtitle { color: var(--color-text-on-dark-bg); font-weight: 500; font-size: clamp(1.05rem, 3.2vw, 1.25rem); max-width: 680px; margin: 0 auto 1.5em; text-shadow: 0 2px 7px rgba(0,0,0,0.75); }
-.hero__cta { font-size: clamp(1rem, 3vw, 1.1rem); }
-.hero__scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: var(--color-text-on-dark-bg); font-size: 1.8rem; animation: bounce 2s infinite; opacity: 0.9; text-shadow: 0 1px 5px rgba(0,0,0,0.6); }
+.hero__subtitle { color: var(--color-text-on-dark-bg); font-weight: 400; /* Poppins Regular for subtitle */ font-size: clamp(1rem, 2.8vw, 1.15rem); max-width: 650px; margin: 0 auto 1.8em; text-shadow: 0 2px 7px rgba(0,0,0,0.75); }
+.hero__cta { font-size: clamp(0.95rem, 2.8vw, 1.05rem); }
+.hero__scroll-indicator { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: var(--color-text-on-dark-bg); font-size: 1.7rem; animation: bounce 2s infinite; opacity: 0.85; text-shadow: 0 1px 5px rgba(0,0,0,0.6); }
 .hero__scroll-indicator:hover { opacity: 1; }
 @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-10px); } 60% { transform: translateX(-50%) translateY(-5px); } }
 
-/* --- Form, Footer, ScrollTop (assuming okay) --- */
+/* --- "Nice" Button Styling --- */
+.btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 600; /* Poppins SemiBold for buttons */
+    font-size: 0.95rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: var(--border-radius-md); /* Softer radius for nicer buttons */
+    padding: 0.8em 1.9em; 
+    cursor: pointer;
+    transition: background-color var(--transition-base), color var(--transition-base), border-color var(--transition-base), transform var(--transition-fast), box-shadow var(--transition-base);
+    border: 2px solid transparent;
+    line-height: 1.4;
+    box-shadow: var(--shadow-button); /* Apply nice shadow */
+}
+.btn:hover, .btn:focus { 
+    transform: translateY(-3px) scale(1.02); 
+    box-shadow: 0 5px 12px rgba(0,0,0,0.25), 0 2px 4px rgba(0,0,0,0.15);
+}
+.btn .btn__icon { margin-left: 0.6em; }
+
+.btn--accent {
+    background-color: var(--color-accent);
+    color: var(--color-primary-dark);
+    border-color: var(--color-accent);
+}
+.btn--accent:hover, .btn--accent:focus {
+    background-color: var(--color-accent-dark);
+    border-color: var(--color-accent-dark);
+    color: var(--color-primary-dark); /* Ensure text color remains on hover */
+}
+
+.btn--light { /* Used in cards */
+    background-color: var(--color-surface-solid); 
+    color: var(--color-primary-dark); 
+    border: 2px solid var(--color-surface-solid);
+    /* box-shadow is inherited from .btn */
+}
+.btn--light:hover, .btn--light:focus { 
+    background-color: #f0f4f8; /* Slightly off-white hover */
+    color: var(--color-primary-dark);
+    border-color: #e2e8f0;
+}
+
+.btn--secondary-on-global-bg { /* Contact Us button */
+    background-color: var(--color-secondary);
+    color: var(--color-text-on-dark-bg);
+    border-color: var(--color-secondary);
+     /* box-shadow is inherited from .btn */
+}
+.btn--secondary-on-global-bg:hover, .btn--secondary-on-global-bg:focus {
+    background-color: var(--color-secondary-light);
+    border-color: var(--color-secondary-light);
+    color: var(--color-text-on-dark-bg);
+}
+
+/* --- Footer & ScrollTop (assuming okay) --- */
 .newsletter-form { display: flex; max-width: 350px; margin: 1em auto 0; }
 .newsletter-form input[type="email"] { flex-grow: 1; padding: 0.75em 1em; border: 1px solid var(--color-border); border-right: none; border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm); font-size: 0.9rem; background-color: var(--color-surface-solid); color: var(--color-text-dark); outline: none; }
 .newsletter-form input[type="email"]::placeholder { color: var(--color-text-light); }
@@ -269,13 +282,13 @@ main, .section, .site-footer .container, .site-header .container { max-width: 10
 
 /* --- Animation Utilities --- */
 [data-animation] { opacity: 0; transition-property: opacity, transform; }
-.animate-on-scroll.is-visible { opacity: 1 !important; transform: none !important; } /* !important to ensure visibility during debug */
+.animate-on-scroll.is-visible { opacity: 1; transform: none; } 
 .animate-on-scroll[data-animation="fade-in"] { opacity: 0; transition-duration: 0.8s; transition-timing-function: ease-out; }
 .animate-on-scroll[data-animation="fade-in-up"] { opacity: 0; transform: translateY(80px); transition-duration: 0.95s; transition-timing-function: cubic-bezier(0.165, 0.840, 0.440, 1.000); }
 .animate-on-scroll[data-animation="fade-in-down"] { opacity: 0; transform: translateY(-80px); transition-duration: 0.95s; transition-timing-function: cubic-bezier(0.165, 0.840, 0.440, 1.000); }
 .animate-on-scroll[data-animation="zoom-in"] { opacity: 0; transform: scale(0.80); transition-duration: 0.75s; transition-timing-function: cubic-bezier(0.165, 0.840, 0.440, 1.000); }
 .animate-on-scroll[data-animation="zoom-in-fast"] { opacity: 0; transform: scale(0.70); transition-duration: 0.6s; transition-timing-function: cubic-bezier(0.165, 0.840, 0.440, 1.000); }
-.animate-on-scroll[data-animation="card-zoom-in"] { opacity: 0; transform: scale(0.85) translateY(50px); transition-duration: 0.85s; transition-timing-function: cubic-bezier(0.165, 0.840, 0.440, 1.000); }
+.animate-on-scroll[data-animation="card-zoom-in"] { opacity: 0; transform: scale(0.88) translateY(50px); transition-duration: 0.85s; transition-timing-function: cubic-bezier(0.165, 0.840, 0.440, 1.000); }
 
 /* --- Media Queries --- */
 @media (min-width: 768px) { 
@@ -284,6 +297,8 @@ main, .section, .site-footer .container, .site-header .container { max-width: 10
     .mobile-nav { top: var(--header-height-desktop); max-height: calc(100vh - var(--header-height-desktop));}
     .header__logo-text-link { font-size: 1.7rem; }
     .hero { padding-top: var(--header-height-desktop); }
+    .hero__title { font-size: clamp(2rem, 6vw, 3.25rem); } /* Adjust hero title size for desktop */
+    .hero__subtitle { font-size: clamp(1.05rem, 3vw, 1.2rem); }
     .content-on-global-bg { max-width: 1140px; margin-left: auto; margin-right: auto; }
     .footer__main { grid-template-columns: 1.2fr 1fr 1fr; gap: 3rem; text-align: left; }
     .footer__logo-svg { margin-left: 0; margin-right:0; }
