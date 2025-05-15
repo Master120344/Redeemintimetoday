@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Programs - Redeeming Time Today</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/index_mobile.css"> {/* Global Styles */}
+    <link rel="stylesheet" href="css/programs_mobile.css"> {/* Page-Specific Styles */}
+</head>
+<body>
+
+    <div class="site-preloader" id="sitePreloader">
+        <div class="preloader-logo">
+            <svg viewBox="0 0 150 60" xmlns="http://www.w3.org/2000/svg" width="120" height="48">
+                <defs>
+                    <linearGradient id="preloadStarGradientSimplePrograms" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="var(--color-accent-light)" />
+                        <stop offset="100%" stop-color="var(--color-accent)" />
+                    </linearGradient>
+                </defs>
+                <text x="75" y="25" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Redeeming Time</text>
+                <text x="75" y="40" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Today</text>
+                <polygon points="75,48 72,52 75,56 78,52" fill="url(#preloadStarGradientSimplePrograms)" />
+            </svg>
+        </div>
+        <div class="preloader-progress"><div class="preloader-bar"></div></div>
+    </div>
+
+    <header class="site-header" id="siteHeader">
+        <div class="container header__container">
+            <a href="index_mobile.html" class="header__logo-text-link" aria-label="Redeeming Time Today Home">
+                Redeeming Time Today
+            </a>
+            <button id="menuToggle" class="header__menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <ul class="mobile-nav__list">
+            <li><a href="index_mobile.html" class="mobile-nav__link">Home</a></li>
+            <li><a href="about_mobile.html" class="mobile-nav__link">About Us</a></li>
+            <li><a href="mission_mobile.html" class="mobile-nav__link">Our Mission</a></li>
+            <li><a href="programs_mobile.html" class="mobile-nav__link">Our Programs</a></li> {/* New Link */}
+            {/* Note: Services will be added later if created */}
+            <li><a href="impact_mobile.html" class="mobile-nav__link">Impact</a></li>
+            <li><a href="success_stories_mobile.html" class="mobile-nav__link">Success Stories</a></li>
+            <li><a href="events_mobile.html" class="mobile-nav__link">Events</a></li>
+            <li><a href="meetings_mobile.html" class="mobile-nav__link">Meetings</a></li>
+            <li><a href="news_blog_mobile.html" class="mobile-nav__link">News & Blog</a></li>
+            <li><a href="shop_mobile.html" class="mobile-nav__link">Shop</a></li>
+            <li><a href="donate_mobile.html" class="mobile-nav__link">Donate</a></li>
+            <li><a href="get_involved_mobile.html" class="mobile-nav__link">Get Involved</a></li>
+            <li><a href="faq_mobile.html" class="mobile-nav__link">FAQ</a></li>
+            <li><a href="contact_mobile.html" class="mobile-nav__link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="site-overlay" id="siteOverlay"></div>
+
+    <main id="mainContent">
+        <section id="programs-hero" class="section programs-hero">
+            <div class="container">
+                <h1 class="section__title">Our Transformative Programs</h1>
+                <p class="programs-hero__intro">Redeeming Time Today offers a range of carefully designed programs to empower individuals, foster growth, and build stronger communities. Explore how we are making a difference.</p>
+            </div>
+        </section>
+
+        <section id="programs-overview" class="section programs-overview-section">
+            <div class="container">
+                 <div class="section__header">
+                    <span class="section__kicker">Pathways to Potential</span>
+                    <h2 class="section__title">Empowering Through Action</h2>
+                </div>
+                <p class="programs-overview-text animate-on-scroll" data-animation="fade-in-up">
+                    At Redeeming Time Today, our programs are the heart of our mission. Each initiative is crafted with the goal of providing tangible support, fostering holistic development—mentally, physically, and spiritually—and creating opportunities for individuals to reclaim their time and build purposeful lives. We believe in practical solutions, compassionate guidance, and the power of community to inspire lasting change.
+                </p>
+            </div>
+        </section>
+
+        <section id="program-details" class="section program-details-section">
+            <div class="container">
+                <div class="programs-grid">
+                    {/* Program 1: Community Reintegration */}
+                    <article class="program-card animate-on-scroll" data-animation="fade-in-up">
+                        <div class="program-card__icon-wrapper">
+                            <i class="fas fa-people-roof"></i>
+                        </div>
+                        <h3 class="program-card__title">Community Reintegration Support</h3>
+                        <p class="program-card__description">
+                            Redeeming Time Today provides comprehensive support for individuals transitioning back into the community from incarceration or periods of homelessness. We offer assistance with housing, employment, accessing essential services, and rebuilding supportive social networks to foster stability and belonging.
+                        </p>
+                        <a href="contact_mobile.html?subject=ReintegrationSupport" class="btn btn--secondary program-card__cta">Learn More or Seek Help</a>
+                    </article>
+
+                    {/* Program 2: Youth Mentorship */}
+                    <article class="program-card animate-on-scroll" data-animation="fade-in-up" data-delay="0.1s">
+                        <div class="program-card__icon-wrapper">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h3 class="program-card__title">Youth Empowerment & Mentorship</h3>
+                        <p class="program-card__description">
+                            Our youth programs focus on guiding young minds towards positive life choices and realizing their full potential. Through mentorship, skill-building workshops, and educational support, Redeeming Time Today aims to inspire a generation of confident and capable leaders.
+                        </p>
+                        <a href="get_involved_mobile.html?interest=youth_mentorship" class="btn btn--secondary program-card__cta">Mentor or Get Involved</a>
+                    </article>
+
+                    {/* Program 3: Recovery & Support */}
+                    <article class="program-card animate-on-scroll" data-animation="fade-in-up" data-delay="0.2s">
+                        <div class="program-card__icon-wrapper">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h3 class="program-card__title">Recovery & Resilience Program</h3>
+                        <p class="program-card__description">
+                            Redeeming Time Today offers a compassionate and structured environment for individuals on their journey of recovery from addiction and hardship. We provide support groups, access to counseling resources, and pathways to healthy living, emphasizing resilience and long term well being.
+                        </p>
+                        <a href="meetings_mobile.html" class="btn btn--secondary program-card__cta">Find a Support Meeting</a>
+                    </article>
+
+                    {/* Program 4: Holistic Development */}
+                    <article class="program-card animate-on-scroll" data-animation="fade-in-up" data-delay="0.3s">
+                        <div class="program-card__icon-wrapper">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="program-card__title">Holistic Personal Development</h3>
+                        <p class="program-card__description">
+                            We believe in nurturing the whole person. Our holistic development programs at Redeeming Time Today include workshops and resources focused on mental wellness, physical health, spiritual growth, and essential life skills, empowering individuals to thrive in all aspects of life.
+                        </p>
+                        <a href="events_mobile.html" class="btn btn--secondary program-card__cta">View Workshops & Events</a>
+                    </article>
+
+                     {/* Program 5: Job Readiness */}
+                    <article class="program-card animate-on-scroll" data-animation="fade-in-up" data-delay="0.4s">
+                        <div class="program-card__icon-wrapper">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3 class="program-card__title">Job Readiness & Skills Training</h3>
+                        <p class="program-card__description">
+                            Redeeming Time Today equips individuals with the necessary skills and confidence to secure meaningful employment. Our services include resume building, interview coaching, vocational training referrals, and networking opportunities to open doors to a stable future.
+                        </p>
+                        <a href="contact_mobile.html?subject=JobReadiness" class="btn btn--secondary program-card__cta">Inquire About Training</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="support-our-programs" class="section support-programs-section">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title section__title--light">Support Our Life Changing Work</h2>
+                    <p class="text--on-dark-bg">Your contribution allows Redeeming Time Today to continue offering these vital programs and expand our reach to help more individuals redeem their time and build brighter futures.</p>
+                </div>
+                <div class="support-buttons">
+                    <a href="donate_mobile.html" class="btn btn--accent"><i class="fas fa-donate"></i> Donate Now</a>
+                    <a href="get_involved_mobile.html" class="btn btn--light"><i class="fas fa-hands-helping"></i> Volunteer</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer__container">
+            <div class="footer__main">
+                <div class="footer__about">
+                    <svg class="footer__logo-svg" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+                        <text x="100" y="25" font-family="Merriweather, serif" font-size="14" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Redeeming Time Today</text>
+                    </svg>
+                    <p>Empowering change, one moment at a time. Join us in building a community of hope and purpose under Redeeming Time Today.</p>
+                     <div class="footer__social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="X (formerly Twitter)"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer__links">
+                    <h4>Explore More</h4>
+                    <ul>
+                        <li><a href="meetings_mobile.html">Meetings</a></li>
+                        <li><a href="resources_mobile.html">Resources</a></li>
+                        <li><a href="programs_mobile.html">Our Programs</a></li>
+                        <li><a href="success_stories_mobile.html">Success Stories</a></li>
+                        <li><a href="news_blog_mobile.html">News & Blog</a></li>
+                        <li><a href="faq_mobile.html">FAQ</a></li>
+                        <li><a href="privacy_policy_mobile.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer__newsletter">
+                    <h4>Stay Connected</h4>
+                    <p class="footer__newsletter-text">Get updates from Redeeming Time Today on our work and stories of transformation.</p>
+                    <form id="newsletterFormPrograms" class="newsletter-form">
+                        <input type="email" name="newsletter_email_programs" placeholder="Your email address" required class="newsletter-form__input">
+                        <button type="submit" class="btn btn--accent newsletter-form__button">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>© <span id="footerYearPrograms"></span> Redeeming Time Today. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top of page">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/index_mobile.js"></script>
+    <script src="js/programs_mobile.js"></script>
+</body>
+</html>
