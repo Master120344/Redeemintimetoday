@@ -24,9 +24,8 @@
                         <stop offset="100%" stop-color="var(--color-accent)" />
                     </linearGradient>
                 </defs>
-                <!-- Corrected fill color to use a variable that should exist from index_mobile.css -->
-                <text x="75" y="25" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-bright)" font-weight="bold" text-anchor="middle">Redeeming Time</text>
-                <text x="75" y="40" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-bright)" font-weight="bold" text-anchor="middle">Today</text>
+                <text x="75" y="25" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Redeeming Time</text>
+                <text x="75" y="40" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Today</text>
                 <polygon points="75,48 72,52 75,56 78,52" fill="url(#preloadStarGradientSimpleAbout)" />
             </svg>
         </div>
@@ -35,7 +34,6 @@
 
     <header class="site-header" id="siteHeader">
         <div class="container header__container">
-            <!-- HEADER LOGO CHANGED: From image to text link -->
             <a href="index_mobile.html" class="header__logo-text-link" aria-label="Redeeming Time Today Home">
                 Redeeming Time Today
             </a>
@@ -48,6 +46,9 @@
     </header>
 
     <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <button class="mobile-nav__close-btn" aria-label="Close navigation menu">
+            <i class="fas fa-times"></i>
+        </button>
         <ul class="mobile-nav__list">
             <li><a href="index_mobile.html" class="mobile-nav__link">Home</a></li>
             <li><a href="about_mobile.html" class="mobile-nav__link">About Us</a></li>
@@ -67,7 +68,7 @@
     <main id="mainContent">
         <section id="about-hero" class="section about-hero">
             <div class="container about-hero__container">
-                <h1 class="section__title">Our Story: The Heart of Redeeming Time Today</h1>
+                <h1 class="section__title section__title--light">Our Story: The Heart of Redeeming Time Today</h1>
                 <p class="about-hero__intro">Discover the journey, values, and vision that drive our commitment to empowering individuals and fostering positive change in our community.</p>
             </div>
         </section>
@@ -83,7 +84,7 @@
                         <h2 class="about-subsection-title">From Vision to Reality</h2>
                         <p class="about-intro-text">Redeeming Time Today was born from a profound vision shared within the challenging environment of Rahway State Prison. Our CEO, alongside Reverend Rufus McClendon and a group of dedicated inmates, envisioned a pathway to holistic growth encompassing mental, physical, and spiritual well being.</p>
                         <p>This powerful idea, conceived in adversity, was carried beyond prison walls upon our CEO's release in 2002. Redeeming Time Today was then formally established, transforming that initial spark into a beacon of hope. Our organization was founded on the principle that every individual deserves a chance to rejoin society with dignity, purpose, and comprehensive support, especially those navigating the difficult paths away from addiction, incarceration, and homelessness.</p>
-                        <blockquote class="about-page__quote">
+                        <blockquote class="blockquote--standard about-page__quote">
                             <p>"Making the very most of your time [on earth], ...because the days are evil."</p>
                             <footer>Ephesians 5:16 (AMP), The Guiding Word for Redeeming Time Today</footer>
                         </blockquote>
@@ -98,22 +99,22 @@
             <div class="container values-container">
                 <h2 class="about-subsection-title section__title--light animate-on-scroll" data-animation="fade-in-up">Our Core Values</h2>
                 <div class="values-grid">
-                    <div class="value-card animate-on-scroll" data-animation="scale-up" style="--card-delay: 0s;">
+                    <div class="value-card animate-on-scroll" data-animation="scale-up" data-delay="0s">
                         <i class="fas fa-heartbeat value-card__icon"></i>
                         <h3 class="value-card__title">Compassion</h3>
                         <p class="value-card__description">We approach every individual with empathy, understanding, and a genuine desire to support their journey with Redeeming Time Today.</p>
                     </div>
-                    <div class="value-card animate-on-scroll" data-animation="scale-up" style="--card-delay: 0.15s;">
+                    <div class="value-card animate-on-scroll" data-animation="scale-up" data-delay="0.15s">
                         <i class="fas fa-lightbulb value-card__icon"></i>
                         <h3 class="value-card__title">Empowerment</h3>
                         <p class="value-card__description">We believe in equipping people with the tools, resources, and confidence to take control of their lives and make positive changes.</p>
                     </div>
-                    <div class="value-card animate-on-scroll" data-animation="scale-up" style="--card-delay: 0.3s;">
+                    <div class="value-card animate-on-scroll" data-animation="scale-up" data-delay="0.3s">
                         <i class="fas fa-users value-card__icon"></i>
                         <h3 class="value-card__title">Community</h3>
                         <p class="value-card__description">We foster a sense of belonging and mutual support, recognizing that collective strength is vital for individual and societal healing.</p>
                     </div>
-                     <div class="value-card animate-on-scroll" data-animation="scale-up" style="--card-delay: 0.45s;">
+                     <div class="value-card animate-on-scroll" data-animation="scale-up" data-delay="0.45s">
                         <i class="fas fa-shield-alt value-card__icon"></i>
                         <h3 class="value-card__title">Integrity</h3>
                         <p class="value-card__description">We operate with transparency, honesty, and accountability in all our interactions and programs at Redeeming Time Today.</p>
@@ -125,29 +126,24 @@
         <section id="meet-the-team" class="section about-content-section">
             <div class="container">
                 <div class="section__header">
-                    <span class="section__kicker">Our Dedicated Leaders</span>
-                    <h2 class="section__title">Meet Key Figures at Redeeming Time Today</h2>
+                    <span class="section__kicker section__kicker--on-dark">Our Dedicated Leaders</span>
+                    <h2 class="section__title section__title--light">Meet Key Figures at Redeeming Time Today</h2>
                 </div>
                 <div class="team-grid">
-                    <!-- Team Member 1: CEO -->
                     <div class="team-member-card animate-on-scroll" data-animation="fade-in-up">
                         <img src="https://via.placeholder.com/250x250.png?text=Robert+M." alt="Robert Miller, CEO of Redeeming Time Today" class="team-member-card__image">
-                        <!-- NAME CHANGED -->
                         <h3 class="team-member-card__name">Robert Miller</h3>
                         <p class="team-member-card__title">Founder & CEO</p>
                         <p class="team-member-card__bio">With a personal journey that inspired the founding of Redeeming Time Today, Robert Miller leads with unwavering dedication to our mission and a deep understanding of the challenges our community faces.</p>
                     </div>
-                    <!-- Team Member 2: Rev. Rufus McClendon -->
                     <div class="team-member-card animate-on-scroll" data-animation="fade-in-up" data-delay="0.15s">
                         <img src="https://via.placeholder.com/250x250.png?text=Rev.+McClendon" alt="Rev. Rufus McClendon" class="team-member-card__image">
                         <h3 class="team-member-card__name">Rev. Rufus McClendon</h3>
                         <p class="team-member-card__title">Co-Visionary & Spiritual Advisor</p>
                         <p class="team-member-card__bio">A guiding force from the inception of the vision, Rev. McClendon provides spiritual leadership and profound insight, shaping the holistic approach of Redeeming Time Today.</p>
                     </div>
-                    <!-- Add more team members as needed -->
                      <div class="team-member-card animate-on-scroll" data-animation="fade-in-up" data-delay="0.3s">
                         <img src="https://via.placeholder.com/250x250.png?text=Sarah+C." alt="Sarah Chen, Program Director" class="team-member-card__image">
-                        <!-- NAME CHANGED -->
                         <h3 class="team-member-card__name">Sarah Chen</h3>
                         <p class="team-member-card__title">Program Director</p>
                         <p class="team-member-card__bio">Overseeing the impactful programs at Redeeming Time Today, Sarah Chen ensures that our services are effective, compassionate, and transformative.</p>
@@ -158,14 +154,13 @@
 
         <section id="join-our-journey" class="section join-journey-section">
             <div class="container join-journey-container">
-                <h2 class="section__title animate-on-scroll" data-animation="fade-in">Become Part of Our Story</h2>
+                <h2 class="section__title section__title--light animate-on-scroll" data-animation="fade-in">Become Part of Our Story</h2>
                 <p class="join-journey-text animate-on-scroll" data-animation="fade-in" data-delay="0.1s">
                     The story of Redeeming Time Today is continuously written by every individual who joins our cause. Whether you donate, volunteer, or share our mission, you contribute to a legacy of hope and positive change.
                 </p>
                 <div class="join-journey-buttons animate-on-scroll" data-animation="fade-in-up" data-delay="0.2s">
-                     <!-- Adjusted button classes to likely use existing global button styles from index_mobile.css -->
-                    <a href="donate_mobile.html" class="btn btn--accent-on-dark">Support Us</a>
-                    <a href="get_involved_mobile.html" class="btn btn--secondary-on-light">Get Involved</a> <!-- This might need a new btn style if on a dark bg -->
+                    <a href="donate_mobile.html" class="btn btn--accent">Support Us</a>
+                    <a href="get_involved_mobile.html" class="btn btn--light-on-dark">Get Involved</a>
                 </div>
             </div>
         </section>
@@ -177,14 +172,13 @@
             <div class="footer__main">
                 <div class="footer__about">
                     <svg class="footer__logo-svg" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
-                         <!-- Corrected fill color to use a variable that should exist from index_mobile.css -->
-                        <text x="100" y="25" font-family="Merriweather, serif" font-size="14" fill="var(--color-text-bright)" font-weight="bold" text-anchor="middle">Redeeming Time Today</text>
-                        <polygon points="175,18 173,21 175,24 177,21" fill="var(--color-accent)" />
+                        <text x="100" y="25" font-family="Merriweather, serif" font-size="14" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Redeeming Time Today</text>
+                        {/* Removed polygon for cleaner look in this instance, can be added back if desired */}
                     </svg>
                     <p>Empowering change, one moment at a time. Join us in building a community of hope and purpose under Redeeming Time Today.</p>
                      <div class="footer__social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="X (formerly Twitter)"><i class="fab fa-x-twitter"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
@@ -204,15 +198,15 @@
                 </div>
                 <div class="footer__newsletter">
                     <h4>Stay Connected</h4>
-                    <p>Get updates from Redeeming Time Today on our work and stories of transformation.</p>
+                    <p class="footer__newsletter-text">Get updates from Redeeming Time Today on our work and stories of transformation.</p>
                     <form id="newsletterFormAbout" class="newsletter-form">
-                        <input type="email" name="newsletter_email_about" placeholder="Your email address" required>
-                        <button type="submit" aria-label="Subscribe"><i class="fas fa-envelope"></i></button>
+                        <input type="email" name="newsletter_email_about" placeholder="Your email address" required class="newsletter-form__input">
+                        <button type="submit" class="btn btn--accent newsletter-form__button">Subscribe</button>
                     </form>
                 </div>
             </div>
             <div class="footer__bottom">
-                <p>© <span id="footerYearAbout"></span> Redeeming Time Today. All Rights Reserved. Crafted with <i class="fas fa-heart footer__heart"></i> and purpose.</p>
+                <p>© <span id="footerYearAbout"></span> Redeeming Time Today. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
