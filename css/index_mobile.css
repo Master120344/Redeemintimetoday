@@ -20,13 +20,13 @@
     --color-text-dark: #2C3E50; 
     --color-text-light: #4A5568; 
     --color-text-on-dark-bg: #FFFFFF; 
-    --color-text-on-dark-bg-muted: #E2E8F0; 
+    --color-text-on-dark-bg-muted: #E0E0E0; /* Slightly brighter muted text */
     --color-link-on-dark-bg: var(--color-accent-light); 
 
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
     --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.12);
     --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
-    --text-shadow-on-dark-cards: 0 1px 3px rgba(0, 0, 0, 0.5); /* New variable for text shadow */
+    /* --text-shadow-on-dark-cards: 0 1px 3px rgba(0, 0, 0, 0.5); /* Removed for now to test basic contrast */
 
     --header-height-mobile: 70px; 
     --header-height-desktop: 80px;
@@ -40,6 +40,7 @@
     --section-padding-y: 60px; 
 
     --global-background-image-url: url('https://images.unsplash.com/photo-1505051508008-923feaf90180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGF0aCUyMGxpZ2h0fGVufDB8fDB8fHww&auto=format&fit=crop&w=1920&q=85');
+    /* IMPORTANT: Ensure '../assets/logo.jpg' path is correct and the image itself is clear. */
     --hero-background-image-url: url('../assets/logo.jpg'); 
 }
 
@@ -81,7 +82,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(10, 20, 30, 0.55); 
+    background-color: rgba(10, 20, 30, 0.55); /* Overall page dimming */
     z-index: -1; 
 }
 body.no-scroll { overflow: hidden; } 
@@ -89,28 +90,28 @@ body.no-scroll { overflow: hidden; }
 /* --- Typography --- */
 .content-on-global-bg .section__title,
 .content-on-global-bg .section__kicker,
-.content-on-global-bg p, 
-.content-on-global-bg h1,
+.content-on-global-bg h1, /* Titles/Headings in cards */
 .content-on-global-bg h2,
 .content-on-global-bg h3,
 .content-on-global-bg h4 {
-    color: var(--color-text-on-dark-bg);
-    text-shadow: var(--text-shadow-on-dark-cards); /* Added text shadow */
+    color: var(--color-text-on-dark-bg); /* Bright white */
+    /* text-shadow: var(--text-shadow-on-dark-cards); */ /* Re-enable if basic contrast is good */
 }
 .content-on-global-bg .section__kicker {
     color: var(--color-accent-light); 
 }
-.content-on-global-bg p { 
-    color: var(--color-text-on-dark-bg-muted);
+.content-on-global-bg p { /* Paragraphs in cards */
+    color: var(--color-text-on-dark-bg-muted); /* Light grey, made slightly brighter */
+     /* text-shadow: var(--text-shadow-on-dark-cards); */
 }
 .content-on-global-bg strong {
     color: var(--color-accent-light);
-    text-shadow: var(--text-shadow-on-dark-cards);
+    /* text-shadow: var(--text-shadow-on-dark-cards); */
 }
 .content-on-global-bg a:not(.btn) {
     color: var(--color-link-on-dark-bg);
     text-decoration: underline;
-    text-shadow: none; /* Links usually don't have text shadow for clarity */
+    /* text-shadow: none; */
 }
 .content-on-global-bg a:not(.btn):hover {
     color: var(--color-surface-solid);
@@ -138,20 +139,20 @@ ul, ol { list-style-position: inside; padding-left: 0; }
     padding: 1.5em;
     margin: 1.5em 0;
     border-left: 5px solid var(--color-accent-light);
-    background-color: rgba(0, 0, 0, 0.2); 
+    background-color: rgba(0, 0, 0, 0.25); /* Slightly more opaque quote bg */
     border-radius: var(--border-radius-sm);
 }
 .quote--on-global-bg p {
     font-style: italic;
     color: var(--color-text-on-dark-bg);
     margin-bottom: 0.5em;
-    text-shadow: var(--text-shadow-on-dark-cards);
+    /* text-shadow: var(--text-shadow-on-dark-cards); */
 }
 .quote--on-global-bg footer {
     font-size: 0.9em;
     color: var(--color-text-on-dark-bg-muted);
     text-align: right;
-    text-shadow: var(--text-shadow-on-dark-cards);
+    /* text-shadow: var(--text-shadow-on-dark-cards); */
 }
 
 
@@ -183,12 +184,12 @@ main, .section, .site-footer .container, .site-header .container {
 }
 
 .section.preview-section > .container { /* This is the card */
-    background-color: rgba(10, 15, 25, 0.70); /* Darker, more opaque card background */
+    background-color: rgba(5, 10, 18, 0.82); /* Darker, more opaque card background for high contrast */
     padding-top: clamp(2.2rem, 5vw, 3rem);    
     padding-bottom: clamp(2.2rem, 5vw, 3rem); 
     border-radius: var(--border-radius-lg); 
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); /* Slightly stronger shadow */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle light border for definition */
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.45); /* More pronounced shadow */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Slightly more visible light border */
 }
 
 .section.preview-section .section__header {
@@ -202,17 +203,17 @@ main, .section, .site-footer .container, .site-header .container {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-    font-weight: 500; /* Bolder paragraph text */
+    font-size: 1.1rem; /* Slightly larger for impact */
+    line-height: 1.75; /* Increased line height for readability */
+    margin-bottom: 1.75rem; /* More space after paragraphs */
+    font-weight: 600; /* Poppins SemiBold - very clearly bolder */
 }
 .section.preview-section .mission__icon--on-global-bg {
     font-size: 3.8rem; 
     color: var(--color-accent-light); 
     margin-bottom: 0.5em;
     display: inline-block;
-    text-shadow: none; /* Icons usually don't need text shadow */
+    /* text-shadow: none; */
 }
 
 .section.preview-section .btn--light { 
@@ -476,7 +477,7 @@ main, .section, .site-footer .container, .site-header .container {
     background-size: contain; 
     background-position: center center;
     background-repeat: no-repeat;
-    background-color: var(--color-primary-dark); 
+    background-color: var(--color-primary-dark); /* Fallback if image fails */
 }
 .hero__overlay-main { 
     position: absolute;
@@ -484,8 +485,8 @@ main, .section, .site-footer .container, .site-header .container {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Lighter overlay for better logo visibility */
-    background: linear-gradient(180deg, rgba(20, 30, 40, 0.25) 0%, rgba(20, 30, 40, 0.55) 100%); 
+    /* Significantly lighter overlay for MAX logo visibility */
+    background: linear-gradient(180deg, rgba(20, 30, 40, 0.15) 0%, rgba(20, 30, 40, 0.40) 100%); 
     z-index: 0; 
 }
 .hero__content { position: relative; z-index: 1; padding: 0 var(--container-padding); }
@@ -493,7 +494,7 @@ main, .section, .site-footer .container, .site-header .container {
     color: var(--color-text-on-dark-bg); 
     margin-bottom: 0.75em;
     line-height: 1.2;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Shadow for hero title */
+    text-shadow: 0 2px 5px rgba(0,0,0,0.6); /* Stronger shadow for hero title on lighter overlay */
 }
 .hero__title-line { display: block; }
 .hero__subtitle {
@@ -501,7 +502,7 @@ main, .section, .site-footer .container, .site-header .container {
     font-size: clamp(1rem, 3vw, 1.2rem);
     max-width: 650px;
     margin: 0 auto 1.5em;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.4); /* Shadow for hero subtitle */
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5); /* Stronger shadow for hero subtitle */
 }
 .hero__cta {
     font-size: clamp(1rem, 3vw, 1.1rem);
@@ -515,7 +516,7 @@ main, .section, .site-footer .container, .site-header .container {
     font-size: 1.8rem;
     animation: bounce 2s infinite;
     opacity: 0.8;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 .hero__scroll-indicator:hover {
     opacity: 1;
@@ -705,14 +706,14 @@ main, .section, .site-footer .container, .site-header .container {
 }
 .animate-on-scroll[data-animation="fade-in-up"] {
     opacity: 0;
-    transform: translateY(50px); /* Adjusted travel distance */
-    transition-duration: 0.7s;
-    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); /* Smoother ease-out */
+    transform: translateY(60px); /* More travel for more "pop" */
+    transition-duration: 0.8s; /* Slightly longer for more noticeable effect */
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); 
 }
 .animate-on-scroll[data-animation="fade-in-down"] {
     opacity: 0;
-    transform: translateY(-50px);
-    transition-duration: 0.7s;
+    transform: translateY(-60px);
+    transition-duration: 0.8s;
     transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
 .animate-on-scroll[data-animation="zoom-in"] {
@@ -721,16 +722,16 @@ main, .section, .site-footer .container, .site-header .container {
     transition-duration: 0.6s;
     transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
-.animate-on-scroll[data-animation="zoom-in-fast"] { /* For icons etc. */
+.animate-on-scroll[data-animation="zoom-in-fast"] { 
     opacity: 0;
     transform: scale(0.8);
     transition-duration: 0.45s;
     transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
-.animate-on-scroll[data-animation="card-zoom-in"] { /* New animation for cards */
+.animate-on-scroll[data-animation="card-zoom-in"] { 
     opacity: 0;
-    transform: scale(0.95) translateY(20px);
-    transition-duration: 0.6s;
+    transform: scale(0.90) translateY(30px); /* Start smaller and further down for more pop */
+    transition-duration: 0.7s; /* Slightly longer animation for the card itself */
     transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
