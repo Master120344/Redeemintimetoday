@@ -6,49 +6,66 @@
     text-align: center;
     padding-top: calc(var(--header-height-mobile) + var(--section-padding-y) / 1.5); 
     padding-bottom: calc(var(--section-padding-y) / 1.5);
-    min-height: 60vh; /* Ensure it has some height */
-    display: flex; /* For vertical centering of content */
+    min-height: 60vh; 
+    display: flex; 
     align-items: center;
+    position: relative; /* For parallax and overlay */
 }
 
-.donate-hero .section__title--light { /* Already in index_mobile.css, ensure it applies */
+/* Specific overlay for donate hero to ensure text visibility */
+.donate-hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(26, 37, 47, 0.65); /* Adjusted opacity for better text contrast */
+    z-index: 0; /* Behind content */
+}
+.donate-hero__container { /* Ensure container content is above overlay */
+    position: relative;
+    z-index: 1;
+}
+
+.donate-hero .section__title--light { 
     margin-bottom: 0.5em;
+    color: #FFFFFF; /* Explicit white for title */
 }
 
 .donate-hero__intro {
     font-size: clamp(1rem, 2.5vw, 1.15rem);
-    color: var(--color-text-on-dark-muted);
+    color: var(--color-text-on-dark); /* Brighter for better visibility */
     max-width: 700px;
     margin: 0 auto 1.5rem;
 }
-.donate-hero .hero__cta { /* Re-using hero CTA style */
-    opacity: 1; /* No animation needed here as it's always visible */
+.donate-hero .hero__cta { 
+    opacity: 1; 
     transform: none;
 }
 
 /* Donation Form Section */
 .donation-form-section {
-    background-color: var(--color-surface); /* White surface for the form */
+    background-color: var(--color-surface); 
 }
 
 .donation-form {
     max-width: 600px;
     margin: 0 auto;
     padding: 2rem;
-    background-color: #fff; /* Explicit white for form card appearance */
+    background-color: #fff; 
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-lg);
 }
 
 .donation-amounts {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two buttons per row on mobile */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 1rem;
     margin-bottom: 1.5rem;
 }
 
 .amount-btn {
-    padding: 0.8em 0.5em; /* Adjust padding for smaller buttons */
+    padding: 0.8em 0.5em; 
     font-size: 1rem;
     border-width: 2px;
 }
@@ -57,7 +74,7 @@
     color: var(--color-text-on-dark);
     border-color: var(--color-primary);
 }
-.btn--outline-primary { /* From index_mobile.css */
+.btn--outline-primary { 
     border-color: var(--color-primary);
     color: var(--color-primary);
 }
@@ -72,7 +89,7 @@
     font-weight: 500;
 }
 .custom-amount-group label {
-    text-align: center; /* Center the floating label for custom amount */
+    text-align: center; 
     width: 100%;
     left: 0;
 }
@@ -84,14 +101,14 @@
     font-size: 0.95rem;
 }
 .form-group-checkbox input[type="checkbox"] {
-    width: auto; /* Override global form input width */
+    width: auto; 
     height: 1.2em;
     width: 1.2em;
     accent-color: var(--color-accent);
 }
 .form-group-checkbox label {
     color: var(--color-text-light);
-    margin-bottom: 0; /* Override p margin if label is p */
+    margin-bottom: 0; 
 }
 
 .donation-form__info {
@@ -100,7 +117,7 @@
     text-align: center;
     margin: 1.5rem 0;
     padding: 0.8em;
-    background-color: var(--color-background); /* Light bg for info box */
+    background-color: var(--color-background); 
     border-radius: var(--border-radius-sm);
     border: 1px dashed var(--color-border);
 }
@@ -131,7 +148,7 @@
 
 /* Impact Visualization Section */
 .impact-visualization-section {
-    background-color: var(--color-background); /* Main body background */
+    background-color: var(--color-background); 
 }
 
 .impact-grid {
@@ -150,15 +167,15 @@
 .impact-subsection-title {
     font-family: var(--font-body);
     font-weight: 600;
-    color: var(--color-secondary); /* Use secondary color for these titles */
+    color: var(--color-secondary); 
     margin-bottom: 1.5rem;
     text-align: center;
     font-size: 1.4rem;
 }
 
 #fundAllocationChart {
-    max-height: 350px; /* Control chart height */
-    width: 100% !important; /* Override Chart.js inline style if needed */
+    max-height: 350px; 
+    width: 100% !important; 
 }
 .chart-disclaimer {
     font-size: 0.8rem;
@@ -194,7 +211,7 @@
 }
 .progress-bar {
     height: 100%;
-    width: 0%; /* Will be set by JS */
+    width: 0%; 
     background-color: var(--color-accent);
     border-radius: 10px;
     transition: width 1s ease-out;
@@ -212,7 +229,7 @@
     font-size: 1.1rem;
     color: var(--color-text-dark);
     margin-bottom: 1rem;
-    text-align: left; /* Align example titles left */
+    text-align: left; 
 }
 .impact-examples ul {
     list-style: none;
@@ -229,14 +246,14 @@
 .impact-examples ul li i {
     color: var(--color-accent);
     font-size: 1.1rem;
-    margin-top: 0.1em; /* Align icon nicely with text */
-    width: 20px; /* Give icon fixed width */
+    margin-top: 0.1em; 
+    width: 20px; 
     text-align: center;
 }
 
 /* Transparency Section */
 .transparency-section {
-    background-color: var(--color-primary-light); /* Darker background for contrast */
+    background-color: var(--color-primary-light); 
     color: var(--color-text-on-dark);
     text-align: center;
 }
@@ -244,7 +261,7 @@
     color: var(--color-text-on-dark);
 }
 .transparency-section .section__kicker {
-    color: var(--color-accent-light); /* Brighter kicker on dark bg */
+    color: var(--color-accent-light); 
 }
 .transparency__icon {
     font-size: 3rem;
@@ -260,25 +277,25 @@
     color: var(--color-text-on-dark-muted);
 }
 .transparency-content .btn--secondary {
-    background-color: var(--color-surface); /* Light button on dark bg */
+    background-color: var(--color-surface); 
     color: var(--color-primary);
 }
 .transparency-content .btn--secondary:hover {
-    background-color: var(--color-background); /* Slightly off-white hover */
+    background-color: var(--color-background); 
 }
 
 
 /* Responsive adjustments */
 @media (min-width: 600px) {
     .donation-amounts {
-        grid-template-columns: repeat(4, 1fr); /* Four buttons per row */
+        grid-template-columns: repeat(4, 1fr); 
     }
 }
 
 @media (min-width: 768px) {
     .impact-grid {
-        grid-template-columns: 1fr 1fr; /* Two columns for chart and stats */
-        align-items: flex-start; /* Align items to the top */
+        grid-template-columns: 1fr 1fr; 
+        align-items: flex-start; 
     }
 }
 
