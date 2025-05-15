@@ -1,0 +1,215 @@
+/* --- Get Involved Page Specific Styles --- */
+
+/* Get Involved Hero Section */
+.get-involved-hero {
+    color: var(--color-text-on-dark);
+    text-align: center;
+    padding-top: calc(var(--header-height-mobile) + var(--section-padding-y) / 1.5); 
+    padding-bottom: calc(var(--section-padding-y) / 1.5);
+    min-height: 50vh; 
+    display: flex;
+    align-items: center;
+}
+
+.get-involved-hero .section__title--light {
+    margin-bottom: 0.5em;
+}
+
+.get-involved-hero__intro {
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    color: var(--color-text-on-dark-muted);
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+}
+
+/* Involvement Intro Section */
+.involvement-intro-section {
+    background-color: var(--color-surface); /* White surface to stand out */
+    text-align: center;
+}
+.involvement-intro__content p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--color-text-dark);
+}
+
+/* Involvement Form Sections (General) */
+.involvement-form-section {
+    padding-top: var(--section-padding-y);
+    padding-bottom: var(--section-padding-y);
+}
+.involvement-form-section.section--alt-bg {
+    background-color: var(--color-background); /* Main body background for contrast */
+}
+.form-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    background-color: var(--color-surface);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+}
+.section--alt-bg .form-container {
+    /* No change needed, form container itself is white */
+}
+
+.form-icon {
+    font-size: 3rem;
+    color: var(--color-accent);
+    margin-bottom: 0.75em;
+}
+.seek-help-form-container .form-icon {
+    color: var(--color-secondary); /* Different icon color for seek help */
+}
+
+.form-container h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5em;
+}
+.form-container p {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.involvement-form .form-group {
+    text-align: left; /* Align labels and inputs left within form */
+    margin-bottom: 1.5rem; /* Slightly less margin for tighter form */
+}
+.involvement-form .form-group select {
+    width: 100%;
+    padding: 0.9em 1em;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    background-color: var(--color-surface);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    appearance: none; /* For custom arrow if desired, or default styling */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2334495e'%3E%3Cpath d='M7 10l5 5 5-5H7z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1em center;
+    background-size: 1.2em;
+    padding-right: 2.5em; /* Make space for arrow */
+}
+.involvement-form .form-group select:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px rgba(243, 156, 18, 0.2);
+}
+
+
+.char-counter {
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+    text-align: right;
+    margin-top: 0.3em;
+}
+
+.involvement-form .form-group-checkbox { /* Copied from donate for consistency */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    text-align: left;
+}
+.involvement-form .form-group-checkbox input[type="checkbox"] {
+    width: auto; 
+    height: 1.1em;
+    width: 1.1em;
+    accent-color: var(--color-accent);
+}
+.involvement-form .form-group-checkbox label {
+    color: var(--color-text-light);
+    margin-bottom: 0;
+    line-height: 1.4;
+}
+
+.btn--full-width {
+    width: 100%;
+}
+
+/* Other Ways to Help Section */
+.other-ways-section {
+    background-color: var(--color-surface);
+}
+.other-ways-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+.other-way-card {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--color-background); /* Use body bg for cards here */
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+}
+.other-way-card i {
+    font-size: 2.5rem;
+    color: var(--color-accent-dark);
+    margin-bottom: 0.75rem;
+}
+.other-way-card h4 {
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5em;
+}
+.other-way-card p {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    margin-bottom: 1.2em;
+}
+.other-way-card .btn {
+    width: auto;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+}
+
+/* Footer Social Links - ensure visibility */
+.footer__social-links {
+    margin-top: 1rem;
+    text-align: center; /* Center if on its own line or if footer__about is centered */
+}
+.footer__social-links a {
+    font-size: 1.5rem; /* From contact section in index */
+    color: var(--color-text-on-dark-muted); /* Adjust for footer bg */
+    margin: 0 0.6rem;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+}
+.footer__social-links a:hover {
+    color: var(--color-accent-light);
+    transform: translateY(-2px);
+}
+/* If footer__about becomes display:flex and centered */
+@media (min-width: 768px) {
+    .footer__main {
+        /* ... existing styles ... */
+    }
+    .footer__about { /* If you want social links below text on desktop */
+        /* display: flex;
+        flex-direction: column;
+        align-items: center; */
+    }
+    .footer__social-links {
+        text-align: left; /* Default for desktop footer layout */
+    }
+}
+
+
+@media (min-width: 768px) {
+    .form-container {
+        padding: 2.5rem;
+    }
+    .other-ways-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
