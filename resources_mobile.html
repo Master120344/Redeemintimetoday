@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Resources - Redeeming Time Today</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/index_mobile.css"> {/* Global Styles */}
+    <link rel="stylesheet" href="css/resources_mobile.css"> {/* Page-Specific Styles */}
+</head>
+<body>
+
+    <div class="site-preloader" id="sitePreloader">
+        <div class="preloader-logo">
+             <svg viewBox="0 0 150 60" xmlns="http://www.w3.org/2000/svg" width="120" height="48">
+                <defs>
+                    <linearGradient id="preloadStarGradientSimpleResources" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="var(--color-accent-light)" />
+                        <stop offset="100%" stop-color="var(--color-accent)" />
+                    </linearGradient>
+                </defs>
+                <text x="75" y="25" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Redeeming Time</text>
+                <text x="75" y="40" font-family="Merriweather, serif" font-size="10" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Today</text>
+                <polygon points="75,48 72,52 75,56 78,52" fill="url(#preloadStarGradientSimpleResources)" />
+            </svg>
+        </div>
+        <div class="preloader-progress"><div class="preloader-bar"></div></div>
+    </div>
+
+    <header class="site-header" id="siteHeader">
+        <div class="container header__container">
+            <a href="index_mobile.html" class="header__logo-text-link" aria-label="Redeeming Time Today Home">
+                Redeeming Time Today
+            </a>
+            <button id="menuToggle" class="header__menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+                <span class="menu-toggle__bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <ul class="mobile-nav__list">
+            <li><a href="index_mobile.html" class="mobile-nav__link">Home</a></li>
+            <li><a href="about_mobile.html" class="mobile-nav__link">About Us</a></li>
+            <li><a href="mission_mobile.html" class="mobile-nav__link">Our Mission</a></li>
+            <li><a href="programs_mobile.html" class="mobile-nav__link">Our Programs</a></li>
+            <li><a href="resources_mobile.html" class="mobile-nav__link">Resources</a></li> {/* New Link */}
+            <li><a href="services_mobile.html" class="mobile-nav__link">Services</a></li>
+            <li><a href="impact_mobile.html" class="mobile-nav__link">Impact</a></li>
+            <li><a href="success_stories_mobile.html" class="mobile-nav__link">Success Stories</a></li>
+            <li><a href="events_mobile.html" class="mobile-nav__link">Events</a></li>
+            <li><a href="meetings_mobile.html" class="mobile-nav__link">Meetings</a></li>
+            <li><a href="news_blog_mobile.html" class="mobile-nav__link">News & Blog</a></li>
+            <li><a href="shop_mobile.html" class="mobile-nav__link">Shop</a></li>
+            <li><a href="donate_mobile.html" class="mobile-nav__link">Donate</a></li>
+            <li><a href="get_involved_mobile.html" class="mobile-nav__link">Get Involved</a></li>
+            <li><a href="faq_mobile.html" class="mobile-nav__link">FAQ</a></li>
+            <li><a href="contact_mobile.html" class="mobile-nav__link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="site-overlay" id="siteOverlay"></div>
+
+    <main id="mainContent">
+        <section id="resources-hero" class="section resources-hero">
+            <div class="container">
+                <h1 class="section__title">Find Support & Resources Near You</h1>
+                <p class="resources-hero__intro">Redeeming Time Today connects you with vital community services. Enter your zip code to find programs, assistance, and support available in your area.</p>
+            </div>
+        </section>
+
+        <section id="zip-search-section" class="section zip-search-section">
+            <div class="container">
+                <form id="resourceSearchForm" class="resource-search-form">
+                    <label for="zipCodeInput" class="search-form__label">Enter Your Zip Code:</label>
+                    <div class="search-form__input-group">
+                        <input type="text" id="zipCodeInput" name="zipCode" pattern="[0-9]{5}" title="Enter a 5-digit US zip code" placeholder="e.g., 78701" required class="search-form__input">
+                        <button type="submit" class="btn btn--accent search-form__button">
+                            <i class="fas fa-search"></i> Find Resources
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="results-section" class="section results-section">
+            <div class="container">
+                <h2 class="section__title results-title" id="resultsTitle" style="display: none;">Resources Found:</h2>
+                <div id="resourceResults" class="resource-results-grid">
+                    {/* Results will be dynamically inserted here by JavaScript */}
+                    <p id="noResultsMessage" class="no-results-message" style="display: none;">
+                        No specific local resources found for this zip code through Redeeming Time Today's current network. Please try a nearby zip code or explore general resources. You can always <a href="contact_mobile.html">contact us</a> for further assistance.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="general-resources" class="section general-resources-section">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">General & National Resources</h2>
+                    <p>These organizations offer broad support and can help you find assistance regardless of your location.</p>
+                </div>
+                <ul class="general-resources-list">
+                    <li><a href="https://www.211.org/" target="_blank" rel="noopener noreferrer"><strong>211.org</strong> <i class="fas fa-external-link-alt"></i></a> - Connects you to local health and human service assistance.</li>
+                    <li><a href="https://www.samhsa.gov/find-help/national-helpline" target="_blank" rel="noopener noreferrer"><strong>SAMHSA National Helpline</strong> <i class="fas fa-external-link-alt"></i></a> - For individuals and families facing mental and/or substance use disorders.</li>
+                    <li><a href="https://www.feedingamerica.org/find-your-local-foodbank" target="_blank" rel="noopener noreferrer"><strong>Feeding America</strong> <i class="fas fa-external-link-alt"></i></a> - Find your local food bank.</li>
+                    <li><a href="https://www.hud.gov/findshelter" target="_blank" rel="noopener noreferrer"><strong>HUD.gov Find Shelter</strong> <i class="fas fa-external-link-alt"></i></a> - Resources for finding housing and emergency shelter.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer__container">
+            <div class="footer__main">
+                <div class="footer__about">
+                    <svg class="footer__logo-svg" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+                        <text x="100" y="25" font-family="Merriweather, serif" font-size="14" fill="var(--color-text-on-dark-bg)" font-weight="bold" text-anchor="middle">Redeeming Time Today</text>
+                    </svg>
+                    <p>Empowering change, one moment at a time. Join us in building a community of hope and purpose under Redeeming Time Today.</p>
+                     <div class="footer__social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="X (formerly Twitter)"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer__links">
+                    <h4>Explore More</h4>
+                    <ul>
+                        <li><a href="meetings_mobile.html">Meetings</a></li>
+                        <li><a href="resources_mobile.html">Resources</a></li>
+                        <li><a href="programs_mobile.html">Our Programs</a></li>
+                        <li><a href="success_stories_mobile.html">Success Stories</a></li>
+                        <li><a href="news_blog_mobile.html">News & Blog</a></li>
+                        <li><a href="faq_mobile.html">FAQ</a></li>
+                        <li><a href="privacy_policy_mobile.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer__newsletter">
+                    <h4>Stay Connected</h4>
+                    <p class="footer__newsletter-text">Get updates from Redeeming Time Today on our work and stories of transformation.</p>
+                    <form id="newsletterFormResources" class="newsletter-form">
+                        <input type="email" name="newsletter_email_resources" placeholder="Your email address" required class="newsletter-form__input">
+                        <button type="submit" class="btn btn--accent newsletter-form__button">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>© <span id="footerYearResources"></span> Redeeming Time Today. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top of page">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/index_mobile.js"></script>
+    <script src="js/resources_mobile.js"></script>
+</body>
+</html>
