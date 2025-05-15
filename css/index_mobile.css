@@ -26,6 +26,7 @@
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
     --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.12);
     --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --text-shadow-on-dark-cards: 0 1px 3px rgba(0, 0, 0, 0.5); /* New variable for text shadow */
 
     --header-height-mobile: 70px; 
     --header-height-desktop: 80px;
@@ -36,7 +37,7 @@
     --transition-fast: 0.2s ease-in-out;
 
     --container-padding: 15px;
-    --section-padding-y: 60px; /* This padding acts as spacing around the preview "cards" */
+    --section-padding-y: 60px; 
 
     --global-background-image-url: url('https://images.unsplash.com/photo-1505051508008-923feaf90180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGF0aCUyMGxpZ2h0fGVufDB8fDB8fHww&auto=format&fit=crop&w=1920&q=85');
     --hero-background-image-url: url('../assets/logo.jpg'); 
@@ -80,41 +81,41 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(10, 20, 30, 0.55); /* Overall page dimming overlay */
+    background-color: rgba(10, 20, 30, 0.55); 
     z-index: -1; 
 }
 body.no-scroll { overflow: hidden; } 
 
 /* --- Typography --- */
-/* These styles apply to text within the .content-on-global-bg wrapper, 
-   which includes text inside the new "cards" */
 .content-on-global-bg .section__title,
 .content-on-global-bg .section__kicker,
-.content-on-global-bg p, /* This applies to paragraph text inside cards */
+.content-on-global-bg p, 
 .content-on-global-bg h1,
 .content-on-global-bg h2,
 .content-on-global-bg h3,
 .content-on-global-bg h4 {
     color: var(--color-text-on-dark-bg);
+    text-shadow: var(--text-shadow-on-dark-cards); /* Added text shadow */
 }
 .content-on-global-bg .section__kicker {
     color: var(--color-accent-light); 
 }
-.content-on-global-bg p { /* Paragraphs inside cards */
+.content-on-global-bg p { 
     color: var(--color-text-on-dark-bg-muted);
 }
 .content-on-global-bg strong {
     color: var(--color-accent-light);
+    text-shadow: var(--text-shadow-on-dark-cards);
 }
 .content-on-global-bg a:not(.btn) {
     color: var(--color-link-on-dark-bg);
     text-decoration: underline;
+    text-shadow: none; /* Links usually don't have text shadow for clarity */
 }
 .content-on-global-bg a:not(.btn):hover {
     color: var(--color-surface-solid);
 }
 
-/* Default heading styles for elements NOT in .content-on-global-bg (e.g., forms on white surface if any) */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 700;
@@ -127,7 +128,7 @@ h2 { font-size: clamp(1.7rem, 5vw, 2.5rem); }
 h3 { font-size: clamp(1.3rem, 4vw, 1.9rem); }
 h4 { font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-family: var(--font-body); font-weight: 600;}
 
-p { margin-bottom: 1.25em; font-size: 1rem; color: var(--color-text-light); } /* Default for forms */
+p { margin-bottom: 1.25em; font-size: 1rem; color: var(--color-text-light); } 
 a { text-decoration: none; color: var(--color-accent-dark); transition: color var(--transition-base); }
 a:hover, a:focus { color: var(--color-accent); outline-offset: 2px; }
 img { max-width: 100%; height: auto; display: block; }
@@ -137,18 +138,20 @@ ul, ol { list-style-position: inside; padding-left: 0; }
     padding: 1.5em;
     margin: 1.5em 0;
     border-left: 5px solid var(--color-accent-light);
-    background-color: rgba(0, 0, 0, 0.2); /* Darker transparent background for quote inside card */
+    background-color: rgba(0, 0, 0, 0.2); 
     border-radius: var(--border-radius-sm);
 }
 .quote--on-global-bg p {
     font-style: italic;
     color: var(--color-text-on-dark-bg);
     margin-bottom: 0.5em;
+    text-shadow: var(--text-shadow-on-dark-cards);
 }
 .quote--on-global-bg footer {
     font-size: 0.9em;
     color: var(--color-text-on-dark-bg-muted);
     text-align: right;
+    text-shadow: var(--text-shadow-on-dark-cards);
 }
 
 
@@ -161,65 +164,57 @@ ul, ol { list-style-position: inside; padding-left: 0; }
     padding-left: var(--container-padding);
     padding-right: var(--container-padding);
 }
-main, .section, .site-footer .container, .site-header .container { /* Removed .container from this line, as .container already max-widths */
+main, .section, .site-footer .container, .site-header .container {
     max-width: 100vw; 
     box-sizing: border-box; 
 }
-.content-on-global-bg { /* Wrapper for sections on global background */
-    /* Padding for this wrapper can be used to create overall spacing if sections don't have enough */
-    /* padding: 0 var(--container-padding);  This might be redundant if sections handle their own padding */
+.content-on-global-bg { 
     position: relative; 
     z-index: 1;
 }
 
 /* --- Preview Sections as "Cards" --- */
 .section.preview-section {
-    padding-top: var(--section-padding-y); /* This creates space ABOVE the card */
-    padding-bottom: var(--section-padding-y); /* This creates space BELOW the card (effectively between cards) */
+    padding-top: var(--section-padding-y); 
+    padding-bottom: var(--section-padding-y); 
     position: relative; 
-    overflow: visible; /* Allows box-shadow from inner container to be fully visible */
-    background-color: transparent; /* Section itself is transparent */
+    overflow: visible; 
+    background-color: transparent; 
 }
 
-/* Styling the .container within each preview section to act as a "card" */
-.section.preview-section > .container {
-    background-color: rgba(20, 30, 45, 0.45); /* Semi-transparent background for the card */
-    padding-top: clamp(2rem, 4vw, 2.5rem);    /* Vertical padding inside the card */
-    padding-bottom: clamp(2rem, 4vw, 2.5rem); /* Vertical padding inside the card */
-    /* Horizontal padding comes from the global .container rule (var(--container-padding)) */
-    border-radius: var(--border-radius-lg); /* Softer, larger border radius */
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3); /* More pronounced shadow for depth */
+.section.preview-section > .container { /* This is the card */
+    background-color: rgba(10, 15, 25, 0.70); /* Darker, more opaque card background */
+    padding-top: clamp(2.2rem, 5vw, 3rem);    
+    padding-bottom: clamp(2.2rem, 5vw, 3rem); 
+    border-radius: var(--border-radius-lg); 
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); /* Slightly stronger shadow */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle light border for definition */
 }
 
-/* Ensure elements inside the card use the correct text colors */
 .section.preview-section .section__header {
     text-align: center;
-    margin-bottom: clamp(1.5rem, 4vw, 2.5rem); /* Adjusted margin for inside card */
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem); 
 }
 .section.preview-section .section__kicker--on-global-bg {
-    /* Styles already defined by .content-on-global-bg .section__kicker */
     font-weight: 500; 
 }
-.section.preview-section .section__title--on-global-bg {
-    /* Styles already defined by .content-on-global-bg .section__title */
-}
-.section.preview-section .text--on-global-bg {
-    /* Styles already defined by .content-on-global-bg p */
+.section.preview-section .text--on-global-bg { /* Main paragraph text in cards */
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     font-size: 1.05rem;
     line-height: 1.7;
     margin-bottom: 1.5rem;
+    font-weight: 500; /* Bolder paragraph text */
 }
 .section.preview-section .mission__icon--on-global-bg {
     font-size: 3.8rem; 
     color: var(--color-accent-light); 
     margin-bottom: 0.5em;
     display: inline-block;
+    text-shadow: none; /* Icons usually don't need text shadow */
 }
 
-/* Buttons within the preview section cards */
 .section.preview-section .btn--light { 
     background-color: var(--color-surface-solid);
     color: var(--color-primary-dark);
@@ -232,7 +227,6 @@ main, .section, .site-footer .container, .site-header .container { /* Removed .c
     box-shadow: 0 3px 7px rgba(0,0,0,0.25);
 }
 .section.preview-section .btn--primary { 
-    /* Assuming this is for a dark button on the card (if needed) */
     background-color: var(--color-primary);
     color: var(--color-text-on-dark-bg);
 }
@@ -246,7 +240,6 @@ main, .section, .site-footer .container, .site-header .container { /* Removed .c
 .section.preview-section .btn--secondary-on-global-bg:hover {
     background-color: var(--color-secondary-light);
 }
-
 
 .section__title--light { color: var(--color-text-on-dark-bg) !important; } 
 
@@ -491,8 +484,8 @@ main, .section, .site-footer .container, .site-header .container { /* Removed .c
     left: 0;
     width: 100%;
     height: 100%;
-    /* Adjusted gradient for better logo visibility */
-    background: linear-gradient(180deg, rgba(20, 30, 40, 0.45) 0%, rgba(20, 30, 40, 0.75) 100%); 
+    /* Lighter overlay for better logo visibility */
+    background: linear-gradient(180deg, rgba(20, 30, 40, 0.25) 0%, rgba(20, 30, 40, 0.55) 100%); 
     z-index: 0; 
 }
 .hero__content { position: relative; z-index: 1; padding: 0 var(--container-padding); }
@@ -500,6 +493,7 @@ main, .section, .site-footer .container, .site-header .container { /* Removed .c
     color: var(--color-text-on-dark-bg); 
     margin-bottom: 0.75em;
     line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Shadow for hero title */
 }
 .hero__title-line { display: block; }
 .hero__subtitle {
@@ -507,6 +501,7 @@ main, .section, .site-footer .container, .site-header .container { /* Removed .c
     font-size: clamp(1rem, 3vw, 1.2rem);
     max-width: 650px;
     margin: 0 auto 1.5em;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4); /* Shadow for hero subtitle */
 }
 .hero__cta {
     font-size: clamp(1rem, 3vw, 1.1rem);
@@ -520,6 +515,7 @@ main, .section, .site-footer .container, .site-header .container { /* Removed .c
     font-size: 1.8rem;
     animation: bounce 2s infinite;
     opacity: 0.8;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 .hero__scroll-indicator:hover {
     opacity: 1;
@@ -576,7 +572,7 @@ main, .section, .site-footer .container, .site-header .container { /* Removed .c
 .site-footer {
     background-color: var(--color-primary-dark);
     color: var(--color-text-on-dark-bg-muted);
-    padding: var(--section-padding-y) 0 0; /* Top padding for space above footer content */
+    padding: var(--section-padding-y) 0 0; 
     position: relative; 
     z-index: 10; 
     font-size: 0.95rem;
@@ -656,9 +652,9 @@ main, .section, .site-footer .container, .site-header .container { /* Removed .c
     text-align: center;
 }
 .footer__bottom p {
-    color: var(--color-text-on-dark-bg); /* Brighter text for copyright */
-    font-weight: 500; /* Slightly bolder */
-    font-size: 0.95rem; /* Slightly larger */
+    color: var(--color-text-on-dark-bg); 
+    font-weight: 500; 
+    font-size: 0.95rem; 
 }
 .footer__heart { color: var(--color-accent); }
 
@@ -705,33 +701,44 @@ main, .section, .site-footer .container, .site-header .container { /* Removed .c
 .animate-on-scroll[data-animation="fade-in"] {
     opacity: 0;
     transition-duration: 0.8s;
+    transition-timing-function: ease-out;
 }
 .animate-on-scroll[data-animation="fade-in-up"] {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(50px); /* Adjusted travel distance */
     transition-duration: 0.7s;
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); /* Smoother ease-out */
 }
 .animate-on-scroll[data-animation="fade-in-down"] {
     opacity: 0;
-    transform: translateY(-40px);
+    transform: translateY(-50px);
     transition-duration: 0.7s;
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
 .animate-on-scroll[data-animation="zoom-in"] {
     opacity: 0;
     transform: scale(0.9);
     transition-duration: 0.6s;
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
-.animate-on-scroll[data-animation="zoom-in-fast"] {
+.animate-on-scroll[data-animation="zoom-in-fast"] { /* For icons etc. */
     opacity: 0;
-    transform: scale(0.85);
-    transition-duration: 0.4s;
+    transform: scale(0.8);
+    transition-duration: 0.45s;
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
+.animate-on-scroll[data-animation="card-zoom-in"] { /* New animation for cards */
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+    transition-duration: 0.6s;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
 
 /* --- Media Queries for Responsiveness --- */
 @media (min-width: 768px) { 
     :root {
         --header-height-desktop: 80px;
-        /* Desktop section padding will also control spacing between "cards" */
         --section-padding-y: 80px; 
     }
     .site-header { height: var(--header-height-desktop); }
@@ -746,9 +753,7 @@ main, .section, .site-footer .container, .site-header .container { /* Removed .c
         max-width: 1140px; 
         margin-left: auto;
         margin-right: auto;
-        /* No padding here, sections manage their own internal and surrounding space */
     }
-    /* .section.preview-section > .container already has horizontal padding from .container global rule */
     
     .footer__main { 
         grid-template-columns: 1.2fr 1fr 1fr; 
