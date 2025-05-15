@@ -178,15 +178,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
     margin-bottom: 0.75em; 
     display: inline-block;
 }
-
-/* Parallax specific section styling (Mission & Donate previews if used) */
-/* For now, these use .preview-section solid white. To revert to parallax: */
-/* 1. Add back `parallax-section` class and `data-parallax-url` to HTML */
-/* 2. Uncomment and adjust styles below */
-/*
-.parallax-section { ... }
-.parallax-section .section__overlay { ... }
-*/
+/* Parallax sections are no longer used on index_mobile.html for previews */
 
 
 /* --- Buttons --- */
@@ -251,9 +243,9 @@ main, .section, .container, .site-footer .container, .site-header .container {
 }
 .header__logo-text-link {
     font-family: var(--font-heading);
-    font-size: clamp(1rem, 3.5vw, 1.2rem); 
+    font-size: clamp(1.1rem, 4vw, 1.45rem); /* Increased base and max size */
     font-weight: 700;
-    color: var(--color-primary);
+    color: var(--color-primary); /* Restored to primary dark blue/charcoal */
     text-decoration: none;
     transition: color var(--transition-fast);
     letter-spacing: -0.2px; 
@@ -352,7 +344,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
 .top-page-logo {
     max-width: 100%; 
     width: auto; 
-    max-height: 220px; /* Increased max height for bigger logo */
+    max-height: 240px; /* Increased max height for bigger logo */
     object-fit: contain; 
     display: inline-block;
     border: 5px solid rgba(255,255,255,0.7); 
@@ -374,7 +366,6 @@ main, .section, .container, .site-footer .container, .site-header .container {
     padding: var(--section-padding-y) var(--container-padding) calc(var(--section-padding-y) * 1.5); 
     position: relative;
     z-index: 1; 
-    /* No background-image here as it's on the body */
 }
 .hero-on-dark-bg .hero__content { 
     position: relative; 
@@ -406,12 +397,12 @@ main, .section, .container, .site-footer .container, .site-header .container {
 .footer__social-links { 
     margin-top: 1.2rem; 
     text-align: left; 
-    margin-bottom: 1.5rem; /* Add some space below social links */
+    margin-bottom: 1.5rem; 
 }
 .footer__social-links a {
-    font-size: 1.8rem; /* Larger social icons */
+    font-size: 1.8rem; 
     color: var(--color-text-on-dark-bg-muted);
-    margin-right: 1.5rem; /* Increased space between icons */
+    margin-right: 1.8rem; /* Increased space between icons */
     transition: color var(--transition-fast), transform var(--transition-fast);
 }
 .footer__social-links a:last-child {
@@ -445,17 +436,17 @@ main, .section, .container, .site-footer .container, .site-header .container {
 .footer__newsletter-text { 
     font-weight: bold;
     color: var(--color-text-on-dark-bg);
-    font-size: 1.05rem; /* Slightly larger */
+    font-size: 1.05rem; 
     margin-bottom: 1rem;
 }
 .newsletter-form { 
     display: flex; 
-    flex-direction: column; /* Stack input and button */
-    gap: 0.8rem; /* Space between input and button */
+    flex-direction: column; 
+    gap: 0.8rem; 
 } 
-.newsletter-form__input { /* New class for input styling */
-    width: 100%; /* Full width */
-    padding: 0.9em 1em; 
+.newsletter-form__input { 
+    width: 100%; 
+    padding: 0.9em 1.1em; /* Increased padding */
     border: 1px solid var(--color-primary-light);
     border-radius: var(--border-radius-sm);
     background-color: rgba(255,255,255,0.08); 
@@ -467,10 +458,10 @@ main, .section, .container, .site-footer .container, .site-header .container {
 .newsletter-form__input:focus { outline: none; border-color: var(--color-accent); background-color: rgba(255,255,255,0.12); }
 
 .newsletter-form__button { 
-    width: 100%; /* Full width button */
+    width: 100%; 
     padding: 0.9em 1.5em;
-    font-size: 1rem; /* Larger button text */
-    border-radius: var(--border-radius-sm) !important; /* Consistent radius with input */
+    font-size: 1rem; 
+    border-radius: var(--border-radius-sm) !important; 
 }
 
 .footer__bottom p {
@@ -494,7 +485,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
     }
     .site-header { height: var(--header-height-desktop); }
     .header__logo-text-link {
-        font-size: clamp(1.2rem, 2.2vw, 1.35rem); 
+        font-size: clamp(1.2rem, 2.2vw, 1.45rem); 
     }
     .hero-on-dark-bg { 
         padding-top: var(--header-height-desktop); 
@@ -504,7 +495,7 @@ main, .section, .container, .site-footer .container, .site-header .container {
     }
     .top-page-logo {
         max-width: 30%; 
-        max-height: 200px; 
+        max-height: 220px; 
     }
     
     .content-wrapper {
@@ -528,16 +519,17 @@ main, .section, .container, .site-footer .container, .site-header .container {
 
     .footer__main { grid-template-columns: 1.2fr 1fr 1fr; gap: 3rem; text-align: left; }
     .footer__logo-svg, .footer__links h4, .footer__newsletter h4 { margin-left: 0; }
-    .newsletter-form { 
-        display: flex; /* Revert to side-by-side on desktop */
+    
+    .newsletter-form { /* Revert to side-by-side on desktop */
+        display: flex; 
         flex-direction: row; 
-        gap: 0; /* No gap needed if input/button are joined */
+        gap: 0; 
     }
     .newsletter-form__input {
         border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
     }
     .newsletter-form__button {
-        width: auto; /* Auto width for button on desktop */
+        width: auto; 
         border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0 !important;
     }
 }
